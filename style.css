@@ -69,6 +69,8 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--text);
   background:
+    linear-gradient(rgba(4, 6, 10, 0.56), rgba(4, 6, 10, 0.78)),
+    url("./marble-bg.png") center / cover no-repeat,
     radial-gradient(circle at top left, rgba(47, 107, 255, 0.14), transparent 28%),
     radial-gradient(circle at top right, rgba(139, 92, 246, 0.10), transparent 22%),
     radial-gradient(circle at bottom center, rgba(77, 163, 255, 0.08), transparent 28%),
