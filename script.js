@@ -1,4 +1,4 @@
-const API_BASE = "https://cop1-production.up.railway.app";
+const API_BASE = "https://copy2-production-34b8.up.railway.app";
 const TOTAL_STEPS = 8;
 
 const DISCOUNT_PERCENT = 10;
