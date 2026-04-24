@@ -1488,3 +1488,36 @@ h3 {
   transform: translateY(-2px);
   border-color: rgba(139,92,246,0.42);
 }
+/* desktop норм, не трогаем сильно */
+.portfolio-back {
+  top: 16px;
+  left: 16px;
+}
+
+/* 📱 мобильная версия — компакт и вниз */
+@media (max-width: 900px) {
+  .portfolio-back {
+    top: auto;
+    bottom: 12px;
+    left: 12px;
+
+    min-height: 38px;
+    padding: 0 12px;
+    font-size: 12px;
+
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+  }
+}
+
+/* 📱 ультра маленькие экраны */
+@media (max-width: 480px) {
+  .portfolio-back {
+    bottom: 10px;
+    left: 10px;
+
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+}
