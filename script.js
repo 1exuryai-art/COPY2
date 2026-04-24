@@ -1,4 +1,4 @@
-const API_BASE = "https://przyklad2.up.railway.app";
+const API_BASE = "https://przykladmonarch2.up.railway.app";
 const TOTAL_STEPS = 8;
 
 const DISCOUNT_PERCENT = 10;
