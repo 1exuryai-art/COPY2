@@ -3,324 +3,2495 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MONARCH BARBERSHOP — Rezerwacja</title>
-  <meta name="description" content="Premium mobile-first booking flow dla MONARCH BARBERSHOP." />
+  <title>MONARCH BARBERSHOP — Digital Booking</title>
+  <meta
+    name="description"
+    content="MONARCH BARBERSHOP — dark blue digital landing z rezerwacją online."
+  />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
   <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background: #050816;
+    }
+
+    :root {
+      --landing-max: 1240px;
+      --landing-bg-0: #050816;
+      --landing-bg-1: #080b1f;
+      --landing-bg-2: #0d1230;
+      --landing-bg-3: #141a3d;
+      --landing-text: #f4f7ff;
+      --landing-text-strong: #ffffff;
+      --landing-muted: #a8b3cf;
+      --landing-soft: #6f7da4;
+      --landing-accent: #6366f1;
+      --landing-accent-strong: #8b5cf6;
+      --landing-accent-cyan: #38bdf8;
+      --landing-accent-pink: #c084fc;
+      --landing-line: rgba(255, 255, 255, 0.09);
+      --landing-line-strong: rgba(139, 92, 246, 0.24);
+      --landing-panel: rgba(255, 255, 255, 0.052);
+      --landing-panel-strong: rgba(255, 255, 255, 0.082);
+      --landing-shadow-xl: 0 34px 100px rgba(0, 0, 0, 0.52);
+      --landing-shadow-md: 0 18px 42px rgba(0, 0, 0, 0.34);
+      --header-desktop-h: 92px;
+      --header-mobile-top-h: 78px;
+      --header-mobile-tabs-h: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--landing-text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.18), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.11), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(192, 132, 252, 0.09), transparent 34%),
+        linear-gradient(180deg, #050816 0%, #080b1f 42%, #0d1230 100%);
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.menu-open,
+    body.booking-open {
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px),
+        radial-gradient(circle at center, rgba(255,255,255,0.035), transparent 58%);
+      background-size: 34px 34px, 34px 34px, auto;
+      mask-image: radial-gradient(circle at 50% 18%, black 16%, transparent 84%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(99, 102, 241, 0.035) 28%, transparent 46%),
+        radial-gradient(circle at center, rgba(255,255,255,0.028), transparent 70%);
+    }
+
+    .landing-container {
+      width: min(var(--landing-max), calc(100% - 28px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .landing-bg-orb,
+    .landing-noise,
+    .screen-flash {
+      pointer-events: none;
+    }
+
+    .landing-bg-orb {
+      position: fixed;
+      z-index: 1;
+      border-radius: 999px;
+      filter: blur(100px);
+      opacity: 0.92;
+    }
+
+    .landing-bg-orb.one {
+      width: 470px;
+      height: 470px;
+      left: -170px;
+      top: -130px;
+      background: rgba(99, 102, 241, 0.22);
+    }
+
+    .landing-bg-orb.two {
+      width: 540px;
+      height: 540px;
+      right: -240px;
+      top: 210px;
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .landing-bg-orb.three {
+      width: 520px;
+      height: 520px;
+      left: 22%;
+      bottom: -280px;
+      background: rgba(192, 132, 252, 0.12);
+    }
+
+    .landing-noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.34;
+      background-image:
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.11) 0 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(56, 189, 248, 0.12) 0 1px, transparent 1px);
+      background-size: 34px 34px, 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
+
+    .screen-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      opacity: 0;
+      background:
+        radial-gradient(circle at center, rgba(139, 92, 246, 0.16), transparent 36%),
+        linear-gradient(180deg, rgba(56, 189, 248, 0.08), transparent 45%);
+      transition: opacity 160ms ease;
+    }
+
+    .screen-flash.active {
+      opacity: 1;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 160;
+      background: linear-gradient(180deg, rgba(5, 8, 22, 0.94), rgba(5, 8, 22, 0.78));
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      border-bottom: 1px solid rgba(255,255,255,0.075);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.34);
+    }
+
+    .desktop-header {
+      min-height: var(--header-desktop-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .desktop-left,
+    .desktop-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: 1;
+    }
+
+    .desktop-right {
+      justify-content: flex-end;
+    }
+
+    .desktop-center {
+      display: flex;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .desktop-logo,
+    .mobile-brand {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        radial-gradient(circle at top, rgba(139, 92, 246, 0.16), transparent 44%),
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      box-shadow:
+        0 16px 34px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .desktop-logo {
+      width: 128px;
+      min-height: 58px;
+      padding: 8px 12px;
+      border-radius: 20px;
+    }
+
+    .desktop-logo img {
+      width: 100%;
+      max-width: 104px;
+      max-height: 44px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter:
+        saturate(0.95)
+        contrast(1.05)
+        drop-shadow(0 0 16px rgba(99,102,241,0.16));
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .desktop-nav a {
+      position: relative;
+      color: rgba(244,247,255,0.78);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .desktop-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -9px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--landing-accent-cyan), var(--landing-accent-strong));
+      transition: width 0.22s ease;
+    }
+
+    .desktop-nav a:hover {
+      color: #ffffff;
+    }
+
+    .desktop-nav a:hover::after {
+      width: 100%;
+    }
+
+    .desktop-call-btn,
+    .mobile-call-btn {
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.04);
+      color: #b7c2ff;
+      box-shadow:
+        0 14px 28px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .desktop-call-btn {
+      min-height: 46px;
+      padding: 0 17px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .desktop-call-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(139,92,246,0.24);
+      box-shadow:
+        0 18px 36px rgba(0,0,0,0.3),
+        0 0 0 4px rgba(99,102,241,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .mobile-topbar,
+    .mobile-tabs,
+    .mobile-drawer,
+    .mobile-icon-btn {
+      display: none;
+    }
+
+    .mobile-topbar {
+      min-height: var(--header-mobile-top-h);
+      padding: 0 14px;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,0.075);
+      position: relative;
+    }
+
+    .mobile-brand {
+      width: 112px;
+      min-height: 52px;
+      padding: 8px 12px;
+      border-radius: 18px;
+    }
+
+    .mobile-brand img {
+      width: 100%;
+      max-width: 88px;
+      max-height: 38px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .mobile-call-btn {
+      position: absolute;
+      right: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .mobile-call-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .mobile-tabs {
+      min-height: var(--header-mobile-tabs-h);
+      padding: 0 8px;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-bottom: 1px solid rgba(255,255,255,0.075);
+    }
+
+    .mobile-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-tab {
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      text-decoration: none;
+      color: rgba(244,247,255,0.78);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.075);
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.055);
+    }
+
+    .mobile-tab.active,
+    .mobile-tab:hover {
+      color: #ffffff;
+      background: linear-gradient(180deg, var(--landing-accent-strong), var(--landing-accent));
+      border-color: rgba(139,92,246,0.28);
+      box-shadow: 0 14px 30px rgba(99,102,241,0.22);
+    }
+
+    .landing-wrap {
+      display: grid;
+      gap: 20px;
+      padding: 20px 0 46px;
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero,
+    #experience,
+    #manifest,
+    #pricing,
+    #location,
+    #contact {
+      scroll-margin-top: 124px;
+    }
+
+    .hero-section {
+      min-height: calc(100vh - var(--header-desktop-h) - 20px);
+    }
+
+    .hero-card,
+    .section-card {
+      border-radius: 36px;
+      border: 1px solid var(--landing-line);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(99,102,241,0.16), transparent 30%),
+        radial-gradient(circle at 100% 10%, rgba(56,189,248,0.075), transparent 24%),
+        radial-gradient(circle at 80% 100%, rgba(192,132,252,0.08), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.058), rgba(255,255,255,0.024));
+      box-shadow:
+        var(--landing-shadow-xl),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 -1px 0 rgba(255,255,255,0.025);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-card::before,
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.065), transparent 42%),
+        radial-gradient(circle at 50% 0%, rgba(139,92,246,0.12), transparent 46%);
+    }
+
+    .hero-card::after,
+    .section-card::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      border: 1px solid rgba(255,255,255,0.055);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      min-height: 740px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      padding: 30px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      max-width: 680px;
+    }
+
+    .section-chip {
+      width: fit-content;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(139,92,246,0.22);
+      background: rgba(255,255,255,0.05);
+      color: #c4b5fd;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow:
+        0 12px 26px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .section-chip::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--landing-accent-cyan);
+      box-shadow: 0 0 16px rgba(56,189,248,0.42);
+    }
+
+    .hero-title {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(52px, 8vw, 104px);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      color: var(--landing-text-strong);
+      max-width: 10ch;
+      text-wrap: balance;
+    }
+
+    .hero-title span {
+      color: #c4b5fd;
+      text-shadow: 0 18px 50px rgba(139,92,246,0.22);
+    }
+
+    .hero-sub {
+      margin: 0;
+      color: var(--landing-muted);
+      font-size: 18px;
+      line-height: 1.78;
+      max-width: 600px;
+    }
+
+    .hero-actions,
+    .section-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .hero-trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .trust-pill {
+      min-height: 38px;
+      padding: 0 13px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.045);
+      color: var(--landing-muted);
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.055);
+    }
+
+    .trust-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--landing-accent-cyan);
+      box-shadow: 0 0 12px rgba(56,189,248,0.34);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+      align-content: stretch;
+    }
+
+    .glass-card {
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.085);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(99,102,241,0.1), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.058), rgba(255,255,255,0.024));
+      box-shadow:
+        var(--landing-shadow-md),
+        inset 0 1px 0 rgba(255,255,255,0.075);
+      backdrop-filter: blur(14px) saturate(125%);
+      -webkit-backdrop-filter: blur(14px) saturate(125%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%);
+    }
+
+    .hero-photo {
+      min-height: 440px;
+      overflow: hidden;
+    }
+
+    .hero-photo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, transparent 45%, rgba(5,8,22,0.78)),
+        radial-gradient(circle at 70% 0%, rgba(56,189,248,0.16), transparent 34%);
+      pointer-events: none;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: grayscale(0.72) contrast(1.06) brightness(0.9) saturate(0.95);
+      transform: scale(1.01);
+    }
+
+    .hero-photo-badge {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(5,8,22,0.68);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.3);
+      display: grid;
+      gap: 6px;
+    }
+
+    .hero-photo-badge span {
+      color: #93c5fd;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-photo-badge strong {
+      font-family: "Sora", sans-serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #ffffff;
+    }
+
+    .hero-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .metric-card {
+      min-height: 150px;
+      padding: 18px;
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+    }
+
+    .metric-card span {
+      color: var(--landing-muted);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .metric-card strong {
+      font-family: "Sora", sans-serif;
+      color: #ffffff;
+      font-size: 34px;
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+    }
+
+    .btn {
+      min-height: 56px;
+      padding: 0 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
+      cursor: pointer;
+      color: var(--landing-text);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.035));
+      font: inherit;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        filter 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139,92,246,0.28);
+      box-shadow:
+        0 20px 42px rgba(0,0,0,0.34),
+        0 0 0 4px rgba(99,102,241,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      border-color: rgba(139,92,246,0.34);
+      background: linear-gradient(180deg, #8b5cf6, #6366f1);
+      box-shadow:
+        0 18px 38px rgba(99,102,241,0.28),
+        0 0 34px rgba(56,189,248,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.26);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.04) saturate(1.05);
+      box-shadow:
+        0 22px 46px rgba(99,102,241,0.34),
+        0 0 0 5px rgba(56,189,248,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.28);
+    }
+
+    .btn-ghost {
+      color: #c4b5fd;
+    }
+
+    .section {
+      padding: 0;
+    }
+
+    .section-wrap {
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 11px;
+      max-width: 880px;
+      margin-bottom: 20px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(34px, 5vw, 68px);
+      line-height: 0.97;
+      letter-spacing: -0.065em;
+      color: #ffffff;
+      max-width: 13ch;
+      text-wrap: balance;
+    }
+
+    .section-head.center h2 {
+      max-width: 16ch;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--landing-muted);
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 780px;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .experience-showcase {
+      min-height: 520px;
+      padding: 22px;
+      display: grid;
+      align-content: end;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(56,189,248,0.13), transparent 30%),
+        radial-gradient(circle at 82% 100%, rgba(139,92,246,0.12), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.026));
+    }
+
+    .showcase-phone {
+      width: min(360px, 92%);
+      margin: 0 auto;
+      border-radius: 38px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.035));
+      box-shadow:
+        0 36px 80px rgba(0,0,0,0.38),
+        0 0 34px rgba(99,102,241,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      transform: rotate(-2deg);
+    }
+
+    .showcase-screen {
+      border-radius: 30px;
+      min-height: 500px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        radial-gradient(circle at top, rgba(99,102,241,0.18), transparent 38%),
+        linear-gradient(180deg, #0b1028, #060a1a);
+      padding: 18px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .mini-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .mini-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .mini-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mini-pill {
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      color: #93c5fd;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.14);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .mini-title {
+      font-family: "Sora", sans-serif;
+      color: #ffffff;
+      font-size: 31px;
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin: 4px 0 8px;
+    }
+
+    .mini-card {
+      min-height: 68px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.045);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 20px rgba(0,0,0,0.2);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .mini-card strong {
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .mini-card span {
+      color: var(--landing-muted);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .mini-cta {
+      min-height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #8b5cf6, #6366f1);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 18px 34px rgba(99,102,241,0.28);
+    }
+
+    .experience-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-card {
+      padding: 22px;
+      min-height: 160px;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(139,92,246,0.22);
+      box-shadow:
+        0 24px 48px rgba(0,0,0,0.35),
+        0 0 0 4px rgba(99,102,241,0.045),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .feature-number {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: linear-gradient(180deg, #38bdf8, #6366f1);
+      box-shadow: 0 14px 26px rgba(99,102,241,0.24);
+      font-weight: 900;
+    }
+
+    .feature-card strong {
+      display: block;
+      font-family: "Sora", sans-serif;
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--landing-muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .manifest-grid {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 18px;
+    }
+
+    .manifest-vertical {
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(139,92,246,0.18), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.026));
+    }
+
+    .manifest-vertical__text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: "Sora", sans-serif;
+      font-size: clamp(56px, 8vw, 108px);
+      line-height: 0.8;
+      letter-spacing: -0.08em;
+      color: #ffffff;
+      text-shadow:
+        0 22px 60px rgba(139,92,246,0.18),
+        0 0 1px rgba(56,189,248,0.18);
+    }
+
+    .manifest-copy {
+      display: grid;
+      gap: 14px;
+    }
+
+    .manifest-line {
+      padding: 22px;
+    }
+
+    .manifest-line p {
+      margin: 0;
+      color: var(--landing-muted);
+      font-size: 16px;
+      line-height: 1.82;
+    }
+
+    .manifest-line strong {
+      color: #c4b5fd;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .pricing-card {
+      padding: 24px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139,92,246,0.24);
+      box-shadow:
+        0 26px 56px rgba(0,0,0,0.38),
+        0 0 0 4px rgba(99,102,241,0.045),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .pricing-card__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .pricing-card__top strong {
+      font-family: "Sora", sans-serif;
+      font-size: 28px;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      color: #ffffff;
+    }
+
+    .pricing-card__price {
+      font-family: "Sora", sans-serif;
+      font-size: 18px;
+      color: #93c5fd;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pricing-card p {
+      margin: 0;
+      color: var(--landing-muted);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .service-tags span {
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      background: rgba(56,189,248,0.09);
+      border: 1px solid rgba(56,189,248,0.14);
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .location-map {
+      min-height: 540px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      filter: grayscale(1) invert(0.9) contrast(1.08) brightness(0.7) saturate(0.6) hue-rotate(175deg);
+      opacity: 0.9;
+    }
+
+    .location-map::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,8,22,0.18), rgba(5,8,22,0.42)),
+        radial-gradient(circle at center, transparent 42%, rgba(0,0,0,0.22) 100%);
+      pointer-events: none;
+    }
+
+    .location-side {
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .location-preview {
+      min-height: 280px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.085);
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(56,189,248,0.16), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.026));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .location-preview__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .location-preview__inner img {
+      width: 150px;
+      height: auto;
+      display: block;
+      filter: saturate(0.92) drop-shadow(0 0 16px rgba(99,102,241,0.14));
+    }
+
+    .location-preview__inner strong {
+      font-family: "Sora", sans-serif;
+      font-size: 30px;
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      color: #ffffff;
+    }
+
+    .location-preview__inner span {
+      color: var(--landing-muted);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .location-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .location-copy strong {
+      font-family: "Sora", sans-serif;
+      font-size: 30px;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      color: #ffffff;
+      max-width: 14ch;
+    }
+
+    .location-copy p {
+      margin: 0;
+      color: var(--landing-muted);
+      line-height: 1.78;
+      font-size: 15px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .contact-card,
+    .status-card {
+      padding: 22px;
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-lead {
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(139,92,246,0.18);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.12), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.026));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .contact-lead strong {
+      display: block;
+      font-family: "Sora", sans-serif;
+      color: #ffffff;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin-bottom: 10px;
+    }
+
+    .contact-lead p {
+      margin: 0;
+      color: var(--landing-muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .contact-note {
+      color: var(--landing-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .status-card {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .status-pill {
+      width: fit-content;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.045);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .status-pill.open {
+      color: #4ade80;
+    }
+
+    .status-pill.closed {
+      color: #fb7185;
+    }
+
+    .status-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-list li {
+      min-height: 56px;
+      padding: 0 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255,255,255,0.045);
+      color: var(--landing-muted);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .status-list strong {
+      color: #ffffff;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.09);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.035));
+      color: #c4b5fd;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow:
+        0 14px 28px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139,92,246,0.26);
+      box-shadow:
+        0 18px 34px rgba(0,0,0,0.3),
+        0 0 0 4px rgba(99,102,241,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .social-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .section-button-full {
+      width: 100%;
+    }
+
+    .floating-book {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 130;
+      min-width: 190px;
+      min-height: 60px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .floating-book.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .floating-book.hidden-on-contact {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
+    .booking-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 220;
+      display: none;
+      align-items: stretch;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(99,102,241,0.18), transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.1), transparent 30%),
+        linear-gradient(180deg, rgba(5,8,22,0.78), rgba(5,8,22,0.92));
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+    }
+
+    .booking-overlay.open {
+      display: flex;
+    }
+
+    .booking-shell {
+      width: min(1180px, 100%);
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      overflow: auto;
+      padding-right: 4px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .booking-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(5,8,22,0.72);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.36),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .booking-topbar__left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .booking-topbar__left img {
+      width: 86px;
+      min-height: 52px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .booking-topbar__copy {
+      display: grid;
+      gap: 4px;
+    }
+
+    .booking-topbar__copy span {
+      color: #93c5fd;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .booking-topbar__copy strong {
+      font-family: "Sora", sans-serif;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #ffffff;
+    }
+
+    .booking-close {
+      min-width: 52px;
+      width: 52px;
+      height: 52px;
+      padding: 0;
+      border-radius: 999px;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .wizard-host .app-shell {
+      min-height: auto;
+      padding: 0;
+      place-items: center;
+    }
+
+    .wizard-host .wizard-frame {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      animation: fadeUp 680ms cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .hero-side .hero-photo {
+      animation: floatSoft 7s ease-in-out infinite;
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .experience-grid,
+      .manifest-grid,
+      .pricing-grid,
+      .location-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        min-height: auto;
+      }
+
+      .manifest-vertical {
+        min-height: 220px;
+      }
+
+      .manifest-vertical__text {
+        writing-mode: initial;
+        transform: none;
+      }
+
+      .location-copy strong {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .desktop-header {
+        display: none;
+      }
+
+      .mobile-topbar {
+        display: flex;
+      }
+
+      .mobile-tabs {
+        display: flex;
+      }
+
+      .landing-wrap {
+        gap: 14px;
+        padding-top: 12px;
+      }
+
+      .landing-container {
+        width: min(100%, calc(100% - 14px));
+      }
+
+      .hero-section {
+        min-height: auto;
+      }
+
+      .hero-card,
+      .section-card {
+        border-radius: 28px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 18px;
+        gap: 14px;
+      }
+
+      .hero-title {
+        font-size: 43px;
+        max-width: none;
+        line-height: 0.96;
+      }
+
+      .hero-sub {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .hero-side {
+        display: none;
+      }
+
+      .section-wrap {
+        padding: 18px;
+      }
+
+      .section-head h2 {
+        font-size: 34px;
+        max-width: none;
+      }
+
+      .section-head p {
+        font-size: 15px;
+      }
+
+      .showcase-phone {
+        transform: none;
+      }
+
+      .experience-showcase {
+        min-height: auto;
+      }
+
+      .showcase-screen {
+        min-height: 430px;
+      }
+
+      .floating-book {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        min-width: unset;
+        bottom: 12px;
+      }
+
+      .booking-overlay {
+        padding: 10px;
+      }
+
+      .booking-topbar {
+        border-radius: 22px;
+        padding: 10px;
+      }
+
+      .booking-topbar__left img {
+        width: 72px;
+      }
+
+      .booking-topbar__copy strong {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .mobile-topbar {
+        padding: 0 12px;
+      }
+
+      .mobile-brand {
+        width: 104px;
+      }
+
+      .mobile-brand img {
+        width: 86px;
+      }
+
+      .hero-title {
+        font-size: 37px;
+      }
+
+      .section-head h2 {
+        font-size: 30px;
+      }
+
+      .btn,
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+      }
+
+      .hero-actions,
+      .section-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-trust-row {
+        display: grid;
+      }
+
+      .hero-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-list li {
+        padding: 0 12px;
+        font-size: 13px;
+      }
+
+      .contact-card,
+      .status-card,
+      .location-side {
+        padding: 16px;
+      }
+
+      .showcase-screen {
+        min-height: 390px;
+        padding: 14px;
+      }
+
+      .mini-title {
+        font-size: 27px;
+      }
+
+      .booking-topbar__copy span {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="bg-orb bg-orb-1"></div>
-  <div class="bg-orb bg-orb-2"></div>
-  <div class="bg-grid"></div>
-  <div class="bg-logo"></div>
-  
-  <main class="app-shell">
-    <section class="wizard-frame">
-      <header class="wizard-top">
-        <div class="wizard-top-row">
-          <div class="wizard-top-copy">
-            <div class="eyebrow">MONARCH BARBERSHOP</div>
-            <h1 id="stepTitle">Dane kontaktowe</h1>
-            <p id="stepSubtitle">Zostaw podstawowe dane i przejdź dalej.</p>
+  <div class="landing-bg-orb one"></div>
+  <div class="landing-bg-orb two"></div>
+  <div class="landing-bg-orb three"></div>
+  <div class="landing-noise"></div>
+  <div class="screen-flash" id="screenFlash"></div>
+
+  <header class="site-header" id="top">
+    <div class="landing-container desktop-header">
+      <div class="desktop-left">
+        <nav class="desktop-nav">
+          <a href="#hero">Start</a>
+          <a href="#experience">Rezerwacja</a>
+          <a href="#manifest">O nas</a>
+        </nav>
+      </div>
+
+      <div class="desktop-center">
+        <a href="#top" class="desktop-logo" aria-label="MONARCH start">
+          <img src="/monarch-logo.png" alt="MONARCH logo" />
+        </a>
+      </div>
+
+      <div class="desktop-right">
+        <nav class="desktop-nav">
+          <a href="#pricing">Usługi</a>
+          <a href="#location">Dojazd</a>
+          <a href="#contact">Kontakt</a>
+        </nav>
+        <a href="tel:+48532377701" class="desktop-call-btn">Zadzwoń</a>
+      </div>
+    </div>
+
+    <div class="mobile-topbar">
+      <a href="#top" class="mobile-brand" aria-label="MONARCH start">
+        <img src="/monarch-logo.png" alt="MONARCH logo" />
+      </a>
+
+      <a href="tel:+48532377701" class="mobile-call-btn" aria-label="Zadzwoń">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.77.68 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.25a2 2 0 0 1 2.11-.45c.83.33 1.7.56 2.6.68A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="mobile-tabs">
+      <a href="#hero" class="mobile-tab active">Start</a>
+      <a href="#experience" class="mobile-tab">Booking</a>
+      <a href="#manifest" class="mobile-tab">O nas</a>
+      <a href="#pricing" class="mobile-tab">Usługi</a>
+      <a href="#location" class="mobile-tab">Dojazd</a>
+      <a href="#contact" class="mobile-tab">Kontakt</a>
+    </div>
+  </header>
+
+  <main class="landing-wrap">
+    <section class="hero-section" id="hero">
+      <div class="landing-container">
+        <div class="hero-card reveal">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="section-chip">MONARCH BARBERSHOP</div>
+
+              <h1 class="hero-title">
+                Fryzura zaczyna się od <span>dobrego terminu.</span>
+              </h1>
+
+              <p class="hero-sub">
+                Wybierz usługę, barbera, dzień i godzinę bez dzwonienia. Premium booking
+                prowadzi klienta od pierwszego kliknięcia do konkretnego terminu — spokojnie,
+                szybko i bez chaosu w wiadomościach.
+              </p>
+
+              <div class="hero-actions">
+                <button class="btn btn-primary" type="button" data-open-booking>
+                  Zarezerwuj termin
+                </button>
+                <button class="btn btn-ghost" type="button" onclick="document.querySelector('#experience')?.scrollIntoView({ behavior: 'smooth' })">
+                  Zobacz, jak działa
+                </button>
+              </div>
+
+              <div class="hero-trust-row">
+                <div class="trust-pill">Rezerwacja online</div>
+                <div class="trust-pill">Wybór barbera</div>
+                <div class="trust-pill">Zajęte sloty ukryte</div>
+              </div>
+            </div>
+
+            <div class="hero-side">
+              <article class="glass-card hero-photo">
+                <img src="/tymur.png" alt="MONARCH barber" />
+                <div class="hero-photo-badge">
+                  <span>BARBERSHOP &amp; SOCIAL CLUB</span>
+                  <strong>MONARCH</strong>
+                </div>
+              </article>
+
+              <div class="hero-info-grid">
+                <article class="glass-card metric-card">
+                  <span>Od wejścia na stronę do wyboru godziny</span>
+                  <strong>8 kroków</strong>
+                </article>
+
+                <article class="glass-card metric-card">
+                  <span>Godziny pracy w systemie</span>
+                  <strong>10–20</strong>
+                </article>
+              </div>
+            </div>
           </div>
-          <div class="step-pill" id="stepPill">1 / 8</div>
         </div>
+      </div>
+    </section>
 
-        <div class="progress-wrap">
-          <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
+    <section class="section" id="experience">
+      <div class="landing-container">
+        <div class="section-card reveal">
+          <div class="section-wrap">
+            <div class="section-head center">
+              <div class="section-chip">REZERWACJA ONLINE</div>
+              <h2>To nie jest zwykły formularz. To system sprzedaży terminu.</h2>
+              <p>
+                Klient nie musi pisać wiadomości, czekać na odpowiedź ani pytać o wolne godziny.
+                Wszystko dzieje się w jednym miejscu: oferta, usługa, barber, data, godzina i potwierdzenie.
+              </p>
+            </div>
+
+            <div class="experience-grid">
+              <article class="glass-card experience-showcase">
+                <div class="showcase-phone">
+                  <div class="showcase-screen">
+                    <div class="mini-top">
+                      <div class="mini-logo">
+                        <img src="/monarch-logo.png" alt="MONARCH logo" />
+                      </div>
+                      <div class="mini-pill">Digital booking</div>
+                    </div>
+
+                    <div class="mini-title">Umów wizytę bez chaosu.</div>
+
+                    <div class="mini-card">
+                      <strong>Strzyżenie / Haircut</strong>
+                      <span>90 zł</span>
+                    </div>
+
+                    <div class="mini-card">
+                      <strong>Combo włosy + broda</strong>
+                      <span>140 zł</span>
+                    </div>
+
+                    <div class="mini-card">
+                      <strong>Wybierz barbera</strong>
+                      <span>3 osoby</span>
+                    </div>
+
+                    <div class="mini-card">
+                      <strong>Wolne godziny</strong>
+                      <span>10:00–20:00</span>
+                    </div>
+
+                    <div class="mini-cta">Zarezerwuj termin</div>
+                  </div>
+                </div>
+              </article>
+
+              <div class="experience-stack">
+                <article class="glass-card feature-card">
+                  <div class="feature-number">01</div>
+                  <div>
+                    <strong>Bez rozmów w DM</strong>
+                    <p>Klient widzi usługi, ceny, czas trwania i przechodzi do terminu bez pytania o podstawowe rzeczy.</p>
+                  </div>
+                </article>
+
+                <article class="glass-card feature-card">
+                  <div class="feature-number">02</div>
+                  <div>
+                    <strong>Barber albo auto-dobór</strong>
+                    <p>Można wybrać konkretną osobę albo zostawić systemowi dobór dostępnego specjalisty.</p>
+                  </div>
+                </article>
+
+                <article class="glass-card feature-card">
+                  <div class="feature-number">03</div>
+                  <div>
+                    <strong>Tylko dostępne godziny</strong>
+                    <p>Zajęte terminy są automatycznie pomijane, więc klient widzi tylko dostępne godziny.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
           </div>
-          <div class="progress-text" id="progressText">13%</div>
         </div>
-      </header>
+      </div>
+    </section>
 
-      <section class="wizard-card">
-        <section class="step active" data-step="1">
-          <div class="step-content narrow">
-            <div class="intro-card">
-              <div class="intro-top">
-                <div class="logo-box logo-box-image">
-                  <img src="/monarch-logo.png" alt="MONARCH logo" />
+    <section class="section" id="manifest">
+      <div class="landing-container">
+        <div class="section-card reveal">
+          <div class="section-wrap">
+            <div class="section-head">
+              <div class="section-chip">O NAS</div>
+              <h2>Rezerwacja może wyglądać tak dobrze jak sam lokal.</h2>
+              <p>
+                Ten układ działa jak gotowa prezentacja barbershopu: klimat miejsca,
+                usługi, lokalizacja i booking w jednej płynnej ścieżce.
+              </p>
+            </div>
+
+            <div class="manifest-grid">
+              <div class="glass-card manifest-vertical">
+                <div class="manifest-vertical__text">MONARCH</div>
+              </div>
+
+              <div class="manifest-copy">
+                <article class="glass-card manifest-line">
+                  <p>
+                    <strong>Wygląd sprzedaje zaufanie.</strong> Klient szybciej zostawia dane,
+                    kiedy strona wygląda jak część dopracowanej marki, a nie przypadkowy formularz z internetu.
+                  </p>
+                </article>
+
+                <article class="glass-card manifest-line">
+                  <p>
+                    <strong>Rezerwacja skraca rozmowę.</strong> Zamiast pytań o ceny, godziny i usługi,
+                    klient dostaje gotową ścieżkę i sam przechodzi do terminu.
+                  </p>
+                </article>
+
+                <article class="glass-card manifest-line">
+                  <p>
+                    <strong>System działa pod lokal.</strong> Możesz pokazać usługi, barberów,
+                    godziny pracy, mapę i kontakt — wszystko w jednym miejscu, podłączone do booking flow.
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="landing-container">
+        <div class="section-card reveal">
+          <div class="section-wrap">
+            <div class="section-head">
+              <div class="section-chip">USŁUGI</div>
+              <h2>Oferta wygląda jak produkt, nie jak lista cen w wiadomości.</h2>
+              <p>
+                Najważniejsze usługi są pokazane od razu, a pełny wybór klient widzi w bookingu.
+                To pomaga szybciej przejść od zainteresowania do konkretnej wizyty.
+              </p>
+            </div>
+
+            <div class="pricing-grid">
+              <article class="glass-card pricing-card">
+                <div>
+                  <div class="pricing-card__top">
+                    <strong>Strzyżenie</strong>
+                    <div class="pricing-card__price">od 90 zł</div>
+                  </div>
+                  <p>
+                    Karta usługi może pokazywać cenę, czas trwania i najważniejszą wartość — klient rozumie ofertę bez dodatkowych pytań.
+                  </p>
+                  <div class="service-tags">
+                    <span>1h</span>
+                    <span>Haircut</span>
+                    <span>Rabat pn–czw</span>
+                  </div>
+                </div>
+                <button class="btn section-button-full" type="button" data-open-booking>
+                  Zarezerwuj
+                </button>
+              </article>
+
+              <article class="glass-card pricing-card">
+                <div>
+                  <div class="pricing-card__top">
+                    <strong>Broda</strong>
+                    <div class="pricing-card__price">od 70 zł</div>
+                  </div>
+                  <p>
+                    Każda usługa może mieć własny opis, tagi i przycisk rezerwacji. To wygląda jak dopracowany katalog, nie zwykła tabelka.
+                  </p>
+                  <div class="service-tags">
+                    <span>40min</span>
+                    <span>Kontury</span>
+                    <span>Golenie</span>
+                  </div>
+                </div>
+                <button class="btn section-button-full" type="button" data-open-booking>
+                  Zarezerwuj
+                </button>
+              </article>
+
+              <article class="glass-card pricing-card">
+                <div>
+                  <div class="pricing-card__top">
+                    <strong>Combo</strong>
+                    <div class="pricing-card__price">od 140 zł</div>
+                  </div>
+                  <p>
+                    Najdroższe pakiety można wyróżnić mocniejszym CTA, żeby naturalnie prowadzić klienta do wyższej wartości koszyka.
+                  </p>
+                  <div class="service-tags">
+                    <span>1h 30min</span>
+                    <span>Włosy + broda</span>
+                    <span>Premium</span>
+                  </div>
+                </div>
+                <button class="btn btn-primary section-button-full" type="button" data-open-booking>
+                  Zarezerwuj
+                </button>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="location">
+      <div class="landing-container">
+        <div class="section-card reveal">
+          <div class="section-wrap">
+            <div class="section-head">
+              <div class="section-chip">JAK DO NAS TRAFIĆ</div>
+              <h2>Mapa i kontakt bez szukania po profilu.</h2>
+              <p>
+                Sekcja lokalizacji domyka decyzję: klient widzi, gdzie trafić, może od razu otworzyć mapę
+                i po rezerwacji nie szuka już informacji w wiadomościach.
+              </p>
+            </div>
+
+            <div class="location-grid">
+              <div class="glass-card location-map">
+                <iframe
+                  title="MONARCH map"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=Wroclaw&z=13&output=embed"
+                ></iframe>
+              </div>
+
+              <div class="glass-card location-side">
+                <div class="location-preview">
+                  <div class="location-preview__inner">
+                    <img src="/monarch-logo.png" alt="MONARCH sign" />
+                    <strong>MONARCH</strong>
+                    <span>BARBERSHOP &amp; SOCIAL CLUB</span>
+                  </div>
                 </div>
 
-                <div class="intro-copy">
-                  <span class="section-kicker">MONARCH BARBERSHOP</span>
-                  <strong>Umów wizytę szybko i wygodnie</strong>
+                <div class="location-copy">
+                  <strong>Prosta droga do miejsca, do którego chce się wracać.</strong>
+                  <p>Sprawdź lokalizację, odpal nawigację i wpadaj bez błądzenia.</p>
                 </div>
-              </div>
 
-              <div class="intro-divider"></div>
-
-              <div class="card-head">
-                <h2>Wpisz imię i telefon</h2>
-                <p>
-                  Zostaw swoje dane, a potem wybierz usługę i termin wizyty.
-                </p>
-              </div>
-
-              <div class="intro-benefits">
-                <div class="intro-benefit">Szybko</div>
-                <div class="intro-benefit">Wygodnie</div>
-                <div class="intro-benefit">Online</div>
-              </div>
-            </div>
-
-            <label class="field">
-              <span>Imię</span>
-              <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
-              <small class="error" id="nameError"></small>
-            </label>
-
-            <label class="field">
-              <span>Telefon</span>
-              <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
-              <small class="error" id="phoneError"></small>
-            </label>
-          </div>
-        </section>
-
-        <section class="step" data-step="2">
-          <div class="step-content">
-            <div class="card-head">
-              <h2>Wybór usługi</h2>
-              <p>Najpierw wybierz kategorię, potem konkretną usługę.</p>
-            </div>
-
-            <div class="accordion-list" id="categoryAccordion"></div>
-          </div>
-        </section>
-
-        <section class="step" data-step="3">
-          <div class="step-content narrow">
-            <div class="card-head">
-              <h2>Wybrać barbera?</h2>
-              <p>Możesz wybrać konkretnego barbera albo przejść dalej bez wyboru.</p>
-            </div>
-
-            <div class="summary-list">
-              <div class="summary-row">
-                <span>Imię</span>
-                <strong data-bind="name">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Telefon</span>
-                <strong data-bind="phone">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Usługa</span>
-                <strong data-bind="serviceName">—</strong>
-              </div>
-            </div>
-
-            <div class="choice-actions">
-              <button class="choice-btn choice-btn-strong" id="chooseBarberYes" type="button">Tak</button>
-              <button class="choice-btn choice-btn-strong" id="chooseBarberNo" type="button">Nie</button>
-            </div>
-
-            <div class="barber-skip-box hidden" id="barberSkipBox">
-              <div class="summary-list">
-                <div class="summary-row">
-                  <span>Barber</span>
-                  <strong>Bez wyboru</strong>
-                </div>
-                <div class="summary-row">
-                  <span>Status</span>
-                  <strong>System dobierze dostępnego barbera</strong>
+                <div class="section-actions">
+                  <button class="btn btn-primary" type="button" onclick="openMapsRoute()">
+                    Jak dojechać
+                  </button>
+                  <a class="btn btn-ghost" href="tel:+48532377701">Zadzwoń</a>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
-        <section class="step" data-step="4">
-          <div class="step-content narrow">
-            <div class="card-head">
-              <h2>Wybór barbera</h2>
-              <p>Przeglądaj barbera strzałkami i wybierz konkretną osobę.</p>
+    <section class="section" id="contact">
+      <div class="landing-container">
+        <div class="section-card reveal">
+          <div class="section-wrap">
+            <div class="section-head">
+              <div class="section-chip">DOŁĄCZ DO MONARCH</div>
+              <h2>Zamień wejścia z Instagrama w konkretne rezerwacje.</h2>
+              <p>
+                Landing można podpiąć pod link w bio, DM automatyzację albo reklamę.
+                Klient trafia na stronę, widzi ofertę i przechodzi prosto do bookingu.
+              </p>
             </div>
 
-            <div class="barber-slider-card">
-              <div class="barber-slide-photo" id="barberSlidePhoto">
-                <img src="/tymur.png" alt="Barber" class="barber-photo-img" />
-              </div>
-
-              <div class="barber-slide-info">
-                <strong id="barberSlideName">—</strong>
-                <p id="barberSlideDescription">—</p>
-                <div class="barber-langs" id="barberSlideLangs"></div>
-              </div>
-
-              <div class="barber-slider-controls">
-                <button class="slider-arrow" id="barberPrevBtn" type="button">←</button>
-                <div class="slider-counter" id="barberCounter">1 / 3</div>
-                <button class="slider-arrow" id="barberNextBtn" type="button">→</button>
-              </div>
-
-              <button class="select-barber-btn" id="selectBarberBtn" type="button">
-                Wybierz tego barbera
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="step" data-step="5">
-          <div class="step-content">
-            <div class="card-head">
-              <h2>Wybór daty</h2>
-              <p>Wybierz dogodny dzień wizyty.</p>
-            </div>
-
-            <div class="calendar-box">
-              <div class="calendar-header">
-                <button class="calendar-nav-btn" id="calendarPrevBtn" type="button">←</button>
-
-                <div class="calendar-title-wrap">
-                  <strong id="monthLabel">Miesiąc</strong>
-                  <span id="calendarStatus">Dostępne terminy</span>
+            <div class="contact-grid">
+              <div class="glass-card contact-card">
+                <div class="contact-lead">
+                  <strong>Gotowy system pod barbershop.</strong>
+                  <p>
+                    To jest dokładnie ten typ strony, który możesz pokazać właścicielowi:
+                    wygląda premium, tłumaczy wartość i od razu ma działający booking w środku.
+                  </p>
                 </div>
 
-                <button class="calendar-nav-btn" id="calendarNextBtn" type="button">→</button>
+                <button class="btn btn-primary section-button-full" type="button" data-open-booking>
+                  Zarezerwuj termin
+                </button>
+
+                <div class="contact-note">
+                  W praktyce właściciel dostaje mniej ręcznego odpisywania,
+                  a klient szybszą drogę od zainteresowania do terminu.
+                </div>
               </div>
 
-              <div class="calendar-weekdays">
-                <span>Pn</span>
-                <span>Wt</span>
-                <span>Śr</span>
-                <span>Cz</span>
-                <span>Pt</span>
-                <span>Sb</span>
-                <span>Nd</span>
-              </div>
+              <div class="glass-card status-card">
+                <div id="liveStatus" class="status-pill closed">Closed now</div>
 
-              <div class="calendar-month-grid" id="calendarGrid"></div>
-              <small class="error" id="dateError"></small>
+                <ul class="status-list">
+                  <li><span>Poniedziałek – Sobota</span><strong>10:00 – 20:00</strong></li>
+                  <li><span>Niedziela</span><strong>10:00 – 18:00</strong></li>
+                </ul>
+
+                <div class="social-icons">
+                  <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                      <circle cx="12" cy="12" r="4"></circle>
+                      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                  </a>
+
+                  <a class="social-icon" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M15.7 3c.2 1.6 1.1 3 2.4 3.8.8.5 1.7.8 2.7.8v3.1c-1.4 0-2.9-.4-4.1-1.2v6.4c0 3.1-2.5 5.6-5.6 5.6S5.5 19 5.5 15.9s2.5-5.6 5.6-5.6c.3 0 .7 0 1 .1v3.2a2.7 2.7 0 0 0-1-.2 2.5 2.5 0 0 0 0 5 2.5 2.5 0 0 0 2.5-2.5V3h2.1Z"></path>
+                    </svg>
+                  </a>
+
+                  <a class="social-icon" href="#" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.2-1.5 1.5-1.5H17V3.7c-.4-.1-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.6v1.8H7V13h3v8h3.5Z"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-
-        <section class="step" data-step="6">
-          <div class="step-content">
-            <div class="card-head">
-              <h2>Wybór godziny</h2>
-              <p>Wybierz dogodną godzinę wizyty.</p>
-            </div>
-
-            <div class="slots-box">
-              <div class="calendar-top">
-                <strong>Godziny</strong>
-                <span id="slotsStatus">Wybierz datę</span>
-              </div>
-
-              <div class="slots-grid" id="slotsGrid"></div>
-              <small class="error" id="timeError"></small>
-            </div>
-          </div>
-        </section>
-
-        <section class="step" data-step="7">
-          <div class="step-content">
-            <div class="card-head">
-              <h2>Potwierdzenie danych</h2>
-              <p>Sprawdź wszystko przed zapisaniem wizyty.</p>
-            </div>
-
-            <div class="summary-list">
-              <div class="summary-row">
-                <span>Imię</span>
-                <strong data-bind="name">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Telefon</span>
-                <strong data-bind="phone">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Usługa</span>
-                <strong data-bind="serviceName">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Barber</span>
-                <strong data-bind="barberName">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Data</span>
-                <strong data-bind="dateText">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Godzina</span>
-                <strong data-bind="time">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Czas trwania</span>
-                <strong data-bind="serviceDuration">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Cena</span>
-                <strong data-bind="servicePrice">—</strong>
-              </div>
-            </div>
-
-            <div class="info-note">
-              Sprawdź dane i potwierdź, aby zapisać wizytę.
-            </div>
-
-            <small class="error" id="submitError"></small>
-          </div>
-        </section>
-
-        <section class="step" data-step="8">
-          <div class="step-content narrow center">
-            <div class="success-icon">✓</div>
-
-            <div class="card-head center">
-              <h2>Rezerwacja zapisana</h2>
-              <p>Wizyta została pomyślnie dodana do systemu.</p>
-            </div>
-
-            <div class="summary-list">
-              <div class="summary-row">
-                <span>Usługa</span>
-                <strong data-bind="serviceName">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Barber</span>
-                <strong data-bind="barberName">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Data</span>
-                <strong data-bind="dateText">—</strong>
-              </div>
-              <div class="summary-row">
-                <span>Godzina</span>
-                <strong data-bind="time">—</strong>
-              </div>
-            </div>
-
-            <div class="success-links">
-              <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">
-                Instagram
-              </a>
-              <a class="nav-btn" href="https://www.google.com/maps/search/?api=1&query=Wroclaw" target="_blank" rel="noopener">
-                Lokalizacja
-              </a>
-              <button class="nav-btn" type="button" onclick="callBarbershop()">
-                Zadzwoń: 532 377 701
-              </button>
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <footer class="wizard-nav">
-        <button class="nav-btn" id="backBtn" type="button">Wstecz</button>
-        <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">Dalej</button>
-      </footer>
+        </div>
+      </div>
     </section>
   </main>
+
+  <button class="btn btn-primary floating-book" type="button" data-open-booking>
+    Zarezerwuj termin
+  </button>
+
+  <section class="booking-overlay" id="bookingOverlay" aria-hidden="true">
+    <div class="booking-shell">
+      <div class="booking-topbar">
+        <div class="booking-topbar__left">
+          <img src="/monarch-logo.png" alt="MONARCH logo" />
+          <div class="booking-topbar__copy">
+            <span>MONARCH BARBERSHOP</span>
+            <strong>Rezerwacja online</strong>
+          </div>
+        </div>
+
+        <button class="btn booking-close" type="button" id="bookingCloseBtn" aria-label="Zamknij booking">×</button>
+      </div>
+
+      <div class="wizard-host">
+        <main class="app-shell">
+          <section class="wizard-frame">
+            <header class="wizard-top">
+              <div class="wizard-top-row">
+                <div class="wizard-top-copy">
+                  <div class="eyebrow">MONARCH BARBERSHOP</div>
+                  <h1 id="stepTitle">Dane kontaktowe</h1>
+                  <p id="stepSubtitle">Zostaw podstawowe dane i przejdź dalej.</p>
+                </div>
+                <div class="step-pill" id="stepPill">1 / 8</div>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-text" id="progressText">13%</div>
+              </div>
+            </header>
+
+            <section class="wizard-card">
+              <section class="step active" data-step="1">
+                <div class="step-content narrow">
+                  <div class="intro-card">
+                    <div class="intro-top">
+                      <div class="logo-box logo-box-image"><img src="/monarch-logo.png" alt="MONARCH logo" /></div>
+                      <div class="intro-copy">
+                        <span class="section-kicker">MONARCH BARBERSHOP</span>
+                        <strong>Umów wizytę szybko i wygodnie</strong>
+                      </div>
+                    </div>
+                    <div class="intro-divider"></div>
+                    <div class="card-head">
+                      <h2>Wpisz imię i telefon</h2>
+                      <p>Zostaw swoje dane, a potem wybierz usługę i termin wizyty.</p>
+                    </div>
+                    <div class="intro-benefits">
+                      <div class="intro-benefit">Szybko</div>
+                      <div class="intro-benefit">Wygodnie</div>
+                      <div class="intro-benefit">Online</div>
+                    </div>
+                  </div>
+
+                  <label class="field">
+                    <span>Imię</span>
+                    <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
+                    <small class="error" id="nameError"></small>
+                  </label>
+
+                  <label class="field">
+                    <span>Telefon</span>
+                    <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
+                    <small class="error" id="phoneError"></small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="step" data-step="2">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór usługi</h2>
+                    <p>Najpierw wybierz kategorię, potem konkretną usługę.</p>
+                  </div>
+                  <div class="accordion-list" id="categoryAccordion"></div>
+                </div>
+              </section>
+
+              <section class="step" data-step="3">
+                <div class="step-content narrow">
+                  <div class="card-head">
+                    <h2>Wybrać barbera?</h2>
+                    <p>Możesz wybrać konkretnego barbera albo przejść dalej bez wyboru.</p>
+                  </div>
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
+                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                  </div>
+                  <div class="choice-actions">
+                    <button class="choice-btn choice-btn-strong" id="chooseBarberYes" type="button">Tak</button>
+                    <button class="choice-btn choice-btn-strong" id="chooseBarberNo" type="button">Nie</button>
+                  </div>
+                  <div class="barber-skip-box hidden" id="barberSkipBox">
+                    <div class="summary-list">
+                      <div class="summary-row"><span>Barber</span><strong>Bez wyboru</strong></div>
+                      <div class="summary-row"><span>Status</span><strong>System dobierze dostępnego barbera</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="4">
+                <div class="step-content narrow">
+                  <div class="card-head">
+                    <h2>Wybór barbera</h2>
+                    <p>Przeglądaj barbera strzałkami i wybierz konkretną osobę.</p>
+                  </div>
+                  <div class="barber-slider-card">
+                    <div class="barber-slide-photo" id="barberSlidePhoto"><img src="/tymur.png" alt="Barber" class="barber-photo-img" /></div>
+                    <div class="barber-slide-info">
+                      <strong id="barberSlideName">—</strong>
+                      <p id="barberSlideDescription">—</p>
+                      <div class="barber-langs" id="barberSlideLangs"></div>
+                    </div>
+                    <div class="barber-slider-controls">
+                      <button class="slider-arrow" id="barberPrevBtn" type="button">←</button>
+                      <div class="slider-counter" id="barberCounter">1 / 3</div>
+                      <button class="slider-arrow" id="barberNextBtn" type="button">→</button>
+                    </div>
+                    <button class="select-barber-btn" id="selectBarberBtn" type="button">Wybierz tego barbera</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="5">
+                <div class="step-content">
+                  <div class="card-head"><h2>Wybór daty</h2><p>Wybierz dogodny dzień wizyty.</p></div>
+                  <div class="calendar-box">
+                    <div class="calendar-header">
+                      <button class="calendar-nav-btn" id="calendarPrevBtn" type="button">←</button>
+                      <div class="calendar-title-wrap"><strong id="monthLabel">Miesiąc</strong><span id="calendarStatus">Dostępne terminy</span></div>
+                      <button class="calendar-nav-btn" id="calendarNextBtn" type="button">→</button>
+                    </div>
+                    <div class="calendar-weekdays"><span>Pn</span><span>Wt</span><span>Śr</span><span>Cz</span><span>Pt</span><span>Sb</span><span>Nd</span></div>
+                    <div class="calendar-month-grid" id="calendarGrid"></div>
+                    <small class="error" id="dateError"></small>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="6">
+                <div class="step-content">
+                  <div class="card-head"><h2>Wybór godziny</h2><p>Wybierz dogodną godzinę wizyty.</p></div>
+                  <div class="slots-box">
+                    <div class="calendar-top"><strong>Godziny</strong><span id="slotsStatus">Wybierz datę</span></div>
+                    <div class="slots-grid" id="slotsGrid"></div>
+                    <small class="error" id="timeError"></small>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="7">
+                <div class="step-content">
+                  <div class="card-head"><h2>Potwierdzenie danych</h2><p>Sprawdź wszystko przed zapisaniem wizyty.</p></div>
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
+                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Barber</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                    <div class="summary-row"><span>Czas trwania</span><strong data-bind="serviceDuration">—</strong></div>
+                    <div class="summary-row"><span>Cena</span><strong data-bind="servicePrice">—</strong></div>
+                  </div>
+                  <div class="info-note">Sprawdź dane i potwierdź, aby zapisać wizytę.</div>
+                  <small class="error" id="submitError"></small>
+                </div>
+              </section>
+
+              <section class="step" data-step="8">
+                <div class="step-content narrow center">
+                  <div class="success-icon">✓</div>
+                  <div class="card-head center"><h2>Rezerwacja zapisana</h2><p>Wizyta została pomyślnie dodana do systemu.</p></div>
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Barber</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                  </div>
+                  <div class="success-links">
+                    <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">Instagram</a>
+                    <a class="nav-btn" href="https://www.google.com/maps/search/?api=1&query=Wroclaw" target="_blank" rel="noopener">Lokalizacja</a>
+                    <button class="nav-btn" type="button" onclick="callBarbershop()">Zadzwoń: 532 377 701</button>
+                  </div>
+                </div>
+              </section>
+            </section>
+
+            <footer class="wizard-nav">
+              <button class="nav-btn" id="backBtn" type="button">Wstecz</button>
+              <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">Dalej</button>
+            </footer>
+          </section>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function openMapsRoute() {
+      const mapsQuery = encodeURIComponent("MONARCH BARBERSHOP Wroclaw");
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+      if (isIOS) {
+        window.open(`https://maps.apple.com/?q=${mapsQuery}`, "_blank");
+      } else {
+        window.open(`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`, "_blank");
+      }
+    }
+
+    function callBarbershop() {
+      window.location.href = "tel:+48532377701";
+    }
+
+    window.callBarbershop = callBarbershop;
+    window.callDogma = callBarbershop;
+
+    (function () {
+      const flash = document.getElementById("screenFlash");
+      const overlay = document.getElementById("bookingOverlay");
+      const closeBtn = document.getElementById("bookingCloseBtn");
+      const openButtons = document.querySelectorAll("[data-open-booking]");
+      const clickable = document.querySelectorAll('a[href^="#"], .btn');
+      const liveStatus = document.getElementById("liveStatus");
+      const body = document.body;
+      const floatingBook = document.querySelector(".floating-book");
+      const contactSection = document.getElementById("contact");
+      const heroSection = document.getElementById("hero");
+      const tabs = document.querySelectorAll(".mobile-tab");
+      const sections = [...document.querySelectorAll("main.landing-wrap > section[id]")];
+
+      function triggerFlash() {
+        if (!flash) return;
+        flash.classList.add("active");
+        setTimeout(() => flash.classList.remove("active"), 130);
+      }
+
+      clickable.forEach((item) => item.addEventListener("click", triggerFlash));
+
+      function openBooking() {
+        if (!overlay) return;
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden", "false");
+        body.classList.add("booking-open");
+      }
+
+      function closeBooking() {
+        if (!overlay) return;
+        overlay.classList.remove("open");
+        overlay.setAttribute("aria-hidden", "true");
+        body.classList.remove("booking-open");
+      }
+
+      openButtons.forEach((btn) => btn.addEventListener("click", openBooking));
+      closeBtn?.addEventListener("click", closeBooking);
+      overlay?.addEventListener("click", (e) => { if (e.target === overlay) closeBooking(); });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay?.classList.contains("open")) closeBooking();
+      });
+
+      function updateLiveStatus() {
+        if (!liveStatus) return;
+        const now = new Date();
+        const day = now.getDay();
+        const minutes = now.getHours() * 60 + now.getMinutes();
+        let open = 10 * 60;
+        let close = day === 0 ? 18 * 60 : 20 * 60;
+        const isOpen = minutes >= open && minutes < close;
+        liveStatus.classList.remove("open", "closed");
+        liveStatus.classList.add(isOpen ? "open" : "closed");
+        liveStatus.textContent = isOpen ? "Open now" : "Closed now";
+      }
+
+      function handleFloatingButton() {
+        if (!floatingBook || !contactSection || !heroSection) return;
+        const heroRect = heroSection.getBoundingClientRect();
+        const contactRect = contactSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const passedHero = heroRect.bottom < viewportHeight * 0.35;
+        const nearContact = contactRect.top < viewportHeight - 140;
+        floatingBook.classList.remove("is-visible", "hidden-on-contact");
+        if (nearContact) {
+          floatingBook.classList.add("hidden-on-contact");
+          return;
+        }
+        if (passedHero) floatingBook.classList.add("is-visible");
+      }
+
+      function handleActiveTabs() {
+        if (!tabs.length || !sections.length) return;
+        let current = sections[0].id;
+        const marker = window.innerHeight * 0.34;
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= marker && rect.bottom >= marker) current = section.id;
+        });
+        tabs.forEach((tab) => {
+          const href = tab.getAttribute("href") || "";
+          tab.classList.toggle("active", href === `#${current}`);
+        });
+      }
+
+      updateLiveStatus();
+      setInterval(updateLiveStatus, 60000);
+      window.addEventListener("scroll", () => { handleFloatingButton(); handleActiveTabs(); });
+      window.addEventListener("resize", () => { handleFloatingButton(); handleActiveTabs(); });
+      handleFloatingButton();
+      handleActiveTabs();
+    })();
+  </script>
 
   <script src="./script.js"></script>
 </body>
