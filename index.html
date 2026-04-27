@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  <title>Mrozowski Automation — Premium Booking System</title>
+  <title>MROZOWSKI — Automation</title>
   <meta
     name="description"
-    content="Mrozowski Automation — premium strona z booking-flow i automatyzacją zgłoszeń dla lokalnych biznesów."
+    content="MROZOWSKI Automation — premium strona, ścieżka zapisu i system przyjmowania klientów dla lokalnych biznesów."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@
     :root {
       --landing-max: 1240px;
 
-      --bg-0: #050816;
+      --bg-0: #050713;
       --bg-1: #080b1f;
       --bg-2: #0d1230;
       --bg-3: #12183a;
@@ -46,6 +46,7 @@
       --accent-3: #38bdf8;
       --accent-4: #c084fc;
       --accent-deep: #4f46e5;
+
       --accent-soft: rgba(99, 102, 241, 0.13);
       --accent-faint: rgba(99, 102, 241, 0.075);
       --accent-line: rgba(139, 92, 246, 0.24);
@@ -120,10 +121,10 @@
       font-family: "Manrope", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 0% 0%, rgba(99,102,241,.20), transparent 28%),
+        radial-gradient(circle at 0% 0%, rgba(99,102,241,.22), transparent 28%),
         radial-gradient(circle at 100% 0%, rgba(56,189,248,.13), transparent 24%),
-        radial-gradient(circle at 48% 100%, rgba(192,132,252,.10), transparent 34%),
-        linear-gradient(180deg, #050816 0%, #080b1f 42%, #0d1230 100%);
+        radial-gradient(circle at 50% 100%, rgba(192,132,252,.10), transparent 34%),
+        linear-gradient(180deg, #050713 0%, #080b1f 42%, #0d1230 100%);
       overflow-x: hidden;
       position: relative;
       -webkit-font-smoothing: antialiased;
@@ -315,7 +316,7 @@
     }
 
     /* =========================
-       BRAND WORDMARK
+       BRAND
        ========================= */
 
     .brand-wordmark,
@@ -338,29 +339,32 @@
     }
 
     .brand-wordmark span:first-child {
-      font-size: 18px;
+      font-size: 21px;
+      letter-spacing: -.075em;
     }
 
     .brand-wordmark span:last-child {
       color: #93c5fd;
       font-size: 10px;
-      letter-spacing: .20em;
+      letter-spacing: .22em;
     }
 
     .mobile-wordmark span:first-child {
-      font-size: 17px;
+      font-size: 20px;
+      letter-spacing: -.075em;
     }
 
     .mobile-wordmark span:last-child {
       color: #93c5fd;
       font-size: 9px;
-      letter-spacing: .18em;
+      letter-spacing: .20em;
     }
 
     .mini-wordmark span:first-child,
     .booking-wordmark span:first-child,
     .logo-box-wordmark span:first-child {
-      font-size: 14px;
+      font-size: 15px;
+      letter-spacing: -.07em;
     }
 
     .mini-wordmark span:last-child,
@@ -368,7 +372,7 @@
     .logo-box-wordmark span:last-child {
       color: #93c5fd;
       font-size: 7px;
-      letter-spacing: .12em;
+      letter-spacing: .13em;
     }
 
     /* =========================
@@ -529,7 +533,7 @@
     }
 
     /* =========================
-       SHARED CARDS / BUTTONS
+       SHARED
        ========================= */
 
     .landing-wrap {
@@ -776,11 +780,11 @@
       flex-direction: column;
       justify-content: center;
       gap: 18px;
-      max-width: 700px;
+      max-width: 710px;
     }
 
     .hero-title {
-      max-width: 11.2ch;
+      max-width: 11.4ch;
       color: var(--text-strong);
       font-size: clamp(52px, 8.2vw, 106px);
       line-height: .91;
@@ -795,7 +799,7 @@
     }
 
     .hero-sub {
-      max-width: 640px;
+      max-width: 650px;
       color: var(--muted);
       font-size: 18px;
       line-height: 1.76;
@@ -861,7 +865,7 @@
     }
 
     .hero-dashboard {
-      width: min(430px, 92%);
+      width: min(440px, 92%);
       position: relative;
       z-index: 1;
       display: grid;
@@ -1055,7 +1059,7 @@
         min-height: 100%;
         overflow: hidden;
         overscroll-behavior: none;
-        background: #050816;
+        background: #050713;
       }
 
       body {
@@ -1065,7 +1069,7 @@
           radial-gradient(circle at 12% -4%, rgba(99,102,241,.22), transparent 30%),
           radial-gradient(circle at 92% 4%, rgba(56,189,248,.12), transparent 28%),
           radial-gradient(circle at 50% 110%, rgba(192,132,252,.14), transparent 38%),
-          linear-gradient(180deg, #050816 0%, #080b1f 46%, #0d1230 100%);
+          linear-gradient(180deg, #050713 0%, #080b1f 46%, #0d1230 100%);
       }
 
       body::before {
@@ -1350,440 +1354,6 @@
         gap: 10px;
         overflow: hidden;
       }
-
-      .mobile-hero-card,
-      .mobile-dashboard-card,
-      .stat-card,
-      .system-card,
-      .offer-card,
-      .flow-card,
-      .proof-card,
-      .faq-card,
-      .contact-mobile-card,
-      .hour-row,
-      .mobile-cta-panel {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,.085);
-        background:
-          radial-gradient(circle at 0% 0%, rgba(99,102,241,.10), transparent 28%),
-          linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.028));
-        box-shadow: var(--shadow-sm), var(--glass-highlight);
-        border-radius: 26px;
-      }
-
-      .mobile-hero-card::after,
-      .mobile-dashboard-card::after,
-      .stat-card::after,
-      .system-card::after,
-      .offer-card::after,
-      .flow-card::after,
-      .proof-card::after,
-      .faq-card::after,
-      .contact-mobile-card::after,
-      .hour-row::after,
-      .mobile-cta-panel::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-        background:
-          linear-gradient(135deg, rgba(255,255,255,.055), transparent 46%),
-          radial-gradient(circle at 50% 0%, rgba(139,92,246,.09), transparent 50%);
-      }
-
-      .mobile-hero-card {
-        min-height: 0;
-        border-radius: 30px;
-        padding: 14px;
-        display: grid;
-        gap: 12px;
-        isolation: isolate;
-      }
-
-      .mobile-dashboard-card {
-        min-height: 280px;
-        padding: 14px;
-        display: grid;
-        align-content: stretch;
-        gap: 12px;
-      }
-
-      .mobile-dashboard-top,
-      .mobile-dashboard-row,
-      .mobile-dashboard-output {
-        position: relative;
-        z-index: 1;
-      }
-
-      .mobile-dashboard-top {
-        min-height: 58px;
-        padding: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,.08);
-        background: rgba(5,8,22,.42);
-        box-shadow: var(--glass-highlight);
-      }
-
-      .mobile-dashboard-top strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 20px;
-        line-height: .95;
-        letter-spacing: -.06em;
-      }
-
-      .mobile-dashboard-top span {
-        min-height: 28px;
-        padding: 0 10px;
-        display: inline-flex;
-        align-items: center;
-        border-radius: 999px;
-        border: 1px solid var(--cyan-line);
-        background: var(--cyan-soft);
-        color: #93c5fd;
-        font-size: 10px;
-        font-weight: 1000;
-        white-space: nowrap;
-      }
-
-      .mobile-dashboard-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .mobile-mini-tile {
-        min-height: 84px;
-        padding: 12px;
-        display: grid;
-        align-content: space-between;
-        border-radius: 20px;
-        border: 1px solid rgba(255,255,255,.08);
-        background: rgba(255,255,255,.045);
-        box-shadow: var(--glass-highlight);
-      }
-
-      .mobile-mini-tile span {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 900;
-      }
-
-      .mobile-mini-tile strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 22px;
-        line-height: .96;
-        letter-spacing: -.07em;
-      }
-
-      .mobile-dashboard-output {
-        min-height: 74px;
-        padding: 12px;
-        display: grid;
-        gap: 6px;
-        align-content: center;
-        border-radius: 20px;
-        border: 1px solid var(--accent-line);
-        background:
-          radial-gradient(circle at top, rgba(139,92,246,.16), transparent 48%),
-          rgba(255,255,255,.045);
-        box-shadow: var(--glass-highlight);
-      }
-
-      .mobile-dashboard-output span {
-        color: #93c5fd;
-        font-size: 10px;
-        font-weight: 1000;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-      }
-
-      .mobile-dashboard-output strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 24px;
-        line-height: .94;
-        letter-spacing: -.07em;
-      }
-
-      .mini-stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .stat-card {
-        min-height: 94px;
-        padding: 14px;
-        display: grid;
-        align-content: space-between;
-      }
-
-      .stat-card span,
-      .stat-card strong {
-        position: relative;
-        z-index: 1;
-      }
-
-      .stat-card span {
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.34;
-        font-weight: 900;
-      }
-
-      .stat-card strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 29px;
-        line-height: .96;
-        letter-spacing: -.075em;
-      }
-    }
-
-    /* =========================
-       SMALL MOBILE
-       ========================= */
-
-    @media (max-width: 430px) {
-      .page {
-        padding: 13px 11px 11px;
-      }
-
-      .page-title {
-        font-size: clamp(38px, 12vw, 58px);
-      }
-    }
-
-    @media (max-width: 390px) {
-      .app-top {
-        grid-template-columns: 48px minmax(0, 1fr) 48px;
-        gap: 8px;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .icon-btn {
-        width: 48px;
-        height: 48px;
-        border-radius: 17px;
-      }
-
-      .logo-pill {
-        width: min(218px, 100%);
-        height: 54px;
-        border-radius: 20px;
-      }
-
-      .section-nav {
-        padding: 9px 10px;
-      }
-
-      .nav-chip {
-        min-height: 40px;
-        padding: 0 12px;
-        font-size: 12px;
-      }
-
-      .page {
-        padding: 12px 10px 10px;
-      }
-
-      .kicker {
-        min-height: 32px;
-        font-size: 9px;
-      }
-
-      .page-title {
-        font-size: 37px;
-      }
-
-      .page-sub {
-        font-size: 13px;
-        line-height: 1.48;
-      }
-
-      .mobile-dashboard-card {
-        min-height: 250px;
-      }
-
-      .mobile-dashboard-output strong {
-        font-size: 21px;
-      }
-
-      .stat-card {
-        min-height: 84px;
-      }
-
-      .stat-card strong {
-        font-size: 26px;
-      }
-    }
-
-    /* =========================
-       DESKTOP RESET / MOTION
-       ========================= */
-
-    @media (min-width: 901px) {
-      html,
-      body {
-        height: auto !important;
-        min-height: 100% !important;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        position: relative !important;
-      }
-
-      body.booking-open {
-        overflow: hidden !important;
-      }
-
-      .desktop-version {
-        display: block !important;
-        height: auto !important;
-        min-height: 100vh !important;
-        overflow: visible !important;
-      }
-
-      .mobile-version {
-        display: none !important;
-      }
-
-      .desktop-header {
-        display: grid;
-        grid-template-columns: 1fr auto 1.35fr;
-        gap: 18px;
-      }
-
-      .desktop-left,
-      .desktop-right {
-        min-width: 0;
-      }
-
-      .desktop-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .desktop-nav {
-        flex-wrap: nowrap;
-        gap: 18px;
-        white-space: nowrap;
-      }
-
-      .desktop-nav a {
-        font-size: 14px;
-      }
-
-      .desktop-call-btn {
-        flex-shrink: 0;
-      }
-
-      .landing-wrap {
-        overflow: visible !important;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    /* =========================
-       KEYFRAMES
-       ========================= */
-
-    @keyframes floatSoft {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-8px);
-      }
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pageIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(.988);
-        filter: blur(4px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes logoBreath {
-      0%, 100% {
-        box-shadow: var(--shadow-sm), var(--glass-highlight);
-      }
-
-      50% {
-        box-shadow:
-          0 20px 48px rgba(99,102,241,.20),
-          0 0 34px rgba(56,189,248,.14),
-          var(--glass-highlight);
-      }
-    }
-
-    @keyframes logoShine {
-      0%, 72%, 100% {
-        transform: translateX(-72%) rotate(8deg);
-        opacity: 0;
-      }
-
-      82% {
-        opacity: .9;
-      }
-
-      92% {
-        transform: translateX(72%) rotate(8deg);
-        opacity: 0;
-      }
-    }
-
-    @keyframes orbMove {
-      from {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-
-      to {
-        transform: translate3d(-42px, 62px, 0) scale(1.16);
-      }
-    }
-
-    .reveal {
-      animation: fadeUp 680ms var(--ease) both;
     }
 
         /* =========================
@@ -1815,8 +1385,7 @@
       padding: 12px;
       border-radius: 42px;
       border: 1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
       box-shadow:
         0 34px 80px rgba(0,0,0,.38),
         0 0 34px rgba(99,102,241,.14),
@@ -1852,9 +1421,7 @@
         radial-gradient(circle at 20% 0%, rgba(99,102,241,.18), transparent 28%),
         radial-gradient(circle at 90% 20%, rgba(56,189,248,.10), transparent 30%),
         linear-gradient(180deg, #0b1028, #060a1a);
-      box-shadow:
-        var(--glass-highlight),
-        0 22px 50px rgba(0,0,0,.28);
+      box-shadow: var(--glass-highlight), 0 22px 50px rgba(0,0,0,.28);
     }
 
     .mini-top {
@@ -1891,6 +1458,7 @@
       font-size: 11px;
       font-weight: 1000;
       letter-spacing: .08em;
+      white-space: nowrap;
     }
 
     .mini-title {
@@ -2008,7 +1576,7 @@
     }
 
     /* =========================
-       DESKTOP — MANIFEST / ABOUT
+       DESKTOP — ABOUT / MANIFEST
        ========================= */
 
     .manifest-grid {
@@ -2071,7 +1639,7 @@
 
     .manifest-logo-mark span:first-child {
       font-family: "Sora", sans-serif;
-      font-size: clamp(38px, 5.4vw, 66px);
+      font-size: clamp(42px, 5.8vw, 78px);
       line-height: .82;
       letter-spacing: -.09em;
       color: #fff;
@@ -2116,7 +1684,7 @@
     }
 
     .manifest-mini {
-      min-height: 132px;
+      min-height: 142px;
       padding: 16px;
       display: grid;
       align-content: space-between;
@@ -2152,7 +1720,7 @@
     }
 
     /* =========================
-       DESKTOP — OFFER / PRICING
+       DESKTOP — OFFER CARDS
        ========================= */
 
     .pricing-grid {
@@ -2161,13 +1729,14 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      align-items: stretch;
     }
 
     .pricing-card {
-      min-height: 440px;
+      min-height: 460px;
       padding: 22px;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto auto 1fr auto;
       gap: 16px;
       transition:
         transform 190ms ease,
@@ -2283,25 +1852,31 @@
       font-size: 15px;
     }
 
-    .service-tags {
+    .service-tags,
+    .tags {
       position: relative;
       z-index: 1;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      align-content: start;
     }
 
-    .service-tags span {
+    .service-tags span,
+    .tags span {
       min-height: 32px;
-      padding: 0 10px;
+      padding: 0 11px;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       border-radius: 999px;
       border: 1px solid var(--cyan-line);
       background: var(--cyan-soft);
       color: #93c5fd;
       font-size: 12px;
+      line-height: 1;
       font-weight: 1000;
+      white-space: nowrap;
     }
 
     .pricing-note {
@@ -2320,7 +1895,7 @@
     }
 
     /* =========================
-       DESKTOP — SYSTEM FLOW
+       DESKTOP — SYSTEM MAP
        ========================= */
 
     .location-grid {
@@ -2522,23 +2097,23 @@
     }
 
     /* =========================
-       DESKTOP — OFFER PRODUCT
+       DESKTOP — PRODUCT CARDS WITH VISUALS
        ========================= */
 
     .product-grid {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
     }
 
     .product-card {
-      min-height: 250px;
-      padding: 22px;
+      min-height: 390px;
+      padding: 18px;
       display: grid;
-      align-content: space-between;
-      gap: 18px;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 14px;
       transition:
         transform 190ms ease,
         border-color 190ms ease,
@@ -2575,7 +2150,7 @@
       z-index: 1;
       color: #fff;
       font-family: "Sora", sans-serif;
-      font-size: 25px;
+      font-size: 24px;
       line-height: .96;
       letter-spacing: -.062em;
     }
@@ -2584,8 +2159,52 @@
       position: relative;
       z-index: 1;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.68;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .product-visual {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(56,189,248,.16), transparent 34%),
+        radial-gradient(circle at 88% 92%, rgba(139,92,246,.20), transparent 38%),
+        linear-gradient(160deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
+      overflow: hidden;
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+    }
+
+    .product-visual::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.075);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.050), transparent),
+        repeating-linear-gradient(
+          180deg,
+          rgba(255,255,255,.065) 0 1px,
+          transparent 1px 11px
+        );
+      opacity: .78;
+    }
+
+    .product-visual::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+      box-shadow: 0 0 26px rgba(99,102,241,.35);
+      opacity: .78;
     }
 
     /* =========================
@@ -2776,8 +2395,7 @@
       justify-content: center;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,.09);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
       box-shadow: var(--shadow-xs), var(--glass-highlight);
       color: #c4b5fd;
       text-decoration: none;
@@ -2806,6 +2424,7 @@
       width: 100%;
       position: relative;
       z-index: 1;
+      align-self: end;
     }
 
     .floating-book {
@@ -2813,108 +2432,206 @@
     }
 
     /* =========================
-       FAQ BOTTOM SHEET
-       ========================= */
-
-    .faq-sheet {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .faq-sheet.open {
-      display: flex;
-    }
-
-    .faq-sheet__backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(5,8,22,.58);
-      backdrop-filter: blur(18px) saturate(130%);
-      -webkit-backdrop-filter: blur(18px) saturate(130%);
-      opacity: 0;
-      animation: faqFadeIn 220ms ease forwards;
-    }
-
-    .faq-sheet__panel {
-      position: relative;
-      z-index: 2;
-      width: min(620px, 100%);
-      max-height: min(78svh, 620px);
-      overflow: auto;
-      padding: 18px;
-      border-radius: 34px 34px 28px 28px;
-      border: 1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(139,92,246,.18), transparent 34%),
-        linear-gradient(180deg, rgba(13,18,48,.98), rgba(5,8,22,.94));
-      box-shadow:
-        0 34px 90px rgba(0,0,0,.46),
-        inset 0 1px 0 rgba(255,255,255,.10);
-      transform: translateY(28px);
-      opacity: 0;
-      animation: faqSheetUp 340ms var(--ease-spring) forwards;
-    }
-
-    .faq-sheet__close {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 12px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.09);
-      background: rgba(255,255,255,.055);
-      color: #c4b5fd;
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      font-size: 22px;
-      font-weight: 1000;
-    }
-
-    .faq-sheet__content {
-      display: grid;
-      gap: 12px;
-    }
-
-    .faq-sheet__content span {
-      width: fit-content;
-      min-height: 32px;
-      padding: 0 12px;
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      border: 1px solid var(--accent-line);
-      background: var(--accent-soft);
-      color: #c4b5fd;
-      font-size: 10px;
-      font-weight: 1000;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .faq-sheet__content h3 {
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: clamp(28px, 8vw, 44px);
-      line-height: .96;
-      letter-spacing: -.075em;
-    }
-
-    .faq-sheet__content p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.72;
-    }
-
-    /* =========================
-       MOBILE HORIZONTAL SCREENS
+       MOBILE CARDS
        ========================= */
 
     @media (max-width: 900px) {
+      .mobile-hero-card,
+      .mobile-dashboard-card,
+      .stat-card,
+      .system-card,
+      .offer-card,
+      .flow-card,
+      .proof-card,
+      .faq-card,
+      .contact-mobile-card,
+      .hour-row,
+      .mobile-cta-panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.085);
+        background:
+          radial-gradient(circle at 0% 0%, rgba(99,102,241,.10), transparent 28%),
+          linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.028));
+        box-shadow: var(--shadow-sm), var(--glass-highlight);
+        border-radius: 26px;
+      }
+
+      .mobile-hero-card::after,
+      .mobile-dashboard-card::after,
+      .stat-card::after,
+      .system-card::after,
+      .offer-card::after,
+      .flow-card::after,
+      .proof-card::after,
+      .faq-card::after,
+      .contact-mobile-card::after,
+      .hour-row::after,
+      .mobile-cta-panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(135deg, rgba(255,255,255,.055), transparent 46%),
+          radial-gradient(circle at 50% 0%, rgba(139,92,246,.09), transparent 50%);
+      }
+
+      .mobile-hero-card {
+        min-height: 0;
+        border-radius: 30px;
+        padding: 14px;
+        display: grid;
+        gap: 12px;
+        isolation: isolate;
+      }
+
+      .mobile-dashboard-card {
+        min-height: 280px;
+        padding: 14px;
+        display: grid;
+        align-content: stretch;
+        gap: 12px;
+      }
+
+      .mobile-dashboard-top,
+      .mobile-dashboard-row,
+      .mobile-dashboard-output {
+        position: relative;
+        z-index: 1;
+      }
+
+      .mobile-dashboard-top {
+        min-height: 58px;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,.08);
+        background: rgba(5,8,22,.42);
+        box-shadow: var(--glass-highlight);
+      }
+
+      .mobile-dashboard-top strong {
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-size: 20px;
+        line-height: .95;
+        letter-spacing: -.06em;
+      }
+
+      .mobile-dashboard-top span {
+        min-height: 28px;
+        padding: 0 10px;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        border: 1px solid var(--cyan-line);
+        background: var(--cyan-soft);
+        color: #93c5fd;
+        font-size: 10px;
+        font-weight: 1000;
+        white-space: nowrap;
+      }
+
+      .mobile-dashboard-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .mobile-mini-tile {
+        min-height: 84px;
+        padding: 12px;
+        display: grid;
+        align-content: space-between;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,.08);
+        background: rgba(255,255,255,.045);
+        box-shadow: var(--glass-highlight);
+      }
+
+      .mobile-mini-tile span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .mobile-mini-tile strong {
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-size: 22px;
+        line-height: .96;
+        letter-spacing: -.07em;
+      }
+
+      .mobile-dashboard-output {
+        min-height: 74px;
+        padding: 12px;
+        display: grid;
+        gap: 6px;
+        align-content: center;
+        border-radius: 20px;
+        border: 1px solid var(--accent-line);
+        background:
+          radial-gradient(circle at top, rgba(139,92,246,.16), transparent 48%),
+          rgba(255,255,255,.045);
+        box-shadow: var(--glass-highlight);
+      }
+
+      .mobile-dashboard-output span {
+        color: #93c5fd;
+        font-size: 10px;
+        font-weight: 1000;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .mobile-dashboard-output strong {
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-size: 24px;
+        line-height: .94;
+        letter-spacing: -.07em;
+      }
+
+      .mini-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat-card {
+        min-height: 94px;
+        padding: 14px;
+        display: grid;
+        align-content: space-between;
+      }
+
+      .stat-card span,
+      .stat-card strong {
+        position: relative;
+        z-index: 1;
+      }
+
+      .stat-card span {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.34;
+        font-weight: 900;
+      }
+
+      .stat-card strong {
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-size: 29px;
+        line-height: .96;
+        letter-spacing: -.075em;
+      }
+
       .mobile-horizontal-list,
       .systems-list,
       .offers-list,
@@ -2941,10 +2658,6 @@
       .proof-list::-webkit-scrollbar {
         display: none;
       }
-
-      /* =========================
-         MOBILE SYSTEM CARDS
-         ========================= */
 
       .system-card {
         flex: 0 0 min(82vw, 330px);
@@ -3015,7 +2728,11 @@
         gap: 8px;
       }
 
-      .system-card strong {
+      .system-card strong,
+      .offer-card strong,
+      .flow-card strong,
+      .proof-card strong,
+      .faq-card strong {
         position: relative;
         z-index: 1;
         color: #fff;
@@ -3025,33 +2742,16 @@
         line-height: .94;
       }
 
-      .system-card p {
+      .system-card p,
+      .offer-card p,
+      .flow-card p,
+      .proof-card p,
+      .faq-card p {
         position: relative;
         z-index: 1;
         color: var(--muted);
         font-size: 13px;
         line-height: 1.48;
-      }
-
-      .tags {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-
-      .tags span {
-        min-height: 28px;
-        padding: 0 9px;
-        display: inline-flex;
-        align-items: center;
-        border-radius: 999px;
-        border: 1px solid var(--cyan-line);
-        background: var(--cyan-soft);
-        color: #93c5fd;
-        font-size: 11px;
-        font-weight: 1000;
       }
 
       .mobile-card-btn {
@@ -3076,10 +2776,6 @@
       .mobile-card-btn:active {
         transform: scale(.97);
       }
-
-      /* =========================
-         MOBILE OFFER CARDS
-         ========================= */
 
       .offer-card {
         flex: 0 0 min(84vw, 340px);
@@ -3123,27 +2819,12 @@
         text-transform: uppercase;
       }
 
-      .offer-card__top strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 26px;
-        line-height: .94;
-        letter-spacing: -.068em;
-      }
-
-      .offer-card p {
-        position: relative;
-        z-index: 1;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-
       .offer-list {
         position: relative;
         z-index: 1;
         display: grid;
         gap: 8px;
+        align-content: start;
       }
 
       .offer-list span {
@@ -3167,11 +2848,8 @@
         border-radius: 999px;
         background: var(--accent-3);
         box-shadow: 0 0 12px rgba(56,189,248,.34);
+        flex: 0 0 auto;
       }
-
-      /* =========================
-         MOBILE FLOW CARDS
-         ========================= */
 
       .flow-card {
         flex: 0 0 min(84vw, 340px);
@@ -3180,24 +2858,6 @@
         padding: 14px;
         display: grid;
         gap: 12px;
-      }
-
-      .flow-card strong {
-        position: relative;
-        z-index: 1;
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 26px;
-        line-height: .94;
-        letter-spacing: -.068em;
-      }
-
-      .flow-card p {
-        position: relative;
-        z-index: 1;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
       }
 
       .mobile-flow-map {
@@ -3256,38 +2916,15 @@
         letter-spacing: -.06em;
       }
 
-      /* =========================
-         MOBILE PROOF / FAQ / CONTACT
-         ========================= */
-
       .proof-card {
         flex: 0 0 min(82vw, 330px);
         scroll-snap-align: center;
-        min-height: 350px;
+        min-height: 420px;
         padding: 15px;
         display: grid;
+        grid-template-rows: auto auto 1fr auto auto;
         gap: 12px;
         align-content: start;
-      }
-
-      .proof-card strong,
-      .faq-card strong {
-        position: relative;
-        z-index: 1;
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 25px;
-        line-height: .94;
-        letter-spacing: -.068em;
-      }
-
-      .proof-card p,
-      .faq-card p {
-        position: relative;
-        z-index: 1;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.46;
       }
 
       .proof-number {
@@ -3305,6 +2942,56 @@
         box-shadow: 0 16px 34px rgba(99,102,241,.24);
         font-weight: 1000;
       }
+
+      .proof-visual {
+        position: relative;
+        z-index: 1;
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,.08);
+        background:
+          radial-gradient(circle at 20% 0%, rgba(56,189,248,.16), transparent 34%),
+          radial-gradient(circle at 88% 92%, rgba(139,92,246,.20), transparent 38%),
+          linear-gradient(160deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
+        overflow: hidden;
+        box-shadow: var(--shadow-xs), var(--glass-highlight);
+        align-self: end;
+      }
+
+      .proof-visual::before {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.075);
+        background:
+          linear-gradient(90deg, rgba(255,255,255,.050), transparent),
+          repeating-linear-gradient(
+            180deg,
+            rgba(255,255,255,.065) 0 1px,
+            transparent 1px 11px
+          );
+        opacity: .78;
+      }
+
+      .proof-visual::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+        box-shadow: 0 0 26px rgba(99,102,241,.35);
+        opacity: .78;
+      }
+    }
+
+          /* =========================
+         MOBILE FAQ / CONTACT
+         ========================= */
 
       .faq-mobile-list {
         min-height: 0;
@@ -3536,9 +3223,162 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1fr .8fr;
+        grid-template-columns: 1fr .82fr;
         gap: 10px;
       }
+
+      /* =========================
+         MOBILE BOOKING OVERLAY
+         ========================= */
+
+      .booking-overlay {
+        padding: 8px;
+        align-items: flex-start;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(99,102,241,.18), transparent 34%),
+          radial-gradient(circle at 100% 100%, rgba(56,189,248,.10), transparent 30%),
+          linear-gradient(180deg, rgba(5,8,22,.86), rgba(5,8,22,.96));
+      }
+
+      .booking-shell {
+        width: min(430px, 100%);
+        max-height: calc(100svh - 16px);
+        gap: 8px;
+        padding-right: 0;
+      }
+
+      .booking-topbar {
+        border-radius: 24px;
+        padding: 10px;
+      }
+
+      .booking-logo-box {
+        min-width: 76px;
+        min-height: 50px;
+        border-radius: 18px;
+      }
+
+      .booking-topbar__copy span {
+        font-size: 10px;
+      }
+
+      .booking-topbar__copy strong {
+        font-size: 18px;
+      }
+
+      .booking-close {
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+      }
+
+      .wizard-host {
+        max-height: calc(100svh - 92px);
+        overflow: auto;
+        border-radius: 26px;
+      }
+
+      .wizard-host .wizard-frame {
+        width: 100%;
+      }
+    }
+
+    /* =========================
+       FAQ BOTTOM SHEET
+       ========================= */
+
+    .faq-sheet {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .faq-sheet.open {
+      display: flex;
+    }
+
+    .faq-sheet__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5,8,22,.58);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+      opacity: 0;
+      animation: faqFadeIn 220ms ease forwards;
+    }
+
+    .faq-sheet__panel {
+      position: relative;
+      z-index: 2;
+      width: min(620px, 100%);
+      max-height: min(78svh, 620px);
+      overflow: auto;
+      padding: 18px;
+      border-radius: 34px 34px 28px 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(139,92,246,.18), transparent 34%),
+        linear-gradient(180deg, rgba(13,18,48,.98), rgba(5,8,22,.94));
+      box-shadow:
+        0 34px 90px rgba(0,0,0,.46),
+        inset 0 1px 0 rgba(255,255,255,.10);
+      transform: translateY(28px);
+      opacity: 0;
+      animation: faqSheetUp 340ms var(--ease-spring) forwards;
+    }
+
+    .faq-sheet__close {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.055);
+      color: #c4b5fd;
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      font-size: 22px;
+      font-weight: 1000;
+    }
+
+    .faq-sheet__content {
+      display: grid;
+      gap: 12px;
+    }
+
+    .faq-sheet__content span {
+      width: fit-content;
+      min-height: 32px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--accent-line);
+      background: var(--accent-soft);
+      color: #c4b5fd;
+      font-size: 10px;
+      font-weight: 1000;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .faq-sheet__content h3 {
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: .96;
+      letter-spacing: -.075em;
+    }
+
+    .faq-sheet__content p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.72;
     }
 
     /* =========================
@@ -3667,54 +3507,9 @@
       margin: 0 auto;
     }
 
-    @media (max-width: 900px) {
-      .booking-overlay {
-        padding: 8px;
-        align-items: flex-start;
-      }
-
-      .booking-shell {
-        width: min(430px, 100%);
-        max-height: calc(100svh - 16px);
-        gap: 8px;
-        padding-right: 0;
-      }
-
-      .booking-topbar {
-        border-radius: 24px;
-        padding: 10px;
-      }
-
-      .booking-logo-box {
-        min-width: 76px;
-        min-height: 50px;
-        border-radius: 18px;
-      }
-
-      .booking-topbar__copy span {
-        font-size: 10px;
-      }
-
-      .booking-topbar__copy strong {
-        font-size: 18px;
-      }
-
-      .booking-close {
-        width: 50px;
-        min-width: 50px;
-        height: 50px;
-      }
-
-      .wizard-host {
-        max-height: calc(100svh - 92px);
-        overflow: auto;
-        border-radius: 26px;
-      }
-
-      .wizard-host .wizard-frame {
-        width: 100%;
-      }
-    }
+    /* =========================
+       RESPONSIVE
+       ========================= */
 
     @media (max-width: 1120px) {
       .hero-grid,
@@ -3723,9 +3518,12 @@
       .pricing-grid,
       .location-grid,
       .contact-grid,
-      .faq-grid,
-      .product-grid {
+      .faq-grid {
         grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .hero-grid {
@@ -3749,7 +3547,57 @@
       }
     }
 
+    @media (max-width: 900px) {
+      .site-header {
+        display: none;
+      }
+
+      .booking-overlay {
+        padding: 8px !important;
+      }
+
+      .booking-shell {
+        width: min(430px, 100%) !important;
+        max-height: calc(100svh - 16px) !important;
+        gap: 8px !important;
+        padding-right: 0 !important;
+      }
+
+      .booking-topbar {
+        border-radius: 24px !important;
+        padding: 10px !important;
+      }
+
+      .booking-logo-box {
+        min-width: 76px !important;
+        min-height: 50px !important;
+        border-radius: 18px !important;
+      }
+
+      .booking-topbar__copy span {
+        font-size: 10px !important;
+      }
+
+      .booking-topbar__copy strong {
+        font-size: 18px !important;
+      }
+
+      .booking-close {
+        width: 50px !important;
+        min-width: 50px !important;
+        height: 50px !important;
+      }
+    }
+
     @media (max-width: 430px) {
+      .page {
+        padding: 13px 11px 11px;
+      }
+
+      .page-title {
+        font-size: clamp(38px, 12vw, 58px);
+      }
+
       .system-card,
       .offer-card,
       .flow-card,
@@ -3759,6 +3607,69 @@
     }
 
     @media (max-width: 390px) {
+      .app-top {
+        grid-template-columns: 48px minmax(0, 1fr) 48px;
+        gap: 8px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .icon-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 17px;
+      }
+
+      .logo-pill {
+        width: min(218px, 100%);
+        height: 54px;
+        border-radius: 20px;
+      }
+
+      .section-nav {
+        padding: 9px 10px;
+      }
+
+      .nav-chip {
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .page {
+        padding: 12px 10px 10px;
+      }
+
+      .kicker {
+        min-height: 32px;
+        font-size: 9px;
+      }
+
+      .page-title {
+        font-size: 37px;
+      }
+
+      .page-sub {
+        font-size: 13px;
+        line-height: 1.48;
+      }
+
+      .mobile-dashboard-card {
+        min-height: 250px;
+      }
+
+      .mobile-dashboard-output strong {
+        font-size: 21px;
+      }
+
+      .stat-card {
+        min-height: 84px;
+      }
+
+      .stat-card strong {
+        font-size: 26px;
+      }
+
       .system-card {
         min-height: 400px;
       }
@@ -3768,14 +3679,15 @@
       }
 
       .system-card strong,
-      .offer-card__top strong,
+      .offer-card strong,
       .flow-card strong,
       .proof-card strong {
         font-size: 23px;
       }
 
       .offer-card,
-      .flow-card {
+      .flow-card,
+      .proof-card {
         min-height: 392px;
       }
 
@@ -3785,6 +3697,118 @@
 
       .mobile-cta-panel strong {
         font-size: 22px;
+      }
+    }
+
+    @media (min-width: 901px) {
+      html,
+      body {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        position: relative !important;
+      }
+
+      body.booking-open {
+        overflow: hidden !important;
+      }
+
+      .desktop-version {
+        display: block !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow: visible !important;
+      }
+
+      .mobile-version {
+        display: none !important;
+      }
+
+      .landing-wrap {
+        overflow: visible !important;
+      }
+
+      .desktop-header {
+        display: grid;
+        grid-template-columns: 1fr auto 1.45fr;
+        gap: 18px;
+      }
+
+      .desktop-left,
+      .desktop-right {
+        min-width: 0;
+      }
+
+      .desktop-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .desktop-nav {
+        flex-wrap: nowrap;
+        gap: 18px;
+        white-space: nowrap;
+      }
+
+      .desktop-nav a {
+        font-size: 14px;
+      }
+
+      .desktop-call-btn {
+        flex-shrink: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* =========================
+       KEYFRAMES
+       ========================= */
+
+    @keyframes floatSoft {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.988);
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
       }
     }
 
@@ -3799,6 +3823,51 @@
         transform: translateY(0);
         opacity: 1;
       }
+    }
+
+    @keyframes logoBreath {
+      0%, 100% {
+        box-shadow:
+          0 16px 34px rgba(0,0,0,.28),
+          var(--glass-highlight);
+      }
+
+      50% {
+        box-shadow:
+          0 20px 48px rgba(99,102,241,.18),
+          0 0 34px rgba(56,189,248,.12),
+          var(--glass-highlight);
+      }
+    }
+
+    @keyframes logoShine {
+      0%, 72%, 100% {
+        transform: translateX(-72%) rotate(8deg);
+        opacity: 0;
+      }
+
+      82% {
+        opacity: .9;
+      }
+
+      92% {
+        transform: translateX(72%) rotate(8deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes orbMove {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      to {
+        transform: translate3d(-42px, 62px, 0) scale(1.16);
+      }
+    }
+
+    .reveal {
+      animation: fadeUp 680ms var(--ease) both;
     }
   </style>
 </head>
@@ -3826,7 +3895,7 @@
         </div>
 
         <div class="desktop-center">
-          <a href="#top" class="desktop-logo" aria-label="Mrozowski Automation start">
+          <a href="#top" class="desktop-logo" aria-label="MROZOWSKI Automation start">
             <div class="brand-wordmark" aria-hidden="true">
               <span>MROZOWSKI</span>
               <span>AUTOMATION</span>
@@ -3855,13 +3924,13 @@
                 <div class="section-chip">MROZOWSKI AUTOMATION</div>
 
                 <h1 class="hero-title">
-                  Twoja własna strona, która <span>zapisuje klientów za Ciebie.</span>
+                  Strona, która zamienia zainteresowanie w <span>konkretne zgłoszenie.</span>
                 </h1>
 
                 <p class="hero-sub">
-                  Klient trafia na stronę z dowolnego miejsca — Instagram, TikTok, Google,
-                  WhatsApp, Telegram albo reklama. Wybiera usługę, zostawia dane i przechodzi
-                  przez prosty booking-flow bez chaosu w wiadomościach.
+                  Tworzę premium strony z wewnętrzną ścieżką zapisu. Klient trafia z Instagrama,
+                  TikToka, Google, WhatsAppa, Telegrama albo reklamy, widzi ofertę, wybiera opcję
+                  i zostawia dane bez chaosu w wiadomościach.
                 </p>
 
                 <div class="hero-actions">
@@ -3880,9 +3949,9 @@
 
                 <div class="hero-trust-row">
                   <div class="trust-pill">Strona premium</div>
-                  <div class="trust-pill">Booking-flow</div>
-                  <div class="trust-pill">Automatyzacja</div>
-                  <div class="trust-pill">Powiadomienia</div>
+                  <div class="trust-pill">Ścieżka zapisu</div>
+                  <div class="trust-pill">Wejścia z wielu miejsc</div>
+                  <div class="trust-pill">Gotowe zgłoszenia</div>
                 </div>
               </div>
 
@@ -3890,35 +3959,35 @@
                 <article class="glass-card hero-dashboard-panel">
                   <div class="hero-dashboard">
                     <div class="dashboard-top">
-                      <strong>Client Flow</strong>
-                      <span>Live system</span>
+                      <strong>System zgłoszeń</strong>
+                      <span>active flow</span>
                     </div>
 
                     <div class="dashboard-grid">
                       <div class="dashboard-tile">
-                        <span>Wejścia</span>
+                        <span>Źródła ruchu</span>
                         <strong>6 kanałów</strong>
                       </div>
 
                       <div class="dashboard-tile">
-                        <span>Ścieżka</span>
+                        <span>Oferta</span>
                         <strong>1 strona</strong>
                       </div>
 
                       <div class="dashboard-tile">
                         <span>Proces</span>
-                        <strong>Booking</strong>
+                        <strong>Zapis</strong>
                       </div>
 
                       <div class="dashboard-tile">
-                        <span>Efekt</span>
-                        <strong>Zgłoszenie</strong>
+                        <span>Wynik</span>
+                        <strong>Lead</strong>
                       </div>
                     </div>
 
                     <div class="dashboard-flow">
                       <div class="dashboard-flow-row">
-                        <div class="dashboard-flow-node">Instagram</div>
+                        <div class="dashboard-flow-node">Social</div>
                         <div class="dashboard-flow-arrow">→</div>
                         <div class="dashboard-flow-node">Strona</div>
                         <div class="dashboard-flow-arrow">→</div>
@@ -3930,25 +3999,25 @@
                         <div class="dashboard-flow-arrow">→</div>
                         <div class="dashboard-flow-node">Oferta</div>
                         <div class="dashboard-flow-arrow">→</div>
-                        <div class="dashboard-flow-node">Lead</div>
+                        <div class="dashboard-flow-node">Kontakt</div>
                       </div>
                     </div>
                   </div>
 
                   <div class="hero-photo-badge">
-                    <span>PAGE • BOOKING • AUTOMATION</span>
-                    <strong>MROZOWSKI AUTOMATION</strong>
+                    <span>PAGE • PATH • CLIENTS</span>
+                    <strong>MROZOWSKI</strong>
                   </div>
                 </article>
 
                 <div class="hero-info-grid">
                   <article class="glass-card metric-card">
-                    <span>Od wejścia klienta do gotowego zgłoszenia</span>
+                    <span>Od pierwszego kliknięcia do gotowego kontaktu</span>
                     <strong>1 flow</strong>
                   </article>
 
                   <article class="glass-card metric-card">
-                    <span>System przyjmuje zainteresowanie</span>
+                    <span>Strona prowadzi klienta bez rozmów w DM</span>
                     <strong>24/7</strong>
                   </article>
                 </div>
@@ -3963,17 +4032,17 @@
           <div class="section-card reveal">
             <div class="section-wrap">
               <div class="section-head center">
-                <div class="section-chip">SYSTEM SPRZEDAŻY ZGŁOSZEŃ</div>
+                <div class="section-chip">SYSTEM ZGŁOSZEŃ</div>
 
                 <h2>
-                  <span>To nie jest formularz.</span>
-                  To system sprzedaży zgłoszeń.
+                  To nie jest zwykła strona.
+                  <span>To ścieżka decyzji.</span>
                 </h2>
 
                 <p>
-                  Klient nie musi pisać, czekać na odpowiedź ani pytać o wolne terminy.
-                  Wszystko dzieje się w jednym miejscu: oferta, wybór, dane i zapis.
-                  Ty wchodzisz dopiero wtedy, kiedy klient jest już zdecydowany.
+                  Klient nie musi pisać, czekać na odpowiedź ani dopytywać o podstawy.
+                  W jednym miejscu widzi ofertę, rozumie wartość, wybiera zakres i zostawia dane.
+                  Ty wchodzisz dopiero wtedy, kiedy klient jest już bliżej decyzji.
                 </p>
               </div>
 
@@ -3985,36 +4054,36 @@
                         <div class="mini-logo">
                           <div class="mini-wordmark" aria-hidden="true">
                             <span>MA</span>
-                            <span>FLOW</span>
+                            <span>PATH</span>
                           </div>
                         </div>
 
-                        <div class="mini-pill">Premium booking</div>
+                        <div class="mini-pill">Ścieżka zapisu</div>
                       </div>
 
-                      <div class="mini-title">Klient przechodzi przez prostą ścieżkę.</div>
+                      <div class="mini-title">Klient przechodzi od zainteresowania do zgłoszenia.</div>
 
                       <div class="mini-card">
-                        <strong>Strona premium</strong>
-                        <span>oferta</span>
-                      </div>
-
-                      <div class="mini-card">
-                        <strong>Wybór usługi</strong>
-                        <span>pakiet</span>
+                        <strong>Widzi ofertę</strong>
+                        <span>jasno</span>
                       </div>
 
                       <div class="mini-card">
-                        <strong>Dane klienta</strong>
+                        <strong>Wybiera zakres</strong>
+                        <span>sam</span>
+                      </div>
+
+                      <div class="mini-card">
+                        <strong>Zostawia dane</strong>
                         <span>kontakt</span>
                       </div>
 
                       <div class="mini-card">
-                        <strong>Zgłoszenie</strong>
+                        <strong>Wpada zgłoszenie</strong>
                         <span>gotowe</span>
                       </div>
 
-                      <div class="mini-cta">Wybierz usługę</div>
+                      <div class="mini-cta">Zacznij teraz</div>
                     </div>
                   </div>
                 </article>
@@ -4025,8 +4094,8 @@
                     <div>
                       <strong>Klient trafia na stronę</strong>
                       <p>
-                        Z linku w bio, reklamy, Google, TikToka, WhatsAppa,
-                        Telegrama albo automatycznej odpowiedzi.
+                        Z profilu, reklamy, Google, TikToka, WhatsAppa, Telegrama albo linku.
+                        Każde wejście prowadzi do tej samej dopracowanej prezentacji oferty.
                       </p>
                     </div>
                   </article>
@@ -4034,10 +4103,10 @@
                   <article class="glass-card feature-card">
                     <div class="feature-number">02</div>
                     <div>
-                      <strong>Sam wybiera wszystko</strong>
+                      <strong>Strona prowadzi go przez wybór</strong>
                       <p>
-                        Widzi ofertę, wybiera usługę, termin albo typ zgłoszenia
-                        i zostawia dane bez rozmów w DM.
+                        Zamiast wysyłać ceny i opisy ręcznie, pokazujesz wszystko w jednym miejscu:
+                        usługi, pakiety, zasady, szczegóły i przyciski działania.
                       </p>
                     </div>
                   </article>
@@ -4045,10 +4114,10 @@
                   <article class="glass-card feature-card">
                     <div class="feature-number">03</div>
                     <div>
-                      <strong>Zgłoszenie wpada do systemu</strong>
+                      <strong>Właściciel dostaje konkretny kontakt</strong>
                       <p>
-                        Ty dostajesz gotową informację, a klient przechodzi przez
-                        prosty proces bez chaosu w wiadomościach.
+                        Zamiast luźnej wiadomości „ile kosztuje?”, dostajesz dane klienta,
+                        wybrany zakres i kontekst rozmowy.
                       </p>
                     </div>
                   </article>
@@ -4068,68 +4137,68 @@
                   <div class="manifest-visual"></div>
 
                   <div class="manifest-logo-mark">
-                    <span>MROZOWSKI<br />AUTOMATION</span>
-                    <span>PAGE • FLOW • CLIENTS</span>
+                    <span>MROZOWSKI</span>
+                    <span>AUTOMATION</span>
                   </div>
                 </article>
 
                 <div class="manifest-copy">
                   <div class="section-head">
-                    <div class="section-chip">O MNIE</div>
+                    <div class="section-chip">O SYSTEMIE</div>
 
                     <h2>
-                      Buduję systemy zamiast
-                      <span>zwykłych stron.</span>
+                      Buduję strony, które nie kończą się
+                      <span>na wyglądzie.</span>
                     </h2>
 
                     <p>
-                      Nazywam się Mrozowski i tworzę strony, które nie kończą się
-                      na ładnym wyglądzie. Każda strona ma prowadzić klienta do
-                      konkretnego działania: rezerwacji, zgłoszenia albo kontaktu.
+                      Strona ma robić robotę: tłumaczyć ofertę, skracać rozmowy,
+                      prowadzić klienta do działania i zbierać dane w sposób prosty,
+                      czysty i zrozumiały.
                     </p>
                   </div>
 
                   <article class="glass-card manifest-line">
                     <p>
-                      <strong>Strona premium.</strong>
-                      Indywidualny wygląd pod markę, ofertę i styl biznesu — tak,
-                      żeby klient od razu czuł jakość i wiedział, co ma zrobić dalej.
+                      <strong>Nie sprzedaję “ładnej wizytówki”.</strong>
+                      Buduję ekran, który klient może dostać z każdego kanału i od razu
+                      zrozumieć: co oferujesz, dlaczego warto i jaki jest następny krok.
                     </p>
                   </article>
 
                   <article class="glass-card manifest-line">
                     <p>
-                      <strong>Booking-flow.</strong>
-                      Klient przechodzi przez prostą ścieżkę: wybór, dane, potwierdzenie.
-                      Bez rozbijania decyzji na kilka aplikacji i kilka rozmów.
+                      <strong>Najważniejszy jest przepływ decyzji.</strong>
+                      Dobra strona nie tylko wygląda premium. Ona zmniejsza ilość pytań,
+                      porządkuje ofertę i prowadzi klienta do zgłoszenia.
                     </p>
                   </article>
 
                   <div class="manifest-mini-grid">
                     <article class="glass-card manifest-mini">
                       <span>01</span>
-                      <strong>Premium page</strong>
-                      <p>Oferta wygląda jak produkt, nie jak przypadkowy opis.</p>
+                      <strong>Prezentacja oferty</strong>
+                      <p>Oferta wygląda jak produkt, nie jak długa wiadomość.</p>
                     </article>
 
                     <article class="glass-card manifest-mini">
                       <span>02</span>
-                      <strong>Booking-flow</strong>
-                      <p>Klient sam przechodzi przez wybór i zostawia dane.</p>
+                      <strong>Ścieżka zapisu</strong>
+                      <p>Klient wie, co kliknąć i jakie dane zostawić.</p>
                     </article>
 
                     <article class="glass-card manifest-mini">
                       <span>03</span>
-                      <strong>Automation</strong>
-                      <p>Wejścia z różnych kanałów prowadzą do jednej ścieżki.</p>
+                      <strong>Gotowy kontakt</strong>
+                      <p>Rozmowa zaczyna się z kontekstem, nie od zera.</p>
                     </article>
                   </div>
 
                   <article class="glass-card manifest-line">
                     <p>
-                      <strong>Automatyzacja.</strong>
-                      Możliwość podpięcia powiadomień, automatycznych odpowiedzi
-                      i dodatkowych wejść do jednej ścieżki sprzedażowej.
+                      <strong>Automation to nie tylko Instagram.</strong>
+                      Social media, reklama, Google, WhatsApp, Telegram i linki z bio
+                      są tylko wejściami. Główna wartość to własna strona, która przyjmuje klienta.
                     </p>
                   </article>
                 </div>
@@ -4152,8 +4221,8 @@
                 </h2>
 
                 <p>
-                  Możesz zacząć od samej strony, dodać automatyzację albo zbudować
-                  pełny system przyjmowania klientów z wielu kanałów w jednej ścieżce.
+                  Możesz zacząć od strony z zapisem, rozbudować ją o wejścia z wielu kanałów
+                  albo zbudować pełny proces przyjmowania klientów.
                 </p>
               </div>
 
@@ -4165,21 +4234,21 @@
 
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
-                      <strong>Strona + booking</strong>
+                      <strong>Strona z zapisem</strong>
                       <span class="pricing-card__price">start</span>
                     </div>
 
                     <p>
-                      Dla biznesu, który chce mieć własne miejsce do przyjmowania
-                      zapisów i pokazać ofertę lepiej niż w wiadomości.
+                      Dla biznesu, który chce mieć własne miejsce do pokazania oferty
+                      i przyjmowania konkretnych zgłoszeń.
                     </p>
                   </div>
 
                   <div class="service-tags">
-                    <span>strona premium</span>
-                    <span>booking-flow</span>
+                    <span>premium page</span>
                     <span>oferta</span>
-                    <span>dane klienta</span>
+                    <span>formularz</span>
+                    <span>CTA</span>
                   </div>
 
                   <button class="btn section-button-full" type="button" data-open-booking>
@@ -4194,25 +4263,25 @@
 
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
-                      <strong>Automatyzacja wejść</strong>
-                      <span class="pricing-card__price">add-on</span>
+                      <strong>Wejścia z wielu miejsc</strong>
+                      <span class="pricing-card__price">growth</span>
                     </div>
 
                     <p>
-                      Dla biznesu, który chce kierować klientów z różnych miejsc
-                      do jednej dopracowanej ścieżki zamiast gubić ich w rozmowach.
+                      Dla biznesu, który chce kierować klientów z sociali, reklam i komunikatorów
+                      do jednej spójnej ścieżki.
                     </p>
                   </div>
 
                   <div class="service-tags">
                     <span>Instagram</span>
+                    <span>TikTok</span>
+                    <span>Google</span>
                     <span>WhatsApp</span>
-                    <span>Telegram</span>
-                    <span>linki z reklam</span>
                   </div>
 
                   <button class="btn section-button-full" type="button" data-open-booking>
-                    Dodaj automatyzację
+                    Dodaj wejścia
                   </button>
                 </article>
 
@@ -4223,20 +4292,20 @@
 
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
-                      <strong>Pełny system</strong>
+                      <strong>System przyjmowania klientów</strong>
                       <span class="pricing-card__price">premium</span>
                     </div>
 
                     <p>
-                      Strona, booking, automatyzacja i powiadomienia w jednym pakiecie —
-                      gotowy system przyjmowania klientów pod klucz.
+                      Pełna strona, ścieżka zapisu, wejścia z różnych kanałów i dopracowana
+                      logika zbierania zgłoszeń.
                     </p>
                   </div>
 
                   <div class="service-tags">
-                    <span>strona premium</span>
-                    <span>booking-flow</span>
-                    <span>automatyzacje</span>
+                    <span>strona</span>
+                    <span>zapis</span>
+                    <span>wejścia</span>
                     <span>powiadomienia</span>
                   </div>
 
@@ -4247,8 +4316,8 @@
               </div>
 
               <p class="pricing-note">
-                Pakiety są pokazane jako przykład oferty. W realnym wdrożeniu zakres,
-                teksty, CTA i logika zgłoszenia są dopasowane pod konkretny biznes.
+                Każdy wariant można dopasować pod branżę: beauty, barber, studio, konsultacje,
+                usługi lokalne albo inny biznes, który potrzebuje zbierać zgłoszenia bez chaosu.
               </p>
             </div>
           </div>
@@ -4263,13 +4332,13 @@
                 <div class="section-chip">PROCES</div>
 
                 <h2>
-                  Jak działa
-                  <span>cały system?</span>
+                  Jedna ścieżka zamiast
+                  <span>rozproszonych rozmów.</span>
                 </h2>
 
                 <p>
-                  Zamiast rozrzucać klientów po wiadomościach, profilach i notatkach,
-                  prowadzisz ich jedną ścieżką od zainteresowania do gotowego zgłoszenia.
+                  Klient może przyjść z dowolnego miejsca, ale finalnie trafia do jednej strony,
+                  jednej oferty i jednego procesu zostawienia danych.
                 </p>
               </div>
 
@@ -4290,33 +4359,33 @@
                     <div class="flow-main">
                       <div class="flow-node">Strona</div>
                       <div class="flow-arrow">→</div>
-                      <div class="flow-node">Booking</div>
+                      <div class="flow-node">Wybór</div>
                       <div class="flow-arrow">→</div>
                       <div class="flow-node">Zgłoszenie</div>
                     </div>
 
                     <div class="flow-output">
-                      <span>Efekt końcowy</span>
-                      <strong>Zgłoszenie / kalendarz / powiadomienie</strong>
+                      <span>Efekt</span>
+                      <strong>Klient wie, co wybrał. Ty wiesz, z czym wracać.</strong>
                     </div>
                   </div>
                 </article>
 
                 <article class="glass-card location-side">
-                  <div class="section-chip">ONE FLOW</div>
+                  <div class="section-chip">ONE PATH</div>
 
                   <div class="location-preview">
                     <div class="location-preview__inner">
                       <strong>Wszystko<br />w jednym miejscu.</strong>
-                      <span>page • flow • action</span>
+                      <span>offer • choice • contact</span>
                     </div>
                   </div>
 
                   <div class="location-copy">
-                    <strong>Klient widzi ofertę, wybiera opcję i zostawia dane.</strong>
+                    <strong>Strona robi pierwszą część rozmowy za Ciebie.</strong>
                     <p>
-                      Ty nie musisz tłumaczyć wszystkiego od nowa w każdej rozmowie.
-                      Strona robi pierwszą część pracy za Ciebie.
+                      Klient widzi ofertę, rozumie różnicę między opcjami i zostawia dane.
+                      Ty nie tłumaczysz wszystkiego od nowa w każdej wiadomości.
                     </p>
                   </div>
 
@@ -4351,8 +4420,8 @@
                 </h2>
 
                 <p>
-                  Zamiast wysyłać ceny, opisy i wolne terminy ręcznie, pokazujesz
-                  wszystko w jednym dopracowanym miejscu.
+                  Zamiast ręcznie wysyłać ceny, opisy i wolne terminy, pokazujesz wszystko
+                  w jednym dopracowanym miejscu, które prowadzi klienta do działania.
                 </p>
               </div>
 
@@ -4361,31 +4430,40 @@
                   <div class="product-card__icon">01</div>
                   <strong>Usługi</strong>
                   <p>
-                    Klient od razu widzi, co może wybrać. Nie musi pytać o podstawowe
-                    informacje, bo oferta jest podana jasno i wizualnie.
+                    Klient od razu widzi, co może wybrać i nie musi pytać o podstawowe informacje.
                   </p>
+                  <div class="product-visual"></div>
                 </article>
 
                 <article class="glass-card product-card">
                   <div class="product-card__icon">02</div>
                   <strong>Szczegóły</strong>
                   <p>
-                    Cena, opis, czas, zasady albo warunki — wszystko jasne od początku,
-                    zanim klient zostawi dane albo przejdzie dalej.
+                    Cena, opis, czas, zasady albo warunki są jasne przed zostawieniem danych.
                   </p>
+                  <div class="product-visual"></div>
                 </article>
 
                 <article class="glass-card product-card">
                   <div class="product-card__icon">03</div>
                   <strong>Decyzja</strong>
                   <p>
-                    Dobrze zaprojektowany flow prowadzi klienta do konkretnego działania:
-                    wyboru usługi, zgłoszenia albo kontaktu.
+                    Dobrze ustawiony flow prowadzi klienta do konkretnego kliknięcia.
                   </p>
+                  <div class="product-visual"></div>
+                </article>
+
+                <article class="glass-card product-card">
+                  <div class="product-card__icon">04</div>
+                  <strong>Kontekst</strong>
+                  <p>
+                    Właściciel dostaje zgłoszenie z większą ilością informacji niż zwykłe “hej”.
+                  </p>
+                  <div class="product-visual"></div>
                 </article>
               </div>
 
-              <div class="reviews-actions section-actions" style="justify-content:center;margin-top:18px;">
+              <div class="section-actions" style="justify-content:center;margin-top:18px;">
                 <button class="btn btn-primary" type="button" data-open-booking>
                   Wybierz usługę
                 </button>
@@ -4412,8 +4490,7 @@
                 </h2>
 
                 <p>
-                  Najważniejsze pytania, które klient biznesowy ma przed wdrożeniem
-                  strony z bookingiem i automatyzacją wejść.
+                  Najważniejsze pytania przed wdrożeniem strony z zapisem i systemem zgłoszeń.
                 </p>
               </div>
 
@@ -4429,7 +4506,7 @@
                 </button>
 
                 <button class="glass-card faq-item" type="button" data-faq="booking">
-                  <strong>Czy booking może być w środku strony?</strong>
+                  <strong>Czy zapis może być w środku strony?</strong>
                   <p>Dotknij, żeby zobaczyć odpowiedź.</p>
                 </button>
 
@@ -4464,24 +4541,18 @@
                   <div class="contact-lead">
                     <strong>Czas przestać tracić klientów w wiadomościach.</strong>
                     <p>
-                      Zbuduj własną stronę z bookingiem i automatyzacją wejść.
-                      Oferta, szczegóły, decyzja i zgłoszenie — w jednej dopracowanej ścieżce.
+                      Zbuduj stronę, która pokazuje ofertę, prowadzi klienta przez wybór
+                      i zbiera gotowe zgłoszenie z konkretnym kontekstem.
                     </p>
                   </div>
 
                   <p class="contact-note">
-                    Najlepsze dla lokalnych biznesów, które chcą przyjmować klientów
-                    z Instagrama, TikToka, Google, WhatsAppa, Telegrama, reklam albo zwykłego linku.
+                    Najlepsze dla usług, które dostają zapytania z wielu miejsc i chcą zamienić
+                    luźne zainteresowanie w uporządkowany kontakt.
                   </p>
 
                   <div class="social-icons">
-                    <a
-                      class="social-icon"
-                      href="https://www.instagram.com/mrozowski.automation/"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Instagram"
-                    >
+                    <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="18" height="18" rx="5"></rect>
                         <circle cx="12" cy="12" r="4"></circle>
@@ -4489,27 +4560,15 @@
                       </svg>
                     </a>
 
-                    <a
-                      class="social-icon"
-                      href="https://www.tiktok.com/@mrozowski.automation"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="TikTok"
-                    >
+                    <a class="social-icon" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">
                       <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M15.7 3c.2 1.6 1.1 3 2.4 3.8.8.5 1.7.8 2.7.8v3.1c-1.4 0-2.9-.4-4.1-1.2v6.4c0 3.1-2.5 5.6-5.6 5.6S5.5 19 5.5 15.9s2.5-5.6 5.6-5.6c.3 0 .7 0 1 .1v3.2a2.7 2.7 0 0 0-1-.2 2.5 2.5 0 0 0 0 5 2.5 2.5 0 0 0 2.5-2.5V3h2.1Z"></path>
                       </svg>
                     </a>
 
-                    <a
-                      class="social-icon"
-                      href="https://www.facebook.com/profile.php?id=61576437654902"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Facebook"
-                    >
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.2-1.5 1.5-1.5H17V3.7c-.4-.1-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.6v1.8H7V13h3v8h3.5Z"></path>
+                    <a class="social-icon" href="tel:+48532377701" aria-label="Telefon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7.2 5.4 9 4.7c.9-.4 1.9 0 2.3.9l.9 2c.3.8.1 1.6-.5 2.1l-1 .8a10.6 10.6 0 0 0 4.8 4.8l.8-1c.5-.6 1.4-.8 2.1-.5l2 .9c.9.4 1.3 1.4.9 2.3l-.7 1.8c-.4.9-1.3 1.4-2.3 1.2C10.6 18.8 5.2 13.4 4 5.7c-.2-1 .3-1.9 1.2-2.3Z"></path>
                       </svg>
                     </a>
                   </div>
@@ -4530,10 +4589,10 @@
                   </ul>
 
                   <div class="contact-lead">
-                    <strong>Gotowy system pod Twój biznes.</strong>
+                    <strong>MROZOWSKI</strong>
                     <p>
-                      Strona pokazuje ofertę, prowadzi klienta przez wybór i zamienia
-                      zainteresowanie w konkretne zgłoszenie.
+                      Premium strona, ścieżka zapisu i system zgłoszeń dla biznesów,
+                      które nie chcą tracić klientów w wiadomościach.
                     </p>
                   </div>
 
@@ -4549,7 +4608,7 @@
     </main>
   </div>
 
-      <div class="mobile-version" id="mobile-version">
+  <div class="mobile-version" id="mobile-version">
     <header class="app-top">
       <a class="icon-btn" href="https://mrozowski-automation-production.up.railway.app/" aria-label="Wróć do wyboru">
         ←
@@ -4582,11 +4641,11 @@
 
           <h1 class="page-title">
             <span>Strona, która</span>
-            <span class="gold">przyjmuje klientów.</span>
+            <span class="gold">zbiera klientów.</span>
           </h1>
 
           <p class="page-sub">
-            Premium page + booking-flow + automatyzacja zgłoszeń dla lokalnych biznesów.
+            Premium page, ścieżka zapisu i gotowe zgłoszenia z wielu źródeł ruchu.
           </p>
         </div>
 
@@ -4594,18 +4653,18 @@
           <div class="mobile-hero-card">
             <div class="mobile-dashboard-card">
               <div class="mobile-dashboard-top">
-                <strong>Client Flow</strong>
-                <span>live</span>
+                <strong>System zgłoszeń</strong>
+                <span>active</span>
               </div>
 
               <div class="mobile-dashboard-row">
                 <div class="mobile-mini-tile">
-                  <span>Wejścia</span>
-                  <strong>6 kanałów</strong>
+                  <span>Ruch</span>
+                  <strong>6 źródeł</strong>
                 </div>
 
                 <div class="mobile-mini-tile">
-                  <span>Ścieżka</span>
+                  <span>Oferta</span>
                   <strong>1 strona</strong>
                 </div>
               </div>
@@ -4613,18 +4672,18 @@
               <div class="mobile-dashboard-row">
                 <div class="mobile-mini-tile">
                   <span>Proces</span>
-                  <strong>Booking</strong>
+                  <strong>Zapis</strong>
                 </div>
 
                 <div class="mobile-mini-tile">
                   <span>Efekt</span>
-                  <strong>Zgłoszenie</strong>
+                  <strong>Kontakt</strong>
                 </div>
               </div>
 
               <div class="mobile-dashboard-output">
-                <span>System działa</span>
-                <strong>od zainteresowania do konkretnego kontaktu</strong>
+                <span>Cel systemu</span>
+                <strong>klient wie, co wybrać i zostawia dane</strong>
               </div>
             </div>
 
@@ -4646,7 +4705,7 @@
             </div>
 
             <div class="stat-card">
-              <span>Gotowa ścieżka</span>
+              <span>Strona pracuje</span>
               <strong>24/7</strong>
             </div>
           </div>
@@ -4659,7 +4718,7 @@
 
           <h2 class="page-title">
             <span>Nie formularz.</span>
-            <span class="gold">Cały flow.</span>
+            <span class="gold">Ścieżka.</span>
           </h2>
 
           <p class="page-sub">
@@ -4669,99 +4728,51 @@
 
         <div class="systems-list">
           <article class="system-card">
-            <div class="system-card__visual">
-              <span>01</span>
-            </div>
-
+            <div class="system-card__visual"><span>01</span></div>
             <div class="system-card-header">
               <strong>Strona premium</strong>
-              <p>
-                Własna strona, która wygląda jak część marki, a nie losowy formularz.
-              </p>
+              <p>Własne miejsce dla oferty, które wygląda jak marka, a nie przypadkowy formularz.</p>
             </div>
-
             <div class="tags">
-              <span>hero</span>
-              <span>oferta</span>
-              <span>sekcje</span>
-              <span>CTA</span>
+              <span>hero</span><span>oferta</span><span>sekcje</span><span>CTA</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Wybierz usługę
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Wybierz usługę</button>
           </article>
 
           <article class="system-card">
-            <div class="system-card__visual">
-              <span>02</span>
-            </div>
-
+            <div class="system-card__visual"><span>02</span></div>
             <div class="system-card-header">
-              <strong>Booking-flow</strong>
-              <p>
-                Klient przechodzi przez wybór, dane i potwierdzenie bez pisania w kółko.
-              </p>
+              <strong>Ścieżka zapisu</strong>
+              <p>Klient przechodzi przez wybór, dane i potwierdzenie bez pisania w kółko.</p>
             </div>
-
             <div class="tags">
-              <span>wybór</span>
-              <span>dane</span>
-              <span>termin</span>
-              <span>zgłoszenie</span>
+              <span>wybór</span><span>dane</span><span>zapis</span><span>kontakt</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Sprawdź flow
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Sprawdź flow</button>
           </article>
 
           <article class="system-card">
-            <div class="system-card__visual">
-              <span>03</span>
-            </div>
-
+            <div class="system-card__visual"><span>03</span></div>
             <div class="system-card-header">
-              <strong>Automatyzacja wejść</strong>
-              <p>
-                Instagram, TikTok, Google, WhatsApp, Telegram i reklamy prowadzą w jedno miejsce.
-              </p>
+              <strong>Wejścia z wielu miejsc</strong>
+              <p>Sociale, reklamy, Google i komunikatory prowadzą do jednej dopracowanej strony.</p>
             </div>
-
             <div class="tags">
-              <span>bio link</span>
-              <span>DM</span>
-              <span>reklama</span>
-              <span>kontakt</span>
+              <span>bio link</span><span>reklama</span><span>Google</span><span>DM</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Dodaj automatyzację
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Dodaj wejścia</button>
           </article>
 
           <article class="system-card">
-            <div class="system-card__visual">
-              <span>04</span>
-            </div>
-
+            <div class="system-card__visual"><span>04</span></div>
             <div class="system-card-header">
-              <strong>Powiadomienia</strong>
-              <p>
-                Zgłoszenie nie ginie w chaosie. Właściciel dostaje gotową informację.
-              </p>
+              <strong>Gotowe zgłoszenie</strong>
+              <p>Właściciel dostaje dane i kontekst, zamiast luźnej wiadomości bez konkretu.</p>
             </div>
-
             <div class="tags">
-              <span>SMS</span>
-              <span>Telegram</span>
-              <span>kontakt</span>
-              <span>status</span>
+              <span>dane</span><span>zakres</span><span>kontekst</span><span>kontakt</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Zbuduj system
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Zbuduj system</button>
           </article>
         </div>
       </section>
@@ -4769,14 +4780,12 @@
       <section class="page" data-page-view="offer">
         <div class="page-head">
           <div class="kicker">OFERTA</div>
-
           <h2 class="page-title">
             <span>Wybierz</span>
             <span class="gold">zakres.</span>
           </h2>
-
           <p class="page-sub">
-            Trzy poziomy systemu: start, automatyzacja albo pełne wdrożenie.
+            Trzy poziomy: strona, wejścia z wielu miejsc albo pełny system przyjmowania klientów.
           </p>
         </div>
 
@@ -4784,71 +4793,46 @@
           <article class="offer-card">
             <div class="offer-card__top">
               <span class="offer-card__badge">START</span>
-              <strong>Strona + booking</strong>
+              <strong>Strona z zapisem</strong>
             </div>
-
-            <p>
-              Dla biznesu, który chce mieć własne miejsce do przyjmowania zapisów
-              i pokazać ofertę lepiej niż w wiadomościach.
-            </p>
-
+            <p>Dla biznesu, który chce pokazać ofertę i zbierać konkretne zgłoszenia.</p>
             <div class="offer-list">
               <span>strona premium</span>
-              <span>wewnętrzny booking-flow</span>
-              <span>usługi / oferta / dane klienta</span>
+              <span>sekcje pod ofertę</span>
+              <span>formularz / zapis</span>
               <span>dopasowanie pod markę</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Wybierz
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Wybierz</button>
           </article>
 
           <article class="offer-card">
             <div class="offer-card__top">
-              <span class="offer-card__badge">ADD-ON</span>
-              <strong>Automatyzacja wejść</strong>
+              <span class="offer-card__badge">GROWTH</span>
+              <strong>Wejścia z wielu miejsc</strong>
             </div>
-
-            <p>
-              Dla biznesu, który chce kierować klientów z różnych kanałów do jednej
-              strony i jednej decyzji.
-            </p>
-
+            <p>Dla biznesu, który chce kierować ruch z różnych kanałów do jednej ścieżki.</p>
             <div class="offer-list">
-              <span>Instagram / WhatsApp / Telegram</span>
+              <span>Instagram / TikTok / Google</span>
+              <span>WhatsApp / Telegram</span>
               <span>linki z bio i reklam</span>
-              <span>automatyczne odpowiedzi</span>
-              <span>przekierowanie do strony</span>
+              <span>jeden proces zgłoszenia</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Dodaj automatyzację
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Dodaj wejścia</button>
           </article>
 
           <article class="offer-card">
             <div class="offer-card__top">
               <span class="offer-card__badge">PREMIUM</span>
-              <strong>Pełny system</strong>
+              <strong>System przyjmowania klientów</strong>
             </div>
-
-            <p>
-              Strona, booking, automatyzacja i powiadomienia w jednym pakiecie
-              pod biznes, który chce ogarnąć cały proces.
-            </p>
-
+            <p>Pełna strona, ścieżka zapisu i uporządkowane zbieranie zgłoszeń.</p>
             <div class="offer-list">
               <span>strona premium</span>
-              <span>booking-flow</span>
-              <span>automatyzacje</span>
-              <span>powiadomienia SMS / Telegram</span>
-              <span>konfiguracja pod klucz</span>
+              <span>ścieżka zapisu</span>
+              <span>wejścia z kanałów</span>
+              <span>powiadomienia</span>
             </div>
-
-            <button class="mobile-card-btn" type="button" data-open-booking>
-              Najlepszy wybór
-            </button>
+            <button class="mobile-card-btn" type="button" data-open-booking">Najlepszy wybór</button>
           </article>
         </div>
       </section>
@@ -4856,24 +4840,19 @@
       <section class="page" data-page-view="flow">
         <div class="page-head">
           <div class="kicker">FLOW</div>
-
           <h2 class="page-title">
             <span>Jedna</span>
             <span class="gold">ścieżka.</span>
           </h2>
-
           <p class="page-sub">
-            Zamiast rozrzucać klientów po profilach i wiadomościach, prowadzisz ich do jednego procesu.
+            Klient może przyjść z wielu miejsc, ale decyzję podejmuje w jednym flow.
           </p>
         </div>
 
         <div class="flows-list">
           <article class="flow-card">
             <strong>Źródła ruchu</strong>
-            <p>
-              Klient może przyjść z sociali, reklamy, Google, WhatsAppa, Telegrama albo zwykłego linku.
-            </p>
-
+            <p>Sociale, reklamy, Google, WhatsApp, Telegram i zwykły link prowadzą na stronę.</p>
             <div class="mobile-flow-map">
               <div class="mobile-flow-sources">
                 <div class="mobile-flow-node">Instagram</div>
@@ -4883,46 +4862,32 @@
                 <div class="mobile-flow-node">Telegram</div>
                 <div class="mobile-flow-node">Reklama</div>
               </div>
-
               <div class="mobile-flow-arrow">↓</div>
-
-              <div class="mobile-flow-output">
-                Wszystko prowadzi na stronę
-              </div>
+              <div class="mobile-flow-output">jedna strona</div>
             </div>
           </article>
 
           <article class="flow-card">
-            <strong>Strona sprzedaje decyzję</strong>
-            <p>
-              Zamiast od razu pytać klienta o dane, strona najpierw tłumaczy wartość, pokazuje ofertę i prowadzi do wyboru.
-            </p>
-
+            <strong>Oferta tłumaczy decyzję</strong>
+            <p>Strona pokazuje wartość, różnice między opcjami i następny krok.</p>
             <div class="mobile-flow-map">
-              <div class="mobile-flow-node">Hero / oferta</div>
+              <div class="mobile-flow-node">Oferta</div>
               <div class="mobile-flow-arrow">↓</div>
-              <div class="mobile-flow-node">Pakiety / usługi</div>
+              <div class="mobile-flow-node">Zakres</div>
               <div class="mobile-flow-arrow">↓</div>
-              <div class="mobile-flow-output">
-                Klient rozumie, co wybiera
-              </div>
+              <div class="mobile-flow-output">klient rozumie wybór</div>
             </div>
           </article>
 
           <article class="flow-card">
-            <strong>Booking domyka proces</strong>
-            <p>
-              Klient wybiera opcję, zostawia dane i przechodzi przez prosty flow bez chaosu w wiadomościach.
-            </p>
-
+            <strong>Zgłoszenie ma kontekst</strong>
+            <p>Klient zostawia dane już po zobaczeniu oferty, nie na ślepo.</p>
             <div class="mobile-flow-map">
               <div class="mobile-flow-node">Wybór</div>
               <div class="mobile-flow-arrow">↓</div>
-              <div class="mobile-flow-node">Dane klienta</div>
+              <div class="mobile-flow-node">Dane</div>
               <div class="mobile-flow-arrow">↓</div>
-              <div class="mobile-flow-output">
-                Gotowe zgłoszenie
-              </div>
+              <div class="mobile-flow-output">gotowy kontakt</div>
             </div>
           </article>
         </div>
@@ -4931,14 +4896,12 @@
       <section class="page" data-page-view="product">
         <div class="page-head">
           <div class="kicker">PRODUKT</div>
-
           <h2 class="page-title">
             <span>Oferta jak</span>
             <span class="gold">produkt.</span>
           </h2>
-
           <p class="page-sub">
-            Klient nie czyta losowej wiadomości. Widzi dopracowaną stronę i prosty wybór.
+            Klient nie dostaje losowej wiadomości. Widzi dopracowaną stronę i prosty wybór.
           </p>
         </div>
 
@@ -4946,57 +4909,33 @@
           <article class="proof-card">
             <div class="proof-number">01</div>
             <strong>Usługi</strong>
-            <p>
-              Klient od razu widzi, co może wybrać. Oferta jest podana jasno, wizualnie i bez pytania o podstawy.
-            </p>
-
-            <div class="tags">
-              <span>wybór</span>
-              <span>pakiety</span>
-              <span>CTA</span>
-            </div>
+            <p>Klient od razu widzi, co może wybrać i nie pyta o podstawy.</p>
+            <div class="tags"><span>wybór</span><span>pakiety</span><span>CTA</span></div>
+            <div class="proof-visual"></div>
           </article>
 
           <article class="proof-card">
             <div class="proof-number">02</div>
             <strong>Szczegóły</strong>
-            <p>
-              Cena, opis, czas, zasady albo warunki — wszystko jasne od początku, zanim klient zostawi dane.
-            </p>
-
-            <div class="tags">
-              <span>opis</span>
-              <span>czas</span>
-              <span>warunki</span>
-            </div>
+            <p>Cena, opis, czas albo zasady są jasne przed zostawieniem danych.</p>
+            <div class="tags"><span>opis</span><span>czas</span><span>warunki</span></div>
+            <div class="proof-visual"></div>
           </article>
 
           <article class="proof-card">
             <div class="proof-number">03</div>
             <strong>Decyzja</strong>
-            <p>
-              Dobrze zaprojektowany flow prowadzi klienta do konkretnego działania: wyboru, zgłoszenia albo kontaktu.
-            </p>
-
-            <div class="tags">
-              <span>lead</span>
-              <span>booking</span>
-              <span>kontakt</span>
-            </div>
+            <p>Dobrze ustawiony flow prowadzi klienta do konkretnego działania.</p>
+            <div class="tags"><span>lead</span><span>zapis</span><span>kontakt</span></div>
+            <div class="proof-visual"></div>
           </article>
 
           <article class="proof-card">
             <div class="proof-number">04</div>
-            <strong>Mniej DM</strong>
-            <p>
-              Nie musisz ręcznie tłumaczyć wszystkiego od początku. Klient przechodzi przez przygotowaną ścieżkę.
-            </p>
-
-            <div class="tags">
-              <span>bez chaosu</span>
-              <span>mniej pytań</span>
-              <span>gotowe dane</span>
-            </div>
+            <strong>Mniej chaosu</strong>
+            <p>Zamiast zaczynać rozmowę od zera, dostajesz dane i kontekst.</p>
+            <div class="tags"><span>mniej DM</span><span>dane</span><span>kontekst</span></div>
+            <div class="proof-visual"></div>
           </article>
         </div>
       </section>
@@ -5004,108 +4943,53 @@
       <section class="page" data-page-view="faq">
         <div class="page-head">
           <div class="kicker">FAQ</div>
-
           <h2 class="page-title">
             <span>Krótko.</span>
             <span class="gold">Bez bełkotu.</span>
           </h2>
-
-          <p class="page-sub">
-            Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.
-          </p>
+          <p class="page-sub">Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.</p>
         </div>
 
         <div class="faq-mobile-list">
-          <button class="faq-card" type="button" data-faq="instagram">
-            <strong>Czy to jest tylko pod Instagram?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="business">
-            <strong>Dla jakich biznesów to pasuje?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="booking">
-            <strong>Czy booking może być w środku strony?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="automation">
-            <strong>Co daje automatyzacja wejść?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="content">
-            <strong>Czy strona jest dopasowana pod markę?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="start">
-            <strong>Od czego najlepiej zacząć?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="time">
-            <strong>Ile trwa wdrożenie?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
-
-          <button class="faq-card" type="button" data-faq="owner">
-            <strong>Co dostaje właściciel?</strong>
-            <p>Dotknij, żeby zobaczyć odpowiedź.</p>
-          </button>
+          <button class="faq-card" type="button" data-faq="instagram"><strong>Czy to jest tylko pod Instagram?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="business"><strong>Dla jakich biznesów to pasuje?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="booking"><strong>Czy zapis może być w środku strony?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="automation"><strong>Co daje automatyzacja wejść?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="content"><strong>Czy strona jest dopasowana pod markę?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="start"><strong>Od czego najlepiej zacząć?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="time"><strong>Ile trwa wdrożenie?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="owner"><strong>Co dostaje właściciel?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
         </div>
       </section>
 
       <section class="page" data-page-view="contact">
         <div class="page-head">
           <div class="kicker">KONTAKT</div>
-
           <h2 class="page-title">
             <span>Zacznij</span>
-            <span class="gold">od flow.</span>
+            <span class="gold">od ścieżki.</span>
           </h2>
-
           <p class="page-sub">
-            Zamiast tracić klientów w wiadomościach, prowadź ich do jednej dopracowanej ścieżki.
+            Zamień luźne zainteresowanie w uporządkowany proces zostawienia danych.
           </p>
         </div>
 
         <div class="contact-layout">
           <article class="mobile-cta-panel">
             <strong>Czas przestać tracić klientów w wiadomościach.</strong>
-            <p>
-              Zbuduj własną stronę z bookingiem i automatyzacją wejść.
-            </p>
-
-            <button class="cta-btn" type="button" data-open-booking>
-              Zacznij teraz
-            </button>
+            <p>Zbuduj stronę, która pokazuje ofertę i zbiera konkretne zgłoszenia.</p>
+            <button class="cta-btn" type="button" data-open-booking>Zacznij teraz</button>
           </article>
 
           <article class="contact-mobile-card">
-            <strong>Mrozowski Automation</strong>
-            <p>
-              Premium page, booking-flow i automatyzacja zgłoszeń dla lokalnych biznesów.
-            </p>
+            <strong>MROZOWSKI</strong>
+            <p>Premium strona, ścieżka zapisu i system zgłoszeń dla lokalnych biznesów.</p>
           </article>
 
           <div class="hours-list">
-            <div class="hour-row">
-              <span>System</span>
-              <strong>24/7</strong>
-            </div>
-
-            <div class="hour-row">
-              <span>Wdrożenia</span>
-              <strong>10–18</strong>
-            </div>
-
-            <div class="hour-row">
-              <span>Niedziela</span>
-              <strong>10–16</strong>
-            </div>
+            <div class="hour-row"><span>System</span><strong>24/7</strong></div>
+            <div class="hour-row"><span>Wdrożenia</span><strong>10–18</strong></div>
+            <div class="hour-row"><span>Niedziela</span><strong>10–16</strong></div>
           </div>
 
           <div class="social-row">
@@ -5179,7 +5063,7 @@
                 <div class="wizard-top-copy">
                   <div class="eyebrow">MROZOWSKI AUTOMATION</div>
                   <h1 id="stepTitle">Dane kontaktowe</h1>
-                  <p id="stepSubtitle">Zostaw podstawowe dane i przejdź dalej.</p>
+                  <p id="stepSubtitle">Zostaw dane i przejdź dalej.</p>
                 </div>
 
                 <div class="step-pill" id="stepPill">1 / 8</div>
@@ -5201,7 +5085,7 @@
                       <div class="logo-box logo-box-image">
                         <div class="logo-box-wordmark" aria-hidden="true">
                           <span>MA</span>
-                          <span>FLOW</span>
+                          <span>PATH</span>
                         </div>
                       </div>
 
@@ -5216,15 +5100,15 @@
                     <div class="card-head">
                       <h2>Wpisz imię i telefon</h2>
                       <p>
-                        Zostaw dane, a potem wybierz zakres: stronę, automatyzację
-                        albo pełny system przyjmowania klientów.
+                        Zostaw dane, a potem wybierz zakres: stronę z zapisem,
+                        wejścia z wielu miejsc albo pełny system przyjmowania klientów.
                       </p>
                     </div>
 
                     <div class="intro-benefits">
                       <div class="intro-benefit">Premium</div>
-                      <div class="intro-benefit">Booking</div>
-                      <div class="intro-benefit">Automation</div>
+                      <div class="intro-benefit">Zapis</div>
+                      <div class="intro-benefit">Leady</div>
                     </div>
                   </div>
 
@@ -5256,8 +5140,8 @@
               <section class="step" data-step="3">
                 <div class="step-content narrow">
                   <div class="card-head">
-                    <h2>Wybrać typ konsultacji?</h2>
-                    <p>Możesz wybrać konkretny typ rozmowy albo przejść dalej bez wyboru.</p>
+                    <h2>Wybrać typ rozmowy?</h2>
+                    <p>Możesz wskazać temat rozmowy albo przejść dalej bez wyboru.</p>
                   </div>
 
                   <div class="summary-list">
@@ -5283,12 +5167,12 @@
                   <div class="barber-skip-box hidden" id="barberSkipBox">
                     <div class="summary-list">
                       <div class="summary-row">
-                        <span>Konsultacja</span>
+                        <span>Rozmowa</span>
                         <strong>Bez wyboru</strong>
                       </div>
                       <div class="summary-row">
                         <span>Status</span>
-                        <strong>Dobierzemy najlepszy typ rozmowy po zgłoszeniu</strong>
+                        <strong>Dopasujemy temat po zgłoszeniu</strong>
                       </div>
                     </div>
                   </div>
@@ -5298,15 +5182,15 @@
               <section class="step" data-step="4">
                 <div class="step-content narrow">
                   <div class="card-head">
-                    <h2>Wybór konsultacji</h2>
-                    <p>Przeglądaj opcje strzałkami i wybierz najbliższy typ rozmowy.</p>
+                    <h2>Wybór rozmowy</h2>
+                    <p>Przeglądaj opcje strzałkami i wybierz najbliższy temat.</p>
                   </div>
 
                   <div class="barber-slider-card">
                     <div class="barber-slide-photo" id="barberSlidePhoto">
                       <div class="map-wordmark" aria-hidden="true">
                         <span>MA</span>
-                        <span>FLOW</span>
+                        <span>PATH</span>
                       </div>
                     </div>
 
@@ -5323,7 +5207,7 @@
                     </div>
 
                     <button class="select-barber-btn" id="selectBarberBtn" type="button">
-                      Wybierz tę konsultację
+                      Wybierz ten temat
                     </button>
                   </div>
                 </div>
@@ -5333,7 +5217,7 @@
                 <div class="step-content">
                   <div class="card-head">
                     <h2>Wybór daty</h2>
-                    <p>Wybierz dogodny dzień kontaktu lub omówienia systemu.</p>
+                    <p>Wybierz dzień, kiedy najwygodniej omówić system.</p>
                   </div>
 
                   <div class="calendar-box">
@@ -5368,7 +5252,7 @@
                 <div class="step-content">
                   <div class="card-head">
                     <h2>Wybór godziny</h2>
-                    <p>Wybierz godzinę, kiedy najwygodniej omówić projekt.</p>
+                    <p>Wybierz godzinę, kiedy najwygodniej wrócić do tematu.</p>
                   </div>
 
                   <div class="slots-box">
@@ -5404,7 +5288,7 @@
                       <strong data-bind="serviceName">—</strong>
                     </div>
                     <div class="summary-row">
-                      <span>Konsultacja</span>
+                      <span>Temat rozmowy</span>
                       <strong data-bind="barberName">—</strong>
                     </div>
                     <div class="summary-row">
@@ -5451,7 +5335,7 @@
                       <strong data-bind="serviceName">—</strong>
                     </div>
                     <div class="summary-row">
-                      <span>Konsultacja</span>
+                      <span>Temat rozmowy</span>
                       <strong data-bind="barberName">—</strong>
                     </div>
                     <div class="summary-row">
@@ -5519,14 +5403,14 @@
     const faqAnswers = {
       instagram: [
         "Czy to jest tylko pod Instagram?",
-        "Nie. Instagram może być jednym z wejść, ale główny produkt to własna strona z booking-flow. Klient może przyjść też z TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku."
+        "Nie. Instagram może być jednym z wejść, ale główny produkt to własna strona ze ścieżką zapisu. Klient może przyjść też z TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku."
       ],
       business: [
         "Dla jakich biznesów to pasuje?",
         "Najlepiej pasuje do lokalnych usług: beauty, barber, nails, fizjo, trenerzy, konsultacje, małe studia i biznesy, które potrzebują zbierać zapisy albo zgłoszenia bez chaosu w wiadomościach."
       ],
       booking: [
-        "Czy booking może być w środku strony?",
+        "Czy zapis może być w środku strony?",
         "Tak. Idea polega na tym, że klient nie musi skakać po aplikacjach. Widzi ofertę, wybiera opcję, zostawia dane i przechodzi dalej w jednym flow."
       ],
       automation: [
@@ -5539,11 +5423,11 @@
       ],
       start: [
         "Od czego najlepiej zacząć?",
-        "Najlepiej zacząć od jednej konkretnej ścieżki: skąd klient przychodzi, co ma zobaczyć, jaką usługę wybiera i jakie dane mają trafić do właściciela."
+        "Najlepiej zacząć od jednej konkretnej ścieżki: skąd klient przychodzi, co ma zobaczyć, jaką opcję wybiera i jakie dane mają trafić do właściciela."
       ],
       time: [
         "Ile trwa wdrożenie?",
-        "To zależy od zakresu. Prosta strona z bookingiem może być szybkim wdrożeniem, a pełny system z automatyzacjami wymaga dokładniejszego dopasowania."
+        "To zależy od zakresu. Prosta strona z zapisem może być szybkim wdrożeniem, a pełny system z dodatkowymi wejściami wymaga dokładniejszego dopasowania."
       ],
       owner: [
         "Co dostaje właściciel?",
@@ -5767,3 +5651,5 @@
   <script src="./script.js"></script>
 </body>
 </html>
+
+    
