@@ -3869,6 +3869,61 @@
     .reveal {
       animation: fadeUp 680ms var(--ease) both;
     }
+
+    @media (max-width: 900px) {
+  .page[data-page-view="home"] .screen-body {
+    align-content: start !important;
+    gap: 10px !important;
+  }
+
+  .page[data-page-view="home"] .home-compact {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-dashboard-card {
+    min-height: auto !important;
+    padding: 12px !important;
+    gap: 9px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-dashboard-top {
+    min-height: 52px !important;
+    padding: 10px 12px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-dashboard-top strong {
+    font-size: 20px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-dashboard-row {
+    gap: 8px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-mini-tile {
+    min-height: 68px !important;
+    padding: 10px 12px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-mini-tile strong {
+    font-size: 21px !important;
+  }
+
+  .page[data-page-view="home"] .home-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-top: 0 !important;
+  }
+
+  .page[data-page-view="home"] .home-actions .cta-btn,
+  .page[data-page-view="home"] .home-actions .ghost-btn {
+    min-height: 50px !important;
+    padding: 0 10px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+  }
+}
   </style>
 </head>
 
