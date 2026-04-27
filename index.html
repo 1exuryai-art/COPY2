@@ -54,8 +54,6 @@
 
       --cyan-soft: rgba(56, 189, 248, 0.10);
       --cyan-line: rgba(56, 189, 248, 0.16);
-      --pink-soft: rgba(192, 132, 252, 0.10);
-      --pink-line: rgba(192, 132, 252, 0.16);
 
       --green: #4ade80;
       --green-soft: rgba(74, 222, 128, 0.10);
@@ -71,7 +69,6 @@
       --shadow-lg: 0 34px 90px rgba(0, 0, 0, 0.44);
       --shadow-xl: 0 44px 120px rgba(0, 0, 0, 0.54);
       --shadow-violet: 0 22px 58px rgba(99, 102, 241, 0.28);
-      --shadow-cyan: 0 20px 50px rgba(56, 189, 248, 0.16);
 
       --glass: blur(24px) saturate(145%);
       --glass-light: blur(16px) saturate(132%);
@@ -315,10 +312,6 @@
       letter-spacing: -0.02em;
     }
 
-    /* =========================
-       BRAND
-       ========================= */
-
     .brand-wordmark,
     .mobile-wordmark,
     .booking-wordmark,
@@ -374,10 +367,6 @@
       font-size: 7px;
       letter-spacing: .13em;
     }
-
-    /* =========================
-       DESKTOP HEADER
-       ========================= */
 
     .site-header {
       position: sticky;
@@ -531,10 +520,6 @@
         0 0 0 5px rgba(99,102,241,.06),
         var(--glass-highlight);
     }
-
-    /* =========================
-       SHARED
-       ========================= */
 
     .landing-wrap {
       display: grid;
@@ -756,7 +741,29 @@
       color: #c4b5fd;
     }
 
-    /* =========================
+    .section-actions,
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .section-button-full {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      align-self: end;
+    }
+
+    [data-open-booking] {
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+      position: relative;
+      z-index: 20;
+    }
+
+        /* =========================
        DESKTOP HERO
        ========================= */
 
@@ -806,14 +813,6 @@
       letter-spacing: -0.015em;
     }
 
-    .hero-actions,
-    .section-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 6px;
-    }
-
     .hero-trust-row {
       display: flex;
       flex-wrap: wrap;
@@ -844,6 +843,7 @@
       border-radius: 999px;
       background: var(--accent-3);
       box-shadow: 0 0 14px rgba(56,189,248,.36);
+      flex: 0 0 auto;
     }
 
     .hero-side {
@@ -1048,6 +1048,1074 @@
     }
 
     /* =========================
+       DESKTOP SYSTEM / EXPERIENCE
+       ========================= */
+
+    .experience-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .showcase-phone-wrap {
+      min-height: 560px;
+      padding: 22px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(56,189,248,.13), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(139,92,246,.16), transparent 36%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.024));
+    }
+
+    .showcase-phone {
+      width: min(372px, 92%);
+      padding: 12px;
+      border-radius: 42px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      box-shadow:
+        0 34px 80px rgba(0,0,0,.38),
+        0 0 34px rgba(99,102,241,.14),
+        var(--glass-highlight);
+      transform: rotate(-2.4deg);
+      position: relative;
+    }
+
+    .showcase-phone::before {
+      content: "";
+      position: absolute;
+      top: 17px;
+      left: 50%;
+      width: 92px;
+      height: 20px;
+      border-radius: 999px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,.08);
+      z-index: 2;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .showcase-screen {
+      min-height: 520px;
+      padding: 46px 18px 18px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(99,102,241,.18), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(56,189,248,.10), transparent 30%),
+        linear-gradient(180deg, #0b1028, #060a1a);
+      box-shadow: var(--glass-highlight), 0 22px 50px rgba(0,0,0,.28);
+    }
+
+    .mini-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .mini-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        radial-gradient(circle at top, rgba(139,92,246,.16), transparent 44%),
+        rgba(255,255,255,.055);
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      overflow: hidden;
+    }
+
+    .mini-pill {
+      min-height: 32px;
+      padding: 0 11px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      color: #93c5fd;
+      background: var(--cyan-soft);
+      border: 1px solid var(--cyan-line);
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .mini-title {
+      margin: 3px 0 8px;
+      font-family: "Sora", sans-serif;
+      color: #fff;
+      font-size: 32px;
+      line-height: .96;
+      letter-spacing: -.075em;
+    }
+
+    .mini-card {
+      min-height: 70px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.045);
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+    }
+
+    .mini-card strong {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.22;
+    }
+
+    .mini-card span {
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .mini-cta {
+      min-height: 58px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      margin-top: 4px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.18), transparent 42%),
+        linear-gradient(180deg, #8b5cf6, #6366f1 55%, #4f46e5);
+      box-shadow: var(--shadow-violet);
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .experience-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-card {
+      min-height: 172px;
+      padding: 22px;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      transition:
+        transform 190ms ease,
+        border-color 190ms ease,
+        box-shadow 190ms ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-line-strong);
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 5px rgba(99,102,241,.06),
+        var(--glass-highlight);
+    }
+
+    .feature-number {
+      position: relative;
+      z-index: 1;
+      width: 48px;
+      height: 48px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.22), transparent 42%),
+        linear-gradient(180deg, #38bdf8, #6366f1);
+      box-shadow: 0 16px 34px rgba(99,102,241,.24);
+      font-weight: 1000;
+    }
+
+    .feature-card strong {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 24px;
+      line-height: .98;
+      letter-spacing: -.058em;
+    }
+
+    .feature-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      line-height: 1.64;
+      font-size: 15px;
+    }
+
+    /* =========================
+       DESKTOP MANIFEST
+       ========================= */
+
+    .manifest-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: .76fr 1.24fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .manifest-logo-panel {
+      min-height: 560px;
+      display: grid;
+      place-items: end center;
+      padding: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 14%, rgba(139,92,246,.20), transparent 30%),
+        radial-gradient(circle at 50% 66%, rgba(56,189,248,.12), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
+    }
+
+    .manifest-visual {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.020)),
+        radial-gradient(circle at 42% 20%, rgba(99,102,241,.18), transparent 30%),
+        radial-gradient(circle at 74% 72%, rgba(56,189,248,.10), transparent 34%);
+      transform: scale(1.02);
+    }
+
+    .manifest-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,8,22,.04), rgba(5,8,22,.38)),
+        radial-gradient(circle at 50% 20%, transparent 20%, rgba(5,8,22,.18) 100%);
+    }
+
+    .manifest-logo-mark {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 18px;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      text-align: center;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,22,.62);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: var(--shadow-sm), var(--glass-highlight);
+    }
+
+    .manifest-logo-mark span:first-child {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(42px, 5.8vw, 78px);
+      line-height: .82;
+      letter-spacing: -.09em;
+      color: #fff;
+      text-shadow: 0 20px 54px rgba(139,92,246,.20);
+    }
+
+    .manifest-logo-mark span:last-child {
+      color: #93c5fd;
+      font-family: "Sora", sans-serif;
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .manifest-copy {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .manifest-line {
+      padding: 22px;
+    }
+
+    .manifest-line p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.82;
+    }
+
+    .manifest-line strong {
+      color: #c4b5fd;
+    }
+
+    .manifest-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .manifest-mini {
+      min-height: 142px;
+      padding: 16px;
+      display: grid;
+      align-content: space-between;
+      gap: 12px;
+    }
+
+    .manifest-mini span {
+      position: relative;
+      z-index: 1;
+      color: #93c5fd;
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .manifest-mini strong {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 20px;
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .manifest-mini p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.48;
+    }
+
+    /* =========================
+       DESKTOP OFFER / PRICING
+       ========================= */
+
+    .pricing-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .pricing-card {
+      min-height: 460px;
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 16px;
+      transition:
+        transform 190ms ease,
+        border-color 190ms ease,
+        box-shadow 190ms ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-line-strong);
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 5px rgba(99,102,241,.06),
+        var(--glass-highlight);
+    }
+
+    .pricing-card__visual {
+      position: relative;
+      z-index: 1;
+      min-height: 150px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(56,189,248,.14), transparent 32%),
+        radial-gradient(circle at 80% 100%, rgba(139,92,246,.18), transparent 36%),
+        linear-gradient(160deg, rgba(255,255,255,.065), rgba(255,255,255,.028));
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .pricing-card__visual::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
+        repeating-linear-gradient(
+          180deg,
+          rgba(255,255,255,.07) 0 1px,
+          transparent 1px 12px
+        );
+      opacity: .75;
+    }
+
+    .pricing-icon {
+      position: relative;
+      z-index: 1;
+      width: 76px;
+      height: 76px;
+      border-radius: 26px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.20), transparent 42%),
+        linear-gradient(180deg, rgba(139,92,246,.86), rgba(99,102,241,.86));
+      box-shadow:
+        0 18px 44px rgba(99,102,241,.26),
+        inset 0 1px 0 rgba(255,255,255,.20);
+    }
+
+    .pricing-card__content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .pricing-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .pricing-card__top strong {
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 28px;
+      line-height: .96;
+      letter-spacing: -.065em;
+    }
+
+    .pricing-card__price {
+      flex: 0 0 auto;
+      min-height: 36px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      color: #93c5fd;
+      background: var(--cyan-soft);
+      border: 1px solid var(--cyan-line);
+      font-family: "Sora", sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .pricing-card p {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 15px;
+    }
+
+    .service-tags,
+    .tags {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .service-tags span,
+    .tags span {
+      min-height: 32px;
+      padding: 0 11px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--cyan-line);
+      background: var(--cyan-soft);
+      color: #93c5fd;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .pricing-note {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    /* =========================
+       DESKTOP PROCESS / FLOW MAP
+       ========================= */
+
+    .location-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .system-map {
+      min-height: 540px;
+      overflow: hidden;
+      position: relative;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(56,189,248,.13), transparent 34%),
+        radial-gradient(circle at 80% 80%, rgba(139,92,246,.18), transparent 36%),
+        linear-gradient(160deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
+    }
+
+    .system-flow-map {
+      position: relative;
+      z-index: 1;
+      width: min(740px, 100%);
+      display: grid;
+      gap: 16px;
+    }
+
+    .flow-sources {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flow-node {
+      min-height: 58px;
+      padding: 0 12px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.085);
+      background: rgba(255,255,255,.045);
+      color: #dbeafe;
+      box-shadow: var(--glass-highlight), 0 12px 24px rgba(0,0,0,.18);
+      font-size: 13px;
+      font-weight: 1000;
+    }
+
+    .flow-arrow {
+      display: grid;
+      place-items: center;
+      color: #93c5fd;
+      font-size: 25px;
+      font-weight: 1000;
+      text-shadow: 0 0 20px rgba(56,189,248,.34);
+    }
+
+    .flow-main {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-main .flow-node {
+      min-height: 92px;
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 22px;
+      letter-spacing: -.06em;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(139,92,246,.18), transparent 48%),
+        rgba(255,255,255,.050);
+    }
+
+    .flow-output {
+      min-height: 96px;
+      padding: 18px;
+      display: grid;
+      gap: 7px;
+      text-align: center;
+      align-content: center;
+      border-radius: 24px;
+      border: 1px solid var(--accent-line);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(139,92,246,.20), transparent 50%),
+        rgba(255,255,255,.052);
+      box-shadow: var(--shadow-sm), var(--glass-highlight);
+    }
+
+    .flow-output span {
+      color: #93c5fd;
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .flow-output strong {
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 29px;
+      line-height: .96;
+      letter-spacing: -.065em;
+    }
+
+    .location-side,
+    .contact-card,
+    .status-card {
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .location-preview {
+      position: relative;
+      z-index: 1;
+      min-height: 286px;
+      overflow: hidden;
+      display: grid;
+      align-items: end;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.085);
+      background:
+        radial-gradient(circle at 50% 24%, rgba(56,189,248,.14), transparent 34%),
+        radial-gradient(circle at 80% 90%, rgba(139,92,246,.18), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.026));
+      box-shadow: var(--shadow-md), var(--glass-highlight);
+    }
+
+    .location-preview::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(5,8,22,.22)),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.08), transparent 46%);
+    }
+
+    .location-preview__inner {
+      position: relative;
+      z-index: 1;
+      margin: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 8px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(5,8,22,.62);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+    }
+
+    .location-preview__inner strong {
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 36px;
+      line-height: .88;
+      letter-spacing: -.085em;
+    }
+
+    .location-preview__inner span {
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .location-copy {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+    }
+
+    .location-copy strong,
+    .contact-lead strong {
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 30px;
+      line-height: .98;
+      letter-spacing: -.065em;
+    }
+
+    .location-copy p,
+    .contact-lead p,
+    .contact-note {
+      color: var(--muted);
+      line-height: 1.76;
+      font-size: 15px;
+    }
+
+    /* =========================
+       DESKTOP PRODUCT CARDS
+       ========================= */
+
+    .product-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      min-height: 390px;
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 14px;
+      transition:
+        transform 190ms ease,
+        border-color 190ms ease,
+        box-shadow 190ms ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-line-strong);
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 5px rgba(99,102,241,.06),
+        var(--glass-highlight);
+    }
+
+    .product-card__icon {
+      position: relative;
+      z-index: 1;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.18), transparent 42%),
+        linear-gradient(180deg, #38bdf8, #6366f1);
+      box-shadow: 0 16px 34px rgba(99,102,241,.24);
+      font-weight: 1000;
+    }
+
+    .product-card strong {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 24px;
+      line-height: .96;
+      letter-spacing: -.062em;
+    }
+
+    .product-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .product-visual {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(56,189,248,.16), transparent 34%),
+        radial-gradient(circle at 88% 92%, rgba(139,92,246,.20), transparent 38%),
+        linear-gradient(160deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
+      overflow: hidden;
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+    }
+
+    .product-visual::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.075);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.050), transparent),
+        repeating-linear-gradient(
+          180deg,
+          rgba(255,255,255,.065) 0 1px,
+          transparent 1px 11px
+        );
+      opacity: .78;
+    }
+
+    .product-visual::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+      box-shadow: 0 0 26px rgba(99,102,241,.35);
+      opacity: .78;
+    }
+
+    /* =========================
+       DESKTOP FAQ / CONTACT
+       ========================= */
+
+    .faq-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 22px 62px 22px 22px;
+      min-height: 138px;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,.085);
+      cursor: pointer;
+      transition:
+        transform 190ms ease,
+        border-color 190ms ease,
+        box-shadow 190ms ease,
+        background 190ms ease;
+    }
+
+    .faq-item::before {
+      content: "+";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--accent-line);
+      background: var(--accent-soft);
+      color: #c4b5fd;
+      font-size: 20px;
+      font-weight: 1000;
+      box-shadow: var(--glass-highlight);
+    }
+
+    .faq-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-line-strong);
+      box-shadow:
+        var(--shadow-md),
+        0 0 0 5px rgba(99,102,241,.06),
+        var(--glass-highlight);
+    }
+
+    .faq-item strong {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-bottom: 10px;
+      color: #fff;
+      font-family: "Sora", sans-serif;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: -.058em;
+    }
+
+    .faq-item p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 14px;
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-lead {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      border-radius: 26px;
+      border: 1px solid var(--accent-line);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,.14), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
+      box-shadow: var(--glass-highlight);
+    }
+
+    .contact-lead strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .status-pill {
+      position: relative;
+      z-index: 1;
+      width: fit-content;
+      min-height: 42px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.045);
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .status-pill.open {
+      color: var(--green);
+    }
+
+    .status-pill.closed {
+      color: #fb7185;
+    }
+
+    .status-list {
+      position: relative;
+      z-index: 1;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-list li {
+      min-height: 56px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.045);
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .status-list strong {
+      color: #fff;
+      text-align: right;
+    }
+
+    .social-icons {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 56px;
+      height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      box-shadow: var(--shadow-xs), var(--glass-highlight);
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: 1000;
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-line-strong);
+      box-shadow:
+        var(--shadow-sm),
+        0 0 0 5px rgba(99,102,241,.06),
+        var(--glass-highlight);
+    }
+
+    .social-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .floating-book {
+      display: none !important;
+    }
+
+        /* =========================
        MOBILE APP BASE
        ========================= */
 
@@ -1321,6 +2389,7 @@
         border-radius: 50%;
         background: var(--accent-3);
         box-shadow: 0 0 14px rgba(56,189,248,.42);
+        flex: 0 0 auto;
       }
 
       .page-title {
@@ -1354,1088 +2423,7 @@
         gap: 10px;
         overflow: hidden;
       }
-    }
 
-        /* =========================
-       DESKTOP — SYSTEM / EXPERIENCE
-       ========================= */
-
-    .experience-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.12fr .88fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .showcase-phone-wrap {
-      min-height: 560px;
-      padding: 22px;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(56,189,248,.13), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(139,92,246,.16), transparent 36%),
-        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.024));
-    }
-
-    .showcase-phone {
-      width: min(372px, 92%);
-      padding: 12px;
-      border-radius: 42px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
-      box-shadow:
-        0 34px 80px rgba(0,0,0,.38),
-        0 0 34px rgba(99,102,241,.14),
-        var(--glass-highlight);
-      transform: rotate(-2.4deg);
-      position: relative;
-    }
-
-    .showcase-phone::before {
-      content: "";
-      position: absolute;
-      top: 17px;
-      left: 50%;
-      width: 92px;
-      height: 20px;
-      border-radius: 999px;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,.08);
-      z-index: 2;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
-    }
-
-    .showcase-screen {
-      min-height: 520px;
-      padding: 46px 18px 18px;
-      display: grid;
-      align-content: start;
-      gap: 12px;
-      overflow: hidden;
-      border-radius: 34px;
-      border: 1px solid rgba(255,255,255,.09);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(99,102,241,.18), transparent 28%),
-        radial-gradient(circle at 90% 20%, rgba(56,189,248,.10), transparent 30%),
-        linear-gradient(180deg, #0b1028, #060a1a);
-      box-shadow: var(--glass-highlight), 0 22px 50px rgba(0,0,0,.28);
-    }
-
-    .mini-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 6px;
-    }
-
-    .mini-logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255,255,255,.09);
-      background:
-        radial-gradient(circle at top, rgba(139,92,246,.16), transparent 44%),
-        rgba(255,255,255,.055);
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      overflow: hidden;
-    }
-
-    .mini-pill {
-      min-height: 32px;
-      padding: 0 11px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      color: #93c5fd;
-      background: var(--cyan-soft);
-      border: 1px solid var(--cyan-line);
-      font-size: 11px;
-      font-weight: 1000;
-      letter-spacing: .08em;
-      white-space: nowrap;
-    }
-
-    .mini-title {
-      margin: 3px 0 8px;
-      font-family: "Sora", sans-serif;
-      color: #fff;
-      font-size: 32px;
-      line-height: .96;
-      letter-spacing: -.075em;
-    }
-
-    .mini-card {
-      min-height: 70px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.045);
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-    }
-
-    .mini-card strong {
-      color: #fff;
-      font-size: 14px;
-      line-height: 1.22;
-    }
-
-    .mini-card span {
-      color: #93c5fd;
-      font-size: 12px;
-      font-weight: 1000;
-      white-space: nowrap;
-    }
-
-    .mini-cta {
-      min-height: 58px;
-      border-radius: 20px;
-      display: grid;
-      place-items: center;
-      margin-top: 4px;
-      color: #fff;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.18), transparent 42%),
-        linear-gradient(180deg, #8b5cf6, #6366f1 55%, #4f46e5);
-      box-shadow: var(--shadow-violet);
-      font-size: 13px;
-      font-weight: 1000;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .experience-stack {
-      display: grid;
-      gap: 14px;
-    }
-
-    .feature-card {
-      min-height: 172px;
-      padding: 22px;
-      display: grid;
-      align-content: space-between;
-      gap: 14px;
-      transition:
-        transform 190ms ease,
-        border-color 190ms ease,
-        box-shadow 190ms ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-line-strong);
-      box-shadow:
-        var(--shadow-md),
-        0 0 0 5px rgba(99,102,241,.06),
-        var(--glass-highlight);
-    }
-
-    .feature-number {
-      position: relative;
-      z-index: 1;
-      width: 48px;
-      height: 48px;
-      border-radius: 17px;
-      display: grid;
-      place-items: center;
-      color: #fff;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.22), transparent 42%),
-        linear-gradient(180deg, #38bdf8, #6366f1);
-      box-shadow: 0 16px 34px rgba(99,102,241,.24);
-      font-weight: 1000;
-    }
-
-    .feature-card strong {
-      position: relative;
-      z-index: 1;
-      display: block;
-      margin-bottom: 8px;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 24px;
-      line-height: .98;
-      letter-spacing: -.058em;
-    }
-
-    .feature-card p {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      line-height: 1.64;
-      font-size: 15px;
-    }
-
-    /* =========================
-       DESKTOP — ABOUT / MANIFEST
-       ========================= */
-
-    .manifest-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: .76fr 1.24fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .manifest-logo-panel {
-      min-height: 560px;
-      display: grid;
-      place-items: end center;
-      padding: 28px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 14%, rgba(139,92,246,.20), transparent 30%),
-        radial-gradient(circle at 50% 66%, rgba(56,189,248,.12), transparent 38%),
-        linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
-    }
-
-    .manifest-visual {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.020)),
-        radial-gradient(circle at 42% 20%, rgba(99,102,241,.18), transparent 30%),
-        radial-gradient(circle at 74% 72%, rgba(56,189,248,.10), transparent 34%);
-      transform: scale(1.02);
-    }
-
-    .manifest-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(5,8,22,.04), rgba(5,8,22,.38)),
-        radial-gradient(circle at 50% 20%, transparent 20%, rgba(5,8,22,.18) 100%);
-    }
-
-    .manifest-logo-mark {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      padding: 18px;
-      display: grid;
-      justify-items: center;
-      gap: 10px;
-      text-align: center;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(5,8,22,.62);
-      backdrop-filter: blur(16px) saturate(140%);
-      -webkit-backdrop-filter: blur(16px) saturate(140%);
-      box-shadow: var(--shadow-sm), var(--glass-highlight);
-    }
-
-    .manifest-logo-mark span:first-child {
-      font-family: "Sora", sans-serif;
-      font-size: clamp(42px, 5.8vw, 78px);
-      line-height: .82;
-      letter-spacing: -.09em;
-      color: #fff;
-      text-shadow: 0 20px 54px rgba(139,92,246,.20);
-    }
-
-    .manifest-logo-mark span:last-child {
-      color: #93c5fd;
-      font-family: "Sora", sans-serif;
-      font-size: 12px;
-      font-weight: 1000;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
-
-    .manifest-copy {
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .manifest-line {
-      padding: 22px;
-    }
-
-    .manifest-line p {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.82;
-    }
-
-    .manifest-line strong {
-      color: #c4b5fd;
-    }
-
-    .manifest-mini-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .manifest-mini {
-      min-height: 142px;
-      padding: 16px;
-      display: grid;
-      align-content: space-between;
-      gap: 12px;
-    }
-
-    .manifest-mini span {
-      position: relative;
-      z-index: 1;
-      color: #93c5fd;
-      font-size: 11px;
-      font-weight: 1000;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .manifest-mini strong {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 20px;
-      line-height: .98;
-      letter-spacing: -.055em;
-    }
-
-    .manifest-mini p {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.48;
-    }
-
-    /* =========================
-       DESKTOP — OFFER CARDS
-       ========================= */
-
-    .pricing-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .pricing-card {
-      min-height: 460px;
-      padding: 22px;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 16px;
-      transition:
-        transform 190ms ease,
-        border-color 190ms ease,
-        box-shadow 190ms ease;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent-line-strong);
-      box-shadow:
-        var(--shadow-md),
-        0 0 0 5px rgba(99,102,241,.06),
-        var(--glass-highlight);
-    }
-
-    .pricing-card__visual {
-      position: relative;
-      z-index: 1;
-      min-height: 150px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,.08);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(56,189,248,.14), transparent 32%),
-        radial-gradient(circle at 80% 100%, rgba(139,92,246,.18), transparent 36%),
-        linear-gradient(160deg, rgba(255,255,255,.065), rgba(255,255,255,.028));
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-    }
-
-    .pricing-card__visual::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
-        repeating-linear-gradient(
-          180deg,
-          rgba(255,255,255,.07) 0 1px,
-          transparent 1px 12px
-        );
-      opacity: .75;
-    }
-
-    .pricing-icon {
-      position: relative;
-      z-index: 1;
-      width: 76px;
-      height: 76px;
-      border-radius: 26px;
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -.08em;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.20), transparent 42%),
-        linear-gradient(180deg, rgba(139,92,246,.86), rgba(99,102,241,.86));
-      box-shadow:
-        0 18px 44px rgba(99,102,241,.26),
-        inset 0 1px 0 rgba(255,255,255,.20);
-    }
-
-    .pricing-card__content {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .pricing-card__top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .pricing-card__top strong {
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 28px;
-      line-height: .96;
-      letter-spacing: -.065em;
-    }
-
-    .pricing-card__price {
-      flex: 0 0 auto;
-      min-height: 36px;
-      padding: 0 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      color: #93c5fd;
-      background: var(--cyan-soft);
-      border: 1px solid var(--cyan-line);
-      font-family: "Sora", sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .pricing-card p {
-      color: var(--muted);
-      line-height: 1.68;
-      font-size: 15px;
-    }
-
-    .service-tags,
-    .tags {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-content: start;
-    }
-
-    .service-tags span,
-    .tags span {
-      min-height: 32px;
-      padding: 0 11px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid var(--cyan-line);
-      background: var(--cyan-soft);
-      color: #93c5fd;
-      font-size: 12px;
-      line-height: 1;
-      font-weight: 1000;
-      white-space: nowrap;
-    }
-
-    .pricing-note {
-      position: relative;
-      z-index: 1;
-      margin-top: 16px;
-      padding: 16px 18px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.65;
-      text-align: center;
-    }
-
-    /* =========================
-       DESKTOP — SYSTEM MAP
-       ========================= */
-
-    .location-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.06fr .94fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .system-map {
-      min-height: 540px;
-      overflow: hidden;
-      position: relative;
-      padding: 24px;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(56,189,248,.13), transparent 34%),
-        radial-gradient(circle at 80% 80%, rgba(139,92,246,.18), transparent 36%),
-        linear-gradient(160deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
-    }
-
-    .system-flow-map {
-      position: relative;
-      z-index: 1;
-      width: min(740px, 100%);
-      display: grid;
-      gap: 16px;
-    }
-
-    .flow-sources {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .flow-node {
-      min-height: 58px;
-      padding: 0 12px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.085);
-      background: rgba(255,255,255,.045);
-      color: #dbeafe;
-      box-shadow: var(--glass-highlight), 0 12px 24px rgba(0,0,0,.18);
-      font-size: 13px;
-      font-weight: 1000;
-    }
-
-    .flow-arrow {
-      display: grid;
-      place-items: center;
-      color: #93c5fd;
-      font-size: 25px;
-      font-weight: 1000;
-      text-shadow: 0 0 20px rgba(56,189,248,.34);
-    }
-
-    .flow-main {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .flow-main .flow-node {
-      min-height: 92px;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 22px;
-      letter-spacing: -.06em;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(139,92,246,.18), transparent 48%),
-        rgba(255,255,255,.050);
-    }
-
-    .flow-output {
-      min-height: 96px;
-      padding: 18px;
-      display: grid;
-      gap: 7px;
-      text-align: center;
-      align-content: center;
-      border-radius: 24px;
-      border: 1px solid var(--accent-line);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(139,92,246,.20), transparent 50%),
-        rgba(255,255,255,.052);
-      box-shadow: var(--shadow-sm), var(--glass-highlight);
-    }
-
-    .flow-output span {
-      color: #93c5fd;
-      font-size: 11px;
-      font-weight: 1000;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .flow-output strong {
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 29px;
-      line-height: .96;
-      letter-spacing: -.065em;
-    }
-
-    .location-side,
-    .contact-card,
-    .status-card {
-      padding: 22px;
-      display: grid;
-      gap: 18px;
-      align-content: start;
-    }
-
-    .location-preview {
-      position: relative;
-      z-index: 1;
-      min-height: 286px;
-      overflow: hidden;
-      display: grid;
-      align-items: end;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,.085);
-      background:
-        radial-gradient(circle at 50% 24%, rgba(56,189,248,.14), transparent 34%),
-        radial-gradient(circle at 80% 90%, rgba(139,92,246,.18), transparent 38%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.026));
-      box-shadow: var(--shadow-md), var(--glass-highlight);
-    }
-
-    .location-preview::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.025), rgba(5,8,22,.22)),
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.08), transparent 46%);
-    }
-
-    .location-preview__inner {
-      position: relative;
-      z-index: 1;
-      margin: 14px;
-      padding: 16px;
-      display: grid;
-      gap: 8px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(5,8,22,.62);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-    }
-
-    .location-preview__inner strong {
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 36px;
-      line-height: .88;
-      letter-spacing: -.085em;
-    }
-
-    .location-preview__inner span {
-      color: #93c5fd;
-      font-size: 12px;
-      font-weight: 1000;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .location-copy {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-    }
-
-    .location-copy strong,
-    .contact-lead strong {
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 30px;
-      line-height: .98;
-      letter-spacing: -.065em;
-    }
-
-    .location-copy p,
-    .contact-lead p,
-    .contact-note {
-      color: var(--muted);
-      line-height: 1.76;
-      font-size: 15px;
-    }
-
-    /* =========================
-       DESKTOP — PRODUCT CARDS WITH VISUALS
-       ========================= */
-
-    .product-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .product-card {
-      min-height: 390px;
-      padding: 18px;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 14px;
-      transition:
-        transform 190ms ease,
-        border-color 190ms ease,
-        box-shadow 190ms ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-line-strong);
-      box-shadow:
-        var(--shadow-md),
-        0 0 0 5px rgba(99,102,241,.06),
-        var(--glass-highlight);
-    }
-
-    .product-card__icon {
-      position: relative;
-      z-index: 1;
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      color: #fff;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.18), transparent 42%),
-        linear-gradient(180deg, #38bdf8, #6366f1);
-      box-shadow: 0 16px 34px rgba(99,102,241,.24);
-      font-weight: 1000;
-    }
-
-    .product-card strong {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 24px;
-      line-height: .96;
-      letter-spacing: -.062em;
-    }
-
-    .product-card p {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .product-visual {
-      position: relative;
-      z-index: 1;
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.08);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(56,189,248,.16), transparent 34%),
-        radial-gradient(circle at 88% 92%, rgba(139,92,246,.20), transparent 38%),
-        linear-gradient(160deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
-      overflow: hidden;
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-    }
-
-    .product-visual::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.075);
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.050), transparent),
-        repeating-linear-gradient(
-          180deg,
-          rgba(255,255,255,.065) 0 1px,
-          transparent 1px 11px
-        );
-      opacity: .78;
-    }
-
-    .product-visual::after {
-      content: "";
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #38bdf8, #8b5cf6);
-      box-shadow: 0 0 26px rgba(99,102,241,.35);
-      opacity: .78;
-    }
-
-    /* =========================
-       DESKTOP — FAQ / CONTACT
-       ========================= */
-
-    .faq-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .faq-item {
-      padding: 22px 62px 22px 22px;
-      min-height: 138px;
-      text-align: left;
-      border: 1px solid rgba(255,255,255,.085);
-      cursor: pointer;
-      transition:
-        transform 190ms ease,
-        border-color 190ms ease,
-        box-shadow 190ms ease,
-        background 190ms ease;
-    }
-
-    .faq-item::before {
-      content: "+";
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      z-index: 2;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      border: 1px solid var(--accent-line);
-      background: var(--accent-soft);
-      color: #c4b5fd;
-      font-size: 20px;
-      font-weight: 1000;
-      box-shadow: var(--glass-highlight);
-    }
-
-    .faq-item:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent-line-strong);
-      box-shadow:
-        var(--shadow-md),
-        0 0 0 5px rgba(99,102,241,.06),
-        var(--glass-highlight);
-    }
-
-    .faq-item strong {
-      position: relative;
-      z-index: 1;
-      display: block;
-      margin-bottom: 10px;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 22px;
-      line-height: 1;
-      letter-spacing: -.058em;
-    }
-
-    .faq-item p {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      line-height: 1.62;
-      font-size: 14px;
-    }
-
-    .contact-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .contact-card {
-      display: grid;
-      gap: 16px;
-    }
-
-    .contact-lead {
-      position: relative;
-      z-index: 1;
-      padding: 20px;
-      border-radius: 26px;
-      border: 1px solid var(--accent-line);
-      background:
-        radial-gradient(circle at top left, rgba(139,92,246,.14), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.026));
-      box-shadow: var(--glass-highlight);
-    }
-
-    .contact-lead strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 28px;
-    }
-
-    .status-pill {
-      position: relative;
-      z-index: 1;
-      width: fit-content;
-      min-height: 42px;
-      padding: 0 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.045);
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      font-size: 13px;
-      font-weight: 1000;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .status-pill::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: currentColor;
-      box-shadow: 0 0 14px currentColor;
-    }
-
-    .status-pill.open {
-      color: var(--green);
-    }
-
-    .status-pill.closed {
-      color: #fb7185;
-    }
-
-    .status-list {
-      position: relative;
-      z-index: 1;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .status-list li {
-      min-height: 56px;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.045);
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 900;
-    }
-
-    .status-list strong {
-      color: #fff;
-      text-align: right;
-    }
-
-    .social-icons {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .social-icon {
-      width: 56px;
-      height: 56px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.09);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
-      box-shadow: var(--shadow-xs), var(--glass-highlight);
-      color: #c4b5fd;
-      text-decoration: none;
-      font-weight: 1000;
-      transition:
-        transform 180ms ease,
-        border-color 180ms ease,
-        box-shadow 180ms ease;
-    }
-
-    .social-icon:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-line-strong);
-      box-shadow:
-        var(--shadow-sm),
-        0 0 0 5px rgba(99,102,241,.06),
-        var(--glass-highlight);
-    }
-
-    .social-icon svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    .section-button-full {
-      width: 100%;
-      position: relative;
-      z-index: 1;
-      align-self: end;
-    }
-
-    .floating-book {
-      display: none !important;
-    }
-
-    /* =========================
-       MOBILE CARDS
-       ========================= */
-
-    @media (max-width: 900px) {
       .mobile-hero-card,
       .mobile-dashboard-card,
       .stat-card,
@@ -2478,6 +2466,15 @@
           radial-gradient(circle at 50% 0%, rgba(139,92,246,.09), transparent 50%);
       }
 
+      /* =========================
+         MOBILE START — FIXED COMPACT DASHBOARD
+         ========================= */
+
+      .page[data-page-view="home"] .screen-body {
+        align-content: start;
+        gap: 10px;
+      }
+
       .mobile-hero-card {
         min-height: 0;
         border-radius: 30px;
@@ -2487,12 +2484,17 @@
         isolation: isolate;
       }
 
+      .home-compact {
+        padding: 12px;
+        gap: 10px;
+      }
+
       .mobile-dashboard-card {
-        min-height: 280px;
-        padding: 14px;
+        min-height: 0;
+        padding: 12px;
         display: grid;
         align-content: stretch;
-        gap: 12px;
+        gap: 9px;
       }
 
       .mobile-dashboard-top,
@@ -2503,8 +2505,8 @@
       }
 
       .mobile-dashboard-top {
-        min-height: 58px;
-        padding: 12px;
+        min-height: 52px;
+        padding: 10px 12px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -2540,62 +2542,44 @@
       .mobile-dashboard-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 8px;
       }
 
       .mobile-mini-tile {
-        min-height: 84px;
-        padding: 12px;
+        min-height: 68px;
+        padding: 10px 12px;
         display: grid;
         align-content: space-between;
         border-radius: 20px;
         border: 1px solid rgba(255,255,255,.08);
         background: rgba(255,255,255,.045);
         box-shadow: var(--glass-highlight);
+        min-width: 0;
       }
 
       .mobile-mini-tile span {
         color: var(--muted);
         font-size: 12px;
         font-weight: 900;
+        line-height: 1.2;
       }
 
       .mobile-mini-tile strong {
         color: #fff;
         font-family: "Sora", sans-serif;
-        font-size: 22px;
+        font-size: 21px;
         line-height: .96;
         letter-spacing: -.07em;
+        overflow-wrap: anywhere;
       }
 
-      .mobile-dashboard-output {
-        min-height: 74px;
-        padding: 12px;
-        display: grid;
-        gap: 6px;
-        align-content: center;
-        border-radius: 20px;
-        border: 1px solid var(--accent-line);
-        background:
-          radial-gradient(circle at top, rgba(139,92,246,.16), transparent 48%),
-          rgba(255,255,255,.045);
-        box-shadow: var(--glass-highlight);
-      }
-
-      .mobile-dashboard-output span {
-        color: #93c5fd;
-        font-size: 10px;
-        font-weight: 1000;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-      }
-
-      .mobile-dashboard-output strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 24px;
-        line-height: .94;
-        letter-spacing: -.07em;
+      .home-actions {
+        position: relative;
+        z-index: 1;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        margin-top: 0 !important;
       }
 
       .mini-stats {
@@ -2632,6 +2616,10 @@
         letter-spacing: -.075em;
       }
 
+      /* =========================
+         MOBILE HORIZONTAL SECTIONS
+         ========================= */
+
       .mobile-horizontal-list,
       .systems-list,
       .offers-list,
@@ -2644,7 +2632,7 @@
         overflow-y: hidden;
         scroll-snap-type: x mandatory;
         scrollbar-width: none;
-        padding: 2px 2px 8px;
+        padding: 2px 2px 10px;
         align-items: stretch;
         overscroll-behavior-x: contain;
         overscroll-behavior-y: none;
@@ -2659,12 +2647,16 @@
         display: none;
       }
 
+      /* =========================
+         MOBILE SYSTEM — MORE ROOM, SAME BUTTON SIZE
+         ========================= */
+
       .system-card {
-        flex: 0 0 min(82vw, 330px);
+        flex: 0 0 min(84vw, 344px);
         scroll-snap-align: center;
         padding: 14px;
         display: grid;
-        grid-template-rows: auto auto 1fr auto;
+        grid-template-rows: auto auto minmax(70px, 1fr) auto;
         gap: 12px;
         align-self: stretch;
         min-height: 430px;
@@ -2673,7 +2665,7 @@
       .system-card__visual {
         position: relative;
         z-index: 1;
-        min-height: 158px;
+        min-height: 138px;
         border-radius: 24px;
         border: 1px solid rgba(255,255,255,.08);
         overflow: hidden;
@@ -2726,6 +2718,7 @@
         z-index: 1;
         display: grid;
         gap: 8px;
+        min-width: 0;
       }
 
       .system-card strong,
@@ -2737,9 +2730,10 @@
         z-index: 1;
         color: #fff;
         font-family: "Sora", sans-serif;
-        font-size: 27px;
+        font-size: 26px;
         letter-spacing: -.068em;
-        line-height: .94;
+        line-height: .96;
+        overflow-wrap: anywhere;
       }
 
       .system-card p,
@@ -2754,11 +2748,22 @@
         line-height: 1.48;
       }
 
+      .system-card .tags {
+        min-height: 70px;
+        align-content: start;
+      }
+
+      .system-card .tags span {
+        min-height: 30px;
+        padding: 0 10px;
+        font-size: 11px;
+      }
+
       .mobile-card-btn {
         position: relative;
-        z-index: 1;
+        z-index: 5;
         width: 100%;
-        min-height: 48px;
+        min-height: 50px;
         margin-top: auto;
         border: 1px solid rgba(139,92,246,.34);
         border-radius: 999px;
@@ -2771,26 +2776,31 @@
         font-weight: 1000;
         letter-spacing: .055em;
         text-transform: uppercase;
+        touch-action: manipulation;
       }
 
       .mobile-card-btn:active {
         transform: scale(.97);
       }
 
+      /* =========================
+         MOBILE OFFER — BUTTONS FIXED
+         ========================= */
+
       .offer-card {
-        flex: 0 0 min(84vw, 340px);
+        flex: 0 0 min(84vw, 344px);
         scroll-snap-align: center;
         min-height: 445px;
         padding: 14px;
         display: grid;
-        grid-template-rows: auto auto 1fr auto;
+        grid-template-rows: auto auto minmax(132px, 1fr) auto;
         gap: 12px;
       }
 
       .offer-card__top {
         position: relative;
         z-index: 1;
-        min-height: 132px;
+        min-height: 124px;
         padding: 14px;
         display: grid;
         align-content: space-between;
@@ -2851,12 +2861,17 @@
         flex: 0 0 auto;
       }
 
+      /* =========================
+         MOBILE FLOW
+         ========================= */
+
       .flow-card {
-        flex: 0 0 min(84vw, 340px);
+        flex: 0 0 min(84vw, 344px);
         scroll-snap-align: center;
         min-height: 420px;
         padding: 14px;
         display: grid;
+        grid-template-rows: auto auto 1fr;
         gap: 12px;
       }
 
@@ -2870,6 +2885,7 @@
         border: 1px solid rgba(255,255,255,.08);
         background: rgba(5,8,22,.42);
         box-shadow: var(--glass-highlight);
+        align-self: stretch;
       }
 
       .mobile-flow-sources {
@@ -2916,13 +2932,17 @@
         letter-spacing: -.06em;
       }
 
+      /* =========================
+         MOBILE PRODUCT / PROOF
+         ========================= */
+
       .proof-card {
-        flex: 0 0 min(82vw, 330px);
+        flex: 0 0 min(84vw, 344px);
         scroll-snap-align: center;
         min-height: 420px;
         padding: 15px;
         display: grid;
-        grid-template-rows: auto auto 1fr auto auto;
+        grid-template-rows: auto auto auto auto 1fr;
         gap: 12px;
         align-content: start;
       }
@@ -2987,9 +3007,8 @@
         box-shadow: 0 0 26px rgba(99,102,241,.35);
         opacity: .78;
       }
-    }
 
-          /* =========================
+      /* =========================
          MOBILE FAQ / CONTACT
          ========================= */
 
@@ -3086,6 +3105,32 @@
         line-height: 1.42;
       }
 
+      .mobile-cta-panel {
+        padding: 14px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .mobile-cta-panel strong,
+      .mobile-cta-panel p {
+        position: relative;
+        z-index: 1;
+      }
+
+      .mobile-cta-panel strong {
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-size: 24px;
+        line-height: .94;
+        letter-spacing: -.068em;
+      }
+
+      .mobile-cta-panel p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.42;
+      }
+
       .hours-list {
         display: grid;
         gap: 8px;
@@ -3151,36 +3196,14 @@
         color: #c4b5fd;
       }
 
-      .mobile-cta-panel {
-        padding: 14px;
-        display: grid;
-        gap: 10px;
-      }
-
-      .mobile-cta-panel strong,
-      .mobile-cta-panel p {
-        position: relative;
-        z-index: 1;
-      }
-
-      .mobile-cta-panel strong {
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-size: 24px;
-        line-height: .94;
-        letter-spacing: -.068em;
-      }
-
-      .mobile-cta-panel p {
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.42;
-      }
+      /* =========================
+         MOBILE BUTTONS
+         ========================= */
 
       .cta-btn,
       .ghost-btn {
         position: relative;
-        z-index: 1;
+        z-index: 5;
         min-height: 54px;
         padding: 0 16px;
         display: inline-flex;
@@ -3194,6 +3217,15 @@
         text-transform: uppercase;
         text-decoration: none;
         transition: transform 160ms ease;
+        touch-action: manipulation;
+      }
+
+      .home-actions .cta-btn,
+      .home-actions .ghost-btn {
+        min-height: 50px;
+        padding: 0 10px;
+        font-size: 11px;
+        white-space: nowrap;
       }
 
       .cta-btn {
@@ -3227,59 +3259,16 @@
         gap: 10px;
       }
 
-      /* =========================
-         MOBILE BOOKING OVERLAY
-         ========================= */
-
-      .booking-overlay {
-        padding: 8px;
-        align-items: flex-start;
-        background:
-          radial-gradient(circle at 20% 0%, rgba(99,102,241,.18), transparent 34%),
-          radial-gradient(circle at 100% 100%, rgba(56,189,248,.10), transparent 30%),
-          linear-gradient(180deg, rgba(5,8,22,.86), rgba(5,8,22,.96));
+      .contact-layout .mobile-cta-panel {
+        transform: translateY(-2px);
       }
 
-      .booking-shell {
-        width: min(430px, 100%);
-        max-height: calc(100svh - 16px);
-        gap: 8px;
-        padding-right: 0;
+      .contact-layout .mobile-cta-panel strong {
+        font-size: 23px;
       }
 
-      .booking-topbar {
-        border-radius: 24px;
-        padding: 10px;
-      }
-
-      .booking-logo-box {
-        min-width: 76px;
-        min-height: 50px;
-        border-radius: 18px;
-      }
-
-      .booking-topbar__copy span {
-        font-size: 10px;
-      }
-
-      .booking-topbar__copy strong {
-        font-size: 18px;
-      }
-
-      .booking-close {
-        width: 50px;
-        min-width: 50px;
-        height: 50px;
-      }
-
-      .wizard-host {
-        max-height: calc(100svh - 92px);
-        overflow: auto;
-        border-radius: 26px;
-      }
-
-      .wizard-host .wizard-frame {
-        width: 100%;
+      .contact-layout .mobile-cta-panel p {
+        margin-top: -2px;
       }
     }
 
@@ -3508,7 +3497,7 @@
     }
 
     /* =========================
-       RESPONSIVE
+       RESPONSIVE DESKTOP / TABLET
        ========================= */
 
     @media (max-width: 1120px) {
@@ -3554,6 +3543,11 @@
 
       .booking-overlay {
         padding: 8px !important;
+        align-items: flex-start !important;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(99,102,241,.18), transparent 34%),
+          radial-gradient(circle at 100% 100%, rgba(56,189,248,.10), transparent 30%),
+          linear-gradient(180deg, rgba(5,8,22,.86), rgba(5,8,22,.96)) !important;
       }
 
       .booking-shell {
@@ -3587,6 +3581,16 @@
         min-width: 50px !important;
         height: 50px !important;
       }
+
+      .wizard-host {
+        max-height: calc(100svh - 92px);
+        overflow: auto;
+        border-radius: 26px;
+      }
+
+      .wizard-host .wizard-frame {
+        width: 100%;
+      }
     }
 
     @media (max-width: 430px) {
@@ -3602,7 +3606,7 @@
       .offer-card,
       .flow-card,
       .proof-card {
-        flex-basis: min(84vw, 326px);
+        flex-basis: min(86vw, 334px);
       }
     }
 
@@ -3655,11 +3659,24 @@
       }
 
       .mobile-dashboard-card {
-        min-height: 250px;
+        padding: 10px;
+        gap: 8px;
       }
 
-      .mobile-dashboard-output strong {
-        font-size: 21px;
+      .mobile-dashboard-top {
+        min-height: 48px;
+      }
+
+      .mobile-dashboard-top strong {
+        font-size: 18px;
+      }
+
+      .mobile-mini-tile {
+        min-height: 64px;
+      }
+
+      .mobile-mini-tile strong {
+        font-size: 19px;
       }
 
       .stat-card {
@@ -3671,11 +3688,12 @@
       }
 
       .system-card {
-        min-height: 400px;
+        min-height: 402px;
+        grid-template-rows: auto auto minmax(62px, 1fr) auto;
       }
 
       .system-card__visual {
-        min-height: 140px;
+        min-height: 126px;
       }
 
       .system-card strong,
@@ -3685,18 +3703,47 @@
         font-size: 23px;
       }
 
+      .system-card p,
+      .offer-card p,
+      .flow-card p,
+      .proof-card p {
+        font-size: 12.5px;
+        line-height: 1.44;
+      }
+
+      .system-card .tags span {
+        min-height: 28px;
+        font-size: 10.5px;
+      }
+
       .offer-card,
       .flow-card,
       .proof-card {
-        min-height: 392px;
+        min-height: 396px;
+      }
+
+      .offer-card__top {
+        min-height: 112px;
       }
 
       .contact-mobile-card strong {
         font-size: 25px;
       }
 
-      .mobile-cta-panel strong {
-        font-size: 22px;
+      .mobile-cta-panel strong,
+      .contact-layout .mobile-cta-panel strong {
+        font-size: 21px;
+      }
+
+      .mobile-cta-panel p {
+        font-size: 12.5px;
+      }
+
+      .home-actions .cta-btn,
+      .home-actions .ghost-btn {
+        min-height: 48px;
+        font-size: 10px;
+        letter-spacing: .035em;
       }
     }
 
@@ -3869,68 +3916,6 @@
     .reveal {
       animation: fadeUp 680ms var(--ease) both;
     }
-
-    @media (max-width: 900px) {
-  .page[data-page-view="home"] .screen-body {
-    align-content: start !important;
-    gap: 10px !important;
-  }
-
-  .page[data-page-view="home"] .home-compact {
-    padding: 12px !important;
-    gap: 10px !important;
-  }
-
-  .page[data-page-view="home"] .mobile-dashboard-card {
-    min-height: auto !important;
-    padding: 12px !important;
-    gap: 9px !important;
-  }
-
-  .page[data-page-view="home"] .mobile-dashboard-top {
-    min-height: 52px !important;
-    padding: 10px 12px !important;
-  }
-
-  .page[data-page-view="home"] .mobile-dashboard-top strong {
-    font-size: 20px !important;
-  }
-
-  .page[data-page-view="home"] .mobile-dashboard-row {
-    gap: 8px !important;
-  }
-
-  .page[data-page-view="home"] .mobile-mini-tile {
-    min-height: 68px !important;
-    padding: 10px 12px !important;
-  }
-
-  .page[data-page-view="home"] .mobile-mini-tile strong {
-    font-size: 21px !important;
-  }
-
-  .page[data-page-view="home"] .home-actions {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-    margin-top: 0 !important;
-  }
-
-  .page[data-page-view="home"] .home-actions .cta-btn,
-  .page[data-page-view="home"] .home-actions .ghost-btn {
-    min-height: 50px !important;
-    padding: 0 10px !important;
-    font-size: 11px !important;
-    white-space: nowrap !important;
-  }
-}
-    [data-open-booking] {
-  pointer-events: auto !important;
-  touch-action: manipulation !important;
-  position: relative;
-  z-index: 5;
-}
-    
   </style>
 </head>
 
@@ -4698,76 +4683,76 @@
 
     <main class="pages">
       <section class="page active" data-page-view="home">
-  <div class="page-head">
-    <div class="kicker">MROZOWSKI AUTOMATION</div>
+        <div class="page-head">
+          <div class="kicker">MROZOWSKI AUTOMATION</div>
 
-    <h1 class="page-title">
-      <span>Strona, która</span>
-      <span class="gold">prowadzi klienta.</span>
-    </h1>
+          <h1 class="page-title">
+            <span>Strona, która</span>
+            <span class="gold">prowadzi klienta.</span>
+          </h1>
 
-    <p class="page-sub">
-      Klient trafia z dowolnego miejsca, widzi ofertę i przechodzi prostą ścieżką do zgłoszenia.
-    </p>
-  </div>
-
-  <div class="screen-body">
-    <div class="mobile-hero-card home-compact">
-      <div class="mobile-dashboard-card">
-        <div class="mobile-dashboard-top">
-          <strong>Ścieżka klienta</strong>
-          <span>active</span>
+          <p class="page-sub">
+            Klient trafia z dowolnego miejsca, widzi ofertę i przechodzi prostą ścieżką do zgłoszenia.
+          </p>
         </div>
 
-        <div class="mobile-dashboard-row">
-          <div class="mobile-mini-tile">
-            <span>Wejścia</span>
-            <strong>6 źródeł</strong>
+        <div class="screen-body">
+          <div class="mobile-hero-card home-compact">
+            <div class="mobile-dashboard-card">
+              <div class="mobile-dashboard-top">
+                <strong>Ścieżka klienta</strong>
+                <span>active</span>
+              </div>
+
+              <div class="mobile-dashboard-row">
+                <div class="mobile-mini-tile">
+                  <span>Wejścia</span>
+                  <strong>6 źródeł</strong>
+                </div>
+
+                <div class="mobile-mini-tile">
+                  <span>Oferta</span>
+                  <strong>1 strona</strong>
+                </div>
+              </div>
+
+              <div class="mobile-dashboard-row">
+                <div class="mobile-mini-tile">
+                  <span>Proces</span>
+                  <strong>Wybór</strong>
+                </div>
+
+                <div class="mobile-mini-tile">
+                  <span>Efekt</span>
+                  <strong>Zgłoszenie</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="dual-actions home-actions">
+              <button class="cta-btn" type="button" data-open-booking>
+                Wybierz usługę
+              </button>
+
+              <button class="ghost-btn" type="button" data-jump-page="product">
+                Jak działa
+              </button>
+            </div>
           </div>
 
-          <div class="mobile-mini-tile">
-            <span>Oferta</span>
-            <strong>1 strona</strong>
+          <div class="mini-stats">
+            <div class="stat-card">
+              <span>Źródła klientów</span>
+              <strong>6+</strong>
+            </div>
+
+            <div class="stat-card">
+              <span>Strona pracuje</span>
+              <strong>24/7</strong>
+            </div>
           </div>
         </div>
-
-        <div class="mobile-dashboard-row">
-          <div class="mobile-mini-tile">
-            <span>Proces</span>
-            <strong>Wybór</strong>
-          </div>
-
-          <div class="mobile-mini-tile">
-            <span>Efekt</span>
-            <strong>Zgłoszenie</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="dual-actions home-actions">
-        <button class="cta-btn" type="button" data-open-booking>
-          Wybierz usługę
-        </button>
-
-        <button class="ghost-btn" type="button" data-jump-page="product">
-          Jak działa
-        </button>
-      </div>
-    </div>
-
-    <div class="mini-stats">
-      <div class="stat-card">
-        <span>Źródła klientów</span>
-        <strong>6+</strong>
-      </div>
-
-      <div class="stat-card">
-        <span>Strona pracuje</span>
-        <strong>24/7</strong>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       <section class="page" data-page-view="system">
         <div class="page-head">
@@ -4793,7 +4778,7 @@
             <div class="tags">
               <span>hero</span><span>oferta</span><span>sekcje</span><span>CTA</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Wybierz usługę</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Wybierz usługę</button>
           </article>
 
           <article class="system-card">
@@ -4805,7 +4790,7 @@
             <div class="tags">
               <span>wybór</span><span>dane</span><span>zapis</span><span>kontakt</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Sprawdź flow</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Sprawdź flow</button>
           </article>
 
           <article class="system-card">
@@ -4817,7 +4802,7 @@
             <div class="tags">
               <span>bio link</span><span>reklama</span><span>Google</span><span>DM</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Dodaj wejścia</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Dodaj wejścia</button>
           </article>
 
           <article class="system-card">
@@ -4829,7 +4814,7 @@
             <div class="tags">
               <span>dane</span><span>zakres</span><span>kontekst</span><span>kontakt</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Zbuduj system</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Zbuduj system</button>
           </article>
         </div>
       </section>
@@ -4859,7 +4844,7 @@
               <span>formularz / zapis</span>
               <span>dopasowanie pod markę</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Wybierz</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Wybierz</button>
           </article>
 
           <article class="offer-card">
@@ -4874,7 +4859,7 @@
               <span>linki z bio i reklam</span>
               <span>jeden proces zgłoszenia</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Dodaj wejścia</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Dodaj wejścia</button>
           </article>
 
           <article class="offer-card">
@@ -4889,7 +4874,7 @@
               <span>wejścia z kanałów</span>
               <span>powiadomienia</span>
             </div>
-            <button class="mobile-card-btn" type="button" data-open-booking">Najlepszy wybór</button>
+            <button class="mobile-card-btn" type="button" data-open-booking>Najlepszy wybór</button>
           </article>
         </div>
       </section>
@@ -5090,7 +5075,7 @@
     </div>
   </div>
 
-      <section class="booking-overlay" id="bookingOverlay" aria-hidden="true">
+  <section class="booking-overlay" id="bookingOverlay" aria-hidden="true">
     <div class="booking-shell">
       <div class="booking-topbar">
         <div class="booking-topbar__left">
@@ -5332,38 +5317,14 @@
                   </div>
 
                   <div class="summary-list">
-                    <div class="summary-row">
-                      <span>Imię</span>
-                      <strong data-bind="name">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Telefon</span>
-                      <strong data-bind="phone">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Usługa</span>
-                      <strong data-bind="serviceName">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Temat rozmowy</span>
-                      <strong data-bind="barberName">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Data</span>
-                      <strong data-bind="dateText">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Godzina</span>
-                      <strong data-bind="time">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Czas trwania</span>
-                      <strong data-bind="serviceDuration">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Zakres</span>
-                      <strong data-bind="servicePrice">—</strong>
-                    </div>
+                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
+                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                    <div class="summary-row"><span>Czas trwania</span><strong data-bind="serviceDuration">—</strong></div>
+                    <div class="summary-row"><span>Zakres</span><strong data-bind="servicePrice">—</strong></div>
                   </div>
 
                   <div class="info-note">
@@ -5387,40 +5348,18 @@
                   </div>
 
                   <div class="summary-list">
-                    <div class="summary-row">
-                      <span>Usługa</span>
-                      <strong data-bind="serviceName">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Temat rozmowy</span>
-                      <strong data-bind="barberName">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Data</span>
-                      <strong data-bind="dateText">—</strong>
-                    </div>
-                    <div class="summary-row">
-                      <span>Godzina</span>
-                      <strong data-bind="time">—</strong>
-                    </div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
                   </div>
 
                   <div class="success-links">
-                    <a
-                      class="nav-btn nav-btn-primary"
-                      href="https://www.instagram.com/mrozowski.automation/"
-                      target="_blank"
-                      rel="noopener"
-                    >
+                    <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">
                       Instagram
                     </a>
 
-                    <a
-                      class="nav-btn"
-                      href="https://www.tiktok.com/@mrozowski.automation"
-                      target="_blank"
-                      rel="noopener"
-                    >
+                    <a class="nav-btn" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">
                       TikTok
                     </a>
 
@@ -5442,278 +5381,1464 @@
     </div>
   </section>
 
-  <script>
-    const overlay = document.getElementById("bookingOverlay");
-    const flash = document.getElementById("screenFlash");
-    const siteHeader = document.querySelector(".site-header");
-    const mobileVersion = document.getElementById("mobile-version");
-    const faqSheet = document.getElementById("faqSheet");
-    const faqSheetTitle = document.getElementById("faqSheetTitle");
-    const faqSheetAnswer = document.getElementById("faqSheetAnswer");
+    <body>
+  <a href="https://mrozowski-automation-production.up.railway.app/" class="portfolio-back">
+    ← Wróć do wyboru
+  </a>
 
-    let lastScrollY = window.scrollY;
-    let lastMobileScrollTop = 0;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let ticking = false;
+  <div class="desktop-version" id="desktop-version">
+    <div class="landing-bg-orb one"></div>
+    <div class="landing-bg-orb two"></div>
+    <div class="landing-bg-orb three"></div>
+    <div class="landing-noise"></div>
+    <div class="screen-flash" id="screenFlash"></div>
 
-    const faqAnswers = {
-      instagram: [
-        "Czy to jest tylko pod Instagram?",
-        "Nie. Instagram może być jednym z wejść, ale główny produkt to własna strona ze ścieżką zapisu. Klient może przyjść też z TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku."
-      ],
-      business: [
-        "Dla jakich biznesów to pasuje?",
-        "Najlepiej pasuje do lokalnych usług: beauty, barber, nails, fizjo, trenerzy, konsultacje, małe studia i biznesy, które potrzebują zbierać zapisy albo zgłoszenia bez chaosu w wiadomościach."
-      ],
-      booking: [
-        "Czy zapis może być w środku strony?",
-        "Tak. Idea polega na tym, że klient nie musi skakać po aplikacjach. Widzi ofertę, wybiera opcję, zostawia dane i przechodzi dalej w jednym flow."
-      ],
-      automation: [
-        "Co daje automatyzacja wejść?",
-        "Automatyzacja kieruje klienta z różnych miejsc do jednej ścieżki. Zamiast odpowiadać ręcznie na te same pytania, wysyłasz klienta na stronę, która tłumaczy ofertę i prowadzi do zgłoszenia."
-      ],
-      content: [
-        "Czy strona jest dopasowana pod markę?",
-        "Tak. Wygląd, teksty, sekcje, oferta i CTA są dopasowane pod konkretną usługę, styl biznesu i to, co klient ma zrobić na końcu."
-      ],
-      start: [
-        "Od czego najlepiej zacząć?",
-        "Najlepiej zacząć od jednej konkretnej ścieżki: skąd klient przychodzi, co ma zobaczyć, jaką opcję wybiera i jakie dane mają trafić do właściciela."
-      ],
-      time: [
-        "Ile trwa wdrożenie?",
-        "To zależy od zakresu. Prosta strona z zapisem może być szybkim wdrożeniem, a pełny system z dodatkowymi wejściami wymaga dokładniejszego dopasowania."
-      ],
-      owner: [
-        "Co dostaje właściciel?",
-        "Właściciel dostaje stronę, która prezentuje ofertę, prowadzi klienta przez proces i zbiera konkretne dane zamiast rozproszonych wiadomości."
-      ]
-    };
+    <header class="site-header" id="top">
+      <div class="landing-container desktop-header">
+        <div class="desktop-left">
+          <nav class="desktop-nav">
+            <a href="#hero">Start</a>
+            <a href="#experience">System</a>
+            <a href="#manifest">Jak działa</a>
+          </nav>
+        </div>
 
-    function triggerFlash() {
-      if (!flash) return;
+        <div class="desktop-center">
+          <a href="#top" class="desktop-logo" aria-label="MROZOWSKI Automation start">
+            <div class="brand-wordmark" aria-hidden="true">
+              <span>MROZOWSKI</span>
+              <span>AUTOMATION</span>
+            </div>
+          </a>
+        </div>
 
-      flash.classList.add("active");
-      setTimeout(() => flash.classList.remove("active"), 140);
-    }
+        <div class="desktop-right">
+          <nav class="desktop-nav">
+            <a href="#pricing">Oferta</a>
+            <a href="#location">Proces</a>
+            <a href="#contact">Kontakt</a>
+          </nav>
 
-    function openBooking() {
-      if (!overlay) return;
+          <a href="#contact" class="desktop-call-btn">Kontakt</a>
+        </div>
+      </div>
+    </header>
 
-      overlay.classList.add("open");
-      overlay.setAttribute("aria-hidden", "false");
-      document.body.classList.add("booking-open");
-      triggerFlash();
-    }
+    <main class="landing-wrap">
+      <section class="hero-section" id="hero">
+        <div class="landing-container">
+          <div class="hero-card reveal">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <div class="section-chip">MROZOWSKI AUTOMATION</div>
 
-    function closeBooking() {
-      if (!overlay) return;
+                <h1 class="hero-title">
+                  Strona, która zamienia zainteresowanie w <span>konkretne zgłoszenie.</span>
+                </h1>
 
-      overlay.classList.remove("open");
-      overlay.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("booking-open");
-    }
+                <p class="hero-sub">
+                  Tworzę premium strony z wewnętrzną ścieżką zapisu. Klient trafia z Instagrama,
+                  TikToka, Google, WhatsAppa, Telegrama albo reklamy, widzi ofertę, wybiera opcję
+                  i zostawia dane bez chaosu w wiadomościach.
+                </p>
 
-    function callMrozowski() {
-      window.location.href = "tel:+48532377701";
-    }
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    onclick="document.querySelector('#experience')?.scrollIntoView({ behavior: 'smooth' })"
+                  >
+                    Zobacz jak działa
+                  </button>
 
-    window.callMrozowski = callMrozowski;
-    window.callBarbershop = callMrozowski;
-    window.callDogma = callMrozowski;
+                  <button class="btn btn-ghost" type="button" data-open-booking>
+                    Wybierz usługę
+                  </button>
+                </div>
 
-    function openFaq(key) {
-      const data = faqAnswers[key];
+                <div class="hero-trust-row">
+                  <div class="trust-pill">Strona premium</div>
+                  <div class="trust-pill">Ścieżka zapisu</div>
+                  <div class="trust-pill">Wejścia z wielu miejsc</div>
+                  <div class="trust-pill">Gotowe zgłoszenia</div>
+                </div>
+              </div>
 
-      if (!faqSheet || !data) return;
+              <div class="hero-side">
+                <article class="glass-card hero-dashboard-panel">
+                  <div class="hero-dashboard">
+                    <div class="dashboard-top">
+                      <strong>System zgłoszeń</strong>
+                      <span>active flow</span>
+                    </div>
 
-      faqSheetTitle.textContent = data[0];
-      faqSheetAnswer.textContent = data[1];
+                    <div class="dashboard-grid">
+                      <div class="dashboard-tile">
+                        <span>Źródła ruchu</span>
+                        <strong>6 kanałów</strong>
+                      </div>
 
-      faqSheet.classList.add("open");
-      faqSheet.setAttribute("aria-hidden", "false");
-      document.body.classList.add("faq-open");
-      triggerFlash();
-    }
+                      <div class="dashboard-tile">
+                        <span>Oferta</span>
+                        <strong>1 strona</strong>
+                      </div>
 
-    function closeFaq() {
-      if (!faqSheet) return;
+                      <div class="dashboard-tile">
+                        <span>Proces</span>
+                        <strong>Zapis</strong>
+                      </div>
 
-      faqSheet.classList.remove("open");
-      faqSheet.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("faq-open");
-    }
+                      <div class="dashboard-tile">
+                        <span>Wynik</span>
+                        <strong>Lead</strong>
+                      </div>
+                    </div>
 
-    function bindBookingButtons() {
-  document.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-open-booking]");
+                    <div class="dashboard-flow">
+                      <div class="dashboard-flow-row">
+                        <div class="dashboard-flow-node">Social</div>
+                        <div class="dashboard-flow-arrow">→</div>
+                        <div class="dashboard-flow-node">Strona</div>
+                        <div class="dashboard-flow-arrow">→</div>
+                        <div class="dashboard-flow-node">Zapis</div>
+                      </div>
 
-    if (!button) return;
+                      <div class="dashboard-flow-row">
+                        <div class="dashboard-flow-node">Google</div>
+                        <div class="dashboard-flow-arrow">→</div>
+                        <div class="dashboard-flow-node">Oferta</div>
+                        <div class="dashboard-flow-arrow">→</div>
+                        <div class="dashboard-flow-node">Kontakt</div>
+                      </div>
+                    </div>
+                  </div>
 
-    event.preventDefault();
-    event.stopPropagation();
+                  <div class="hero-photo-badge">
+                    <span>PAGE • PATH • CLIENTS</span>
+                    <strong>MROZOWSKI</strong>
+                  </div>
+                </article>
 
-    openBooking();
-  });
+                <div class="hero-info-grid">
+                  <article class="glass-card metric-card">
+                    <span>Od pierwszego kliknięcia do gotowego kontaktu</span>
+                    <strong>1 flow</strong>
+                  </article>
 
-  document.getElementById("bookingCloseBtn")?.addEventListener("click", closeBooking);
+                  <article class="glass-card metric-card">
+                    <span>Strona prowadzi klienta bez rozmów w DM</span>
+                    <strong>24/7</strong>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  overlay?.addEventListener("click", (event) => {
-    if (event.target === overlay) closeBooking();
-  });
-}
+      <section id="experience">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="section-head center">
+                <div class="section-chip">SYSTEM ZGŁOSZEŃ</div>
 
-    function bindFaq() {
-      document.querySelectorAll("[data-faq]").forEach((button) => {
-        button.addEventListener("click", () => openFaq(button.dataset.faq));
-      });
+                <h2>
+                  To nie jest zwykła strona.
+                  <span>To ścieżka decyzji.</span>
+                </h2>
 
-      document.querySelectorAll("[data-close-faq]").forEach((button) => {
-        button.addEventListener("click", closeFaq);
-      });
-    }
+                <p>
+                  Klient nie musi pisać, czekać na odpowiedź ani dopytywać o podstawy.
+                  W jednym miejscu widzi ofertę, rozumie wartość, wybiera zakres i zostawia dane.
+                  Ty wchodzisz dopiero wtedy, kiedy klient jest już bliżej decyzji.
+                </p>
+              </div>
 
-    function bindMobileNavigation() {
-      const chips = document.querySelectorAll(".nav-chip");
-      const pages = document.querySelectorAll(".page");
+              <div class="experience-grid">
+                <article class="glass-card showcase-phone-wrap">
+                  <div class="showcase-phone">
+                    <div class="showcase-screen">
+                      <div class="mini-top">
+                        <div class="mini-logo">
+                          <div class="mini-wordmark" aria-hidden="true">
+                            <span>MA</span>
+                            <span>PATH</span>
+                          </div>
+                        </div>
 
-      function activatePage(pageName) {
-        chips.forEach((item) => {
-          item.classList.toggle("active", item.dataset.page === pageName);
-        });
+                        <div class="mini-pill">Ścieżka zapisu</div>
+                      </div>
 
-        pages.forEach((item) => {
-          item.classList.toggle("active", item.dataset.pageView === pageName);
-        });
+                      <div class="mini-title">Klient przechodzi od zainteresowania do zgłoszenia.</div>
 
-        mobileVersion?.classList.remove("mobile-header-hidden");
+                      <div class="mini-card">
+                        <strong>Widzi ofertę</strong>
+                        <span>jasno</span>
+                      </div>
 
-        const activeChip = document.querySelector(`.nav-chip[data-page="${pageName}"]`);
-        activeChip?.scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest"
-        });
+                      <div class="mini-card">
+                        <strong>Wybiera zakres</strong>
+                        <span>sam</span>
+                      </div>
 
-        const activePage = document.querySelector(`.page[data-page-view="${pageName}"]`);
-        const scrollables = activePage?.querySelectorAll(".faq-mobile-list");
+                      <div class="mini-card">
+                        <strong>Zostawia dane</strong>
+                        <span>kontakt</span>
+                      </div>
 
-        scrollables?.forEach((item) => {
-          item.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        });
+                      <div class="mini-card">
+                        <strong>Wpada zgłoszenie</strong>
+                        <span>gotowe</span>
+                      </div>
 
-        if (window.innerWidth <= 900) triggerFlash();
-      }
+                      <div class="mini-cta">Zacznij teraz</div>
+                    </div>
+                  </div>
+                </article>
 
-      chips.forEach((chip) => {
-        chip.addEventListener("click", () => activatePage(chip.dataset.page));
-      });
+                <div class="experience-stack">
+                  <article class="glass-card feature-card">
+                    <div class="feature-number">01</div>
+                    <div>
+                      <strong>Klient trafia na stronę</strong>
+                      <p>
+                        Z profilu, reklamy, Google, TikToka, WhatsAppa, Telegrama albo linku.
+                        Każde wejście prowadzi do tej samej dopracowanej prezentacji oferty.
+                      </p>
+                    </div>
+                  </article>
 
-      document.querySelectorAll("[data-jump-page]").forEach((button) => {
-        button.addEventListener("click", () => activatePage(button.dataset.jumpPage));
-      });
-    }
+                  <article class="glass-card feature-card">
+                    <div class="feature-number">02</div>
+                    <div>
+                      <strong>Strona prowadzi go przez wybór</strong>
+                      <p>
+                        Zamiast wysyłać ceny i opisy ręcznie, pokazujesz wszystko w jednym miejscu:
+                        usługi, pakiety, zasady, szczegóły i przyciski działania.
+                      </p>
+                    </div>
+                  </article>
 
-    function bindMobileSmartHeader() {
-      document.addEventListener("touchstart", (event) => {
-        const touch = event.touches[0];
-        touchStartX = touch.clientX;
-        touchStartY = touch.clientY;
-      }, { passive: true });
+                  <article class="glass-card feature-card">
+                    <div class="feature-number">03</div>
+                    <div>
+                      <strong>Właściciel dostaje konkretny kontakt</strong>
+                      <p>
+                        Zamiast luźnej wiadomości „ile kosztuje?”, dostajesz dane klienta,
+                        wybrany zakres i kontekst rozmowy.
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      const verticalScrollers = document.querySelectorAll(".faq-mobile-list");
+      <section id="manifest">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="manifest-grid">
+                <article class="glass-card manifest-logo-panel">
+                  <div class="manifest-visual"></div>
 
-      verticalScrollers.forEach((scroller) => {
-        scroller.addEventListener("scroll", () => {
-          if (!mobileVersion || window.innerWidth > 900) return;
+                  <div class="manifest-logo-mark">
+                    <span>MROZOWSKI</span>
+                    <span>AUTOMATION</span>
+                  </div>
+                </article>
 
-          const current = scroller.scrollTop;
-          const delta = current - lastMobileScrollTop;
+                <div class="manifest-copy">
+                  <div class="section-head">
+                    <div class="section-chip">O SYSTEMIE</div>
 
-          if (delta > 8 && current > 40) {
-            mobileVersion.classList.add("mobile-header-hidden");
-          }
+                    <h2>
+                      Buduję strony, które nie kończą się
+                      <span>na wyglądzie.</span>
+                    </h2>
 
-          if (delta < -4 || current < 20) {
-            mobileVersion.classList.remove("mobile-header-hidden");
-          }
+                    <p>
+                      Strona ma robić robotę: tłumaczyć ofertę, skracać rozmowy,
+                      prowadzić klienta do działania i zbierać dane w sposób prosty,
+                      czysty i zrozumiały.
+                    </p>
+                  </div>
 
-          lastMobileScrollTop = Math.max(current, 0);
-        }, { passive: true });
-      });
+                  <article class="glass-card manifest-line">
+                    <p>
+                      <strong>Nie sprzedaję “ładnej wizytówki”.</strong>
+                      Buduję ekran, który klient może dostać z każdego kanału i od razu
+                      zrozumieć: co oferujesz, dlaczego warto i jaki jest następny krok.
+                    </p>
+                  </article>
 
-      document.addEventListener("touchmove", (event) => {
-        if (!mobileVersion || window.innerWidth > 900) return;
+                  <article class="glass-card manifest-line">
+                    <p>
+                      <strong>Najważniejszy jest przepływ decyzji.</strong>
+                      Dobra strona nie tylko wygląda premium. Ona zmniejsza ilość pytań,
+                      porządkuje ofertę i prowadzi klienta do zgłoszenia.
+                    </p>
+                  </article>
 
-        const touch = event.touches[0];
-        const dx = Math.abs(touch.clientX - touchStartX);
-        const dy = Math.abs(touch.clientY - touchStartY);
+                  <div class="manifest-mini-grid">
+                    <article class="glass-card manifest-mini">
+                      <span>01</span>
+                      <strong>Prezentacja oferty</strong>
+                      <p>Oferta wygląda jak produkt, nie jak długa wiadomość.</p>
+                    </article>
 
-        if (dx > dy) return;
+                    <article class="glass-card manifest-mini">
+                      <span>02</span>
+                      <strong>Ścieżka zapisu</strong>
+                      <p>Klient wie, co kliknąć i jakie dane zostawić.</p>
+                    </article>
 
-        if (touch.clientY < touchStartY - 18) {
-          mobileVersion.classList.add("mobile-header-hidden");
-        }
+                    <article class="glass-card manifest-mini">
+                      <span>03</span>
+                      <strong>Gotowy kontakt</strong>
+                      <p>Rozmowa zaczyna się z kontekstem, nie od zera.</p>
+                    </article>
+                  </div>
 
-        if (touch.clientY > touchStartY + 12) {
-          mobileVersion.classList.remove("mobile-header-hidden");
-        }
-      }, { passive: true });
-    }
+                  <article class="glass-card manifest-line">
+                    <p>
+                      <strong>Automation to nie tylko Instagram.</strong>
+                      Social media, reklama, Google, WhatsApp, Telegram i linki z bio
+                      są tylko wejściami. Główna wartość to własna strona, która przyjmuje klienta.
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    function handleDesktopScroll() {
-      if (window.innerWidth <= 900) return;
+      <section id="pricing">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="section-head center">
+                <div class="section-chip">OFERTA</div>
 
-      const currentY = window.scrollY;
+                <h2>
+                  Wybierz system
+                  <span>pod swój biznes.</span>
+                </h2>
 
-      if (siteHeader) {
-        const delta = currentY - lastScrollY;
-        const goingDown = delta > 4;
-        const goingUp = delta < -2;
+                <p>
+                  Możesz zacząć od strony z zapisem, rozbudować ją o wejścia z wielu kanałów
+                  albo zbudować pełny proces przyjmowania klientów.
+                </p>
+              </div>
 
-        if (goingDown && currentY > 120) {
-          siteHeader.classList.add("header-hidden");
-        }
+              <div class="pricing-grid">
+                <article class="glass-card pricing-card">
+                  <div class="pricing-card__visual">
+                    <div class="pricing-icon">01</div>
+                  </div>
 
-        if (goingUp || currentY < 70) {
-          siteHeader.classList.remove("header-hidden");
-        }
-      }
+                  <div class="pricing-card__content">
+                    <div class="pricing-card__top">
+                      <strong>Strona z zapisem</strong>
+                      <span class="pricing-card__price">start</span>
+                    </div>
 
-      lastScrollY = Math.max(currentY, 0);
-      ticking = false;
-    }
+                    <p>
+                      Dla biznesu, który chce mieć własne miejsce do pokazania oferty
+                      i przyjmowania konkretnych zgłoszeń.
+                    </p>
+                  </div>
 
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(handleDesktopScroll);
-        ticking = true;
-      }
-    }, { passive: true });
+                  <div class="service-tags">
+                    <span>premium page</span>
+                    <span>oferta</span>
+                    <span>formularz</span>
+                    <span>CTA</span>
+                  </div>
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeBooking();
-        closeFaq();
-      }
-    });
+                  <button class="btn section-button-full" type="button" data-open-booking>
+                    Wybierz
+                  </button>
+                </article>
 
-    document.querySelectorAll('a[href^="#"], .btn, .nav-chip').forEach((item) => {
-      item.addEventListener("click", () => {
-        if (!item.hasAttribute("data-open-booking")) triggerFlash();
-      });
-    });
+                <article class="glass-card pricing-card">
+                  <div class="pricing-card__visual">
+                    <div class="pricing-icon">02</div>
+                  </div>
 
-    bindBookingButtons();
-    bindMobileNavigation();
-    bindMobileSmartHeader();
-    bindFaq();
-  </script>
+                  <div class="pricing-card__content">
+                    <div class="pricing-card__top">
+                      <strong>Wejścia z wielu miejsc</strong>
+                      <span class="pricing-card__price">growth</span>
+                    </div>
 
-  <script src="./script.js"></script>
-</body>
-</html>
+                    <p>
+                      Dla biznesu, który chce kierować klientów z sociali, reklam i komunikatorów
+                      do jednej spójnej ścieżki.
+                    </p>
+                  </div>
 
-    
+                  <div class="service-tags">
+                    <span>Instagram</span>
+                    <span>TikTok</span>
+                    <span>Google</span>
+                    <span>WhatsApp</span>
+                  </div>
+
+                  <button class="btn section-button-full" type="button" data-open-booking>
+                    Dodaj wejścia
+                  </button>
+                </article>
+
+                <article class="glass-card pricing-card">
+                  <div class="pricing-card__visual">
+                    <div class="pricing-icon">03</div>
+                  </div>
+
+                  <div class="pricing-card__content">
+                    <div class="pricing-card__top">
+                      <strong>System przyjmowania klientów</strong>
+                      <span class="pricing-card__price">premium</span>
+                    </div>
+
+                    <p>
+                      Pełna strona, ścieżka zapisu, wejścia z różnych kanałów i dopracowana
+                      logika zbierania zgłoszeń.
+                    </p>
+                  </div>
+
+                  <div class="service-tags">
+                    <span>strona</span>
+                    <span>zapis</span>
+                    <span>wejścia</span>
+                    <span>powiadomienia</span>
+                  </div>
+
+                  <button class="btn btn-primary section-button-full" type="button" data-open-booking>
+                    Najlepszy wybór
+                  </button>
+                </article>
+              </div>
+
+              <p class="pricing-note">
+                Każdy wariant można dopasować pod branżę: beauty, barber, studio, konsultacje,
+                usługi lokalne albo inny biznes, który potrzebuje zbierać zgłoszenia bez chaosu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="location">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="section-head">
+                <div class="section-chip">PROCES</div>
+
+                <h2>
+                  Jedna ścieżka zamiast
+                  <span>rozproszonych rozmów.</span>
+                </h2>
+
+                <p>
+                  Klient może przyjść z dowolnego miejsca, ale finalnie trafia do jednej strony,
+                  jednej oferty i jednego procesu zostawienia danych.
+                </p>
+              </div>
+
+              <div class="location-grid">
+                <article class="glass-card system-map">
+                  <div class="system-flow-map">
+                    <div class="flow-sources">
+                      <div class="flow-node">Instagram</div>
+                      <div class="flow-node">TikTok</div>
+                      <div class="flow-node">Google</div>
+                      <div class="flow-node">WhatsApp</div>
+                      <div class="flow-node">Telegram</div>
+                      <div class="flow-node">Reklama</div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <div class="flow-main">
+                      <div class="flow-node">Strona</div>
+                      <div class="flow-arrow">→</div>
+                      <div class="flow-node">Wybór</div>
+                      <div class="flow-arrow">→</div>
+                      <div class="flow-node">Zgłoszenie</div>
+                    </div>
+
+                    <div class="flow-output">
+                      <span>Efekt</span>
+                      <strong>Klient wie, co wybrał. Ty wiesz, z czym wracać.</strong>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="glass-card location-side">
+                  <div class="section-chip">ONE PATH</div>
+
+                  <div class="location-preview">
+                    <div class="location-preview__inner">
+                      <strong>Wszystko<br />w jednym miejscu.</strong>
+                      <span>offer • choice • contact</span>
+                    </div>
+                  </div>
+
+                  <div class="location-copy">
+                    <strong>Strona robi pierwszą część rozmowy za Ciebie.</strong>
+                    <p>
+                      Klient widzi ofertę, rozumie różnicę między opcjami i zostawia dane.
+                      Ty nie tłumaczysz wszystkiego od nowa w każdej wiadomości.
+                    </p>
+                  </div>
+
+                  <div class="section-actions">
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                      onclick="document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' })"
+                    >
+                      Zobacz ofertę
+                    </button>
+
+                    <a class="btn btn-ghost" href="#contact">Kontakt</a>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="offer-product">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="section-head center">
+                <div class="section-chip">OFERTA JAK PRODUKT</div>
+
+                <h2>
+                  Twoja oferta wygląda jak produkt,
+                  <span>nie jak wiadomość w DM.</span>
+                </h2>
+
+                <p>
+                  Zamiast ręcznie wysyłać ceny, opisy i wolne terminy, pokazujesz wszystko
+                  w jednym dopracowanym miejscu, które prowadzi klienta do działania.
+                </p>
+              </div>
+
+              <div class="product-grid">
+                <article class="glass-card product-card">
+                  <div class="product-card__icon">01</div>
+                  <strong>Usługi</strong>
+                  <p>
+                    Klient od razu widzi, co może wybrać i nie musi pytać o podstawowe informacje.
+                  </p>
+                  <div class="product-visual"></div>
+                </article>
+
+                <article class="glass-card product-card">
+                  <div class="product-card__icon">02</div>
+                  <strong>Szczegóły</strong>
+                  <p>
+                    Cena, opis, czas, zasady albo warunki są jasne przed zostawieniem danych.
+                  </p>
+                  <div class="product-visual"></div>
+                </article>
+
+                <article class="glass-card product-card">
+                  <div class="product-card__icon">03</div>
+                  <strong>Decyzja</strong>
+                  <p>
+                    Dobrze ustawiony flow prowadzi klienta do konkretnego kliknięcia.
+                  </p>
+                  <div class="product-visual"></div>
+                </article>
+
+                <article class="glass-card product-card">
+                  <div class="product-card__icon">04</div>
+                  <strong>Kontekst</strong>
+                  <p>
+                    Właściciel dostaje zgłoszenie z większą ilością informacji niż zwykłe “hej”.
+                  </p>
+                  <div class="product-visual"></div>
+                </article>
+              </div>
+
+              <div class="section-actions" style="justify-content:center;margin-top:18px;">
+                <button class="btn btn-primary" type="button" data-open-booking>
+                  Wybierz usługę
+                </button>
+
+                <a class="btn btn-ghost" href="#faq">
+                  Zobacz pytania
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="section-head center">
+                <div class="section-chip">FAQ</div>
+
+                <h2>
+                  Krótko.
+                  <span>Bez technicznego bełkotu.</span>
+                </h2>
+
+                <p>
+                  Najważniejsze pytania przed wdrożeniem strony z zapisem i systemem zgłoszeń.
+                </p>
+              </div>
+
+              <div class="faq-grid">
+                <button class="glass-card faq-item" type="button" data-faq="instagram">
+                  <strong>Czy to jest tylko pod Instagram?</strong>
+                  <p>Dotknij, żeby zobaczyć odpowiedź.</p>
+                </button>
+
+                <button class="glass-card faq-item" type="button" data-faq="business">
+                  <strong>Dla jakich biznesów to pasuje?</strong>
+                  <p>Dotknij, żeby zobaczyć odpowiedź.</p>
+                </button>
+
+                <button class="glass-card faq-item" type="button" data-faq="booking">
+                  <strong>Czy zapis może być w środku strony?</strong>
+                  <p>Dotknij, żeby zobaczyć odpowiedź.</p>
+                </button>
+
+                <button class="glass-card faq-item" type="button" data-faq="automation">
+                  <strong>Co daje automatyzacja wejść?</strong>
+                  <p>Dotknij, żeby zobaczyć odpowiedź.</p>
+                </button>
+
+                <button class="glass-card faq-item" type="button" data-faq="content">
+                  <strong>Czy strona jest dopasowana pod markę?</strong>
+                  <p>Dotknij, żeby zobaczyć odpowiedź.</p>
+                </button>
+
+                <button class="glass-card faq-item" type="button" data-faq="start">
+                  <strong>Od czego najlepiej zacząć?</strong>
+                  <p>Dotknij, żeby zobaczyć odpowiedź.</p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="contact-grid">
+                <article class="glass-card contact-card">
+                  <div class="section-chip">KONTAKT</div>
+
+                  <div class="contact-lead">
+                    <strong>Czas przestać tracić klientów w wiadomościach.</strong>
+                    <p>
+                      Zbuduj stronę, która pokazuje ofertę, prowadzi klienta przez wybór
+                      i zbiera gotowe zgłoszenie z konkretnym kontekstem.
+                    </p>
+                  </div>
+
+                  <p class="contact-note">
+                    Najlepsze dla usług, które dostają zapytania z wielu miejsc i chcą zamienić
+                    luźne zainteresowanie w uporządkowany kontakt.
+                  </p>
+
+                  <div class="social-icons">
+                    <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+                      </svg>
+                    </a>
+
+                    <a class="social-icon" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.7 3c.2 1.6 1.1 3 2.4 3.8.8.5 1.7.8 2.7.8v3.1c-1.4 0-2.9-.4-4.1-1.2v6.4c0 3.1-2.5 5.6-5.6 5.6S5.5 19 5.5 15.9s2.5-5.6 5.6-5.6c.3 0 .7 0 1 .1v3.2a2.7 2.7 0 0 0-1-.2 2.5 2.5 0 0 0 0 5 2.5 2.5 0 0 0 2.5-2.5V3h2.1Z"></path>
+                      </svg>
+                    </a>
+
+                    <a class="social-icon" href="tel:+48532377701" aria-label="Telefon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7.2 5.4 9 4.7c.9-.4 1.9 0 2.3.9l.9 2c.3.8.1 1.6-.5 2.1l-1 .8a10.6 10.6 0 0 0 4.8 4.8l.8-1c.5-.6 1.4-.8 2.1-.5l2 .9c.9.4 1.3 1.4.9 2.3l-.7 1.8c-.4.9-1.3 1.4-2.3 1.2C10.6 18.8 5.2 13.4 4 5.7c-.2-1 .3-1.9 1.2-2.3Z"></path>
+                      </svg>
+                    </a>
+                  </div>
+
+                  <button class="btn btn-primary section-button-full" type="button" data-open-booking>
+                    Zacznij teraz
+                  </button>
+                </article>
+
+                <article class="glass-card status-card">
+                  <div class="status-pill open" id="desktopStatus">WORK MODE</div>
+
+                  <ul class="status-list">
+                    <li><span>System</span><strong>działa 24/7</strong></li>
+                    <li><span>Wdrożenia</span><strong>10:00 — 18:00</strong></li>
+                    <li><span>Poniedziałek — Sobota</span><strong>10:00 — 18:00</strong></li>
+                    <li><span>Niedziela</span><strong>10:00 — 16:00</strong></li>
+                  </ul>
+
+                  <div class="contact-lead">
+                    <strong>MROZOWSKI</strong>
+                    <p>
+                      Premium strona, ścieżka zapisu i system zgłoszeń dla biznesów,
+                      które nie chcą tracić klientów w wiadomościach.
+                    </p>
+                  </div>
+
+                  <a class="btn btn-ghost section-button-full" href="tel:+48532377701">
+                    Kontakt telefoniczny
+                  </a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="mobile-version" id="mobile-version">
+    <header class="app-top">
+      <a class="icon-btn" href="https://mrozowski-automation-production.up.railway.app/" aria-label="Wróć do wyboru">
+        ←
+      </a>
+
+      <div class="logo-pill">
+        <div class="mobile-wordmark" aria-hidden="true">
+          <span>MROZOWSKI</span>
+          <span>AUTOMATION</span>
+        </div>
+      </div>
+
+      <a class="icon-btn" href="tel:+48532377701" aria-label="Kontakt">☎</a>
+    </header>
+
+    <nav class="section-nav" aria-label="Nawigacja mobilna">
+      <button class="nav-chip active" type="button" data-page="home">Start</button>
+      <button class="nav-chip" type="button" data-page="system">System</button>
+      <button class="nav-chip" type="button" data-page="offer">Oferta</button>
+      <button class="nav-chip" type="button" data-page="flow">Flow</button>
+      <button class="nav-chip" type="button" data-page="product">Produkt</button>
+      <button class="nav-chip" type="button" data-page="faq">FAQ</button>
+      <button class="nav-chip" type="button" data-page="contact">Kontakt</button>
+    </nav>
+
+    <main class="pages">
+      <section class="page active" data-page-view="home">
+        <div class="page-head">
+          <div class="kicker">MROZOWSKI AUTOMATION</div>
+
+          <h1 class="page-title">
+            <span>Strona, która</span>
+            <span class="gold">prowadzi klienta.</span>
+          </h1>
+
+          <p class="page-sub">
+            Klient trafia z dowolnego miejsca, widzi ofertę i przechodzi prostą ścieżką do zgłoszenia.
+          </p>
+        </div>
+
+        <div class="screen-body">
+          <div class="mobile-hero-card home-compact">
+            <div class="mobile-dashboard-card">
+              <div class="mobile-dashboard-top">
+                <strong>Ścieżka klienta</strong>
+                <span>active</span>
+              </div>
+
+              <div class="mobile-dashboard-row">
+                <div class="mobile-mini-tile">
+                  <span>Wejścia</span>
+                  <strong>6 źródeł</strong>
+                </div>
+
+                <div class="mobile-mini-tile">
+                  <span>Oferta</span>
+                  <strong>1 strona</strong>
+                </div>
+              </div>
+
+              <div class="mobile-dashboard-row">
+                <div class="mobile-mini-tile">
+                  <span>Proces</span>
+                  <strong>Wybór</strong>
+                </div>
+
+                <div class="mobile-mini-tile">
+                  <span>Efekt</span>
+                  <strong>Zgłoszenie</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="dual-actions home-actions">
+              <button class="cta-btn" type="button" data-open-booking>
+                Wybierz usługę
+              </button>
+
+              <button class="ghost-btn" type="button" data-jump-page="product">
+                Jak działa
+              </button>
+            </div>
+          </div>
+
+          <div class="mini-stats">
+            <div class="stat-card">
+              <span>Źródła klientów</span>
+              <strong>6+</strong>
+            </div>
+
+            <div class="stat-card">
+              <span>Strona pracuje</span>
+              <strong>24/7</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="system">
+        <div class="page-head">
+          <div class="kicker">SYSTEM</div>
+
+          <h2 class="page-title">
+            <span>Nie formularz.</span>
+            <span class="gold">Ścieżka.</span>
+          </h2>
+
+          <p class="page-sub">
+            Przesuń karty i zobacz, z czego składa się system przyjmowania klientów.
+          </p>
+        </div>
+
+        <div class="systems-list">
+          <article class="system-card">
+            <div class="system-card__visual"><span>01</span></div>
+            <div class="system-card-header">
+              <strong>Strona premium</strong>
+              <p>Własne miejsce dla oferty, które wygląda jak marka, a nie przypadkowy formularz.</p>
+            </div>
+            <div class="tags">
+              <span>hero</span><span>oferta</span><span>sekcje</span><span>CTA</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Wybierz usługę</button>
+          </article>
+
+          <article class="system-card">
+            <div class="system-card__visual"><span>02</span></div>
+            <div class="system-card-header">
+              <strong>Ścieżka zapisu</strong>
+              <p>Klient przechodzi przez wybór, dane i potwierdzenie bez pisania w kółko.</p>
+            </div>
+            <div class="tags">
+              <span>wybór</span><span>dane</span><span>zapis</span><span>kontakt</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Sprawdź flow</button>
+          </article>
+
+          <article class="system-card">
+            <div class="system-card__visual"><span>03</span></div>
+            <div class="system-card-header">
+              <strong>Wejścia z wielu miejsc</strong>
+              <p>Sociale, reklamy, Google i komunikatory prowadzą do jednej dopracowanej strony.</p>
+            </div>
+            <div class="tags">
+              <span>bio link</span><span>reklama</span><span>Google</span><span>DM</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Dodaj wejścia</button>
+          </article>
+
+          <article class="system-card">
+            <div class="system-card__visual"><span>04</span></div>
+            <div class="system-card-header">
+              <strong>Gotowe zgłoszenie</strong>
+              <p>Właściciel dostaje dane i kontekst, zamiast luźnej wiadomości bez konkretu.</p>
+            </div>
+            <div class="tags">
+              <span>dane</span><span>zakres</span><span>kontekst</span><span>kontakt</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Zbuduj system</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="offer">
+        <div class="page-head">
+          <div class="kicker">OFERTA</div>
+          <h2 class="page-title">
+            <span>Wybierz</span>
+            <span class="gold">zakres.</span>
+          </h2>
+          <p class="page-sub">
+            Trzy poziomy: strona, wejścia z wielu miejsc albo pełny system przyjmowania klientów.
+          </p>
+        </div>
+
+        <div class="offers-list">
+          <article class="offer-card">
+            <div class="offer-card__top">
+              <span class="offer-card__badge">START</span>
+              <strong>Strona z zapisem</strong>
+            </div>
+            <p>Dla biznesu, który chce pokazać ofertę i zbierać konkretne zgłoszenia.</p>
+            <div class="offer-list">
+              <span>strona premium</span>
+              <span>sekcje pod ofertę</span>
+              <span>formularz / zapis</span>
+              <span>dopasowanie pod markę</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Wybierz</button>
+          </article>
+
+          <article class="offer-card">
+            <div class="offer-card__top">
+              <span class="offer-card__badge">GROWTH</span>
+              <strong>Wejścia z wielu miejsc</strong>
+            </div>
+            <p>Dla biznesu, który chce kierować ruch z różnych kanałów do jednej ścieżki.</p>
+            <div class="offer-list">
+              <span>Instagram / TikTok / Google</span>
+              <span>WhatsApp / Telegram</span>
+              <span>linki z bio i reklam</span>
+              <span>jeden proces zgłoszenia</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Dodaj wejścia</button>
+          </article>
+
+          <article class="offer-card">
+            <div class="offer-card__top">
+              <span class="offer-card__badge">PREMIUM</span>
+              <strong>System przyjmowania klientów</strong>
+            </div>
+            <p>Pełna strona, ścieżka zapisu i uporządkowane zbieranie zgłoszeń.</p>
+            <div class="offer-list">
+              <span>strona premium</span>
+              <span>ścieżka zapisu</span>
+              <span>wejścia z kanałów</span>
+              <span>powiadomienia</span>
+            </div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Najlepszy wybór</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="flow">
+        <div class="page-head">
+          <div class="kicker">FLOW</div>
+          <h2 class="page-title">
+            <span>Jedna</span>
+            <span class="gold">ścieżka.</span>
+          </h2>
+          <p class="page-sub">
+            Klient może przyjść z wielu miejsc, ale decyzję podejmuje w jednym flow.
+          </p>
+        </div>
+
+        <div class="flows-list">
+          <article class="flow-card">
+            <strong>Źródła ruchu</strong>
+            <p>Sociale, reklamy, Google, WhatsApp, Telegram i zwykły link prowadzą na stronę.</p>
+            <div class="mobile-flow-map">
+              <div class="mobile-flow-sources">
+                <div class="mobile-flow-node">Instagram</div>
+                <div class="mobile-flow-node">TikTok</div>
+                <div class="mobile-flow-node">Google</div>
+                <div class="mobile-flow-node">WhatsApp</div>
+                <div class="mobile-flow-node">Telegram</div>
+                <div class="mobile-flow-node">Reklama</div>
+              </div>
+              <div class="mobile-flow-arrow">↓</div>
+              <div class="mobile-flow-output">jedna strona</div>
+            </div>
+          </article>
+
+          <article class="flow-card">
+            <strong>Oferta tłumaczy decyzję</strong>
+            <p>Strona pokazuje wartość, różnice między opcjami i następny krok.</p>
+            <div class="mobile-flow-map">
+              <div class="mobile-flow-node">Oferta</div>
+              <div class="mobile-flow-arrow">↓</div>
+              <div class="mobile-flow-node">Zakres</div>
+              <div class="mobile-flow-arrow">↓</div>
+              <div class="mobile-flow-output">klient rozumie wybór</div>
+            </div>
+          </article>
+
+          <article class="flow-card">
+            <strong>Zgłoszenie ma kontekst</strong>
+            <p>Klient zostawia dane już po zobaczeniu oferty, nie na ślepo.</p>
+            <div class="mobile-flow-map">
+              <div class="mobile-flow-node">Wybór</div>
+              <div class="mobile-flow-arrow">↓</div>
+              <div class="mobile-flow-node">Dane</div>
+              <div class="mobile-flow-arrow">↓</div>
+              <div class="mobile-flow-output">gotowy kontakt</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="product">
+        <div class="page-head">
+          <div class="kicker">PRODUKT</div>
+          <h2 class="page-title">
+            <span>Oferta jak</span>
+            <span class="gold">produkt.</span>
+          </h2>
+          <p class="page-sub">
+            Klient nie dostaje losowej wiadomości. Widzi dopracowaną stronę i prosty wybór.
+          </p>
+        </div>
+
+        <div class="proof-list">
+          <article class="proof-card">
+            <div class="proof-number">01</div>
+            <strong>Usługi</strong>
+            <p>Klient od razu widzi, co może wybrać i nie pyta o podstawy.</p>
+            <div class="tags"><span>wybór</span><span>pakiety</span><span>CTA</span></div>
+            <div class="proof-visual"></div>
+          </article>
+
+          <article class="proof-card">
+            <div class="proof-number">02</div>
+            <strong>Szczegóły</strong>
+            <p>Cena, opis, czas albo zasady są jasne przed zostawieniem danych.</p>
+            <div class="tags"><span>opis</span><span>czas</span><span>warunki</span></div>
+            <div class="proof-visual"></div>
+          </article>
+
+          <article class="proof-card">
+            <div class="proof-number">03</div>
+            <strong>Decyzja</strong>
+            <p>Dobrze ustawiony flow prowadzi klienta do konkretnego działania.</p>
+            <div class="tags"><span>lead</span><span>zapis</span><span>kontakt</span></div>
+            <div class="proof-visual"></div>
+          </article>
+
+          <article class="proof-card">
+            <div class="proof-number">04</div>
+            <strong>Mniej chaosu</strong>
+            <p>Zamiast zaczynać rozmowę od zera, dostajesz dane i kontekst.</p>
+            <div class="tags"><span>mniej DM</span><span>dane</span><span>kontekst</span></div>
+            <div class="proof-visual"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="faq">
+        <div class="page-head">
+          <div class="kicker">FAQ</div>
+          <h2 class="page-title">
+            <span>Krótko.</span>
+            <span class="gold">Bez bełkotu.</span>
+          </h2>
+          <p class="page-sub">Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.</p>
+        </div>
+
+        <div class="faq-mobile-list">
+          <button class="faq-card" type="button" data-faq="instagram"><strong>Czy to jest tylko pod Instagram?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="business"><strong>Dla jakich biznesów to pasuje?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="booking"><strong>Czy zapis może być w środku strony?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="automation"><strong>Co daje automatyzacja wejść?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="content"><strong>Czy strona jest dopasowana pod markę?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="start"><strong>Od czego najlepiej zacząć?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="time"><strong>Ile trwa wdrożenie?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="faq-card" type="button" data-faq="owner"><strong>Co dostaje właściciel?</strong><p>Dotknij, żeby zobaczyć odpowiedź.</p></button>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="contact">
+        <div class="page-head">
+          <div class="kicker">KONTAKT</div>
+          <h2 class="page-title">
+            <span>Zacznij</span>
+            <span class="gold">od ścieżki.</span>
+          </h2>
+          <p class="page-sub">
+            Zamień luźne zainteresowanie w uporządkowany proces zostawienia danych.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <article class="mobile-cta-panel">
+            <strong>Czas przestać tracić klientów w wiadomościach.</strong>
+            <p>Zbuduj stronę, która pokazuje ofertę i zbiera konkretne zgłoszenia.</p>
+            <button class="cta-btn" type="button" data-open-booking>Zacznij teraz</button>
+          </article>
+
+          <article class="contact-mobile-card">
+            <strong>MROZOWSKI</strong>
+            <p>Premium strona, ścieżka zapisu i system zgłoszeń dla lokalnych biznesów.</p>
+          </article>
+
+          <div class="hours-list">
+            <div class="hour-row"><span>System</span><strong>24/7</strong></div>
+            <div class="hour-row"><span>Wdrożenia</span><strong>10–18</strong></div>
+            <div class="hour-row"><span>Niedziela</span><strong>10–16</strong></div>
+          </div>
+
+          <div class="social-row">
+            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="2"/>
+                <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+              </svg>
+            </a>
+
+            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 4v10.2a4.2 4.2 0 1 1-4.2-4.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M14 5c1.1 3 3 4.6 6 4.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </a>
+
+            <a href="tel:+48532377701" aria-label="Telefon">
+              <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7.2 5.4 9 4.7c.9-.4 1.9 0 2.3.9l.9 2c.3.8.1 1.6-.5 2.1l-1 .8a10.6 10.6 0 0 0 4.8 4.8l.8-1c.5-.6 1.4-.8 2.1-.5l2 .9c.9.4 1.3 1.4.9 2.3l-.7 1.8c-.4.9-1.3 1.4-2.3 1.2C10.6 18.8 5.2 13.4 4 5.7c-.2-1 .3-1.9 1.2-2.3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="faq-sheet" id="faqSheet" aria-hidden="true">
+    <div class="faq-sheet__backdrop" data-close-faq></div>
+
+    <div class="faq-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="faqSheetTitle">
+      <button class="faq-sheet__close" type="button" data-close-faq aria-label="Zamknij">×</button>
+
+      <div class="faq-sheet__content">
+        <span>FAQ</span>
+        <h3 id="faqSheetTitle">Pytanie</h3>
+        <p id="faqSheetAnswer">Odpowiedź.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="booking-overlay" id="bookingOverlay" aria-hidden="true">
+    <div class="booking-shell">
+      <div class="booking-topbar">
+        <div class="booking-topbar__left">
+          <div class="booking-logo-box">
+            <div class="booking-wordmark" aria-hidden="true">
+              <span>MROZOWSKI</span>
+              <span>AUTOMATION</span>
+            </div>
+          </div>
+
+          <div class="booking-topbar__copy">
+            <span>MROZOWSKI AUTOMATION</span>
+            <strong>Wybór systemu</strong>
+          </div>
+        </div>
+
+        <button class="btn booking-close" type="button" id="bookingCloseBtn" aria-label="Zamknij booking">
+          ×
+        </button>
+      </div>
+
+      <div class="wizard-host">
+        <main class="app-shell">
+          <section class="wizard-frame">
+            <header class="wizard-top">
+              <div class="wizard-top-row">
+                <div class="wizard-top-copy">
+                  <div class="eyebrow">MROZOWSKI AUTOMATION</div>
+                  <h1 id="stepTitle">Dane kontaktowe</h1>
+                  <p id="stepSubtitle">Zostaw dane i przejdź dalej.</p>
+                </div>
+
+                <div class="step-pill" id="stepPill">1 / 8</div>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-track">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">13%</div>
+              </div>
+            </header>
+
+            <section class="wizard-card">
+              <section class="step active" data-step="1">
+                <div class="step-content narrow">
+                  <div class="intro-card">
+                    <div class="intro-top">
+                      <div class="logo-box logo-box-image">
+                        <div class="logo-box-wordmark" aria-hidden="true">
+                          <span>MA</span>
+                          <span>PATH</span>
+                        </div>
+                      </div>
+
+                      <div class="intro-copy">
+                        <span class="section-kicker">MROZOWSKI AUTOMATION</span>
+                        <strong>Dobierz system pod swój biznes</strong>
+                      </div>
+                    </div>
+
+                    <div class="intro-divider"></div>
+
+                    <div class="card-head">
+                      <h2>Wpisz imię i telefon</h2>
+                      <p>
+                        Zostaw dane, a potem wybierz zakres: stronę z zapisem,
+                        wejścia z wielu miejsc albo pełny system przyjmowania klientów.
+                      </p>
+                    </div>
+
+                    <div class="intro-benefits">
+                      <div class="intro-benefit">Premium</div>
+                      <div class="intro-benefit">Zapis</div>
+                      <div class="intro-benefit">Leady</div>
+                    </div>
+                  </div>
+
+                  <label class="field">
+                    <span>Imię</span>
+                    <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
+                    <small class="error" id="nameError"></small>
+                  </label>
+
+                  <label class="field">
+                    <span>Telefon</span>
+                    <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
+                    <small class="error" id="phoneError"></small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="step" data-step="2">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór usługi</h2>
+                    <p>Najpierw wybierz kategorię, potem konkretny zakres wdrożenia.</p>
+                  </div>
+
+                  <div class="accordion-list" id="categoryAccordion"></div>
+                </div>
+              </section>
+
+              <section class="step" data-step="3">
+                <div class="step-content narrow">
+                  <div class="card-head">
+                    <h2>Wybrać typ rozmowy?</h2>
+                    <p>Możesz wskazać temat rozmowy albo przejść dalej bez wyboru.</p>
+                  </div>
+
+                  <div class="summary-list">
+                    <div class="summary-row">
+                      <span>Imię</span>
+                      <strong data-bind="name">—</strong>
+                    </div>
+                    <div class="summary-row">
+                      <span>Telefon</span>
+                      <strong data-bind="phone">—</strong>
+                    </div>
+                    <div class="summary-row">
+                      <span>Usługa</span>
+                      <strong data-bind="serviceName">—</strong>
+                    </div>
+                  </div>
+
+                  <div class="choice-actions">
+                    <button class="choice-btn choice-btn-strong" id="chooseBarberYes" type="button">Tak</button>
+                    <button class="choice-btn choice-btn-strong" id="chooseBarberNo" type="button">Nie</button>
+                  </div>
+
+                  <div class="barber-skip-box hidden" id="barberSkipBox">
+                    <div class="summary-list">
+                      <div class="summary-row">
+                        <span>Rozmowa</span>
+                        <strong>Bez wyboru</strong>
+                      </div>
+                      <div class="summary-row">
+                        <span>Status</span>
+                        <strong>Dopasujemy temat po zgłoszeniu</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="4">
+                <div class="step-content narrow">
+                  <div class="card-head">
+                    <h2>Wybór rozmowy</h2>
+                    <p>Przeglądaj opcje strzałkami i wybierz najbliższy temat.</p>
+                  </div>
+
+                  <div class="barber-slider-card">
+                    <div class="barber-slide-photo" id="barberSlidePhoto">
+                      <div class="map-wordmark" aria-hidden="true">
+                        <span>MA</span>
+                        <span>PATH</span>
+                      </div>
+                    </div>
+
+                    <div class="barber-slide-info">
+                      <strong id="barberSlideName">—</strong>
+                      <p id="barberSlideDescription">—</p>
+                      <div class="barber-langs" id="barberSlideLangs"></div>
+                    </div>
+
+                    <div class="barber-slider-controls">
+                      <button class="slider-arrow" id="barberPrevBtn" type="button">←</button>
+                      <div class="slider-counter" id="barberCounter">1 / 3</div>
+                      <button class="slider-arrow" id="barberNextBtn" type="button">→</button>
+                    </div>
+
+                    <button class="select-barber-btn" id="selectBarberBtn" type="button">
+                      Wybierz ten temat
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="5">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór daty</h2>
+                    <p>Wybierz dzień, kiedy najwygodniej omówić system.</p>
+                  </div>
+
+                  <div class="calendar-box">
+                    <div class="calendar-header">
+                      <button class="calendar-nav-btn" id="calendarPrevBtn" type="button">←</button>
+
+                      <div class="calendar-title-wrap">
+                        <strong id="monthLabel">Miesiąc</strong>
+                        <span id="calendarStatus">Dostępne terminy</span>
+                      </div>
+
+                      <button class="calendar-nav-btn" id="calendarNextBtn" type="button">→</button>
+                    </div>
+
+                    <div class="calendar-weekdays">
+                      <span>Pn</span>
+                      <span>Wt</span>
+                      <span>Śr</span>
+                      <span>Cz</span>
+                      <span>Pt</span>
+                      <span>Sb</span>
+                      <span>Nd</span>
+                    </div>
+
+                    <div class="calendar-month-grid" id="calendarGrid"></div>
+                    <small class="error" id="dateError"></small>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="6">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór godziny</h2>
+                    <p>Wybierz godzinę, kiedy najwygodniej wrócić do tematu.</p>
+                  </div>
+
+                  <div class="slots-box">
+                    <div class="calendar-top">
+                      <strong>Godziny</strong>
+                      <span id="slotsStatus">Wybierz datę</span>
+                    </div>
+
+                    <div class="slots-grid" id="slotsGrid"></div>
+                    <small class="error" id="timeError"></small>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="7">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Potwierdzenie danych</h2>
+                    <p>Sprawdź szczegóły zgłoszenia przed zapisaniem.</p>
+                  </div>
+
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
+                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                    <div class="summary-row"><span>Czas trwania</span><strong data-bind="serviceDuration">—</strong></div>
+                    <div class="summary-row"><span>Zakres</span><strong data-bind="servicePrice">—</strong></div>
+                  </div>
+
+                  <div class="info-note">
+                    Sprawdź dane i potwierdź, aby zapisać zgłoszenie.
+                  </div>
+
+                  <small class="error" id="submitError"></small>
+                </div>
+              </section>
+
+              <section class="step" data-step="8">
+                <div class="step-content narrow center">
+                  <div class="success-icon">✓</div>
+
+                  <div class="card-head center">
+                    <h2>Zgłoszenie zapisane</h2>
+                    <p>
+                      Dane zostały zapisane. Następny krok to kontakt i omówienie
+                      systemu pod Twój biznes.
+                    </p>
+                  </div>
+
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                  </div>
+
+                  <div class="success-links">
+                    <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">
+                      Instagram
+                    </a>
+
+                    <a class="nav-btn" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">
+                      TikTok
+                    </a>
+
+                    <button class="nav-btn" type="button" onclick="callMrozowski()">
+                      Zadzwoń: 532 377 701
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </section>
+
+            <footer class="wizard-nav">
+              <button class="nav-btn" id="backBtn" type="button">Wstecz</button>
+              <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">Dalej</button>
+            </footer>
+          </section>
+        </main>
+      </div>
+    </div>
+  </section>
