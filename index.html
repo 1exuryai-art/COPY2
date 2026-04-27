@@ -5540,16 +5540,23 @@
     }
 
     function bindBookingButtons() {
-      document.querySelectorAll("[data-open-booking]").forEach((button) => {
-        button.addEventListener("click", openBooking);
-      });
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-open-booking]");
 
-      document.getElementById("bookingCloseBtn")?.addEventListener("click", closeBooking);
+    if (!button) return;
 
-      overlay?.addEventListener("click", (event) => {
-        if (event.target === overlay) closeBooking();
-      });
-    }
+    event.preventDefault();
+    event.stopPropagation();
+
+    openBooking();
+  });
+
+  document.getElementById("bookingCloseBtn")?.addEventListener("click", closeBooking);
+
+  overlay?.addEventListener("click", (event) => {
+    if (event.target === overlay) closeBooking();
+  });
+}
 
     function bindFaq() {
       document.querySelectorAll("[data-faq]").forEach((button) => {
