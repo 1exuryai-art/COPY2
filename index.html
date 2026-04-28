@@ -3002,7 +3002,7 @@
         text-align: center;
       }
 
-      .mobile-hero-floating {
+           .mobile-hero-floating {
         position: absolute;
         left: 14px;
         right: 14px;
@@ -3017,6 +3017,7 @@
         box-shadow: var(--shadow-sm), var(--glass-highlight);
         display: grid;
         gap: 8px;
+        pointer-events: none;
       }
 
       .mobile-hero-floating span {
@@ -3136,7 +3137,7 @@
 
       .home-actions {
         position: relative;
-        z-index: 4;
+        z-index: 20;
         display: grid !important;
         grid-template-columns: minmax(0, 1fr) minmax(0, .92fr) !important;
         gap: 10px !important;
@@ -3177,7 +3178,7 @@
         letter-spacing: -.075em;
       }
 
-          .services-list,
+      .services-list,
       .masters-mobile-list,
       .gallery-mobile-list {
         min-height: 0;
@@ -3234,7 +3235,7 @@
 
       .mobile-card-btn {
         position: relative;
-        z-index: 5;
+        z-index: 30;
         width: 100%;
         min-height: 50px;
         margin-top: auto;
@@ -3293,6 +3294,7 @@
         font-size: 52px;
         font-weight: 900;
         letter-spacing: -.09em;
+        pointer-events: none;
       }
 
       .mobile-gallery-photo.cut::before { content: "LEAD"; }
@@ -3336,7 +3338,7 @@
 
       .google-review-link {
         position: relative;
-        z-index: 1;
+        z-index: 30;
         width: 100%;
         min-height: 50px;
         height: 50px;
@@ -3358,6 +3360,8 @@
         text-transform: uppercase;
         white-space: nowrap;
         overflow: hidden;
+        pointer-events: auto;
+        touch-action: manipulation;
       }
 
       .mobile-faq-card {
@@ -3371,6 +3375,7 @@
         text-align: left;
         cursor: pointer;
         touch-action: manipulation;
+        pointer-events: auto;
       }
 
       .mobile-faq-card::before {
@@ -3379,6 +3384,7 @@
         transform: translateY(-50%);
         width: 34px;
         height: 34px;
+        pointer-events: none;
       }
 
       .mobile-faq-card p {
@@ -3443,6 +3449,7 @@
         position: absolute;
         inset: 0;
         z-index: 0;
+        pointer-events: none;
         background:
           linear-gradient(180deg, rgba(255,255,255,.025), rgba(5,8,22,.22)),
           radial-gradient(circle at 50% 0%, rgba(255,255,255,.08), transparent 46%);
@@ -3462,6 +3469,7 @@
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
         box-shadow: var(--shadow-xs), var(--glass-highlight);
+        pointer-events: none;
       }
 
       .map-logo-overlay span {
@@ -3474,7 +3482,7 @@
 
       .dual-actions {
         position: relative;
-        z-index: 5;
+        z-index: 30;
         display: grid;
         grid-template-columns: 1fr .78fr;
         gap: 10px;
@@ -3496,7 +3504,7 @@
         text-decoration: none;
         transition: transform 160ms ease;
         position: relative;
-        z-index: 5;
+        z-index: 30;
         touch-action: manipulation;
         pointer-events: auto;
         cursor: pointer;
@@ -3513,7 +3521,7 @@
         min-height: 0;
         display: grid;
         gap: 10px;
-        grid-template-rows: auto auto auto 1fr;
+        grid-template-rows: auto auto 1fr;
         overflow: hidden;
       }
 
@@ -3612,7 +3620,6 @@
         pointer-events: none !important;
       }
 
-      /* FIX 1: mobile home card no longer eats the CTA buttons */
       .page[data-page-view="home"] .screen-body {
         grid-template-rows: minmax(0, auto) auto;
         align-content: start;
@@ -3635,12 +3642,10 @@
         margin-top: 2px !important;
       }
 
-      /* FIX 2: mobile product text does not sound like copied barber section */
       .page[data-page-view="masters"] .page-sub {
         max-width: 35ch;
       }
 
-      /* FIX 3: mobile process visual less empty */
       .page[data-page-view="where"] .map-glass {
         min-height: 300px;
         align-items: center;
@@ -3877,7 +3882,6 @@
         flex-shrink: 0;
       }
 
-      /* FIX 4: desktop header logo / lang spacing from screenshots */
       .desktop-logo {
         width: 190px;
       }
@@ -3890,7 +3894,6 @@
         font-size: 9px;
       }
 
-      /* FIX 5: contact buttons should sit tighter and aligned */
       #contact .social-icons {
         margin-top: -2px;
         margin-bottom: 4px;
@@ -3900,12 +3903,10 @@
         margin-top: 2px;
       }
 
-      /* FIX 6: gallery description should not float too wide */
       #gallery .section-head {
         margin-bottom: 18px;
       }
 
-      /* FIX 7: masters heading from screenshot — cleaner width */
       #masters .section-head {
         max-width: 1040px;
       }
@@ -3972,7 +3973,7 @@
 </head>
 
 <body>
-  <a href="https://mrozowski-automation-production.up.railway.app/" class="portfolio-back" data-i18n="backToChoice">
+  <a href="https://mrozowski-automation-production.up.railway.app/" class="portfolio-back">
     ← Wróć do wyboru
   </a>
 
@@ -3987,10 +3988,10 @@
       <div class="landing-container desktop-header">
         <div class="desktop-left">
           <nav class="desktop-nav">
-            <a href="#hero" data-i18n="navStart">Start</a>
-            <a href="#pricing" data-i18n="navOffer">Oferta</a>
-            <a href="#masters" data-i18n="navProduct">Produkt</a>
-            <a href="#gallery" data-i18n="navEffect">Efekt</a>
+            <a href="#hero">Start</a>
+            <a href="#pricing">Oferta</a>
+            <a href="#masters">Produkt</a>
+            <a href="#gallery">Efekt</a>
           </nav>
         </div>
 
@@ -4005,10 +4006,10 @@
 
         <div class="desktop-right">
           <nav class="desktop-nav">
-            <a href="#reviews" data-i18n="navProof">Proof</a>
-            <a href="#location" data-i18n="navProcess">Proces</a>
-            <a href="#faq" data-i18n="navFaq">FAQ</a>
-            <a href="#contact" data-i18n="navContact">Kontakt</a>
+            <a href="#reviews">Proof</a>
+            <a href="#location">Proces</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Kontakt</a>
           </nav>
 
           <div class="lang-switcher" aria-label="Language switcher">
@@ -4017,7 +4018,7 @@
             <button class="lang-btn" type="button" data-lang="en">EN</button>
           </div>
 
-          <a href="tel:+48532377701" class="desktop-call-btn" data-i18n="contactBtn">Kontakt</a>
+          <a href="tel:+48532377701" class="desktop-call-btn">Kontakt</a>
         </div>
       </div>
     </header>
@@ -4028,7 +4029,7 @@
           <div class="hero-card reveal">
             <div class="hero-grid">
               <div class="hero-copy">
-                <div class="section-chip" data-i18n="heroChip">MROZOWSKI AUTOMATION</div>
+                <div class="section-chip">MROZOWSKI AUTOMATION</div>
 
                 <h1 class="hero-title">
                   <span data-i18n="heroTitle1">Strona, która prowadzi</span>
@@ -4065,22 +4066,10 @@
                     </div>
 
                     <div class="dashboard-grid">
-                      <div class="dashboard-tile">
-                        <span data-i18n="dashSources">Wejścia</span>
-                        <strong data-i18n="dashSourcesValue">6 źródeł</strong>
-                      </div>
-                      <div class="dashboard-tile">
-                        <span data-i18n="dashOffer">Oferta</span>
-                        <strong data-i18n="dashOfferValue">1 strona</strong>
-                      </div>
-                      <div class="dashboard-tile">
-                        <span data-i18n="dashProcess">Proces</span>
-                        <strong data-i18n="dashProcessValue">Wybór</strong>
-                      </div>
-                      <div class="dashboard-tile">
-                        <span data-i18n="dashEffect">Efekt</span>
-                        <strong data-i18n="dashEffectValue">Zgłoszenie</strong>
-                      </div>
+                      <div class="dashboard-tile"><span data-i18n="dashSources">Wejścia</span><strong data-i18n="dashSourcesValue">6 źródeł</strong></div>
+                      <div class="dashboard-tile"><span data-i18n="dashOffer">Oferta</span><strong data-i18n="dashOfferValue">1 strona</strong></div>
+                      <div class="dashboard-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValue">Wybór</strong></div>
+                      <div class="dashboard-tile"><span data-i18n="dashEffect">Efekt</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
                     </div>
 
                     <div class="dashboard-flow">
@@ -4117,7 +4106,7 @@
         </div>
       </section>
 
-            <section id="experience">
+      <section id="experience">
         <div class="landing-container">
           <div class="section-card reveal">
             <div class="section-wrap">
@@ -4144,27 +4133,11 @@
                         <div class="mini-pill" data-i18n="online">ONLINE</div>
                       </div>
 
-                      <div class="mini-title" data-i18n="phoneTitle">
-                        Klient przechodzi od zainteresowania do zgłoszenia.
-                      </div>
-
-                      <div class="mini-card">
-                        <strong data-i18n="phoneCard1">Widzi ofertę</strong>
-                        <span data-i18n="phoneCard1Tag">jasno</span>
-                      </div>
-                      <div class="mini-card">
-                        <strong data-i18n="phoneCard2">Wybiera zakres</strong>
-                        <span data-i18n="phoneCard2Tag">sam</span>
-                      </div>
-                      <div class="mini-card">
-                        <strong data-i18n="phoneCard3">Zostawia dane</strong>
-                        <span data-i18n="phoneCard3Tag">kontakt</span>
-                      </div>
-                      <div class="mini-card">
-                        <strong data-i18n="phoneCard4">Wpada zgłoszenie</strong>
-                        <span data-i18n="phoneCard4Tag">gotowe</span>
-                      </div>
-
+                      <div class="mini-title" data-i18n="phoneTitle">Klient przechodzi od zainteresowania do zgłoszenia.</div>
+                      <div class="mini-card"><strong data-i18n="phoneCard1">Widzi ofertę</strong><span data-i18n="phoneCard1Tag">jasno</span></div>
+                      <div class="mini-card"><strong data-i18n="phoneCard2">Wybiera zakres</strong><span data-i18n="phoneCard2Tag">sam</span></div>
+                      <div class="mini-card"><strong data-i18n="phoneCard3">Zostawia dane</strong><span data-i18n="phoneCard3Tag">kontakt</span></div>
+                      <div class="mini-card"><strong data-i18n="phoneCard4">Wpada zgłoszenie</strong><span data-i18n="phoneCard4Tag">gotowe</span></div>
                       <div class="mini-cta" data-i18n="chooseSystem">Wybierz system</div>
                     </div>
                   </div>
@@ -4175,10 +4148,7 @@
                     <div class="feature-number">1</div>
                     <div>
                       <strong data-i18n="feature1Title">Klient trafia na stronę</strong>
-                      <p data-i18n="feature1Text">
-                        Z Instagrama, TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku.
-                        Każde wejście prowadzi do jednej dopracowanej prezentacji.
-                      </p>
+                      <p data-i18n="feature1Text">Z Instagrama, TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku. Każde wejście prowadzi do jednej dopracowanej prezentacji.</p>
                     </div>
                   </article>
 
@@ -4186,10 +4156,7 @@
                     <div class="feature-number">2</div>
                     <div>
                       <strong data-i18n="feature2Title">Strona prowadzi wybór</strong>
-                      <p data-i18n="feature2Text">
-                        Zamiast wysyłać ceny i opisy ręcznie, pokazujesz ofertę, pakiety,
-                        zasady i przyciski działania w jednym miejscu.
-                      </p>
+                      <p data-i18n="feature2Text">Zamiast wysyłać ceny i opisy ręcznie, pokazujesz ofertę, pakiety, zasady i przyciski działania w jednym miejscu.</p>
                     </div>
                   </article>
 
@@ -4197,10 +4164,7 @@
                     <div class="feature-number">3</div>
                     <div>
                       <strong data-i18n="feature3Title">Dostajesz konkretny kontakt</strong>
-                      <p data-i18n="feature3Text">
-                        Nie luźne “ile kosztuje?”, tylko dane klienta, wybrany zakres
-                        i kontekst do rozmowy.
-                      </p>
+                      <p data-i18n="feature3Text">Nie luźne “ile kosztuje?”, tylko dane klienta, wybrany zakres i kontekst do rozmowy.</p>
                     </div>
                   </article>
                 </div>
@@ -4230,60 +4194,25 @@
                       <span data-i18n="manifestTitle1">Nie kończy się</span>
                       <span data-i18n="manifestTitle2">na wyglądzie.</span>
                     </h2>
-                    <p data-i18n="manifestSub">
-                      Strona ma tłumaczyć ofertę, skracać rozmowy, prowadzić klienta
-                      do działania i zbierać dane w prosty, czysty sposób.
-                    </p>
+                    <p data-i18n="manifestSub">Strona ma tłumaczyć ofertę, skracać rozmowy, prowadzić klienta do działania i zbierać dane w prosty, czysty sposób.</p>
                   </div>
 
                   <article class="glass-card manifest-line">
-                    <p>
-                      <strong data-i18n="manifestLine1Strong">Nie sprzedaję “ładnej wizytówki”.</strong>
-                      <span data-i18n="manifestLine1Text">
-                        Buduję ekran, który klient może dostać z każdego kanału i od razu
-                        zrozumieć: co oferujesz, dlaczego warto i jaki jest następny krok.
-                      </span>
-                    </p>
+                    <p><strong data-i18n="manifestLine1Strong">Nie sprzedaję “ładnej wizytówki”.</strong> <span data-i18n="manifestLine1Text">Buduję ekran, który klient może dostać z każdego kanału i od razu zrozumieć: co oferujesz, dlaczego warto i jaki jest następny krok.</span></p>
                   </article>
 
                   <article class="glass-card manifest-line">
-                    <p>
-                      <strong data-i18n="manifestLine2Strong">Najważniejszy jest przepływ decyzji.</strong>
-                      <span data-i18n="manifestLine2Text">
-                        Dobra strona nie tylko wygląda premium. Ona zmniejsza ilość pytań,
-                        porządkuje ofertę i prowadzi klienta do zgłoszenia.
-                      </span>
-                    </p>
+                    <p><strong data-i18n="manifestLine2Strong">Najważniejszy jest przepływ decyzji.</strong> <span data-i18n="manifestLine2Text">Dobra strona nie tylko wygląda premium. Ona zmniejsza ilość pytań, porządkuje ofertę i prowadzi klienta do zgłoszenia.</span></p>
                   </article>
 
                   <div class="manifest-mini-grid">
-                    <article class="glass-card manifest-mini">
-                      <span>01</span>
-                      <strong data-i18n="mini1Title">Prezentacja oferty</strong>
-                      <p data-i18n="mini1Text">Oferta wygląda jak produkt, nie jak długa wiadomość.</p>
-                    </article>
-
-                    <article class="glass-card manifest-mini">
-                      <span>02</span>
-                      <strong data-i18n="mini2Title">Ścieżka zapisu</strong>
-                      <p data-i18n="mini2Text">Klient wie, co kliknąć i jakie dane zostawić.</p>
-                    </article>
-
-                    <article class="glass-card manifest-mini">
-                      <span>03</span>
-                      <strong data-i18n="mini3Title">Gotowy kontakt</strong>
-                      <p data-i18n="mini3Text">Rozmowa zaczyna się z kontekstem, nie od zera.</p>
-                    </article>
+                    <article class="glass-card manifest-mini"><span>01</span><strong data-i18n="mini1Title">Prezentacja oferty</strong><p data-i18n="mini1Text">Oferta wygląda jak produkt, nie jak długa wiadomość.</p></article>
+                    <article class="glass-card manifest-mini"><span>02</span><strong data-i18n="mini2Title">Ścieżka zapisu</strong><p data-i18n="mini2Text">Klient wie, co kliknąć i jakie dane zostawić.</p></article>
+                    <article class="glass-card manifest-mini"><span>03</span><strong data-i18n="mini3Title">Gotowy kontakt</strong><p data-i18n="mini3Text">Rozmowa zaczyna się z kontekstem, nie od zera.</p></article>
                   </div>
 
                   <article class="glass-card manifest-line">
-                    <p>
-                      <strong data-i18n="manifestLine3Strong">Automation to nie tylko Instagram.</strong>
-                      <span data-i18n="manifestLine3Text">
-                        Social media, reklama, Google, WhatsApp, Telegram i linki z bio są tylko wejściami.
-                        Główna wartość to własna strona, która przyjmuje klienta.
-                      </span>
-                    </p>
+                    <p><strong data-i18n="manifestLine3Strong">Automation to nie tylko Instagram.</strong> <span data-i18n="manifestLine3Text">Social media, reklama, Google, WhatsApp, Telegram i linki z bio są tylko wejściami. Główna wartość to własna strona, która przyjmuje klienta.</span></p>
                   </article>
                 </div>
               </div>
@@ -4302,10 +4231,7 @@
                   <span data-i18n="pricingTitle1">Wybierz system</span>
                   <span data-i18n="pricingTitle2">pod swój biznes.</span>
                 </h2>
-                <p data-i18n="pricingSub">
-                  Możesz zacząć od strony z zapisem, rozbudować ją o wejścia z wielu kanałów
-                  albo zbudować pełny proces przyjmowania klientów.
-                </p>
+                <p data-i18n="pricingSub">Możesz zacząć od strony z zapisem, rozbudować ją o wejścia z wielu kanałów albo zbudować pełny proces przyjmowania klientów.</p>
               </div>
 
               <div class="pricing-grid">
@@ -4316,16 +4242,9 @@
                       <strong data-i18n="offer1Title">Strona z zapisem</strong>
                       <span class="pricing-card__price" data-i18n="offer1Badge">start</span>
                     </div>
-                    <p data-i18n="offer1Text">
-                      Dla biznesu, który chce mieć własne miejsce do pokazania oferty
-                      i przyjmowania konkretnych zgłoszeń.
-                    </p>
+                    <p data-i18n="offer1Text">Dla biznesu, który chce mieć własne miejsce do pokazania oferty i przyjmowania konkretnych zgłoszeń.</p>
                   </div>
-                  <div class="service-tags">
-                    <span>premium page</span>
-                    <span data-i18n="tagOffer">oferta</span>
-                    <span>formularz</span>
-                  </div>
+                  <div class="service-tags"><span>premium page</span><span data-i18n="tagOffer">oferta</span><span>formularz</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="chooseBtn">Wybierz</button>
                 </article>
 
@@ -4336,19 +4255,10 @@
                       <strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong>
                       <span class="pricing-card__price">growth</span>
                     </div>
-                    <p data-i18n="offer2Text">
-                      Dla biznesu, który chce kierować klientów z sociali, reklam i komunikatorów
-                      do jednej spójnej ścieżki.
-                    </p>
+                    <p data-i18n="offer2Text">Dla biznesu, który chce kierować klientów z sociali, reklam i komunikatorów do jednej spójnej ścieżki.</p>
                   </div>
-                  <div class="service-tags">
-                    <span>Instagram</span>
-                    <span>TikTok</span>
-                    <span>Google</span>
-                  </div>
-                  <button class="master-book-btn" type="button" data-open-booking data-i18n="addSourcesBtn">
-                    Dodaj wejścia
-                  </button>
+                  <div class="service-tags"><span>Instagram</span><span>TikTok</span><span>Google</span></div>
+                  <button class="master-book-btn" type="button" data-open-booking data-i18n="addSourcesBtn">Dodaj wejścia</button>
                 </article>
 
                 <article class="glass-card pricing-card">
@@ -4358,19 +4268,10 @@
                       <strong data-i18n="offer3Title">System przyjmowania klientów</strong>
                       <span class="pricing-card__price">premium</span>
                     </div>
-                    <p data-i18n="offer3Text">
-                      Pełna strona, ścieżka zapisu, wejścia z różnych kanałów i dopracowana
-                      logika zbierania zgłoszeń.
-                    </p>
+                    <p data-i18n="offer3Text">Pełna strona, ścieżka zapisu, wejścia z różnych kanałów i dopracowana logika zbierania zgłoszeń.</p>
                   </div>
-                  <div class="service-tags">
-                    <span data-i18n="tagPage">strona</span>
-                    <span data-i18n="tagBooking">zapis</span>
-                    <span data-i18n="tagNotifications">powiadomienia</span>
-                  </div>
-                  <button class="master-book-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">
-                    Najlepszy wybór
-                  </button>
+                  <div class="service-tags"><span data-i18n="tagPage">strona</span><span data-i18n="tagBooking">zapis</span><span data-i18n="tagNotifications">powiadomienia</span></div>
+                  <button class="master-book-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">Najlepszy wybór</button>
                 </article>
               </div>
 
@@ -4393,68 +4294,29 @@
                   <span data-i18n="productTitle1">To, co było barberami,</span>
                   <span data-i18n="productTitle2">teraz jest funkcją systemu.</span>
                 </h2>
-                <p data-i18n="productSub">
-                  Zostaje ten sam sprawdzony layout i te same karty. Zmieniamy tylko sens:
-                  z osób na elementy produktu.
-                </p>
+                <p data-i18n="productSub">Zostaje ten sam sprawdzony layout i te same karty. Zmieniamy tylko sens: z osób na elementy produktu.</p>
               </div>
 
               <div class="masters-grid">
                 <article class="glass-card master-card">
                   <div class="master-photo tymur-photo"></div>
-                  <div>
-                    <h3 data-i18n="productCard1Title">Strona premium</h3>
-                    <p data-i18n="productCard1Text">
-                      Pierwszy ekran, oferta, sekcje z argumentami i CTA ustawione tak,
-                      żeby klient rozumiał wartość przed kontaktem.
-                    </p>
-                  </div>
-                  <div class="master-tags">
-                    <span>hero</span>
-                    <span data-i18n="tagOffer">oferta</span>
-                    <span>premium UI</span>
-                  </div>
-                  <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard1Btn">
-                    Wybrać stronę
-                  </button>
+                  <div><h3 data-i18n="productCard1Title">Strona premium</h3><p data-i18n="productCard1Text">Pierwszy ekran, oferta, sekcje z argumentami i CTA ustawione tak, żeby klient rozumiał wartość przed kontaktem.</p></div>
+                  <div class="master-tags"><span>hero</span><span data-i18n="tagOffer">oferta</span><span>premium UI</span></div>
+                  <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard1Btn">Wybrać stronę</button>
                 </article>
 
                 <article class="glass-card master-card">
                   <div class="master-photo dima-photo"></div>
-                  <div>
-                    <h3 data-i18n="productCard2Title">Ścieżka zapisu</h3>
-                    <p data-i18n="productCard2Text">
-                      Klient przechodzi przez wybór zakresu, dane, datę i potwierdzenie
-                      bez ręcznego ping-ponga w wiadomościach.
-                    </p>
-                  </div>
-                  <div class="master-tags">
-                    <span>flow</span>
-                    <span>formularz</span>
-                    <span>lead</span>
-                  </div>
-                  <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard2Btn">
-                    Sprawdzić flow
-                  </button>
+                  <div><h3 data-i18n="productCard2Title">Ścieżka zapisu</h3><p data-i18n="productCard2Text">Klient przechodzi przez wybór zakresu, dane, datę i potwierdzenie bez ręcznego ping-ponga w wiadomościach.</p></div>
+                  <div class="master-tags"><span>flow</span><span>formularz</span><span>lead</span></div>
+                  <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard2Btn">Sprawdzić flow</button>
                 </article>
 
                 <article class="glass-card master-card">
                   <div class="master-photo vlad-photo"></div>
-                  <div>
-                    <h3 data-i18n="productCard3Title">Wejścia z kanałów</h3>
-                    <p data-i18n="productCard3Text">
-                      Instagram, TikTok, Google, reklama i komunikatory prowadzą do jednej strony,
-                      nie do chaosu w pięciu rozmowach.
-                    </p>
-                  </div>
-                  <div class="master-tags">
-                    <span>social</span>
-                    <span>Google</span>
-                    <span>DM</span>
-                  </div>
-                  <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard3Btn">
-                    Podłączyć wejścia
-                  </button>
+                  <div><h3 data-i18n="productCard3Title">Wejścia z kanałów</h3><p data-i18n="productCard3Text">Instagram, TikTok, Google, reklama i komunikatory prowadzą do jednej strony, nie do chaosu w pięciu rozmowach.</p></div>
+                  <div class="master-tags"><span>social</span><span>Google</span><span>DM</span></div>
+                  <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard3Btn">Podłączyć wejścia</button>
                 </article>
               </div>
             </div>
@@ -4462,7 +4324,7 @@
         </div>
       </section>
 
-            <section id="gallery">
+      <section id="gallery">
         <div class="landing-container">
           <div class="section-card reveal">
             <div class="section-wrap">
@@ -4472,10 +4334,7 @@
                   <span data-i18n="effectTitle1">Oferta wygląda jak produkt,</span>
                   <span data-i18n="effectTitle2">nie jak wiadomość w DM.</span>
                 </h2>
-                <p data-i18n="effectSub">
-                  Zostawiamy sprawdzony ekran galerii, ale zamiast zdjęć cięcia pokazujemy logikę systemu:
-                  lead, flow, CTA, path i dane.
-                </p>
+                <p data-i18n="effectSub">Zostawiamy sprawdzony ekran galerii, ale zamiast zdjęć cięcia pokazujemy logikę systemu: lead, flow, CTA, path i dane.</p>
               </div>
 
               <div class="gallery-grid">
@@ -4500,45 +4359,17 @@
                   <span data-i18n="proofTitle1">Mniej chaosu.</span>
                   <span data-i18n="proofTitle2">Więcej konkretu.</span>
                 </h2>
-                <p data-i18n="proofSub">
-                  Przykładowe komunikaty proof — później można podmienić na realne opinie,
-                  case studies albo wyniki wdrożeń.
-                </p>
+                <p data-i18n="proofSub">Przykładowe komunikaty proof — później można podmienić na realne opinie, case studies albo wyniki wdrożeń.</p>
               </div>
 
               <div class="reviews-grid">
-                <article class="glass-card review-card">
-                  <div class="stars">★★★★★</div>
-                  <p data-i18n="review1">
-                    “W końcu nie trzeba każdemu tłumaczyć wszystkiego od początku.
-                    Link robi pierwszą część rozmowy.”
-                  </p>
-                  <strong data-i18n="review1Author">— Beauty studio</strong>
-                </article>
-
-                <article class="glass-card review-card">
-                  <div class="stars">★★★★★</div>
-                  <p data-i18n="review2">
-                    “Klient od razu widzi pakiety i zostawia kontakt z kontekstem,
-                    a nie tylko pisze: ile kosztuje?”
-                  </p>
-                  <strong data-i18n="review2Author">— Local service</strong>
-                </article>
-
-                <article class="glass-card review-card">
-                  <div class="stars">★★★★★</div>
-                  <p data-i18n="review3">
-                    “Największa różnica to porządek. Jedna strona, jedna oferta,
-                    jeden proces zamiast rozproszonych wiadomości.”
-                  </p>
-                  <strong data-i18n="review3Author">— Studio owner</strong>
-                </article>
+                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review1">“W końcu nie trzeba każdemu tłumaczyć wszystkiego od początku. Link robi pierwszą część rozmowy.”</p><strong data-i18n="review1Author">— Beauty studio</strong></article>
+                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review2">“Klient od razu widzi pakiety i zostawia kontakt z kontekstem, a nie tylko pisze: ile kosztuje?”</p><strong data-i18n="review2Author">— Local service</strong></article>
+                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review3">“Największa różnica to porządek. Jedna strona, jedna oferta, jeden proces zamiast rozproszonych wiadomości.”</p><strong data-i18n="review3Author">— Studio owner</strong></article>
               </div>
 
               <div class="reviews-actions">
-                <button class="btn btn-primary" type="button" data-open-booking data-i18n="buildSimilarBtn">
-                  Zbuduj podobny system
-                </button>
+                <button class="btn btn-primary" type="button" data-open-booking data-i18n="buildSimilarBtn">Zbuduj podobny system</button>
               </div>
             </div>
           </div>
@@ -4573,9 +4404,7 @@
 
                     <div class="flow-output">
                       <span data-i18n="dashEffect">Efekt</span>
-                      <strong data-i18n="processOutput">
-                        Klient wie, co wybrał. Ty wiesz, z czym wracać.
-                      </strong>
+                      <strong data-i18n="processOutput">Klient wie, co wybrał. Ty wiesz, z czym wracać.</strong>
                     </div>
                   </div>
 
@@ -4597,16 +4426,11 @@
 
                   <div class="location-copy">
                     <strong data-i18n="processTitle">Strona robi pierwszą część rozmowy za Ciebie.</strong>
-                    <p data-i18n="processText">
-                      Klient widzi ofertę, rozumie różnicę między opcjami i zostawia dane.
-                      Ty nie tłumaczysz wszystkiego od nowa w każdej wiadomości.
-                    </p>
+                    <p data-i18n="processText">Klient widzi ofertę, rozumie różnicę między opcjami i zostawia dane. Ty nie tłumaczysz wszystkiego od nowa w każdej wiadomości.</p>
                   </div>
 
                   <div class="section-actions">
-                    <button class="btn btn-primary" type="button" data-open-booking data-i18n="chooseSystem">
-                      Wybierz system
-                    </button>
+                    <button class="btn btn-primary" type="button" data-open-booking data-i18n="chooseSystem">Wybierz system</button>
                     <a class="btn btn-ghost" href="#faq" data-i18n="seeFaq">Zobacz FAQ</a>
                   </div>
                 </article>
@@ -4626,41 +4450,16 @@
                   <span data-i18n="faqTitle1">Krótko.</span>
                   <span data-i18n="faqTitle2">Bez technicznego bełkotu.</span>
                 </h2>
-                <p data-i18n="faqSub">
-                  Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.
-                </p>
+                <p data-i18n="faqSub">Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.</p>
               </div>
 
               <div class="faq-grid">
-                <button class="glass-card faq-item" type="button" data-faq="instagram">
-                  <strong data-i18n="faqQInstagram">Czy to jest tylko pod Instagram?</strong>
-                  <p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p>
-                </button>
-
-                <button class="glass-card faq-item" type="button" data-faq="business">
-                  <strong data-i18n="faqQBusiness">Dla jakich biznesów to pasuje?</strong>
-                  <p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p>
-                </button>
-
-                <button class="glass-card faq-item" type="button" data-faq="booking">
-                  <strong data-i18n="faqQBooking">Czy zapis może być w środku strony?</strong>
-                  <p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p>
-                </button>
-
-                <button class="glass-card faq-item" type="button" data-faq="automation">
-                  <strong data-i18n="faqQAutomation">Co daje automatyzacja wejść?</strong>
-                  <p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p>
-                </button>
-
-                <button class="glass-card faq-item" type="button" data-faq="content">
-                  <strong data-i18n="faqQContent">Czy strona jest dopasowana pod markę?</strong>
-                  <p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p>
-                </button>
-
-                <button class="glass-card faq-item" type="button" data-faq="start">
-                  <strong data-i18n="faqQStart">Od czego najlepiej zacząć?</strong>
-                  <p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p>
-                </button>
+                <button class="glass-card faq-item" type="button" data-faq="instagram"><strong data-i18n="faqQInstagram">Czy to jest tylko pod Instagram?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="business"><strong data-i18n="faqQBusiness">Dla jakich biznesów to pasuje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="booking"><strong data-i18n="faqQBooking">Czy zapis może być w środku strony?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="automation"><strong data-i18n="faqQAutomation">Co daje automatyzacja wejść?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="content"><strong data-i18n="faqQContent">Czy strona jest dopasowana pod markę?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="start"><strong data-i18n="faqQStart">Od czego najlepiej zacząć?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
               </div>
             </div>
           </div>
@@ -4677,16 +4476,10 @@
 
                   <div class="contact-lead">
                     <strong data-i18n="contactLeadTitle">Czas przestać tracić klientów w wiadomościach.</strong>
-                    <p data-i18n="contactLeadText">
-                      Zbuduj stronę, która pokazuje ofertę, prowadzi klienta przez wybór
-                      i zbiera gotowe zgłoszenie z konkretnym kontekstem.
-                    </p>
+                    <p data-i18n="contactLeadText">Zbuduj stronę, która pokazuje ofertę, prowadzi klienta przez wybór i zbiera gotowe zgłoszenie z konkretnym kontekstem.</p>
                   </div>
 
-                  <p class="contact-note" data-i18n="contactNote">
-                    Najlepsze dla usług, które dostają zapytania z wielu miejsc i chcą zamienić
-                    luźne zainteresowanie w uporządkowany kontakt.
-                  </p>
+                  <p class="contact-note" data-i18n="contactNote">Najlepsze dla usług, które dostają zapytania z wielu miejsc i chcą zamienić luźne zainteresowanie w uporządkowany kontakt.</p>
 
                   <div class="social-icons">
                     <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">IG</a>
@@ -4694,9 +4487,7 @@
                     <a class="social-icon" href="tel:+48532377701">TEL</a>
                   </div>
 
-                  <button class="btn btn-primary section-button-full" type="button" data-open-booking data-i18n="startNow">
-                    Zacznij teraz
-                  </button>
+                  <button class="btn btn-primary section-button-full" type="button" data-open-booking data-i18n="startNow">Zacznij teraz</button>
                 </article>
 
                 <article class="glass-card status-card">
@@ -4711,15 +4502,10 @@
 
                   <div class="contact-lead">
                     <strong>MROZOWSKI</strong>
-                    <p data-i18n="contactBoxText">
-                      Premium strona, ścieżka zapisu i system zgłoszeń dla biznesów,
-                      które nie chcą tracić klientów w wiadomościach.
-                    </p>
+                    <p data-i18n="contactBoxText">Premium strona, ścieżka zapisu i system zgłoszeń dla biznesów, które nie chcą tracić klientów w wiadomościach.</p>
                   </div>
 
-                  <a class="btn btn-ghost section-button-full" href="tel:+48532377701" data-i18n="phoneContact">
-                    Kontakt telefoniczny
-                  </a>
+                  <a class="btn btn-ghost section-button-full" href="tel:+48532377701" data-i18n="phoneContact">Kontakt telefoniczny</a>
                 </article>
               </div>
             </div>
@@ -4731,9 +4517,7 @@
 
   <div class="mobile-version" id="mobile-version">
     <header class="app-top">
-      <a class="icon-btn" href="https://mrozowski-automation-production.up.railway.app/" aria-label="Wróć do wyboru">
-        ←
-      </a>
+      <a class="icon-btn" href="https://mrozowski-automation-production.up.railway.app/" aria-label="Wróć do wyboru">←</a>
 
       <div class="logo-pill">
         <div class="mobile-wordmark" aria-hidden="true">
@@ -4759,14 +4543,12 @@
     <main class="pages">
       <section class="page active" data-page-view="home">
         <div class="page-head">
-          <div class="kicker" data-i18n="heroChip">MROZOWSKI AUTOMATION</div>
+          <div class="kicker">MROZOWSKI AUTOMATION</div>
           <h1 class="page-title">
             <span data-i18n="mobileHeroTitle1">Strona, która</span>
             <span class="gold" data-i18n="mobileHeroTitle2">prowadzi klienta.</span>
           </h1>
-          <p class="page-sub" data-i18n="mobileHeroSub">
-            Klient trafia z dowolnego miejsca, widzi ofertę i przechodzi prostą ścieżką do zgłoszenia.
-          </p>
+          <p class="page-sub" data-i18n="mobileHeroSub">Klient trafia z dowolnego miejsca, widzi ofertę i przechodzi prostą ścieżką do zgłoszenia.</p>
         </div>
 
         <div class="screen-body">
@@ -4778,25 +4560,13 @@
               </div>
 
               <div class="mobile-dashboard-row">
-                <div class="mobile-mini-tile">
-                  <span data-i18n="dashSources">Wejścia</span>
-                  <strong data-i18n="dashSourcesValue">6 źródeł</strong>
-                </div>
-                <div class="mobile-mini-tile">
-                  <span data-i18n="dashOffer">Oferta</span>
-                  <strong data-i18n="dashOfferValue">1 strona</strong>
-                </div>
+                <div class="mobile-mini-tile"><span data-i18n="dashSources">Wejścia</span><strong data-i18n="dashSourcesValue">6 źródeł</strong></div>
+                <div class="mobile-mini-tile"><span data-i18n="dashOffer">Oferta</span><strong data-i18n="dashOfferValue">1 strona</strong></div>
               </div>
 
               <div class="mobile-dashboard-row">
-                <div class="mobile-mini-tile">
-                  <span data-i18n="dashProcess">Proces</span>
-                  <strong data-i18n="dashProcessValue">Wybór</strong>
-                </div>
-                <div class="mobile-mini-tile">
-                  <span data-i18n="dashEffect">Efekt</span>
-                  <strong data-i18n="dashEffectValue">Zgłoszenie</strong>
-                </div>
+                <div class="mobile-mini-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValue">Wybór</strong></div>
+                <div class="mobile-mini-tile"><span data-i18n="dashEffect">Efekt</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
               </div>
             </div>
 
@@ -4807,14 +4577,8 @@
           </div>
 
           <div class="mini-stats">
-            <div class="stat-card">
-              <span data-i18n="mobileStat1">Źródła klientów</span>
-              <strong>6+</strong>
-            </div>
-            <div class="stat-card">
-              <span data-i18n="mobileStat2">Strona pracuje</span>
-              <strong>24/7</strong>
-            </div>
+            <div class="stat-card"><span data-i18n="mobileStat1">Źródła klientów</span><strong>6+</strong></div>
+            <div class="stat-card"><span data-i18n="mobileStat2">Strona pracuje</span><strong>24/7</strong></div>
           </div>
         </div>
       </section>
@@ -4826,18 +4590,13 @@
             <span data-i18n="mobileOfferTitle1">Wybierz</span>
             <span class="gold" data-i18n="mobileOfferTitle2">zakres.</span>
           </h2>
-          <p class="page-sub" data-i18n="mobileOfferSub">
-            Przesuń karty i wybierz wariant systemu.
-          </p>
+          <p class="page-sub" data-i18n="mobileOfferSub">Przesuń karty i wybierz wariant systemu.</p>
         </div>
 
         <div class="services-list">
           <article class="service-card">
             <div class="service-img haircut"></div>
-            <div class="service-card-header">
-              <strong data-i18n="offer1Title">Strona z zapisem</strong>
-              <span class="price" data-i18n="offer1Badge">start</span>
-            </div>
+            <div class="service-card-header"><strong data-i18n="offer1Title">Strona z zapisem</strong><span class="price" data-i18n="offer1Badge">start</span></div>
             <p data-i18n="mobileOffer1Text">Własna strona premium, oferta, sekcje sprzedażowe i zapis / formularz.</p>
             <div class="tags"><span>page</span><span data-i18n="tagOffer">oferta</span><span>CTA</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="chooseBtn">Wybierz</button>
@@ -4845,10 +4604,7 @@
 
           <article class="service-card">
             <div class="service-img combo"></div>
-            <div class="service-card-header">
-              <strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong>
-              <span class="price">growth</span>
-            </div>
+            <div class="service-card-header"><strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong><span class="price">growth</span></div>
             <p data-i18n="mobileOffer2Text">Instagram, TikTok, Google, WhatsApp, Telegram i reklamy prowadzą do jednej strony.</p>
             <div class="tags"><span>social</span><span>Google</span><span>DM</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="addSourcesBtn">Dodaj wejścia</button>
@@ -4856,10 +4612,7 @@
 
           <article class="service-card">
             <div class="service-img beard"></div>
-            <div class="service-card-header">
-              <strong data-i18n="mobileOffer3Title">System klientów</strong>
-              <span class="price">premium</span>
-            </div>
+            <div class="service-card-header"><strong data-i18n="mobileOffer3Title">System klientów</strong><span class="price">premium</span></div>
             <p data-i18n="mobileOffer3Text">Pełna strona, ścieżka zapisu, wejścia z kanałów i gotowe zgłoszenie.</p>
             <div class="tags"><span>flow</span><span>lead</span><span>system</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">Najlepszy wybór</button>
@@ -4867,144 +4620,873 @@
         </div>
       </section>
 
-            <section class="page" data-page-view="masters">
+      <section class="page" data-page-view="masters">
         <div class="page-head">
           <div class="kicker" data-i18n="productChip">PRODUKT</div>
           <h2 class="page-title">
             <span data-i18n="mobileProduct1">Elementy</span>
             <span class="gold" data-i18n="mobileProduct2">systemu.</span>
           </h2>
-          <p class="page-sub" data-i18n="mobileProductSub">
-            Ten sam ekran co barberzy — tylko funkcje zamiast ludzi.
-          </p>
+          <p class="page-sub" data-i18n="mobileProductSub">Ten sam ekran co barberzy w etalonie — tylko karty są funkcjami produktu.</p>
         </div>
 
         <div class="masters-mobile-list">
           <article class="mobile-master-card">
             <div class="mobile-master-photo tymur"></div>
             <strong data-i18n="productCard1Title">Strona premium</strong>
-            <p data-i18n="productCard1Text">Hero, oferta i mocne CTA.</p>
-            <button class="mobile-card-btn" data-open-booking data-i18n="chooseBtn">Wybierz</button>
+            <p data-i18n="mobileProductCard1Text">Hero, oferta, sekcje z argumentami i mocne CTA.</p>
+            <div class="tags"><span>hero</span><span>oferta</span><span>UI</span></div>
+            <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard1Btn">Wybrać stronę</button>
           </article>
 
           <article class="mobile-master-card">
             <div class="mobile-master-photo dima"></div>
             <strong data-i18n="productCard2Title">Ścieżka zapisu</strong>
-            <p data-i18n="productCard2Text">Flow bez pisania w kółko.</p>
-            <button class="mobile-card-btn" data-open-booking data-i18n="howItWorks">Sprawdź</button>
+            <p data-i18n="mobileProductCard2Text">Klient przechodzi przez wybór i dane bez pisania w kółko.</p>
+            <div class="tags"><span>flow</span><span>dane</span><span>lead</span></div>
+            <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard2Btn">Sprawdzić flow</button>
           </article>
 
           <article class="mobile-master-card">
             <div class="mobile-master-photo vlad"></div>
-            <strong data-i18n="productCard3Title">Wejścia</strong>
-            <p data-i18n="productCard3Text">Social → jedna strona.</p>
-            <button class="mobile-card-btn" data-open-booking data-i18n="connect">Podłącz</button>
+            <strong data-i18n="productCard3Title">Wejścia z kanałów</strong>
+            <p data-i18n="mobileProductCard3Text">Ruch z różnych miejsc trafia do jednej dopracowanej strony.</p>
+            <div class="tags"><span>IG</span><span>TikTok</span><span>Google</span></div>
+            <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard3Btn">Podłączyć wejścia</button>
           </article>
         </div>
       </section>
 
       <section class="page" data-page-view="gallery">
         <div class="page-head">
-          <div class="kicker">EFEKT</div>
+          <div class="kicker" data-i18n="effectChip">EFEKT</div>
           <h2 class="page-title">
-            <span>Oferta jak</span>
-            <span class="gold">produkt.</span>
+            <span data-i18n="mobileEffectTitle1">Oferta jak</span>
+            <span class="gold" data-i18n="mobileEffectTitle2">produkt.</span>
           </h2>
+          <p class="page-sub" data-i18n="mobileEffectSub">Przesuń karty i zobacz logikę systemu.</p>
         </div>
 
         <div class="gallery-mobile-list">
-          <article class="mobile-gallery-card">
-            <div class="mobile-gallery-photo cut"></div>
-            <strong>Lead</strong>
-          </article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo cut"></div><strong>Lead capture</strong><p data-i18n="gallery1Text">Klient zostawia dane po zobaczeniu oferty, nie na ślepo.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo beard"></div><strong>Decision flow</strong><p data-i18n="gallery2Text">Strona prowadzi przez wybór zamiast zostawiać klienta z pytaniami.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo combo"></div><strong>Strong CTA</strong><p data-i18n="gallery3Text">Każdy ekran ma jasny następny krok.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo shop"></div><strong>One path</strong><p data-i18n="gallery4Text">Wszystkie kanały prowadzą do jednej ścieżki.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo detail"></div><strong>Context data</strong><p data-i18n="gallery5Text">Właściciel dostaje więcej niż zwykłe “hej”.</p></article>
+        </div>
+      </section>
 
-          <article class="mobile-gallery-card">
-            <div class="mobile-gallery-photo beard"></div>
-            <strong>Flow</strong>
-          </article>
+      <section class="page" data-page-view="reviews">
+        <div class="page-head">
+          <div class="kicker" data-i18n="proofChip">PROOF</div>
+          <h2 class="page-title">
+            <span data-i18n="proofTitle1">Mniej chaosu.</span>
+            <span class="gold" data-i18n="proofTitle2">Więcej konkretu.</span>
+          </h2>
+          <p class="page-sub" data-i18n="mobileProofSub">Przewiń w dół i zobacz przykładowe proof cards.</p>
+        </div>
 
-          <article class="mobile-gallery-card">
-            <div class="mobile-gallery-photo combo"></div>
-            <strong>CTA</strong>
+        <div class="reviews-mobile-list">
+          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview1">“Link robi pierwszą część rozmowy. Klient wie, co wybrać.”</p><strong>— Beauty studio</strong></article>
+          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview2">“Zamiast pytań o cenę dostajemy kontakt z kontekstem.”</p><strong>— Local service</strong></article>
+          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview3">“Jedna strona, jedna oferta, jeden proces.”</p><strong>— Studio owner</strong></article>
+
+          <article class="google-review-card">
+            <strong data-i18n="buildSimilarBtn">Zbuduj podobny system</strong>
+            <p data-i18n="reviewCtaText">Przycisk otwiera wybór systemu dokładnie tak samo jak w etalonie.</p>
+            <button class="google-review-link" type="button" data-open-booking data-i18n="chooseSystem">Wybierz system</button>
           </article>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="where">
+        <div class="page-head">
+          <div class="kicker" data-i18n="navProcess">PROCES</div>
+          <h2 class="page-title">
+            <span data-i18n="mobileProcessTitle1">Jedna</span>
+            <span class="gold" data-i18n="mobileProcessTitle2">ścieżka.</span>
+          </h2>
+          <p class="page-sub" data-i18n="mobileProcessSub">Klient może przyjść z wielu miejsc, ale decyzję podejmuje w jednym flow.</p>
+        </div>
+
+        <div class="screen-body">
+          <article class="location-card">
+            <div class="address-box">
+              <strong>ONE CLIENT PATH</strong>
+              <p>Instagram / TikTok / Google / WhatsApp / Telegram / Reklama</p>
+            </div>
+
+            <div class="map-glass">
+              <div class="map-logo-overlay">
+                <span>ONE<br />PATH</span>
+              </div>
+            </div>
+
+            <div class="dual-actions">
+              <button class="cta-btn" type="button" data-open-booking data-i18n="chooseSystem">Wybierz</button>
+              <button class="ghost-btn" type="button" data-page-jump="faq" data-i18n="navFaq">FAQ</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" data-page-view="faq">
+        <div class="page-head">
+          <div class="kicker" data-i18n="navFaq">FAQ</div>
+          <h2 class="page-title">
+            <span data-i18n="faqTitle1">Krótko.</span>
+            <span class="gold" data-i18n="faqTitle2">Bez bełkotu.</span>
+          </h2>
+          <p class="page-sub" data-i18n="faqSub">Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.</p>
+        </div>
+
+        <div class="faq-mobile-list">
+          <button class="mobile-faq-card" type="button" data-faq="instagram"><strong data-i18n="faqQInstagram">Czy to jest tylko pod Instagram?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="business"><strong data-i18n="faqQBusiness">Dla jakich biznesów to pasuje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="booking"><strong data-i18n="faqQBooking">Czy zapis może być w środku strony?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="automation"><strong data-i18n="faqQAutomation">Co daje automatyzacja wejść?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="content"><strong data-i18n="faqQContent">Czy strona jest dopasowana pod markę?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="start"><strong data-i18n="faqQStart">Od czego najlepiej zacząć?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="time"><strong data-i18n="faqQTime">Ile trwa wdrożenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="owner"><strong data-i18n="faqQOwner">Co dostaje właściciel?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
         </div>
       </section>
 
       <section class="page" data-page-view="hello">
         <div class="page-head">
-          <div class="kicker">KONTAKT</div>
+          <div class="kicker" data-i18n="navContact">KONTAKT</div>
           <h2 class="page-title">
-            <span>Zacznij</span>
-            <span class="gold">teraz.</span>
+            <span data-i18n="mobileContactTitle1">Zacznij</span>
+            <span class="gold" data-i18n="mobileContactTitle2">od ścieżki.</span>
           </h2>
+          <p class="page-sub" data-i18n="mobileContactSub">Zamień luźne zainteresowanie w uporządkowany proces zostawienia danych.</p>
         </div>
 
         <div class="contact-layout">
-          <button class="cta-btn" data-open-booking data-i18n="startNow">
-            Zacznij teraz
-          </button>
+          <article class="contact-mobile-card">
+            <strong>MROZOWSKI</strong>
+            <p data-i18n="mobileContactCard">Premium strona, ścieżka zapisu i system zgłoszeń dla lokalnych biznesów.</p>
+          </article>
+
+          <div class="hours-list">
+            <div class="hour-row"><span data-i18n="system">System</span><strong>24/7</strong></div>
+            <div class="hour-row"><span data-i18n="implementation">Wdrożenia</span><strong>10–18</strong></div>
+            <div class="hour-row"><span data-i18n="sunday">Niedziela</span><strong>10–16</strong></div>
+          </div>
+
+          <div class="dual-actions">
+            <button class="cta-btn" type="button" data-open-booking data-i18n="startNow">Zacznij teraz</button>
+            <a class="ghost-btn" href="tel:+48532377701" data-i18n="phoneShort">Telefon</a>
+          </div>
+
+          <div class="social-row">
+            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">IG</a>
+            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TT</a>
+            <a href="tel:+48532377701">TEL</a>
+          </div>
         </div>
       </section>
     </main>
   </div>
 
-        </section>
-    </main>
+  <div class="faq-sheet" id="faqSheet" aria-hidden="true">
+    <div class="faq-sheet__backdrop" data-close-faq></div>
+
+    <div class="faq-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="faqSheetTitle">
+      <button class="faq-sheet__close" type="button" data-close-faq aria-label="Zamknij">×</button>
+
+      <div class="faq-sheet__content">
+        <span>FAQ</span>
+        <h3 id="faqSheetTitle">Pytanie</h3>
+        <p id="faqSheetAnswer">Odpowiedź.</p>
+      </div>
+    </div>
   </div>
-</section>
 
-<script>
-  // (твой существующий JS — booking, faq, scroll и т.д.)
-</script>
+  <section class="booking-overlay" id="bookingOverlay" aria-hidden="true">
+    <div class="booking-shell">
+      <div class="booking-topbar">
+        <div class="booking-topbar__left">
+          <div class="booking-logo-box">
+            <div class="booking-wordmark" aria-hidden="true">
+              <span>MROZOWSKI</span>
+              <span>AUTOMATION</span>
+            </div>
+          </div>
 
-<script>
-  // 🔥 перевод (тот что я дал)
-  const translations = {
-    pl: {
-      chooseBtn: "Wybierz",
-      startNow: "Zacznij teraz",
-      howItWorks: "Jak działa",
-      connect: "Podłącz"
-    },
-    ru: {
-      chooseBtn: "Выбрать",
-      startNow: "Начать сейчас",
-      howItWorks: "Как работает",
-      connect: "Подключить"
-    },
-    en: {
-      chooseBtn: "Choose",
-      startNow: "Start now",
-      howItWorks: "How it works",
-      connect: "Connect"
+          <div class="booking-topbar__copy">
+            <span>MROZOWSKI AUTOMATION</span>
+            <strong data-i18n="bookingTopTitle">Wybór systemu</strong>
+          </div>
+        </div>
+
+        <button class="btn booking-close" type="button" id="bookingCloseBtn" aria-label="Zamknij booking">×</button>
+      </div>
+
+      <div class="wizard-host">
+        <main class="app-shell">
+          <section class="wizard-frame">
+            <header class="wizard-top">
+              <div class="wizard-top-row">
+                <div class="wizard-top-copy">
+                  <div class="eyebrow">MROZOWSKI AUTOMATION</div>
+                  <h1 id="stepTitle">Dane kontaktowe</h1>
+                  <p id="stepSubtitle">Zostaw dane i przejdź dalej.</p>
+                </div>
+
+                <div class="step-pill" id="stepPill">1 / 8</div>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-track">
+                  <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">13%</div>
+              </div>
+            </header>
+
+            <section class="wizard-card">
+              <section class="step active" data-step="1">
+                <div class="step-content narrow">
+                  <div class="intro-card">
+                    <div class="intro-top">
+                      <div class="logo-box logo-box-image">
+                        <div class="logo-box-wordmark" aria-hidden="true">
+                          <span>MA</span>
+                          <span>PATH</span>
+                        </div>
+                      </div>
+
+                      <div class="intro-copy">
+                        <span class="section-kicker">MROZOWSKI AUTOMATION</span>
+                        <strong>Dobierz system pod swój biznes</strong>
+                      </div>
+                    </div>
+
+                    <div class="intro-divider"></div>
+
+                    <div class="card-head">
+                      <h2>Wpisz imię i telefon</h2>
+                      <p>Zostaw dane, a potem wybierz zakres: stronę z zapisem, wejścia z wielu miejsc albo pełny system.</p>
+                    </div>
+
+                    <div class="intro-benefits">
+                      <div class="intro-benefit">Premium</div>
+                      <div class="intro-benefit">Zapis</div>
+                      <div class="intro-benefit">Leady</div>
+                    </div>
+                  </div>
+
+                  <label class="field">
+                    <span>Imię</span>
+                    <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
+                    <small class="error" id="nameError"></small>
+                  </label>
+
+                  <label class="field">
+                    <span>Telefon</span>
+                    <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
+                    <small class="error" id="phoneError"></small>
+                  </label>
+                </div>
+              </section>
+
+              <section class="step" data-step="2">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór usługi</h2>
+                    <p>Najpierw wybierz kategorię, potem konkretny zakres wdrożenia.</p>
+                  </div>
+
+                  <div class="accordion-list" id="categoryAccordion"></div>
+                </div>
+              </section>
+
+              <section class="step" data-step="3">
+                <div class="step-content narrow">
+                  <div class="card-head">
+                    <h2>Wybrać typ rozmowy?</h2>
+                    <p>Możesz wskazać temat rozmowy albo przejść dalej bez wyboru.</p>
+                  </div>
+
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
+                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                  </div>
+
+                  <div class="choice-actions">
+                    <button class="choice-btn choice-btn-strong" id="chooseBarberYes" type="button">Tak</button>
+                    <button class="choice-btn choice-btn-strong" id="chooseBarberNo" type="button">Nie</button>
+                  </div>
+
+                  <div class="barber-skip-box hidden" id="barberSkipBox">
+                    <div class="summary-list">
+                      <div class="summary-row"><span>Rozmowa</span><strong>Bez wyboru</strong></div>
+                      <div class="summary-row"><span>Status</span><strong>Dopasujemy temat po zgłoszeniu</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="4">
+                <div class="step-content narrow">
+                  <div class="card-head">
+                    <h2>Wybór rozmowy</h2>
+                    <p>Przeglądaj opcje strzałkami i wybierz najbliższy temat.</p>
+                  </div>
+
+                  <div class="barber-slider-card">
+                    <div class="barber-slide-photo" id="barberSlidePhoto">
+                      <div class="map-wordmark" aria-hidden="true">
+                        <span>MA</span>
+                        <span>PATH</span>
+                      </div>
+                    </div>
+
+                    <div class="barber-slide-info">
+                      <strong id="barberSlideName">—</strong>
+                      <p id="barberSlideDescription">—</p>
+                      <div class="barber-langs" id="barberSlideLangs"></div>
+                    </div>
+
+                    <div class="barber-slider-controls">
+                      <button class="slider-arrow" id="barberPrevBtn" type="button">←</button>
+                      <div class="slider-counter" id="barberCounter">1 / 3</div>
+                      <button class="slider-arrow" id="barberNextBtn" type="button">→</button>
+                    </div>
+
+                    <button class="select-barber-btn" id="selectBarberBtn" type="button">Wybierz ten temat</button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="5">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór daty</h2>
+                    <p>Wybierz dzień, kiedy najwygodniej omówić system.</p>
+                  </div>
+
+                  <div class="calendar-box">
+                    <div class="calendar-header">
+                      <button class="calendar-nav-btn" id="calendarPrevBtn" type="button">←</button>
+                      <div class="calendar-title-wrap">
+                        <strong id="monthLabel">Miesiąc</strong>
+                        <span id="calendarStatus">Dostępne terminy</span>
+                      </div>
+                      <button class="calendar-nav-btn" id="calendarNextBtn" type="button">→</button>
+                    </div>
+
+                    <div class="calendar-weekdays">
+                      <span>Pn</span><span>Wt</span><span>Śr</span><span>Cz</span><span>Pt</span><span>Sb</span><span>Nd</span>
+                    </div>
+
+                    <div class="calendar-month-grid" id="calendarGrid"></div>
+                    <small class="error" id="dateError"></small>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="6">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Wybór godziny</h2>
+                    <p>Wybierz godzinę, kiedy najwygodniej wrócić do tematu.</p>
+                  </div>
+
+                  <div class="slots-box">
+                    <div class="calendar-top">
+                      <strong>Godziny</strong>
+                      <span id="slotsStatus">Wybierz datę</span>
+                    </div>
+
+                    <div class="slots-grid" id="slotsGrid"></div>
+                    <small class="error" id="timeError"></small>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step" data-step="7">
+                <div class="step-content">
+                  <div class="card-head">
+                    <h2>Potwierdzenie danych</h2>
+                    <p>Sprawdź szczegóły zgłoszenia przed zapisaniem.</p>
+                  </div>
+
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
+                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                    <div class="summary-row"><span>Czas trwania</span><strong data-bind="serviceDuration">—</strong></div>
+                    <div class="summary-row"><span>Zakres</span><strong data-bind="servicePrice">—</strong></div>
+                  </div>
+
+                  <div class="info-note">Sprawdź dane i potwierdź, aby zapisać zgłoszenie.</div>
+                  <small class="error" id="submitError"></small>
+                </div>
+              </section>
+
+              <section class="step" data-step="8">
+                <div class="step-content narrow center">
+                  <div class="success-icon">✓</div>
+
+                  <div class="card-head center">
+                    <h2>Zgłoszenie zapisane</h2>
+                    <p>Dane zostały zapisane. Następny krok to kontakt i omówienie systemu pod Twój biznes.</p>
+                  </div>
+
+                  <div class="summary-list">
+                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
+                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
+                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
+                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
+                  </div>
+
+                  <div class="success-links">
+                    <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">Instagram</a>
+                    <a class="nav-btn" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TikTok</a>
+                    <button class="nav-btn" type="button" onclick="callMrozowski()">Zadzwoń: 532 377 701</button>
+                  </div>
+                </div>
+              </section>
+            </section>
+
+            <footer class="wizard-nav">
+              <button class="nav-btn" id="backBtn" type="button">Wstecz</button>
+              <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">Dalej</button>
+            </footer>
+          </section>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const overlay = document.getElementById("bookingOverlay");
+    const flash = document.getElementById("screenFlash");
+    const siteHeader = document.querySelector(".site-header");
+    const mobileVersion = document.getElementById("mobile-version");
+    const faqSheet = document.getElementById("faqSheet");
+    const faqSheetTitle = document.getElementById("faqSheetTitle");
+    const faqSheetAnswer = document.getElementById("faqSheetAnswer");
+
+    let lastScrollY = window.scrollY;
+    let lastMobileScrollTop = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let ticking = false;
+
+    const translations = {
+      pl: {
+        heroTitle1: "Strona, która prowadzi",
+        heroTitle2: "klienta do zgłoszenia.",
+        heroSub: "Premium strona, ścieżka zapisu i system przyjmowania klientów dla biznesów, które nie chcą tracić rozmów w DM, WhatsAppie, Telegramie i komentarzach.",
+        chooseSystem: "Wybierz system",
+        seeProcess: "Zobacz proces",
+        trust1: "Strona premium",
+        trust2: "Ścieżka zapisu",
+        trust3: "Leady z wielu miejsc",
+        clientPath: "Client Path",
+        active: "active",
+        dashSources: "Wejścia",
+        dashSourcesValue: "6 źródeł",
+        dashOffer: "Oferta",
+        dashOfferValue: "1 strona",
+        dashProcess: "Proces",
+        dashProcessValue: "Wybór",
+        dashEffect: "Efekt",
+        dashEffectValue: "Zgłoszenie",
+        flowSocial: "Social",
+        flowOffer: "Oferta",
+        flowContact: "Kontakt",
+        metric1: "Jedna strona zamiast chaosu w wiadomościach",
+        metric2: "Od zainteresowania do konkretnego kontaktu",
+        navStart: "Start",
+        navOffer: "Oferta",
+        navProduct: "Produkt",
+        navEffect: "Efekt",
+        navProof: "Proof",
+        navProcess: "Proces",
+        navFaq: "FAQ",
+        navContact: "Kontakt",
+        chooseBtn: "Wybierz",
+        startNow: "Zacznij teraz",
+        howItWorks: "Jak działa",
+        addSourcesBtn: "Dodaj wejścia",
+        bestChoiceBtn: "Najlepszy wybór",
+        phoneShort: "Telefon"
+      },
+      ru: {
+        heroTitle1: "Страница, которая ведёт",
+        heroTitle2: "клиента к заявке.",
+        heroSub: "Премиальная страница, путь записи и система приёма клиентов для бизнесов, которые не хотят терять диалоги в DM, WhatsApp, Telegram и комментариях.",
+        chooseSystem: "Выбрать систему",
+        seeProcess: "Посмотреть процесс",
+        trust1: "Премиум страница",
+        trust2: "Путь записи",
+        trust3: "Лиды из разных мест",
+        clientPath: "Путь клиента",
+        active: "активно",
+        dashSources: "Источники",
+        dashSourcesValue: "6 каналов",
+        dashOffer: "Оффер",
+        dashOfferValue: "1 страница",
+        dashProcess: "Процесс",
+        dashProcessValue: "Выбор",
+        dashEffect: "Результат",
+        dashEffectValue: "Заявка",
+        flowSocial: "Соцсети",
+        flowOffer: "Оффер",
+        flowContact: "Контакт",
+        metric1: "Одна страница вместо хаоса в сообщениях",
+        metric2: "От интереса к конкретному контакту",
+        navStart: "Старт",
+        navOffer: "Оффер",
+        navProduct: "Продукт",
+        navEffect: "Эффект",
+        navProof: "Proof",
+        navProcess: "Процесс",
+        navFaq: "FAQ",
+        navContact: "Контакт",
+        chooseBtn: "Выбрать",
+        startNow: "Начать сейчас",
+        howItWorks: "Как работает",
+        addSourcesBtn: "Добавить входы",
+        bestChoiceBtn: "Лучший выбор",
+        phoneShort: "Телефон"
+      },
+      en: {
+        heroTitle1: "A page that guides",
+        heroTitle2: "clients to a lead.",
+        heroSub: "A premium page, booking path and client intake system for businesses that do not want to lose conversations in DM, WhatsApp, Telegram and comments.",
+        chooseSystem: "Choose system",
+        seeProcess: "See process",
+        trust1: "Premium page",
+        trust2: "Booking path",
+        trust3: "Leads from many places",
+        clientPath: "Client Path",
+        active: "active",
+        dashSources: "Sources",
+        dashSourcesValue: "6 sources",
+        dashOffer: "Offer",
+        dashOfferValue: "1 page",
+        dashProcess: "Process",
+        dashProcessValue: "Choice",
+        dashEffect: "Result",
+        dashEffectValue: "Lead",
+        flowSocial: "Social",
+        flowOffer: "Offer",
+        flowContact: "Contact",
+        metric1: "One page instead of message chaos",
+        metric2: "From interest to clear contact",
+        navStart: "Start",
+        navOffer: "Offer",
+        navProduct: "Product",
+        navEffect: "Effect",
+        navProof: "Proof",
+        navProcess: "Process",
+        navFaq: "FAQ",
+        navContact: "Contact",
+        chooseBtn: "Choose",
+        startNow: "Start now",
+        howItWorks: "How it works",
+        addSourcesBtn: "Add sources",
+        bestChoiceBtn: "Best choice",
+        phoneShort: "Phone"
+      }
+    };
+
+    const faqAnswersBase = {
+      pl: {
+        instagram: ["Czy to jest tylko pod Instagram?", "Nie. Instagram może być jednym z wejść, ale główny produkt to własna strona ze ścieżką zapisu. Klient może przyjść też z TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku."],
+        business: ["Dla jakich biznesów to pasuje?", "Najlepiej pasuje do lokalnych usług: beauty, barber, nails, fizjo, trenerzy, konsultacje, małe studia i biznesy, które potrzebują zbierać zapisy albo zgłoszenia bez chaosu w wiadomościach."],
+        booking: ["Czy zapis może być w środku strony?", "Tak. Idea polega na tym, że klient nie musi skakać po aplikacjach. Widzi ofertę, wybiera opcję, zostawia dane i przechodzi dalej w jednym flow."],
+        automation: ["Co daje automatyzacja wejść?", "Automatyzacja kieruje klienta z różnych miejsc do jednej ścieżki. Zamiast odpowiadać ręcznie na te same pytania, wysyłasz klienta na stronę, która tłumaczy ofertę i prowadzi do zgłoszenia."],
+        content: ["Czy strona jest dopasowana pod markę?", "Tak. Wygląd, teksty, sekcje, oferta i CTA są dopasowane pod konkretną usługę, styl biznesu i to, co klient ma zrobić na końcu."],
+        start: ["Od czego najlepiej zacząć?", "Najlepiej zacząć od jednej konkretnej ścieżki: skąd klient przychodzi, co ma zobaczyć, jaką opcję wybiera i jakie dane mają trafić do właściciela."],
+        time: ["Ile trwa wdrożenie?", "To zależy od zakresu. Prosta strona z zapisem może być szybkim wdrożeniem, a pełny system z dodatkowymi wejściami wymaga dokładniejszego dopasowania."],
+        owner: ["Co dostaje właściciel?", "Właściciel dostaje stronę, która prezentuje ofertę, prowadzi klienta przez proces i zbiera konkretne dane zamiast rozproszonych wiadomości."]
+      },
+      ru: {
+        instagram: ["Это только под Instagram?", "Нет. Instagram может быть одним из входов, но главный продукт — собственная страница с путём заявки. Клиент может прийти из TikTok, Google, WhatsApp, Telegram, рекламы или обычной ссылки."],
+        business: ["Для каких бизнесов это подходит?", "Лучше всего подходит локальным услугам: beauty, barber, nails, физиотерапия, тренеры, консультации, студии и бизнесы, которым нужно собирать заявки без хаоса в переписках."],
+        booking: ["Запись может быть внутри страницы?", "Да. Клиент видит предложение, выбирает вариант, оставляет данные и проходит дальше в одном flow."],
+        automation: ["Что даёт автоматизация входов?", "Она ведёт клиентов из разных мест в одну понятную систему вместо ручных одинаковых ответов в разных диалогах."],
+        content: ["Страница адаптируется под бренд?", "Да. Визуал, тексты, секции, предложение и CTA подстраиваются под конкретную услугу и стиль бизнеса."],
+        start: ["С чего лучше начать?", "С одного конкретного пути: откуда приходит клиент, что он должен увидеть, что выбрать и какие данные оставить."],
+        time: ["Сколько длится внедрение?", "Зависит от объёма. Простая страница быстрее, полный процесс с каналами требует более точной настройки."],
+        owner: ["Что получает владелец?", "Страницу, которая показывает предложение, ведёт клиента по процессу и собирает конкретные данные вместо хаотичных сообщений."]
+      },
+      en: {
+        instagram: ["Is this only for Instagram?", "No. Instagram can be one entry point, but the core product is your own page with a lead path. A client can also come from TikTok, Google, WhatsApp, Telegram, ads or a simple link."],
+        business: ["What businesses is it for?", "It works best for local services: beauty, barber, nails, physio, trainers, consultations, small studios and businesses that need leads without message chaos."],
+        booking: ["Can booking be inside the page?", "Yes. The client sees the offer, chooses an option, leaves details and continues in one flow."],
+        automation: ["What does entry automation do?", "It sends clients from different places into one clear path instead of answering the same questions manually in many chats."],
+        content: ["Is the page adapted to the brand?", "Yes. Visuals, copy, sections, offer and CTA are adapted to the exact service and business style."],
+        start: ["Where should I start?", "Start with one clear path: where the client comes from, what they see, what they choose and what data they leave."],
+        time: ["How long does implementation take?", "It depends on scope. A simple page can be fast, while a full system with extra channels needs deeper setup."],
+        owner: ["What does the owner get?", "A page that presents the offer, guides the client and collects concrete data instead of scattered messages."]
+      }
+    };
+
+    function getCurrentLang() {
+      return localStorage.getItem("lang") || "pl";
     }
-  };
 
-  function setLanguage(lang) {
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.dataset.i18n;
-      if (translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
+    function setLanguage(lang) {
+      const dict = translations[lang] || translations.pl;
+
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem("lang", lang);
+    }
+
+    function triggerFlash() {
+      if (!flash) return;
+      flash.classList.add("active");
+      setTimeout(() => flash.classList.remove("active"), 140);
+    }
+
+    function openBooking() {
+      if (!overlay) return;
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.classList.add("booking-open");
+      triggerFlash();
+    }
+
+    function closeBooking() {
+      if (!overlay) return;
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("booking-open");
+    }
+
+    function callMrozowski() {
+      window.location.href = "tel:+48532377701";
+    }
+
+    window.callMrozowski = callMrozowski;
+    window.callDogma = callMrozowski;
+    window.callBarbershop = callMrozowski;
+    window.openBooking = openBooking;
+    window.closeBooking = closeBooking;
+
+    function openFaq(key) {
+      const lang = getCurrentLang();
+      const data = (faqAnswersBase[lang] && faqAnswersBase[lang][key]) || faqAnswersBase.pl[key];
+
+      if (!faqSheet || !data) return;
+
+      faqSheetTitle.textContent = data[0];
+      faqSheetAnswer.textContent = data[1];
+
+      faqSheet.classList.add("open");
+      faqSheet.setAttribute("aria-hidden", "false");
+      document.body.classList.add("faq-open");
+      triggerFlash();
+    }
+
+    function closeFaq() {
+      if (!faqSheet) return;
+      faqSheet.classList.remove("open");
+      faqSheet.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("faq-open");
+    }
+
+    function bindBookingButtons() {
+      document.querySelectorAll("[data-open-booking]").forEach(button => {
+        button.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          openBooking();
+        });
+      });
+
+      document.getElementById("bookingCloseBtn")?.addEventListener("click", event => {
+        event.preventDefault();
+        closeBooking();
+      });
+
+      overlay?.addEventListener("click", event => {
+        if (event.target === overlay) closeBooking();
+      });
+    }
+
+    function bindFaq() {
+      document.querySelectorAll("[data-faq]").forEach(button => {
+        button.addEventListener("click", () => openFaq(button.dataset.faq));
+      });
+
+      document.querySelectorAll("[data-close-faq]").forEach(button => {
+        button.addEventListener("click", closeFaq);
+      });
+    }
+
+    function bindLanguageSwitcher() {
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          setLanguage(btn.dataset.lang);
+          triggerFlash();
+        });
+      });
+
+      setLanguage(getCurrentLang());
+    }
+
+    function bindMobileNavigation() {
+      const chips = document.querySelectorAll(".nav-chip");
+      const pages = document.querySelectorAll(".page");
+
+      function activatePage(pageName) {
+        chips.forEach(item => {
+          item.classList.toggle("active", item.dataset.page === pageName);
+        });
+
+        pages.forEach(item => {
+          item.classList.toggle("active", item.dataset.pageView === pageName);
+        });
+
+        mobileVersion?.classList.remove("mobile-header-hidden");
+
+        const activeChip = document.querySelector(`.nav-chip[data-page="${pageName}"]`);
+        activeChip?.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest"
+        });
+
+        const activePage = document.querySelector(`.page[data-page-view="${pageName}"]`);
+        const scrollables = activePage?.querySelectorAll(".reviews-mobile-list, .faq-mobile-list");
+
+        scrollables?.forEach(item => {
+          item.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        });
+
+        if (window.innerWidth <= 900) triggerFlash();
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => activatePage(chip.dataset.page));
+      });
+
+      document.querySelectorAll("[data-page-jump]").forEach(button => {
+        button.addEventListener("click", () => activatePage(button.dataset.pageJump));
+      });
+
+      window.activateMobilePage = activatePage;
+    }
+
+    function bindMobileSmartHeader() {
+      document.addEventListener("touchstart", event => {
+        const touch = event.touches[0];
+        if (!touch) return;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      const verticalScrollers = document.querySelectorAll(".reviews-mobile-list, .faq-mobile-list");
+
+      verticalScrollers.forEach(scroller => {
+        scroller.addEventListener("scroll", () => {
+          if (!mobileVersion || window.innerWidth > 900) return;
+
+          const current = scroller.scrollTop;
+          const delta = current - lastMobileScrollTop;
+
+          if (delta > 8 && current > 40) {
+            mobileVersion.classList.add("mobile-header-hidden");
+          }
+
+          if (delta < -4 || current < 20) {
+            mobileVersion.classList.remove("mobile-header-hidden");
+          }
+
+          lastMobileScrollTop = Math.max(current, 0);
+        }, { passive: true });
+      });
+
+      document.addEventListener("touchmove", event => {
+        if (!mobileVersion || window.innerWidth > 900) return;
+
+        const touch = event.touches[0];
+        if (!touch) return;
+
+        const dx = Math.abs(touch.clientX - touchStartX);
+        const dy = Math.abs(touch.clientY - touchStartY);
+
+        if (dx > dy) return;
+
+        if (touch.clientY < touchStartY - 18) {
+          mobileVersion.classList.add("mobile-header-hidden");
+        }
+
+        if (touch.clientY > touchStartY + 12) {
+          mobileVersion.classList.remove("mobile-header-hidden");
+        }
+      }, { passive: true });
+    }
+
+    function handleDesktopScroll() {
+      if (window.innerWidth <= 900) {
+        ticking = false;
+        return;
+      }
+
+      const currentY = window.scrollY;
+
+      if (siteHeader) {
+        const delta = currentY - lastScrollY;
+        const goingDown = delta > 4;
+        const goingUp = delta < -2;
+
+        if (goingDown && currentY > 120) {
+          siteHeader.classList.add("header-hidden");
+        }
+
+        if (goingUp || currentY < 70) {
+          siteHeader.classList.remove("header-hidden");
+        }
+      }
+
+      lastScrollY = Math.max(currentY, 0);
+      ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleDesktopScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeBooking();
+        closeFaq();
       }
     });
 
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.lang === lang);
-    });
+    bindBookingButtons();
+    bindMobileNavigation();
+    bindMobileSmartHeader();
+    bindFaq();
+    bindLanguageSwitcher();
+  </script>
 
-    localStorage.setItem("lang", lang);
-  }
-
-  document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      setLanguage(btn.dataset.lang);
-    });
-  });
-
-  setLanguage(localStorage.getItem("lang") || "pl");
-</script>
-
-<script src="./script.js"></script>
-
+  <script src="./script.js"></script>
 </body>
 </html>
