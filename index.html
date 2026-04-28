@@ -4012,6 +4012,44 @@ body.booking-open .site-header {
   pointer-events: none;
   transform: translateY(-100%);
 }
+
+    .wizard-frame {
+  min-height: auto !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto !important;
+}
+
+.wizard-card {
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.wizard-nav {
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 30 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  padding: 18px 22px !important;
+  border-top: 1px solid rgba(255,255,255,.08) !important;
+  background: rgba(5,8,22,.82) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+#backBtn,
+#nextBtn {
+  display: inline-flex !important;
+  visibility: visible;
+  opacity: 1;
+}
+
+#nextBtn.hidden,
+#backBtn.hidden {
+  display: none !important;
+}
   </style>
 </head>
 
