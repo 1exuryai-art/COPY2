@@ -4887,225 +4887,194 @@ body.booking-open .site-header {
               </div>
             </header>
 
-            <section class="wizard-card">
-              <section class="step active" data-step="1">
-                <div class="step-content narrow">
-                  <div class="intro-card">
-                    <div class="intro-top">
-                      <div class="logo-box logo-box-image">
-                        <div class="logo-box-wordmark" aria-hidden="true">
-                          <span>MA</span>
-                          <span>PATH</span>
-                        </div>
-                      </div>
+           <section class="wizard-card">
+  <section class="step active" data-step="1">
+    <div class="step-content narrow">
+      <div class="card-head">
+        <h2>Zostaw kontakt</h2>
+        <p>Potem przejdziemy przez krótki brief.</p>
+      </div>
 
-                      <div class="intro-copy">
-                        <span class="section-kicker">MROZOWSKI AUTOMATION</span>
-                        <strong>Dobierz system pod swój biznes</strong>
-                      </div>
-                    </div>
+      <label class="field">
+        <span>Imię</span>
+        <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
+        <small class="error" id="nameError"></small>
+      </label>
 
-                    <div class="intro-divider"></div>
+      <label class="field">
+        <span>Telefon</span>
+        <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
+        <small class="error" id="phoneError"></small>
+      </label>
 
-                    <div class="card-head">
-                      <h2>Wpisz imię i telefon</h2>
-                      <p>Zostaw dane, a potem wybierz zakres: stronę z zapisem, wejścia z wielu miejsc albo pełny system.</p>
-                    </div>
+      <label class="field">
+        <span>Telegram / WhatsApp / Instagram <em>(opcjonalnie)</em></span>
+        <input id="contactExtraInput" type="text" placeholder="@username albo link" />
+      </label>
+    </div>
+  </section>
 
-                    <div class="intro-benefits">
-                      <div class="intro-benefit">Premium</div>
-                      <div class="intro-benefit">Zapis</div>
-                      <div class="intro-benefit">Leady</div>
-                    </div>
-                  </div>
+  <section class="step" data-step="2">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Co trzeba zrobić?</h2>
+        <p>Wybierz, czego mniej więcej potrzebujesz.</p>
+      </div>
 
-                  <label class="field">
-                    <span>Imię</span>
-                    <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
-                    <small class="error" id="nameError"></small>
-                  </label>
+      <div class="option-grid" id="projectGoalGrid"></div>
+    </div>
+  </section>
 
-                  <label class="field">
-                    <span>Telefon</span>
-                    <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
-                    <small class="error" id="phoneError"></small>
-                  </label>
-                </div>
-              </section>
+  <section class="step" data-step="3">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Format projektu</h2>
+        <p>Wybierz szybki start albo indywidualny projekt.</p>
+      </div>
 
-              <section class="step" data-step="2">
-                <div class="step-content">
-                  <div class="card-head">
-                    <h2>Wybór usługi</h2>
-                    <p>Najpierw wybierz kategorię, potem konkretny zakres wdrożenia.</p>
-                  </div>
+      <div class="option-grid format-grid" id="projectFormatGrid"></div>
+    </div>
+  </section>
 
-                  <div class="accordion-list" id="categoryAccordion"></div>
-                </div>
-              </section>
+  <section class="step" data-step="4">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Sfera biznesu</h2>
+        <p>Dopasujemy system do Twojej branży.</p>
+      </div>
 
-              <section class="step" data-step="3">
-                <div class="step-content narrow">
-                  <div class="card-head">
-                    <h2>Wybrać typ rozmowy?</h2>
-                    <p>Możesz wskazać temat rozmowy albo przejść dalej bez wyboru.</p>
-                  </div>
+      <div class="pill-grid" id="businessTypeGrid"></div>
 
-                  <div class="summary-list">
-                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
-                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
-                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
-                  </div>
-
-                  <div class="choice-actions">
-                    <button class="choice-btn choice-btn-strong" id="chooseBarberYes" type="button">Tak</button>
-                    <button class="choice-btn choice-btn-strong" id="chooseBarberNo" type="button">Nie</button>
-                  </div>
-
-                  <div class="barber-skip-box hidden" id="barberSkipBox">
-                    <div class="summary-list">
-                      <div class="summary-row"><span>Rozmowa</span><strong>Bez wyboru</strong></div>
-                      <div class="summary-row"><span>Status</span><strong>Dopasujemy temat po zgłoszeniu</strong></div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <section class="step" data-step="4">
-                <div class="step-content narrow">
-                  <div class="card-head">
-                    <h2>Wybór rozmowy</h2>
-                    <p>Przeglądaj opcje strzałkami i wybierz najbliższy temat.</p>
-                  </div>
-
-                  <div class="barber-slider-card">
-                    <div class="barber-slide-photo" id="barberSlidePhoto">
-                      <div class="map-wordmark" aria-hidden="true">
-                        <span>MA</span>
-                        <span>PATH</span>
-                      </div>
-                    </div>
-
-                    <div class="barber-slide-info">
-                      <strong id="barberSlideName">—</strong>
-                      <p id="barberSlideDescription">—</p>
-                      <div class="barber-langs" id="barberSlideLangs"></div>
-                    </div>
-
-                    <div class="barber-slider-controls">
-                      <button class="slider-arrow" id="barberPrevBtn" type="button">←</button>
-                      <div class="slider-counter" id="barberCounter">1 / 3</div>
-                      <button class="slider-arrow" id="barberNextBtn" type="button">→</button>
-                    </div>
-
-                    <button class="select-barber-btn" id="selectBarberBtn" type="button">Wybierz ten temat</button>
-                  </div>
-                </div>
-              </section>
-
-              <section class="step" data-step="5">
-                <div class="step-content">
-                  <div class="card-head">
-                    <h2>Wybór daty</h2>
-                    <p>Wybierz dzień, kiedy najwygodniej omówić system.</p>
-                  </div>
-
-                  <div class="calendar-box">
-                    <div class="calendar-header">
-                      <button class="calendar-nav-btn" id="calendarPrevBtn" type="button">←</button>
-                      <div class="calendar-title-wrap">
-                        <strong id="monthLabel">Miesiąc</strong>
-                        <span id="calendarStatus">Dostępne terminy</span>
-                      </div>
-                      <button class="calendar-nav-btn" id="calendarNextBtn" type="button">→</button>
-                    </div>
-
-                    <div class="calendar-weekdays">
-                      <span>Pn</span><span>Wt</span><span>Śr</span><span>Cz</span><span>Pt</span><span>Sb</span><span>Nd</span>
-                    </div>
-
-                    <div class="calendar-month-grid" id="calendarGrid"></div>
-                    <small class="error" id="dateError"></small>
-                  </div>
-                </div>
-              </section>
-
-              <section class="step" data-step="6">
-                <div class="step-content">
-                  <div class="card-head">
-                    <h2>Wybór godziny</h2>
-                    <p>Wybierz godzinę, kiedy najwygodniej wrócić do tematu.</p>
-                  </div>
-
-                  <div class="slots-box">
-                    <div class="calendar-top">
-                      <strong>Godziny</strong>
-                      <span id="slotsStatus">Wybierz datę</span>
-                    </div>
-
-                    <div class="slots-grid" id="slotsGrid"></div>
-                    <small class="error" id="timeError"></small>
-                  </div>
-                </div>
-              </section>
-
-              <section class="step" data-step="7">
-                <div class="step-content">
-                  <div class="card-head">
-                    <h2>Potwierdzenie danych</h2>
-                    <p>Sprawdź szczegóły zgłoszenia przed zapisaniem.</p>
-                  </div>
-
-                  <div class="summary-list">
-                    <div class="summary-row"><span>Imię</span><strong data-bind="name">—</strong></div>
-                    <div class="summary-row"><span>Telefon</span><strong data-bind="phone">—</strong></div>
-                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
-                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
-                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
-                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
-                    <div class="summary-row"><span>Czas trwania</span><strong data-bind="serviceDuration">—</strong></div>
-                    <div class="summary-row"><span>Zakres</span><strong data-bind="servicePrice">—</strong></div>
-                  </div>
-
-                  <div class="info-note">Sprawdź dane i potwierdź, aby zapisać zgłoszenie.</div>
-                  <small class="error" id="submitError"></small>
-                </div>
-              </section>
-
-              <section class="step" data-step="8">
-                <div class="step-content narrow center">
-                  <div class="success-icon">✓</div>
-
-                  <div class="card-head center">
-                    <h2>Zgłoszenie zapisane</h2>
-                    <p>Dane zostały zapisane. Następny krok to kontakt i omówienie systemu pod Twój biznes.</p>
-                  </div>
-
-                  <div class="summary-list">
-                    <div class="summary-row"><span>Usługa</span><strong data-bind="serviceName">—</strong></div>
-                    <div class="summary-row"><span>Temat rozmowy</span><strong data-bind="barberName">—</strong></div>
-                    <div class="summary-row"><span>Data</span><strong data-bind="dateText">—</strong></div>
-                    <div class="summary-row"><span>Godzina</span><strong data-bind="time">—</strong></div>
-                  </div>
-
-                  <div class="success-links">
-                    <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">Instagram</a>
-                    <a class="nav-btn" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TikTok</a>
-                    <button class="nav-btn" type="button" onclick="callMrozowski()">Zadzwoń: 532 377 701</button>
-                  </div>
-                </div>
-              </section>
-            </section>
-
-            <footer class="wizard-nav">
-              <button class="nav-btn" id="backBtn" type="button">Wstecz</button>
-              <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">Dalej</button>
-            </footer>
-          </section>
-        </main>
+      <div class="conditional-box hidden" id="businessOtherBox">
+        <label class="field">
+          <span>Jaka branża?</span>
+          <input id="businessOtherInput" type="text" placeholder="Np. fizjo, trener, studio tatuażu..." />
+        </label>
       </div>
     </div>
   </section>
+
+  <section class="step" data-step="5">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Źródła klientów</h2>
+        <p>Możesz wybrać kilka wariantów.</p>
+      </div>
+
+      <div class="pill-grid" id="clientSourcesGrid"></div>
+
+      <div class="conditional-box hidden" id="clientSourcesOtherBox">
+        <label class="field">
+          <span>Opisz inne źródła klientów</span>
+          <input id="clientSourcesOtherInput" type="text" placeholder="Np. ulotki, partnerzy, marketplace..." />
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="6">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Styl strony</h2>
+        <p>Wybierz klimat wizualny albo opisz go własnymi słowami.</p>
+      </div>
+
+      <div class="style-grid" id="visualStyleGrid"></div>
+
+      <label class="field">
+        <span>Opisz klimat, kolory albo podeślij przykład strony</span>
+        <textarea id="visualDescriptionInput" rows="4" placeholder="Np. ciemny premium, dużo glassmorphism, przykład: link do strony..."></textarea>
+      </label>
+    </div>
+  </section>
+
+  <section class="step" data-step="7">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Funkcje strony</h2>
+        <p>Zaznacz elementy, które mają znaleźć się w systemie.</p>
+      </div>
+
+      <div class="pill-grid" id="featuresGrid"></div>
+    </div>
+  </section>
+
+  <section class="step" data-step="8">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Co teraz nie działa?</h2>
+        <p>Zaznacz problemy, które system ma rozwiązać.</p>
+      </div>
+
+      <div class="pill-grid" id="painPointsGrid"></div>
+
+      <label class="field">
+        <span>Opisz krótko problem</span>
+        <textarea id="painDescriptionInput" rows="4" placeholder="Np. klienci pytają o ceny, gubią się wiadomości, nie mam gdzie kierować ruchu..."></textarea>
+      </label>
+    </div>
+  </section>
+
+  <section class="step" data-step="9">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Opis projektu</h2>
+        <p>To najważniejszy blok — opisz, co chcesz zbudować.</p>
+      </div>
+
+      <label class="field">
+        <span>Opis</span>
+        <textarea id="projectDescriptionInput" rows="7" placeholder="Opisz, co chcesz zbudować i jak ma działać strona"></textarea>
+      </label>
+    </div>
+  </section>
+
+  <section class="step" data-step="10">
+    <div class="step-content">
+      <div class="card-head">
+        <h2>Podsumowanie briefu</h2>
+        <p>Sprawdź dane przed wysłaniem.</p>
+      </div>
+
+      <div class="summary-list">
+        <div class="summary-row"><span>Kontakt</span><strong><span data-bind="name">—</span> · <span data-bind="phone">—</span></strong></div>
+        <div class="summary-row"><span>Dodatkowy kontakt</span><strong data-bind="contactExtra">—</strong></div>
+        <div class="summary-row"><span>Typ projektu</span><strong data-bind="projectGoal">—</strong></div>
+        <div class="summary-row"><span>Template / Custom</span><strong data-bind="projectFormat">—</strong></div>
+        <div class="summary-row"><span>Branża</span><strong data-bind="businessType">—</strong></div>
+        <div class="summary-row"><span>Źródła</span><strong data-bind="clientSources">—</strong></div>
+        <div class="summary-row"><span>Styl</span><strong data-bind="visualStyle">—</strong></div>
+        <div class="summary-row"><span>Funkcje</span><strong data-bind="features">—</strong></div>
+        <div class="summary-row"><span>Problemy</span><strong data-bind="painPoints">—</strong></div>
+        <div class="summary-row"><span>Opis</span><strong data-bind="projectDescription">—</strong></div>
+      </div>
+
+      <small class="error" id="submitError"></small>
+    </div>
+  </section>
+
+  <section class="step" data-step="11">
+    <div class="step-content narrow center">
+      <div class="success-icon">✓</div>
+
+      <div class="card-head center">
+        <h2>Brief zapisany.</h2>
+        <p>Wracam z propozycją systemu pod Twój biznes.</p>
+      </div>
+
+      <div class="summary-list">
+        <div class="summary-row"><span>Status</span><strong>Odpowiedź w ciągu 24h</strong></div>
+        <div class="summary-row"><span>Instagram</span><strong>@mrozowski.automation</strong></div>
+        <div class="summary-row"><span>Telefon</span><strong>532 377 701</strong></div>
+      </div>
+
+      <div class="success-links">
+        <a class="nav-btn nav-btn-primary" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">Instagram</a>
+        <a class="nav-btn" href="tel:+48532377701">Telefon</a>
+      </div>
+    </div>
+  </section>
+</section>
 
   <script>
     const overlay = document.getElementById("bookingOverlay");
