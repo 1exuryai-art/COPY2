@@ -1,219 +1,209 @@
 const API_BASE = "";
-const TOTAL_STEPS = 8;
-
-const DISCOUNT_PERCENT = 10;
-const DISCOUNT_WEEKDAYS = [1, 2, 3, 4]; // pn-czw
-const DISCOUNT_START_MINUTES = 10 * 60;
-const DISCOUNT_END_MINUTES = 16 * 60;
+const TOTAL_STEPS = 11;
 
 const stepMeta = [
   {
-    title: "Dane kontaktowe",
-    subtitle: "Wpisz swoje dane, aby rozpocząć rezerwację."
+    title: "Zostaw kontakt",
+    subtitle: "Potem przejdziemy przez krótki brief."
   },
   {
-    title: "Wybór usługi",
-    subtitle: "Wybierz usługę, która Cię interesuje."
+    title: "Co chcesz zbudować?",
+    subtitle: "Wybierz, czego mniej więcej potrzebujesz."
   },
   {
-    title: "Wybrać barbera?",
-    subtitle: "Możesz wybrać konkretnego barbera lub przejść dalej."
+    title: "Format projektu",
+    subtitle: "Wybierz szybki start albo indywidualny projekt."
   },
   {
-    title: "Wybór barbera",
-    subtitle: "Wybierz barbera, do którego chcesz się umówić."
+    title: "Sfera biznesu",
+    subtitle: "Dopasujemy system do Twojej branży."
   },
   {
-    title: "Wybór daty",
-    subtitle: "Wybierz dogodny dzień wizyty."
+    title: "Źródła klientów",
+    subtitle: "Zaznacz miejsca, z których przychodzą klienci."
   },
   {
-    title: "Wybór godziny",
-    subtitle: "Wybierz dogodną godzinę wizyty."
+    title: "Styl strony",
+    subtitle: "Wybierz klimat wizualny albo opisz go własnymi słowami."
   },
   {
-    title: "Potwierdzenie danych",
-    subtitle: "Sprawdź dane przed potwierdzeniem wizyty."
+    title: "Funkcje strony",
+    subtitle: "Zaznacz elementy, które mają znaleźć się w systemie."
   },
   {
-    title: "Rezerwacja zapisana",
-    subtitle: "Twoja wizyta została zapisana."
+    title: "Co teraz nie działa?",
+    subtitle: "Pokażemy, co system ma naprawić."
+  },
+  {
+    title: "Opis projektu",
+    subtitle: "Opisz krótko, co chcesz zbudować."
+  },
+  {
+    title: "Podsumowanie briefu",
+    subtitle: "Sprawdź dane przed wysłaniem."
+  },
+  {
+    title: "Brief zapisany",
+    subtitle: "Wracam z propozycją systemu pod Twój biznes."
   }
 ];
 
-const serviceCategories = [
+const projectGoals = [
   {
-    id: "popular",
-    title: "Popularne usługi",
-    description: "Najczęściej wybierane opcje."
+    id: "form-page",
+    title: "Strona z formularzem",
+    description: "Prosta strona, która zbiera zgłoszenia od klientów."
   },
   {
-    id: "premium",
-    title: "Strzyżenie premium",
-    description: "Klasyczne i bardziej rozbudowane usługi włosów."
+    id: "landing-brief",
+    title: "Landing + ankieta",
+    description: "Strona sprzedażowa połączona z krótkim briefem."
   },
   {
-    id: "beard",
-    title: "Broda i golenie",
-    description: "Usługi brody i golenia."
+    id: "lead-system",
+    title: "System zgłoszeń",
+    description: "Struktura, która porządkuje zapytania i automatyzuje kontakt."
   },
   {
-    id: "gray",
-    title: "Koloryzacja i odsiwianie",
-    description: "Usługi premium z odsiwianiem."
-  },
-  {
-    id: "extras",
-    title: "Dodatki",
-    description: "Szybkie dodatkowe usługi."
+    id: "consulting",
+    title: "Nie wiem — chcę doradztwa",
+    description: "Doradzimy, co ma największy sens dla Twojego biznesu."
   }
 ];
 
-const services = [
+const projectFormats = [
   {
-    id: "haircut",
-    category: "popular",
-    name: "Strzyżenie / Haircut",
-    basePrice: 90,
-    duration: "1h",
-    durationMinutes: 60
+    id: "template",
+    badge: "Szybki start",
+    title: "Template",
+    price: "od 600 zł",
+    description: "Szybka strona na sprawdzonej strukturze. Dopasowujemy teksty, kolory i ofertę."
   },
   {
-    id: "combo",
-    category: "popular",
-    name: "Combo (Strzyżenie + Broda)",
-    basePrice: 140,
-    duration: "1h 30min",
-    durationMinutes: 90
-  },
-  {
-    id: "scissors",
-    category: "premium",
-    name: "Strzyżenie nożyczkami",
-    basePrice: 130,
-    duration: "1h 30min",
-    durationMinutes: 90
-  },
-  {
-    id: "kids",
-    category: "premium",
-    name: "Fryzjer dla dzieci (4–12 lat)",
-    basePrice: 80,
-    duration: "1h",
-    durationMinutes: 60
-  },
-  {
-    id: "buzz",
-    category: "premium",
-    name: "Buzz cut / tylko boki",
-    basePrice: 80,
-    duration: "1h",
-    durationMinutes: 60
-  },
-  {
-    id: "beard-zero",
-    category: "beard",
-    name: "Broda + Golenie głowy na zero",
-    basePrice: 90,
-    duration: "50min",
-    durationMinutes: 50
-  },
-  {
-    id: "beard-trim",
-    category: "beard",
-    name: "Strzyżenie brody",
-    basePrice: 70,
-    duration: "40min",
-    durationMinutes: 40
-  },
-  {
-    id: "shaving",
-    category: "beard",
-    name: "Golenie głowy golarką",
-    basePrice: 50,
-    duration: "30min",
-    durationMinutes: 30
-  },
-  {
-    id: "gray-beard",
-    category: "gray",
-    name: "Strzyżenie brody + Odsiwianie",
-    basePrice: 150,
-    duration: "1h 30min",
-    durationMinutes: 90
-  },
-  {
-    id: "gray-hair",
-    category: "gray",
-    name: "Strzyżenie + Odsiwianie włosów",
-    basePrice: 150,
-    duration: "1h 30min",
-    durationMinutes: 90
-  },
-  {
-    id: "gray-combo-beard",
-    category: "gray",
-    name: "Combo: włosy + broda + Odsiwianie brody",
-    basePrice: 210,
-    duration: "2h",
-    durationMinutes: 120
-  },
-  {
-    id: "gray-combo-full",
-    category: "gray",
-    name: "Combo Odsiwianie: włosy + broda + strzyżenie",
-    basePrice: 260,
-    duration: "2h",
-    durationMinutes: 120
-  },
-  {
-    id: "wax",
-    category: "extras",
-    name: "Depilacja woskiem",
-    basePrice: 20,
-    duration: "5min",
-    durationMinutes: 5
+    id: "custom",
+    badge: "Indywidualnie",
+    title: "Custom",
+    price: "wycena indywidualna",
+    description: "Projekt dopasowany pod Twój biznes, styl i klienta. Więcej strategii i customu."
   }
 ];
 
-const barbers = [
+const businessTypes = [
+  "Beauty",
+  "Nails",
+  "Barber",
+  "Studio",
+  "Konsultacje",
+  "Lokalna usługa",
+  "Inne"
+];
+
+const clientSources = [
+  "Instagram",
+  "TikTok",
+  "Google",
+  "WhatsApp",
+  "Telegram",
+  "Reklamy",
+  "Polecenia",
+  "Inne"
+];
+
+const visualStyles = [
   {
-    id: "tymur",
-    name: "Tymur",
-    photo: "/tymur.png",
-    description: "Młody i ambitny barber z pasją do klasycznych strzyżeń.",
-    languages: ["🇺🇦 Ukraiński", "🇵🇱 Polski", "🇬🇧 English"]
+    id: "dark-premium",
+    title: "Dark premium",
+    icons: "⬛ + 🟡",
+    emoji: "🌑",
+    description: "Ciemny, luksusowy styl"
   },
   {
-    id: "dima",
-    name: "Dima",
-    photo: "/dima.png",
-    description: "Doświadczony barber z 3-letnim stażem. Mistrz klasyki i nowoczesnych stylów.",
-    languages: ["🇺🇦 Ukraiński", "🇵🇱 Polski", "🇬🇧 English"]
+    id: "light-clean",
+    title: "Light clean",
+    icons: "⚪ + 🔵",
+    emoji: "⚪",
+    description: "Jasny, czysty, nowoczesny"
   },
   {
-    id: "vlad",
-    name: "Vlad",
-    photo: "/vlad.png",
-    description: "Młody talent z energią i świeżym podejściem do strzyżeń.",
-    languages: ["🇺🇦 Ukraiński", "🇷🇺 Rosyjski", "🇵🇱 Polski"]
+    id: "tech-glass",
+    title: "Tech glass",
+    icons: "🟣 + 🔵",
+    emoji: "🧊",
+    description: "Glass, blur, styl technologiczny"
+  },
+  {
+    id: "beauty-soft",
+    title: "Beauty soft",
+    icons: "🌸 + ⚪",
+    emoji: "🌸",
+    description: "Delikatny, kobiecy styl"
+  },
+  {
+    id: "minimal",
+    title: "Minimal",
+    icons: "⚫ + ⚪",
+    emoji: "➖",
+    description: "Prosty i czysty"
+  },
+  {
+    id: "not-sure",
+    title: "Nie wiem",
+    icons: "❓",
+    emoji: "❓",
+    description: "Doradzimy Ci"
   }
+];
+
+const features = [
+  "Oferta",
+  "Cennik",
+  "Formularz / ankieta",
+  "Opinie",
+  "FAQ",
+  "Mapa",
+  "Galeria",
+  "Social links",
+  "Powiadomienia",
+  "Automatyczna odpowiedź",
+  "Integracja z kalendarzem"
+];
+
+const painPoints = [
+  "Klienci pytają o to samo",
+  "Chaos w wiadomościach",
+  "Brak strony",
+  "Słaba oferta",
+  "Brak zapisów",
+  "Chcę wyglądać bardziej premium",
+  "Inne"
 ];
 
 const state = {
   step: 1,
+
   name: "",
   phone: "+48 ",
-  selectedCategory: "",
-  selectedServiceId: "",
-  barberDecision: "",
-  barberSlideIndex: 0,
-  selectedBarberId: "",
-  resolvedBarberName: "",
-  selectedDate: "",
-  selectedTime: "",
-  slotsByDate: {},
-  calendarMonthOffset: 0,
+  contactExtra: "",
+
+  projectGoal: "",
+  projectFormat: "",
+
+  businessType: "",
+  businessOther: "",
+
+  clientSources: [],
+  clientSourcesOther: "",
+
+  visualStyle: "",
+  visualDescription: "",
+
+  features: [],
+
+  painPoints: [],
+  painDescription: "",
+
+  projectDescription: "",
+
   submitting: false
 };
 
@@ -230,59 +220,33 @@ const nextBtn = document.getElementById("nextBtn");
 
 const nameInput = document.getElementById("nameInput");
 const phoneInput = document.getElementById("phoneInput");
+const contactExtraInput = document.getElementById("contactExtraInput");
+
 const nameError = document.getElementById("nameError");
 const phoneError = document.getElementById("phoneError");
 
-const categoryAccordion = document.getElementById("categoryAccordion");
+const projectGoalGrid = document.getElementById("projectGoalGrid");
+const projectFormatGrid = document.getElementById("projectFormatGrid");
 
-const chooseBarberYes = document.getElementById("chooseBarberYes");
-const chooseBarberNo = document.getElementById("chooseBarberNo");
-const barberSkipBox = document.getElementById("barberSkipBox");
+const businessTypeGrid = document.getElementById("businessTypeGrid");
+const businessOtherBox = document.getElementById("businessOtherBox");
+const businessOtherInput = document.getElementById("businessOtherInput");
 
-const barberSlidePhoto = document.getElementById("barberSlidePhoto");
-const barberSlideName = document.getElementById("barberSlideName");
-const barberSlideDescription = document.getElementById("barberSlideDescription");
-const barberSlideLangs = document.getElementById("barberSlideLangs");
-const barberCounter = document.getElementById("barberCounter");
-const barberPrevBtn = document.getElementById("barberPrevBtn");
-const barberNextBtn = document.getElementById("barberNextBtn");
-const selectBarberBtn = document.getElementById("selectBarberBtn");
+const clientSourcesGrid = document.getElementById("clientSourcesGrid");
+const clientSourcesOtherBox = document.getElementById("clientSourcesOtherBox");
+const clientSourcesOtherInput = document.getElementById("clientSourcesOtherInput");
 
-const monthLabel = document.getElementById("monthLabel");
-const calendarStatus = document.getElementById("calendarStatus");
-const calendarGrid = document.getElementById("calendarGrid");
-const dateError = document.getElementById("dateError");
-const calendarPrevBtn = document.getElementById("calendarPrevBtn");
-const calendarNextBtn = document.getElementById("calendarNextBtn");
+const visualStyleGrid = document.getElementById("visualStyleGrid");
+const visualDescriptionInput = document.getElementById("visualDescriptionInput");
 
-const slotsStatus = document.getElementById("slotsStatus");
-const slotsGrid = document.getElementById("slotsGrid");
-const timeError = document.getElementById("timeError");
+const featuresGrid = document.getElementById("featuresGrid");
+
+const painPointsGrid = document.getElementById("painPointsGrid");
+const painDescriptionInput = document.getElementById("painDescriptionInput");
+
+const projectDescriptionInput = document.getElementById("projectDescriptionInput");
 
 const submitError = document.getElementById("submitError");
-
-function formatPrice(value) {
-  return `${Number(value).toFixed(2).replace(".", ",")} zł`;
-}
-
-function getSelectedService() {
-  return services.find((service) => service.id === state.selectedServiceId) || null;
-}
-
-function getSelectedBarber() {
-  return barbers.find((barber) => barber.id === state.selectedBarberId) || null;
-}
-
-function formatDateText(dateStr) {
-  if (!dateStr) return "—";
-
-  const date = new Date(`${dateStr}T00:00:00`);
-  return new Intl.DateTimeFormat("pl-PL", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric"
-  }).format(date);
-}
 
 function normalizePhone(value) {
   let digits = String(value || "").replace(/\D/g, "");
@@ -310,193 +274,65 @@ function isValidPhone(value) {
   return digits.length === 11 && digits.startsWith("48");
 }
 
-function timeToMinutes(timeStr) {
-  const [hour, minute] = timeStr.split(":").map(Number);
-  return hour * 60 + minute;
+function getLabelById(list, id) {
+  const item = list.find((entry) => entry.id === id);
+  return item?.title || "—";
 }
 
-function rangesOverlap(startA, endA, startB, endB) {
-  return startA < endB && endA > startB;
-}
-
-function getWeekday(dateStr) {
-  return new Date(`${dateStr}T00:00:00`).getDay();
-}
-
-function getWorkingHoursForDate(dateStr) {
-  const day = getWeekday(dateStr);
-
-  if (day === 0) {
-    return { openHour: 10, closeHour: 18 };
+function getBusinessLabel() {
+  if (state.businessType === "Inne") {
+    return state.businessOther.trim() || "Inne";
   }
 
-  return { openHour: 10, closeHour: 20 };
+  return state.businessType || "—";
 }
 
-function isDiscountWindow(dateStr, timeStr) {
-  if (!dateStr || !timeStr) return false;
-
-  const day = getWeekday(dateStr);
-  if (!DISCOUNT_WEEKDAYS.includes(day)) return false;
-
-  const minutes = timeToMinutes(timeStr);
-  return minutes >= DISCOUNT_START_MINUTES && minutes < DISCOUNT_END_MINUTES;
+function getProjectGoalLabel() {
+  return getLabelById(projectGoals, state.projectGoal);
 }
 
-function getDiscountedPrice(basePrice) {
-  return Number((basePrice * (1 - DISCOUNT_PERCENT / 100)).toFixed(2));
+function getProjectFormatLabel() {
+  const format = projectFormats.find((item) => item.id === state.projectFormat);
+  if (!format) return "—";
+  return `${format.title} — ${format.price}`;
 }
 
-function getServicePriceDetails(service, dateStr = "", timeStr = "") {
-  if (!service) {
-    return {
-      basePrice: 0,
-      finalPrice: 0,
-      hasDiscount: false,
-      discountedPrice: 0
-    };
-  }
-
-  const basePrice = service.basePrice;
-  const discountedPrice = getDiscountedPrice(basePrice);
-  const hasDiscount = isDiscountWindow(dateStr, timeStr);
-  const finalPrice = hasDiscount ? discountedPrice : basePrice;
-
-  return {
-    basePrice,
-    finalPrice,
-    hasDiscount,
-    discountedPrice
-  };
+function getVisualStyleLabel() {
+  const style = visualStyles.find((item) => item.id === state.visualStyle);
+  if (!style) return "—";
+  return `${style.emoji} ${style.title}`;
 }
 
-function getServicePriceText(service, dateStr = "", timeStr = "") {
-  const details = getServicePriceDetails(service, dateStr, timeStr);
-  return formatPrice(details.finalPrice);
-}
-
-function generateBaseSlotsForDate(dateStr, serviceDurationMinutes = 0) {
-  const { openHour, closeHour } = getWorkingHoursForDate(dateStr);
-  const slots = [];
-  const lastStartMinutes = closeHour * 60 - serviceDurationMinutes;
-
-  for (let minutes = openHour * 60; minutes <= lastStartMinutes; minutes += 30) {
-    const hour = Math.floor(minutes / 60);
-    const minute = minutes % 60;
-
-    slots.push(`${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
-  }
-
-  return slots;
-}
-
-function buildSlotsFromBusy(dateStr, busyIntervals, serviceDurationMinutes) {
-  const baseSlots = generateBaseSlotsForDate(dateStr, serviceDurationMinutes);
-
-  return baseSlots
-    .map((time) => {
-      const slotStart = timeToMinutes(time);
-      const slotEnd = slotStart + serviceDurationMinutes;
-
-      const overlapsBusy = busyIntervals.some((busy) => {
-        const busyStart = timeToMinutes(busy.start);
-        const busyEnd = timeToMinutes(busy.end);
-        return rangesOverlap(slotStart, slotEnd, busyStart, busyEnd);
-      });
-
-      return {
-        time,
-        available: !overlapsBusy
-      };
-    })
-    .filter((slot) => slot.available);
-}
-
-async function loadAvailabilityForDate(dateStr) {
-  const service = getSelectedService();
-  const barber = getSelectedBarber();
-
-  if (!dateStr || !service) return;
-
-  slotsStatus.textContent = "Ładowanie godzin...";
-  slotsGrid.innerHTML = "";
-
-  const barberId = state.barberDecision === "no" ? "auto" : barber?.id || "";
-  if (!barberId) return;
-
-  const response = await fetch(
-    `${API_BASE}/api/availability?date=${encodeURIComponent(dateStr)}&barberId=${encodeURIComponent(barberId)}&durationMinutes=${encodeURIComponent(service.durationMinutes)}`
-  );
-
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok || !data?.ok) {
-    throw new Error(data?.error || "Nie udało się pobrać dostępności.");
-  }
-
-  if (state.barberDecision === "no") {
-    const availableSlots = Array.isArray(data.availableSlots) ? data.availableSlots : [];
-    state.slotsByDate[dateStr] = availableSlots.map((time) => ({
-      time,
-      available: true
-    }));
-    return;
-  }
-
-  const busyIntervals = Array.isArray(data.busy) ? data.busy : [];
-  state.slotsByDate[dateStr] = buildSlotsFromBusy(dateStr, busyIntervals, service.durationMinutes);
+function listText(values) {
+  if (!Array.isArray(values) || values.length === 0) return "—";
+  return values.join(", ");
 }
 
 function updateBindings() {
-  const service = getSelectedService();
-  const barber = getSelectedBarber();
-  const priceDetails = getServicePriceDetails(service, state.selectedDate, state.selectedTime);
+  const bindings = {
+    name: state.name || "—",
+    phone: state.phone || "—",
+    contactExtra: state.contactExtra || "—",
+    projectGoal: getProjectGoalLabel(),
+    projectFormat: getProjectFormatLabel(),
+    businessType: getBusinessLabel(),
+    clientSources: listText(
+      state.clientSources.includes("Inne") && state.clientSourcesOther.trim()
+        ? [...state.clientSources.filter((item) => item !== "Inne"), state.clientSourcesOther.trim()]
+        : state.clientSources
+    ),
+    visualStyle: getVisualStyleLabel(),
+    visualDescription: state.visualDescription || "—",
+    features: listText(state.features),
+    painPoints: listText(state.painPoints),
+    painDescription: state.painDescription || "—",
+    projectDescription: state.projectDescription || "—"
+  };
 
-  document.querySelectorAll('[data-bind="name"]').forEach((el) => {
-    el.textContent = state.name || "—";
-  });
-
-  document.querySelectorAll('[data-bind="phone"]').forEach((el) => {
-    el.textContent = state.phone || "—";
-  });
-
-  document.querySelectorAll('[data-bind="serviceName"]').forEach((el) => {
-    el.textContent = service?.name || "—";
-  });
-
-  document.querySelectorAll('[data-bind="servicePrice"]').forEach((el) => {
-    if (!service) {
-      el.textContent = "—";
-      return;
-    }
-
-    if (priceDetails.hasDiscount) {
-      el.textContent = `${formatPrice(priceDetails.finalPrice)} • -${DISCOUNT_PERCENT}%`;
-      return;
-    }
-
-    el.textContent = formatPrice(priceDetails.finalPrice);
-  });
-
-  document.querySelectorAll('[data-bind="serviceDuration"]').forEach((el) => {
-    el.textContent = service?.duration || "—";
-  });
-
-  document.querySelectorAll('[data-bind="barberName"]').forEach((el) => {
-    if (state.barberDecision === "no") {
-      el.textContent = state.resolvedBarberName || "Dobierzemy barbera";
-      return;
-    }
-
-    el.textContent = barber?.name || "—";
-  });
-
-  document.querySelectorAll('[data-bind="dateText"]').forEach((el) => {
-    el.textContent = formatDateText(state.selectedDate);
-  });
-
-  document.querySelectorAll('[data-bind="time"]').forEach((el) => {
-    el.textContent = state.selectedTime || "—";
+  Object.entries(bindings).forEach(([key, value]) => {
+    document.querySelectorAll(`[data-bind="${key}"]`).forEach((el) => {
+      el.textContent = value;
+    });
   });
 }
 
@@ -513,7 +349,7 @@ function updateHeader() {
 }
 
 function updateNav() {
-  if (state.step === 8) {
+  if (state.step === 11) {
     backBtn.classList.add("hidden");
     nextBtn.classList.add("hidden");
     return;
@@ -524,38 +360,37 @@ function updateNav() {
 
   backBtn.style.visibility = state.step === 1 ? "hidden" : "visible";
 
-  if (state.step === 2) {
-    nextBtn.classList.add("hidden");
-    return;
-  }
-
-  nextBtn.classList.remove("hidden");
   nextBtn.classList.remove("pulse");
 
-  if (state.step === 7) {
-    nextBtn.textContent = state.submitting ? "Zapisywanie..." : "Zarezerwuj termin";
+  if (state.step === 10) {
+    nextBtn.textContent = state.submitting ? "Wysyłanie..." : "Wyślij brief";
+    nextBtn.classList.add("pulse");
   } else {
     nextBtn.textContent = "Dalej";
   }
 
   if (state.step === 1) {
     nextBtn.disabled = !(isValidName(state.name) && isValidPhone(state.phone));
+  } else if (state.step === 2) {
+    nextBtn.disabled = !state.projectGoal;
   } else if (state.step === 3) {
-    nextBtn.disabled = !state.barberDecision;
+    nextBtn.disabled = !state.projectFormat;
   } else if (state.step === 4) {
-    nextBtn.disabled = !state.selectedBarberId;
+    nextBtn.disabled = !state.businessType || (state.businessType === "Inne" && !state.businessOther.trim());
   } else if (state.step === 5) {
-    nextBtn.disabled = !state.selectedDate;
+    nextBtn.disabled = state.clientSources.length === 0 || (state.clientSources.includes("Inne") && !state.clientSourcesOther.trim());
   } else if (state.step === 6) {
-    nextBtn.disabled = !state.selectedTime;
+    nextBtn.disabled = !state.visualStyle;
   } else if (state.step === 7) {
+    nextBtn.disabled = state.features.length === 0;
+  } else if (state.step === 8) {
+    nextBtn.disabled = state.painPoints.length === 0;
+  } else if (state.step === 9) {
+    nextBtn.disabled = !state.projectDescription.trim();
+  } else if (state.step === 10) {
     nextBtn.disabled = state.submitting;
   } else {
     nextBtn.disabled = false;
-  }
-
-  if (state.step === 7 && !state.submitting) {
-    nextBtn.classList.add("pulse");
   }
 }
 
@@ -576,347 +411,255 @@ function showStep(step) {
   });
 }
 
-function getServicePriceMarkup(service) {
-  const discounted = getDiscountedPrice(service.basePrice);
-  return `
-    <div class="service-option-price-line">
-      <span class="price-main">${formatPrice(service.basePrice)}</span>
-      <span class="price-discount">lub ${formatPrice(discounted)} z rabatem</span>
-    </div>
+function createOptionCard({ title, description, badge, price, active, onClick }) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `option-card ${active ? "selected active" : ""}`;
+
+  button.innerHTML = `
+    ${badge ? `<span class="option-badge">${badge}</span>` : ""}
+    <strong>${title}</strong>
+    ${price ? `<span class="option-price">${price}</span>` : ""}
+    ${description ? `<p>${description}</p>` : ""}
   `;
+
+  button.addEventListener("click", onClick);
+  return button;
 }
 
-function renderServiceAccordion() {
-  categoryAccordion.innerHTML = "";
+function createPill({ label, active, onClick }) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `choice-pill ${active ? "selected active" : ""}`;
+  button.textContent = label;
+  button.addEventListener("click", onClick);
+  return button;
+}
 
-  serviceCategories.forEach((category) => {
-    const item = document.createElement("div");
-    const isOpen = state.selectedCategory === category.id;
+function renderProjectGoals() {
+  if (!projectGoalGrid) return;
 
-    item.className = `accordion-item ${isOpen ? "open" : ""}`;
+  projectGoalGrid.innerHTML = "";
 
-    const trigger = document.createElement("button");
-    trigger.type = "button";
-    trigger.className = "accordion-trigger";
-    trigger.innerHTML = `
-      <div class="accordion-trigger-main">
-        <strong>${category.title}</strong>
-        <span>${category.description}</span>
-      </div>
-      <div class="accordion-arrow">⌄</div>
-    `;
-
-    trigger.addEventListener("click", () => {
-      state.selectedCategory = state.selectedCategory === category.id ? "" : category.id;
-      renderServiceAccordion();
-    });
-
-    const body = document.createElement("div");
-    body.className = "accordion-body";
-
-    const inner = document.createElement("div");
-    inner.className = "accordion-inner";
-
-    const serviceList = document.createElement("div");
-    serviceList.className = "service-option-list";
-
-    const categoryServices = services.filter((service) => service.category === category.id);
-
-    categoryServices.forEach((service) => {
-      const card = document.createElement("div");
-      card.className = `service-option ${state.selectedServiceId === service.id ? "selected" : ""}`;
-
-      card.innerHTML = `
-        <div class="service-option-top">
-          <strong class="service-option-title">${service.name}</strong>
-          <span class="service-option-duration">${service.duration}</span>
-        </div>
-
-        <div class="service-option-prices">
-          ${getServicePriceMarkup(service)}
-        </div>
-
-        <div class="service-option-note">
-          Rabat ${DISCOUNT_PERCENT}% od poniedziałku do czwartku, 10:00–16:00
-        </div>
-
-        <div class="service-inline-next">
-          <button class="nav-btn nav-btn-primary service-next-btn" type="button">
-            Dalej
-          </button>
-        </div>
-      `;
-
-      card.addEventListener("click", (event) => {
-        const nextButton = event.target.closest(".service-next-btn");
-
-        state.selectedCategory = category.id;
-        state.selectedServiceId = service.id;
-        state.barberDecision = "";
-        state.selectedBarberId = "";
-        state.resolvedBarberName = "";
-        state.selectedDate = "";
-        state.selectedTime = "";
-        state.calendarMonthOffset = 0;
-        state.slotsByDate = {};
-
-        renderServiceAccordion();
-        renderBarberDecision();
-        renderBarberSlider();
-        renderCalendar();
-        renderSlots();
-        updateBindings();
-        updateNav();
-
-        if (nextButton) {
-          showStep(3);
+  projectGoals.forEach((goal) => {
+    projectGoalGrid.appendChild(
+      createOptionCard({
+        title: goal.title,
+        description: goal.description,
+        active: state.projectGoal === goal.id,
+        onClick: () => {
+          state.projectGoal = goal.id;
+          renderProjectGoals();
+          updateBindings();
+          updateNav();
         }
-      });
-
-      serviceList.appendChild(card);
-    });
-
-    inner.appendChild(serviceList);
-    body.appendChild(inner);
-    item.appendChild(trigger);
-    item.appendChild(body);
-    categoryAccordion.appendChild(item);
+      })
+    );
   });
 }
 
-function renderBarberDecision() {
-  if (!barberSkipBox) return;
+function renderProjectFormats() {
+  if (!projectFormatGrid) return;
 
-  barberSkipBox.classList.toggle("hidden", state.barberDecision !== "no");
+  projectFormatGrid.innerHTML = "";
 
-  chooseBarberYes?.classList.toggle("active", state.barberDecision === "yes");
-  chooseBarberNo?.classList.toggle("active", state.barberDecision === "no");
+  projectFormats.forEach((format) => {
+    projectFormatGrid.appendChild(
+      createOptionCard({
+        title: format.title,
+        badge: format.badge,
+        price: format.price,
+        description: format.description,
+        active: state.projectFormat === format.id,
+        onClick: () => {
+          state.projectFormat = format.id;
+          renderProjectFormats();
+          updateBindings();
+          updateNav();
+        }
+      })
+    );
+  });
 }
 
-function renderBarberSlider() {
-  const barber = barbers[state.barberSlideIndex];
-  if (!barber) return;
+function renderBusinessTypes() {
+  if (!businessTypeGrid) return;
 
-  barberSlidePhoto.innerHTML = `
-    <img src="${barber.photo}" alt="${barber.name}" class="barber-photo-img" />
-  `;
+  businessTypeGrid.innerHTML = "";
 
-  barberSlideName.textContent = barber.name;
-  barberSlideDescription.textContent = barber.description;
+  businessTypes.forEach((type) => {
+    businessTypeGrid.appendChild(
+      createPill({
+        label: type,
+        active: state.businessType === type,
+        onClick: () => {
+          state.businessType = type;
 
-  barberSlideLangs.innerHTML = "";
-  barber.languages.forEach((lang) => {
-    const tag = document.createElement("span");
-    tag.textContent = lang;
-    barberSlideLangs.appendChild(tag);
+          if (type !== "Inne") {
+            state.businessOther = "";
+            if (businessOtherInput) businessOtherInput.value = "";
+          }
+
+          renderBusinessTypes();
+          updateBindings();
+          updateNav();
+        }
+      })
+    );
   });
 
-  barberCounter.textContent = `${state.barberSlideIndex + 1} / ${barbers.length}`;
-
-  const isSelected = state.selectedBarberId === barber.id;
-  selectBarberBtn.textContent = isSelected ? "Barber wybrany" : "Wybierz tego barbera";
-  selectBarberBtn.classList.toggle("selected", isSelected);
+  if (businessOtherBox) {
+    businessOtherBox.classList.toggle("hidden", state.businessType !== "Inne");
+  }
 }
 
-function getMonthName(monthIndex) {
-  const months = [
-    "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
-    "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
-  ];
+function toggleArrayValue(array, value) {
+  if (array.includes(value)) {
+    return array.filter((item) => item !== value);
+  }
 
-  return months[monthIndex];
+  return [...array, value];
 }
 
-function renderCalendar() {
-  calendarGrid.innerHTML = "";
-  dateError.textContent = "";
+function renderClientSources() {
+  if (!clientSourcesGrid) return;
 
-  const today = new Date();
-  const currentMonthDate = new Date(
-    today.getFullYear(),
-    today.getMonth() + state.calendarMonthOffset,
-    1
-  );
+  clientSourcesGrid.innerHTML = "";
 
-  const currentYear = currentMonthDate.getFullYear();
-  const currentMonth = currentMonthDate.getMonth();
+  clientSources.forEach((source) => {
+    clientSourcesGrid.appendChild(
+      createPill({
+        label: source,
+        active: state.clientSources.includes(source),
+        onClick: () => {
+          state.clientSources = toggleArrayValue(state.clientSources, source);
 
-  monthLabel.textContent = `${getMonthName(currentMonth)} ${currentYear}`;
+          if (!state.clientSources.includes("Inne")) {
+            state.clientSourcesOther = "";
+            if (clientSourcesOtherInput) clientSourcesOtherInput.value = "";
+          }
 
-  const todayString = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-    .toISOString()
-    .slice(0, 10);
+          renderClientSources();
+          updateBindings();
+          updateNav();
+        }
+      })
+    );
+  });
 
-  const firstDay = new Date(currentYear, currentMonth, 1);
-  let firstWeekday = firstDay.getDay();
-  if (firstWeekday === 0) firstWeekday = 7;
-
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
-
-  const cells = [];
-
-  for (let i = firstWeekday - 1; i > 0; i -= 1) {
-    cells.push({
-      label: prevMonthDays - i + 1,
-      muted: true
-    });
+  if (clientSourcesOtherBox) {
+    clientSourcesOtherBox.classList.toggle("hidden", !state.clientSources.includes("Inne"));
   }
+}
 
-  for (let day = 1; day <= daysInMonth; day += 1) {
-    const dateObj = new Date(currentYear, currentMonth, day);
-    const iso = new Date(dateObj.getTime() - dateObj.getTimezoneOffset() * 60000)
-      .toISOString()
-      .slice(0, 10);
+function renderVisualStyles() {
+  if (!visualStyleGrid) return;
 
-    const isPast = iso < todayString;
+  visualStyleGrid.innerHTML = "";
 
-    cells.push({
-      label: day,
-      iso,
-      muted: false,
-      available: !isPast,
-      selected: state.selectedDate === iso,
-      today: iso === todayString
-    });
-  }
-
-  while (cells.length % 7 !== 0) {
-    cells.push({
-      label: "",
-      muted: true
-    });
-  }
-
-  calendarStatus.textContent = "Godziny: pn-sob 10:00–20:00, nd 10:00–18:00";
-
-  cells.forEach((cell) => {
+  visualStyles.forEach((style) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "calendar-day";
-    button.textContent = cell.label;
+    button.className = `style-card ${state.visualStyle === style.id ? "selected active" : ""}`;
 
-    if (cell.muted) {
-      button.classList.add("muted");
-      button.disabled = true;
-    } else {
-      if (cell.selected) button.classList.add("selected");
-      if (cell.today) button.classList.add("today");
+    button.innerHTML = `
+      <div class="style-card-top">
+        <span class="style-emoji">${style.emoji}</span>
+        <span class="style-icons">${style.icons}</span>
+      </div>
+      <strong>${style.title}</strong>
+      <p>${style.description}</p>
+    `;
 
-      if (!cell.available) {
-        button.classList.add("unavailable");
-        button.disabled = true;
-      } else {
-        button.addEventListener("click", async () => {
-          try {
-            state.selectedDate = cell.iso;
-            state.selectedTime = "";
-            state.resolvedBarberName = "";
-
-            renderCalendar();
-            renderSlots();
-            updateBindings();
-            updateNav();
-
-            await loadAvailabilityForDate(cell.iso);
-
-            renderSlots();
-            updateBindings();
-            updateNav();
-          } catch (error) {
-            dateError.textContent = error.message || "Nie udało się pobrać godzin.";
-            slotsStatus.textContent = "Błąd ładowania godzin";
-            slotsGrid.innerHTML = "";
-          }
-        });
-      }
-    }
-
-    calendarGrid.appendChild(button);
-  });
-
-  calendarPrevBtn.disabled = state.calendarMonthOffset <= 0;
-}
-
-function renderSlots() {
-  slotsGrid.innerHTML = "";
-  timeError.textContent = "";
-
-  if (!state.selectedDate) {
-    slotsStatus.textContent = "Najpierw wybierz datę";
-    return;
-  }
-
-  const slots = state.slotsByDate[state.selectedDate];
-  const { openHour, closeHour } = getWorkingHoursForDate(state.selectedDate);
-
-  if (!slots) {
-    slotsStatus.textContent = "Wybierz dzień, aby pobrać godziny";
-    return;
-  }
-
-  if (!slots.length) {
-    slotsStatus.textContent = "Brak wolnych godzin";
-    return;
-  }
-
-  slotsStatus.textContent = `${slots.length} wolnych godzin · ${String(openHour).padStart(2, "0")}:00–${String(closeHour).padStart(2, "0")}:00`;
-
-  slots.forEach((slot) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "slot-btn";
-
-    const service = getSelectedService();
-    const discountActive = service && isDiscountWindow(state.selectedDate, slot.time);
-
-    if (discountActive) {
-      btn.classList.add("discounted");
-      btn.innerHTML = `
-        <span class="slot-time">${slot.time}</span>
-        <span class="slot-discount">-${DISCOUNT_PERCENT}%</span>
-      `;
-    } else {
-      btn.textContent = slot.time;
-    }
-
-    if (state.selectedTime === slot.time) {
-      btn.classList.add("selected");
-    }
-
-    btn.addEventListener("click", () => {
-      state.selectedTime = slot.time;
-      renderSlots();
+    button.addEventListener("click", () => {
+      state.visualStyle = style.id;
+      renderVisualStyles();
       updateBindings();
       updateNav();
     });
 
-    slotsGrid.appendChild(btn);
+    visualStyleGrid.appendChild(button);
   });
 }
 
-async function submitBooking() {
+function renderFeatures() {
+  if (!featuresGrid) return;
+
+  featuresGrid.innerHTML = "";
+
+  features.forEach((feature) => {
+    featuresGrid.appendChild(
+      createPill({
+        label: feature,
+        active: state.features.includes(feature),
+        onClick: () => {
+          state.features = toggleArrayValue(state.features, feature);
+          renderFeatures();
+          updateBindings();
+          updateNav();
+        }
+      })
+    );
+  });
+}
+
+function renderPainPoints() {
+  if (!painPointsGrid) return;
+
+  painPointsGrid.innerHTML = "";
+
+  painPoints.forEach((pain) => {
+    painPointsGrid.appendChild(
+      createPill({
+        label: pain,
+        active: state.painPoints.includes(pain),
+        onClick: () => {
+          state.painPoints = toggleArrayValue(state.painPoints, pain);
+          renderPainPoints();
+          updateBindings();
+          updateNav();
+        }
+      })
+    );
+  });
+}
+
+async function submitBrief() {
   submitError.textContent = "";
   state.submitting = true;
   updateNav();
 
-  const service = getSelectedService();
-  const barber = getSelectedBarber();
-
   const payload = {
     name: state.name.trim(),
     phone: state.phone.trim(),
-    serviceName: service?.name || "",
-    serviceDuration: service?.duration || "",
-    servicePrice: getServicePriceText(service, state.selectedDate, state.selectedTime),
-    barberName: state.barberDecision === "no" ? "" : (barber?.name || ""),
-    barberId: state.barberDecision === "no" ? "auto" : (barber?.id || ""),
-    date: state.selectedDate,
-    time: state.selectedTime
+    contactExtra: state.contactExtra.trim(),
+
+    projectGoal: getProjectGoalLabel(),
+    projectGoalId: state.projectGoal,
+
+    projectFormat: getProjectFormatLabel(),
+    projectFormatId: state.projectFormat,
+
+    businessType: getBusinessLabel(),
+    businessOther: state.businessOther.trim(),
+
+    clientSources: state.clientSources,
+    clientSourcesOther: state.clientSourcesOther.trim(),
+
+    visualStyle: getVisualStyleLabel(),
+    visualStyleId: state.visualStyle,
+    visualDescription: state.visualDescription.trim(),
+
+    features: state.features,
+
+    painPoints: state.painPoints,
+    painDescription: state.painDescription.trim(),
+
+    projectDescription: state.projectDescription.trim()
   };
 
   try {
-    const response = await fetch(`${API_BASE}/api/book`, {
+    const response = await fetch(`${API_BASE}/api/brief`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -927,15 +670,10 @@ async function submitBooking() {
     const data = await response.json().catch(() => null);
 
     if (!response.ok || !data?.ok) {
-      throw new Error(data?.error || "Nie udało się zapisać wizyty.");
+      throw new Error(data?.error || "Nie udało się wysłać briefu.");
     }
 
-    if (state.barberDecision === "no") {
-      state.resolvedBarberName = data?.resolvedBarberName || "Dobierzemy barbera";
-    }
-
-    updateBindings();
-    showStep(8);
+    showStep(11);
   } catch (error) {
     submitError.textContent = error.message || "Błąd serwera.";
   } finally {
@@ -958,73 +696,66 @@ function nextStep() {
   }
 
   if (state.step === 2) {
-    if (!state.selectedServiceId) return;
+    if (!state.projectGoal) return;
     showStep(3);
     return;
   }
 
   if (state.step === 3) {
-    if (!state.barberDecision) return;
-
-    if (state.barberDecision === "no") {
-      state.selectedBarberId = "";
-      state.resolvedBarberName = "";
-      state.selectedDate = "";
-      state.selectedTime = "";
-      state.slotsByDate = {};
-      renderCalendar();
-      renderSlots();
-      updateBindings();
-      updateNav();
-      showStep(5);
-      return;
-    }
-
+    if (!state.projectFormat) return;
     showStep(4);
     return;
   }
 
   if (state.step === 4) {
-    if (!state.selectedBarberId) return;
+    if (!state.businessType) return;
+    if (state.businessType === "Inne" && !state.businessOther.trim()) return;
     showStep(5);
     return;
   }
 
   if (state.step === 5) {
-    if (!state.selectedDate) {
-      dateError.textContent = "Wybierz datę";
-      return;
-    }
+    if (state.clientSources.length === 0) return;
+    if (state.clientSources.includes("Inne") && !state.clientSourcesOther.trim()) return;
     showStep(6);
     return;
   }
 
   if (state.step === 6) {
-    if (!state.selectedTime) {
-      timeError.textContent = "Wybierz godzinę";
-      return;
-    }
+    if (!state.visualStyle) return;
     showStep(7);
     return;
   }
 
   if (state.step === 7) {
-    submitBooking();
+    if (state.features.length === 0) return;
+    showStep(8);
+    return;
+  }
+
+  if (state.step === 8) {
+    if (state.painPoints.length === 0) return;
+    showStep(9);
+    return;
+  }
+
+  if (state.step === 9) {
+    if (!state.projectDescription.trim()) return;
+    showStep(10);
+    return;
+  }
+
+  if (state.step === 10) {
+    submitBrief();
   }
 }
 
 function prevStep() {
   if (state.step <= 1) return;
-
-  if (state.step === 5 && state.barberDecision === "no") {
-    showStep(3);
-    return;
-  }
-
   showStep(state.step - 1);
 }
 
-function callDogma() {
+function callMrozowski() {
   const phone = "+48532377701";
 
   try {
@@ -1036,95 +767,97 @@ function callDogma() {
   }
 }
 
-window.callDogma = callDogma;
+window.callMrozowski = callMrozowski;
 
-nameInput.addEventListener("input", (e) => {
-  state.name = e.target.value;
-  nameError.textContent = "";
-  updateBindings();
-  updateNav();
-});
+if (nameInput) {
+  nameInput.addEventListener("input", (e) => {
+    state.name = e.target.value;
+    nameError.textContent = "";
+    updateBindings();
+    updateNav();
+  });
+}
 
-phoneInput.value = state.phone;
+if (phoneInput) {
+  phoneInput.value = state.phone;
 
-phoneInput.addEventListener("keydown", (e) => {
-  const pos = phoneInput.selectionStart || 0;
+  phoneInput.addEventListener("keydown", (e) => {
+    const pos = phoneInput.selectionStart || 0;
 
-  if ((e.key === "Backspace" || e.key === "Delete") && pos <= 4) {
-    e.preventDefault();
-  }
-});
+    if ((e.key === "Backspace" || e.key === "Delete") && pos <= 4) {
+      e.preventDefault();
+    }
+  });
 
-phoneInput.addEventListener("input", (e) => {
-  const formatted = normalizePhone(e.target.value);
-  e.target.value = formatted;
-  state.phone = formatted;
-  phoneError.textContent = "";
-  updateBindings();
-  updateNav();
-});
+  phoneInput.addEventListener("input", (e) => {
+    const formatted = normalizePhone(e.target.value);
+    e.target.value = formatted;
+    state.phone = formatted;
+    phoneError.textContent = "";
+    updateBindings();
+    updateNav();
+  });
+}
+
+if (contactExtraInput) {
+  contactExtraInput.addEventListener("input", (e) => {
+    state.contactExtra = e.target.value;
+    updateBindings();
+    updateNav();
+  });
+}
+
+if (businessOtherInput) {
+  businessOtherInput.addEventListener("input", (e) => {
+    state.businessOther = e.target.value;
+    updateBindings();
+    updateNav();
+  });
+}
+
+if (clientSourcesOtherInput) {
+  clientSourcesOtherInput.addEventListener("input", (e) => {
+    state.clientSourcesOther = e.target.value;
+    updateBindings();
+    updateNav();
+  });
+}
+
+if (visualDescriptionInput) {
+  visualDescriptionInput.addEventListener("input", (e) => {
+    state.visualDescription = e.target.value;
+    updateBindings();
+    updateNav();
+  });
+}
+
+if (painDescriptionInput) {
+  painDescriptionInput.addEventListener("input", (e) => {
+    state.painDescription = e.target.value;
+    updateBindings();
+    updateNav();
+  });
+}
+
+if (projectDescriptionInput) {
+  projectDescriptionInput.addEventListener("input", (e) => {
+    state.projectDescription = e.target.value;
+    updateBindings();
+    updateNav();
+  });
+}
 
 backBtn.addEventListener("click", prevStep);
 nextBtn.addEventListener("click", nextStep);
 
-chooseBarberYes.addEventListener("click", () => {
-  state.barberDecision = "yes";
-  state.selectedBarberId = "";
-  state.resolvedBarberName = "";
-  renderBarberDecision();
-  renderBarberSlider();
-  updateBindings();
-  updateNav();
-  showStep(4);
-});
+renderProjectGoals();
+renderProjectFormats();
+renderBusinessTypes();
+renderClientSources();
+renderVisualStyles();
+renderFeatures();
+renderPainPoints();
 
-chooseBarberNo.addEventListener("click", () => {
-  state.barberDecision = "no";
-  state.selectedBarberId = "";
-  state.resolvedBarberName = "";
-  state.selectedDate = "";
-  state.selectedTime = "";
-  state.slotsByDate = {};
-  renderBarberDecision();
-  renderCalendar();
-  renderSlots();
-  updateBindings();
-  updateNav();
-});
-
-barberPrevBtn.addEventListener("click", () => {
-  state.barberSlideIndex = (state.barberSlideIndex - 1 + barbers.length) % barbers.length;
-  renderBarberSlider();
-});
-
-barberNextBtn.addEventListener("click", () => {
-  state.barberSlideIndex = (state.barberSlideIndex + 1) % barbers.length;
-  renderBarberSlider();
-});
-
-selectBarberBtn.addEventListener("click", () => {
-  state.selectedBarberId = barbers[state.barberSlideIndex].id;
-  renderBarberSlider();
-  updateBindings();
-  updateNav();
-});
-
-calendarPrevBtn.addEventListener("click", () => {
-  if (state.calendarMonthOffset <= 0) return;
-  state.calendarMonthOffset -= 1;
-  renderCalendar();
-});
-
-calendarNextBtn.addEventListener("click", () => {
-  state.calendarMonthOffset += 1;
-  renderCalendar();
-});
-
-renderServiceAccordion();
-renderBarberDecision();
-renderBarberSlider();
-renderCalendar();
-renderSlots();
 updateBindings();
 updateHeader();
 updateNav();
