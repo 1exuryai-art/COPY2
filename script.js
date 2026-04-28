@@ -164,8 +164,15 @@ const features = [
   "Galeria",
   "Social links",
   "Powiadomienia",
-  "Automatyczna odpowiedź",
+  "Auto odpowiedź (DM / WhatsApp)",
   "Integracja z kalendarzem"
+  "Automatyzacja Instagram (DM)",
+  "Powiadomienia Telegram",
+  "Potwierdzenie SMS",
+  "Przypomnienia SMS",
+  "Zbieranie leadów",
+  "Auto follow-up",
+  "Nie wiem (dobierz za mnie)"
 ];
 
 const painPoints = [
