@@ -946,6 +946,39 @@ textarea:focus {
   margin-top: 6px;
 }
 
+.summary-row {
+  min-width: 0;
+}
+
+.summary-row strong {
+  min-width: 0;
+  max-width: 62%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary-row-description {
+  align-items: flex-start;
+}
+
+.summary-preview {
+  display: -webkit-box !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-align: left !important;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .summary-row strong {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 760px) {
   .app-shell {
     padding: 10px;
