@@ -165,7 +165,7 @@ const features = [
   "Social links",
   "Powiadomienia",
   "Auto odpowiedź (DM / WhatsApp)",
-  "Integracja z kalendarzem"
+  "Integracja z kalendarzem",
   "Automatyzacja Instagram (DM)",
   "Powiadomienia Telegram",
   "Potwierdzenie SMS",
