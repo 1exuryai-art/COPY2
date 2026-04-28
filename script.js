@@ -387,18 +387,21 @@ function updateNav() {
   } else if (state.step === 5) {
     nextBtn.disabled = state.clientSources.length === 0 || (state.clientSources.includes("Inne") && !state.clientSourcesOther.trim());
   } else if (state.step === 6) {
-    nextBtn.disabled = !state.visualStyle;
-  } else if (state.step === 7) {
-    nextBtn.disabled = state.features.length === 0;
-  } else if (state.step === 8) {
-    nextBtn.disabled = state.painPoints.length === 0;
-  } else if (state.step === 9) {
-    nextBtn.disabled = !state.projectDescription.trim();
-  } else if (state.step === 10) {
-    nextBtn.disabled = state.submitting;
-  } else {
-    nextBtn.disabled = false;
-  }
+  const hasStyle = !!state.visualStyle;
+  const hasText = state.visualDescription.trim().length > 0;
+
+  nextBtn.disabled = !(hasStyle || hasText);
+} else if (state.step === 7) {
+  nextBtn.disabled = state.features.length === 0;
+} else if (state.step === 8) {
+  nextBtn.disabled = state.painPoints.length === 0;
+} else if (state.step === 9) {
+  nextBtn.disabled = !state.projectDescription.trim();
+} else if (state.step === 10) {
+  nextBtn.disabled = state.submitting;
+} else {
+  nextBtn.disabled = false;
+}
 }
 
 function showStep(step) {
