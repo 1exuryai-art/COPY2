@@ -3969,6 +3969,31 @@
     .reveal {
       animation: fadeUp 680ms var(--ease) both;
     }
+
+    /* 👉 booking всегда поверх ВСЕГО */
+.booking-overlay {
+  position: fixed !important;
+  inset: 0;
+  z-index: 9999 !important;
+}
+
+/* 👉 сам букинг-контент */
+.booking-shell {
+  position: relative;
+  z-index: 10000;
+}
+
+/* 👉 header уходит под букинг */
+.site-header {
+  z-index: 10;
+}
+
+/* 👉 когда открыт букинг — прячем header */
+body.booking-open .site-header {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
   </style>
 </head>
 
