@@ -2475,11 +2475,12 @@
     }
 
     .booking-topbar__left {
-      display: flex !important;
-      align-items: center !important;
-      gap: 14px !important;
-      min-width: 0 !important;
-    }
+  display: grid !important;
+  grid-template-columns: 190px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 28px !important;
+  min-width: 0 !important;
+}
 
     .booking-logo-box {
       width: 86px;
