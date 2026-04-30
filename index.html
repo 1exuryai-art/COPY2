@@ -4170,11 +4170,10 @@ body.booking-open .site-header {
   background-image: url("./images/effect-data-desktop.png") !important;
 }
 
-/* база */
 .gallery-tile {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 
@@ -4182,23 +4181,23 @@ body.booking-open .site-header {
    EFFECT IMAGES — MOBILE
 ========================= */
 
-.mobile-gallery-photo.gallery-cut {
+.mobile-gallery-photo.cut {
   background-image: url("./images/effect-lead-mobile.png") !important;
 }
 
-.mobile-gallery-photo.gallery-beard {
+.mobile-gallery-photo.beard {
   background-image: url("./images/effect-flow-mobile.png") !important;
 }
 
-.mobile-gallery-photo.gallery-combo {
+.mobile-gallery-photo.combo {
   background-image: url("./images/effect-cta-mobile.png") !important;
 }
 
-.mobile-gallery-photo.gallery-shop {
+.mobile-gallery-photo.shop {
   background-image: url("./images/effect-path-mobile.png") !important;
 }
 
-.mobile-gallery-photo.gallery-detail {
+.mobile-gallery-photo.detail {
   background-image: url("./images/effect-data-mobile.png") !important;
 }
 
@@ -4206,6 +4205,13 @@ body.booking-open .site-header {
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
+}
+
+/* убрать мобильные заглушки */
+.mobile-gallery-photo::before,
+.mobile-gallery-photo::after {
+  content: none !important;
+  display: none !important;
 }
   </style>
 </head>
