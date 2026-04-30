@@ -4066,6 +4066,67 @@ body.booking-open .site-header {
 #backBtn.hidden {
   display: none !important;
 }
+
+    /* === SAFE IMAGE PATCH — НЕ ЛОМАЕТ РАЗМЕРЫ === */
+
+/* OFERTA */
+.service-visual.haircut,
+.service-img.haircut {
+  background-image: url("./images/offer-1.png") !important;
+}
+
+.service-visual.combo,
+.service-img.combo {
+  background-image: url("./images/offer-2.png") !important;
+}
+
+.service-visual.beard,
+.service-img.beard {
+  background-image: url("./images/offer-3.png") !important;
+}
+
+/* PRODUCT */
+.tymur-photo,
+.mobile-master-photo.tymur {
+  background-image: url("./images/product-1.png") !important;
+}
+
+.dima-photo,
+.mobile-master-photo.dima {
+  background-image: url("./images/product-2.png") !important;
+}
+
+.vlad-photo,
+.mobile-master-photo.vlad {
+  background-image: url("./images/product-3.png") !important;
+}
+
+/* O SYSTEMIE */
+.manifest-visual {
+  background-image: url("./images/system-vertical.png") !important;
+}
+
+/* картинка внутри блоков */
+.service-visual,
+.service-img,
+.master-photo,
+.mobile-master-photo,
+.manifest-visual {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* убираем только цифры/заглушки, размеры НЕ трогаем */
+.service-visual::before,
+.service-visual::after,
+.service-img::before,
+.service-img::after,
+.master-photo::before,
+.mobile-master-photo::before {
+  content: "" !important;
+  display: none !important;
+}
   </style>
 </head>
 
