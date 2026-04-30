@@ -1677,27 +1677,48 @@
         radial-gradient(circle at 50% 82%, rgba(139,92,246,.14), transparent 48%);
     }
 
-    .service-visual.haircut::before,
-    .service-img.haircut::before { background-image: none; }
-    .service-visual.combo::before,
-    .service-img.combo::before { background-image: none; }
-    .service-visual.beard::before,
-    .service-img.beard::before { background-image: none; }
+    /* === IMAGE SIZE SYSTEM (DESKTOP + MOBILE) === */
 
-    .service-visual.haircut::after,
-    .service-img.haircut::after {
-      content: "01";
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-family: "Sora", sans-serif;
-      font-size: 54px;
-      font-weight: 900;
-      letter-spacing: -.09em;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(56,189,248,.18), transparent 36%),
-        radial-gradient(circle at 70% 90%, rgba(139,92,246,.22), transparent 42%);
-    }
+/* ГОРИЗОНТАЛЬНЫЕ СКРИНЫ (desktop) */
+.image-wide,
+.service-visual,
+.service-img,
+.manifest-visual {
+  width: 100%;
+  max-width: 1700px;
+  aspect-ratio: 1680 / 1050;
+  border-radius: 28px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+/* ВЕРТИКАЛЬНЫЕ СКРИНЫ (mobile) */
+.image-vertical,
+.master-photo,
+.mobile-master-photo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+  border-radius: 24px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  margin: 0 auto;
+}
+
+/* ЧТОБЫ НЕ РАСТЯГИВАЛО */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
     .service-visual.combo::after,
     .service-img.combo::after {
