@@ -4213,6 +4213,26 @@ body.booking-open .site-header {
   content: none !important;
   display: none !important;
 }
+
+    /* === MOBILE PROCESS IMAGE (ONLY WHERE SECTION) === */
+
+@media (max-width: 900px) {
+  .page[data-page-view="where"] .map-glass {
+    background-image:
+      linear-gradient(rgba(5, 8, 22, 0.2), rgba(5, 8, 22, 0.4)),
+      url("./images/process-mobile.png") !important;
+
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  /* делаем стекло прозрачным, чтобы было видно картинку */
+  .page[data-page-view="where"] .map-glass::before,
+  .page[data-page-view="where"] .map-glass::after {
+    opacity: 0.2 !important;
+  }
+}
   </style>
 </head>
 
