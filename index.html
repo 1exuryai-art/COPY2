@@ -4127,6 +4127,19 @@ body.booking-open .site-header {
   content: "" !important;
   display: none !important;
 }
+
+    /* FIX: MROZOWSKI в manifest-блоке не обрезается */
+.manifest-logo-mark {
+  width: calc(100% - 24px) !important;
+  max-width: none !important;
+}
+
+.manifest-logo-mark span:first-child {
+  font-size: clamp(34px, 3.8vw, 58px) !important;
+  letter-spacing: -0.08em !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
   </style>
 </head>
 
