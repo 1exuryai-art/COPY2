@@ -4543,9 +4543,6 @@ body.booking-open .site-header {
 </head>
 
 <body>
-  <a href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos" class="portfolio-back">
-  ← Wróć do wyboru
-</a>
 
   <div class="desktop-version" id="desktop-version">
     <div class="landing-bg-orb one"></div>
@@ -5770,6 +5767,224 @@ body.booking-open .site-header {
       }
     };
 
+    const staticTranslations = {
+      pl: {
+        text: {
+          ".desktop-call-btn.top-gear-btn": "⚙",
+          ".desktop-call-btn[href^='tel:']": "Telefon",
+          "#gearMenu .gear-menu-btn[data-open-details]": "Szczegóły",
+          "#gearMenu .gear-menu-btn[href*='page=demos']": "Wróć do demo",
+          "#detailsPanel .details-head strong": "Szczegóły",
+          "#detailsPanel h3": "Co dostajesz za 600 zł?",
+          "#detailsPanel p[style*='var(--muted)']": "Podstawowa strona dla lokalnego biznesu z ofertą, usługami, cenami, FAQ, kontaktem i prostą ścieżką zapisu.",
+          "#detailsPanel p[style*='font-weight:800']": "Dodatki:",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(1)": "Strona premium pod Twój biznes",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(2)": "Oferta, usługi i ceny",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(3)": "FAQ dla klientów",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(4)": "Galeria / zdjęcia",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(5)": "Kontakt i social media",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(6)": "Rezerwacja / zapis",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(7)": "SMS / podstawowe potwierdzenie",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(8)": "Dopasowanie pod branżę",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(1)": "Własny kolor marki — od +100 zł",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(2)": "Dodatkowa sekcja — osobno",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(3)": "Instagram automatyzacja — osobno",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(4)": "Telegram powiadomienia — osobno",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(5)": "Rozbudowany booking — osobno",
+          "#detailsPanel a[href*='page=demos']": "Wróć do demo",
+          ".gallery-tile.gallery-cut span": "zbieranie zgłoszeń",
+          ".gallery-tile.gallery-beard span": "ścieżka decyzji",
+          ".gallery-tile.gallery-combo span": "mocne CTA",
+          ".gallery-tile.gallery-shop span": "jedna ścieżka klienta",
+          ".gallery-tile.gallery-detail span": "dane zgłoszenia",
+          ".mobile-gallery-card:nth-child(1) strong": "Zbieranie zgłoszeń",
+          ".mobile-gallery-card:nth-child(2) strong": "Ścieżka decyzji",
+          ".mobile-gallery-card:nth-child(3) strong": "Mocne CTA",
+          ".mobile-gallery-card:nth-child(4) strong": "Jedna ścieżka",
+          ".mobile-gallery-card:nth-child(5) strong": "Dane zgłoszenia",
+          ".mobile-master-card:nth-child(4) strong": "Formularz / zgłoszenie",
+          ".mobile-master-card:nth-child(4) p": "Krótki formularz zbiera podstawowe dane i przyspiesza kontakt.",
+          ".mobile-master-card:nth-child(4) button": "Uruchom formularz",
+          ".mobile-master-card:nth-child(5) strong": "FAQ / kontakt",
+          ".mobile-master-card:nth-child(5) p": "FAQ i kontakt porządkują decyzję klienta przed rozmową.",
+          ".mobile-master-card:nth-child(5) button": "Zobacz FAQ",
+          ".page[data-page-view='where'] .address-box strong": "JEDNA ŚCIEŻKA KLIENTA",
+          ".page[data-page-view='where'] .address-box p": "Instagram / TikTok / Google / WhatsApp / Telegram / Reklama",
+          ".page[data-page-view='where'] .map-logo-overlay span": "JEDNA ŚCIEŻKA",
+          "#faqSheet .faq-sheet__content span": "FAQ",
+          "#faqSheetTitle": "Pytanie",
+          "#faqSheetAnswer": "Odpowiedź.",
+          "#backBtn": "Wstecz",
+          "#nextBtn": "Dalej"
+        },
+        attrs: {
+          "#businessOtherInput::placeholder": "Np. fizjo, trener, studio...",
+          "#clientSourcesOtherInput::placeholder": "Np. link w bio, ulotki...",
+          "#visualDescriptionInput::placeholder": "Razem dobierzemy kolorystykę, jeśli wybierasz custom.",
+          "#projectDescriptionInput::placeholder": "Np. salon beauty, 6 usług, zapis online, ciemny styl, kontakt przez Instagram.",
+          "#bookingCloseBtn::aria-label": "Zamknij booking",
+          "#faqSheet [data-close-faq]::aria-label": "Zamknij",
+          "#detailsPanel [data-close-details]::aria-label": "Zamknij",
+          ".top-gear-btn[data-open-details]::aria-label": "Szczegóły",
+          ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Menu",
+          ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
+          ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
+          ".social-row a[href^='tel:']::aria-label": "Telefon"
+        }
+      },
+      ru: {
+        text: {
+          ".desktop-call-btn[href^='tel:']": "Телефон",
+          "#gearMenu .gear-menu-btn[data-open-details]": "Детали",
+          "#gearMenu .gear-menu-btn[href*='page=demos']": "Вернуться к демо",
+          "#detailsPanel .details-head strong": "Детали",
+          "#detailsPanel h3": "Что входит за 600 zł?",
+          "#detailsPanel p[style*='var(--muted)']": "Базовая страница для локального бизнеса с оффером, услугами, ценами, FAQ, контактом и простой воронкой записи.",
+          "#detailsPanel p[style*='font-weight:800']": "Дополнительно:",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(1)": "Премиум-страница под ваш бизнес",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(2)": "Оффер, услуги и цены",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(3)": "FAQ для клиентов",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(4)": "Галерея / фото",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(5)": "Контакт и соцсети",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(6)": "Запись / бронирование",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(7)": "SMS / базовое подтверждение",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(8)": "Адаптация под нишу",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(1)": "Фирменный цвет — от +100 zł",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(2)": "Дополнительная секция — отдельно",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(3)": "Автоматизация Instagram — отдельно",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(4)": "Уведомления Telegram — отдельно",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(5)": "Расширенный booking — отдельно",
+          "#detailsPanel a[href*='page=demos']": "Вернуться к демо",
+          ".gallery-tile.gallery-cut span": "сбор заявок",
+          ".gallery-tile.gallery-beard span": "путь решения",
+          ".gallery-tile.gallery-combo span": "сильный CTA",
+          ".gallery-tile.gallery-shop span": "один путь клиента",
+          ".gallery-tile.gallery-detail span": "данные заявки",
+          ".mobile-gallery-card:nth-child(1) strong": "Сбор заявок",
+          ".mobile-gallery-card:nth-child(2) strong": "Путь решения",
+          ".mobile-gallery-card:nth-child(3) strong": "Сильный CTA",
+          ".mobile-gallery-card:nth-child(4) strong": "Один путь",
+          ".mobile-gallery-card:nth-child(5) strong": "Данные заявки",
+          ".mobile-master-card:nth-child(4) strong": "Форма / заявка",
+          ".mobile-master-card:nth-child(4) p": "Короткая форма собирает базовые данные и ускоряет контакт.",
+          ".mobile-master-card:nth-child(4) button": "Запустить форму",
+          ".mobile-master-card:nth-child(5) strong": "FAQ / контакт",
+          ".mobile-master-card:nth-child(5) p": "FAQ и контакт упорядочивают решение клиента до разговора.",
+          ".mobile-master-card:nth-child(5) button": "Открыть FAQ",
+          ".page[data-page-view='where'] .address-box strong": "ОДИН ПУТЬ КЛИЕНТА",
+          ".page[data-page-view='where'] .address-box p": "Instagram / TikTok / Google / WhatsApp / Telegram / Реклама",
+          ".page[data-page-view='where'] .map-logo-overlay span": "ОДИН ПУТЬ",
+          "#faqSheet .faq-sheet__content span": "FAQ",
+          "#faqSheetTitle": "Вопрос",
+          "#faqSheetAnswer": "Ответ.",
+          "#backBtn": "Назад",
+          "#nextBtn": "Далее"
+        },
+        attrs: {
+          "#businessOtherInput::placeholder": "Напр. физиотерапевт, тренер, студия...",
+          "#clientSourcesOtherInput::placeholder": "Напр. ссылка в био, листовки...",
+          "#visualDescriptionInput::placeholder": "Вместе подберем цветовую схему, если выбираете custom.",
+          "#projectDescriptionInput::placeholder": "Напр. beauty-салон, 6 услуг, онлайн-запись, тёмный стиль, контакт через Instagram.",
+          "#bookingCloseBtn::aria-label": "Закрыть booking",
+          "#faqSheet [data-close-faq]::aria-label": "Закрыть",
+          "#detailsPanel [data-close-details]::aria-label": "Закрыть",
+          ".top-gear-btn[data-open-details]::aria-label": "Детали",
+          ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Меню",
+          ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
+          ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
+          ".social-row a[href^='tel:']::aria-label": "Телефон"
+        }
+      },
+      en: {
+        text: {
+          ".desktop-call-btn[href^='tel:']": "Phone",
+          "#gearMenu .gear-menu-btn[data-open-details]": "Details",
+          "#gearMenu .gear-menu-btn[href*='page=demos']": "Back to demo",
+          "#detailsPanel .details-head strong": "Details",
+          "#detailsPanel h3": "What do you get for 600 PLN?",
+          "#detailsPanel p[style*='var(--muted)']": "Base page for a local business with offer, services, prices, FAQ, contact, and a simple booking flow.",
+          "#detailsPanel p[style*='font-weight:800']": "Add-ons:",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(1)": "Premium page for your business",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(2)": "Offer, services, and prices",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(3)": "FAQ for clients",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(4)": "Gallery / photos",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(5)": "Contact and social media",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(6)": "Booking / sign-up",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(7)": "SMS / basic confirmation",
+          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(8)": "Adapted to your niche",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(1)": "Custom brand color — from +100 PLN",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(2)": "Additional section — separate pricing",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(3)": "Instagram automation — separate pricing",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(4)": "Telegram notifications — separate pricing",
+          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(5)": "Advanced booking — separate pricing",
+          "#detailsPanel a[href*='page=demos']": "Back to demo",
+          ".gallery-tile.gallery-cut span": "lead capture",
+          ".gallery-tile.gallery-beard span": "decision flow",
+          ".gallery-tile.gallery-combo span": "strong CTA",
+          ".gallery-tile.gallery-shop span": "one client path",
+          ".gallery-tile.gallery-detail span": "context data",
+          ".mobile-gallery-card:nth-child(1) strong": "Lead capture",
+          ".mobile-gallery-card:nth-child(2) strong": "Decision flow",
+          ".mobile-gallery-card:nth-child(3) strong": "Strong CTA",
+          ".mobile-gallery-card:nth-child(4) strong": "One path",
+          ".mobile-gallery-card:nth-child(5) strong": "Context data",
+          ".mobile-master-card:nth-child(4) strong": "Form / lead",
+          ".mobile-master-card:nth-child(4) p": "A short form collects basic data and speeds up contact.",
+          ".mobile-master-card:nth-child(4) button": "Launch form",
+          ".mobile-master-card:nth-child(5) strong": "FAQ / contact",
+          ".mobile-master-card:nth-child(5) p": "FAQ and contact organize client decisions before the call.",
+          ".mobile-master-card:nth-child(5) button": "Open FAQ",
+          ".page[data-page-view='where'] .address-box strong": "ONE CLIENT PATH",
+          ".page[data-page-view='where'] .address-box p": "Instagram / TikTok / Google / WhatsApp / Telegram / Ads",
+          ".page[data-page-view='where'] .map-logo-overlay span": "ONE PATH",
+          "#faqSheet .faq-sheet__content span": "FAQ",
+          "#faqSheetTitle": "Question",
+          "#faqSheetAnswer": "Answer.",
+          "#backBtn": "Back",
+          "#nextBtn": "Next"
+        },
+        attrs: {
+          "#businessOtherInput::placeholder": "E.g. physio, coach, studio...",
+          "#clientSourcesOtherInput::placeholder": "E.g. link in bio, flyers...",
+          "#visualDescriptionInput::placeholder": "We will choose the color palette together if you select custom.",
+          "#projectDescriptionInput::placeholder": "E.g. beauty salon, 6 services, online booking, dark style, contact via Instagram.",
+          "#bookingCloseBtn::aria-label": "Close booking",
+          "#faqSheet [data-close-faq]::aria-label": "Close",
+          "#detailsPanel [data-close-details]::aria-label": "Close",
+          ".top-gear-btn[data-open-details]::aria-label": "Details",
+          ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Menu",
+          ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
+          ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
+          ".social-row a[href^='tel:']::aria-label": "Phone"
+        }
+      }
+    };
+
+    function applyStaticTranslations(lang) {
+      const pack = staticTranslations[lang] || staticTranslations.pl;
+      const textMap = pack.text || {};
+      const attrMap = pack.attrs || {};
+
+      Object.entries(textMap).forEach(([selector, value]) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          const normalized = String(value).replace(/<br\s*\/?>/gi, "\n");
+          if (normalized.includes("\n")) {
+            el.innerHTML = normalized.replace(/\n/g, "<br />");
+          } else {
+            el.textContent = normalized;
+          }
+        });
+      });
+
+      Object.entries(attrMap).forEach(([selectorWithAttr, value]) => {
+        const [selector, attr] = selectorWithAttr.split("::");
+        if (!selector || !attr) return;
+        document.querySelectorAll(selector).forEach((el) => {
+          el.setAttribute(attr, value);
+        });
+      });
+    }
+
     const faqAnswersBase = {
       pl: {
         coDaje: ["Co daje?", "Strona pod biznes, oferta, usługi, FAQ, kontakt i formularz zgłoszenia w jednym miejscu. To gotowy produkt za 600 zł z możliwością dalszej rozbudowy."],
@@ -5789,13 +6004,29 @@ body.booking-open .site-header {
         coDaje: ["Что это даёт?", "Страница под бизнес, оффер, услуги, FAQ, контакт и форма заявки в одном месте. Базовый продукт за 600 zł с возможностью расширения."],
         jakDziala: ["Как это работает?", "Клиент приходит из Instagram, Google, рекламы или ссылки, видит оффер и проходит простой путь до заявки. Детали согласуем после заявки."],
         panelAdmina: ["Панель админа", "Базовая версия сосредоточена на странице и форме. Расширения вроде booking и глубокой автоматизации подключаются опционально."],
-        faq: ["FAQ", "Не нужно иметь всё готовым. Сначала выбираем направление, стиль и контент, детали дорабатываем после заявки."]
+        faq: ["FAQ", "Не нужно иметь всё готовым. Сначала выбираем направление, стиль и контент, детали дорабатываем после заявки."],
+        faqCena: ["Сколько стоит базовая страница?", "Базовая страница стоит 600 zł. В цену входят страница под бизнес, оффер, услуги и цены, FAQ, контакт, галерея, запись / бронирование и базовое SMS / подтверждение."],
+        faqKolor: ["Можно ли подобрать цвет под мой бренд?", "Да. Готовые стили доступны сразу, а индивидуальный цвет бренда можно добавить как опцию, обычно от +100 zł."],
+        faqMaterialy: ["Нужны ли готовые тексты и фото?", "Нет. Можно использовать свои материалы, но не обязательно иметь всё готовым. Сначала выбираем направление, детали дорабатываем после заявки."],
+        faqBranze: ["Подходит ли страница для разных ниш?", "Да. Систему можно адаптировать под barbershop, beauty, nails, lashes, массаж, косметологию, онлайн-услугу или другой локальный бизнес."],
+        faqBooking: ["Запись входит в цену?", "В базовый пакет входит простая воронка записи / бронирования. Более расширенный booking и дополнительные автоматизации согласуются отдельно."],
+        faqPoZgloszeniu: ["Что происходит после отправки заявки?", "После заявки я связываюсь с вами, уточняем детали, объём страницы, стиль и материалы. Не нужно идеально описывать всё с первого сообщения."],
+        faqIgAuto: ["Автоматизация Instagram входит в цену?", "Нет. Автоматизация Instagram — отдельная услуга / опция, потому что это более крупный элемент, чем сама страница."],
+        faqTelegram: ["Telegram-уведомления входят в цену?", "Базовое SMS / подтверждение может быть частью базового решения, но Telegram-уведомления и более расширенные автоматизации являются дополнительными услугами."]
       },
       en: {
         coDaje: ["What does it include?", "A business page, offer, services, FAQ, contact, and lead form in one place. Core product for 600 zł with optional expansion."],
         jakDziala: ["How does it work?", "Client comes from Instagram, Google, ads, or QR/link, sees the offer, and leaves a lead in a short flow. Details are finalized in a call."],
         panelAdmina: ["Admin panel", "The base version focuses on page + lead form. Extra automation, booking, or more sections are optional add-ons."],
-        faq: ["FAQ", "You do not need everything ready. First we choose direction, style, and content, then refine details after submission."]
+        faq: ["FAQ", "You do not need everything ready. First we choose direction, style, and content, then refine details after submission."],
+        faqCena: ["How much is the base page?", "The base page costs 600 PLN. Included: business page, offer, services and prices, FAQ, contact, gallery, booking / sign-up, and basic SMS / confirmation."],
+        faqKolor: ["Can the color match my brand?", "Yes. Ready-made styles are available immediately, and a custom brand color can be added as an extra, usually from +100 PLN."],
+        faqMaterialy: ["Do I need ready texts and photos?", "No. You can use your own materials, but you do not need everything ready. First we choose direction, then refine details after submission."],
+        faqBranze: ["Does it work for different niches?", "Yes. The system can be adapted for barbershop, beauty, nails, lashes, massage, cosmetology, online service, or another local business."],
+        faqBooking: ["Is booking included?", "The base package includes a simple booking / sign-up flow. More advanced booking or extra automations are handled separately."],
+        faqPoZgloszeniu: ["What happens after submitting?", "After submission I contact you, and we clarify details, scope, style, and materials. You do not need to describe everything perfectly right away."],
+        faqIgAuto: ["Is Instagram automation included?", "No. Instagram automation is a separate service / add-on because it is a larger element than the page itself."],
+        faqTelegram: ["Are Telegram notifications included?", "Basic SMS / confirmation can be part of the base solution, but Telegram notifications and more advanced automations are add-ons."]
       }
     };
 
@@ -5816,6 +6047,8 @@ body.booking-open .site-header {
       document.querySelectorAll(".lang-btn").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
+
+      applyStaticTranslations(lang);
 
       localStorage.setItem("lang", lang);
     }
