@@ -2683,8 +2683,6 @@ img {
 
       .app-top {
         position: relative;
-        position: sticky;
-        top: 0;
         z-index: 40;
         padding: calc(8px + var(--safe-top)) 10px 8px;
         display: grid;
@@ -2719,10 +2717,10 @@ img {
 
       .logo-pill {
         justify-self: start;
-        width: min(168px, 100%);
+        width: min(156px, 100%);
         max-width: 100%;
-        height: 42px;
-        padding: 0 8px;
+        height: 40px;
+        padding: 0 7px;
         display: grid;
         place-items: center;
         border-radius: 16px;
@@ -2760,8 +2758,8 @@ img {
         gap: 4px;
         z-index: 80;
         padding: 0;
-        margin-right: 6px;
-        transform: translateX(-4px);
+        margin-right: 10px;
+        transform: translateX(-8px);
         background: transparent;
         border-bottom: none;
       }
@@ -2883,14 +2881,14 @@ img {
       }
 
       .section-nav {
-        position: sticky;
-        top: calc(var(--safe-top) + 74px);
+        position: relative;
+        top: 0;
         z-index: 35;
         display: flex;
         gap: 8px;
         overflow-x: auto;
         overflow-y: hidden;
-        padding: 8px 12px;
+        padding: 7px 11px;
         scrollbar-width: none;
         scroll-snap-type: x proximity;
         border-bottom: 1px solid rgba(255,255,255,.065);
@@ -2907,8 +2905,8 @@ img {
       .nav-chip {
         flex: 0 0 auto;
         scroll-snap-align: start;
-        min-height: 42px;
-        padding: 0 15px;
+        min-height: 41px;
+        padding: 0 14px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -2918,7 +2916,7 @@ img {
         background: rgba(255,255,255,.045);
         box-shadow: var(--glass-highlight);
         font: inherit;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 1000;
         letter-spacing: -0.02em;
         white-space: nowrap;
@@ -3253,11 +3251,10 @@ img {
       }
 
       .mobile-dashboard-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 8px;
-  transform: translateY(-6px);
-}
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px;
+      }
 
       .mobile-mini-tile {
         min-height: 54px;
@@ -3294,6 +3291,14 @@ img {
         grid-template-columns: minmax(0, 1fr) minmax(0, .92fr) !important;
         gap: 10px !important;
         margin-top: 0 !important;
+      }
+
+      .home-actions .cta-btn,
+      .home-actions .ghost-btn {
+        white-space: normal;
+        text-align: center;
+        line-height: 1.14;
+        padding: 10px 14px;
       }
 
       .mini-stats {
@@ -3354,7 +3359,7 @@ img {
         width: 100%;
         padding: 14px;
         display: grid;
-        grid-template-rows: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
         gap: 12px;
         align-self: stretch;
         min-height: 0;
@@ -3411,7 +3416,7 @@ img {
         min-height: 0;
         padding: 14px;
         display: grid;
-        grid-template-rows: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
         gap: 12px;
         align-content: start;
       }
@@ -3420,10 +3425,16 @@ img {
         min-height: 0;
         aspect-ratio: 1 / 1;
         width: 100%;
+        max-height: 250px;
         border-radius: 18px;
         background-size: cover;
         background-position: center;
         background-position: center 30%;
+      }
+
+      .service-card > p,
+      .mobile-master-card > p {
+        margin: 0;
       }
 
       .mobile-gallery-card {
@@ -3860,13 +3871,13 @@ img {
       }
 
       .logo-pill {
-        width: min(160px, 100%);
+        width: min(148px, 100%);
         height: 40px;
         border-radius: 14px;
       }
 
       .mobile-wordmark span:first-child {
-        font-size: 17px;
+        font-size: 14px;
       }
 
       .mobile-wordmark span:last-child {
@@ -3880,7 +3891,7 @@ img {
       }
 
       .section-nav {
-        padding: 9px 10px;
+        padding: 7px 10px;
       }
 
       .nav-chip {
@@ -3891,6 +3902,10 @@ img {
 
       .page {
         padding: 12px 10px 10px;
+      }
+
+      .home-actions {
+        grid-template-columns: 1fr !important;
       }
 
       .kicker {
@@ -5270,7 +5285,7 @@ body.booking-open .site-header {
       <p style="margin:0 0 8px;color:var(--text-soft);font-weight:800;">Dodatki:</p>
       <ul class="details-list">
         <li>Własny kolor marki — od +100 zł</li>
-        <li>Dodatkowa sekcja — od +100 zł</li>
+        <li>Dodatkowa sekcja — osobno</li>
         <li>Instagram automatyzacja — osobno</li>
         <li>Telegram powiadomienia — osobno</li>
         <li>Rozbudowany booking — osobno</li>
