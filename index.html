@@ -3992,12 +3992,14 @@ img {
       }
 
       .service-card {
-        min-height: 400px;
-        grid-template-rows: 140px auto auto auto;
+        min-height: auto;
+        height: auto;
+        grid-template-rows: auto auto auto auto auto;
       }
 
       .service-img {
-        min-height: 140px;
+        min-height: 0;
+        max-height: 220px;
       }
 
       .service-card strong {
@@ -4005,12 +4007,14 @@ img {
       }
 
       .mobile-master-card {
-        min-height: 392px;
-        grid-template-rows: 165px auto auto auto;
+        min-height: auto;
+        height: auto;
+        grid-template-rows: auto auto auto auto auto;
       }
 
       .mobile-master-photo {
-        min-height: 165px;
+        min-height: 0;
+        max-height: 220px;
       }
 
       .mobile-gallery-card {
@@ -4135,6 +4139,100 @@ img {
 
       #masters .section-head {
         max-width: 1040px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .page[data-page-view="home"] .mobile-dashboard-card {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        min-height: auto !important;
+        height: auto !important;
+      }
+
+      .page[data-page-view="home"] .mobile-dashboard-row {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 10px !important;
+        transform: none !important;
+      }
+
+      .page[data-page-view="home"] .mobile-mini-tile {
+        min-height: 72px !important;
+        align-content: start !important;
+        gap: 6px !important;
+      }
+
+      .page[data-page-view="home"] .home-actions {
+        margin-top: 12px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .page[data-page-view="services"] .services-list,
+      .page[data-page-view="masters"] .masters-mobile-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        overflow: visible !important;
+      }
+
+      .page[data-page-view="services"] .service-card,
+      .page[data-page-view="masters"] .mobile-master-card {
+        width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        overflow: visible !important;
+      }
+
+      .page[data-page-view="services"] .service-img,
+      .page[data-page-view="masters"] .mobile-master-photo {
+        width: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: 230px !important;
+        position: relative !important;
+        margin: 0 !important;
+      }
+
+      .page[data-page-view="services"] .service-card > .service-card-header,
+      .page[data-page-view="services"] .service-card > p,
+      .page[data-page-view="services"] .service-card > .tags,
+      .page[data-page-view="services"] .service-card > .mobile-card-btn,
+      .page[data-page-view="masters"] .mobile-master-card > strong,
+      .page[data-page-view="masters"] .mobile-master-card > p,
+      .page[data-page-view="masters"] .mobile-master-card > .tags,
+      .page[data-page-view="masters"] .mobile-master-card > .mobile-card-btn {
+        position: static !important;
+        transform: none !important;
+        margin: 0 !important;
+      }
+
+      .page[data-page-view="services"] .tags,
+      .page[data-page-view="masters"] .tags {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+
+      .page[data-page-view="services"] .mobile-card-btn,
+      .page[data-page-view="masters"] .mobile-card-btn {
+        width: 100% !important;
+        margin-top: 12px !important;
+        position: static !important;
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .page[data-page-view="home"] .home-actions {
+        grid-template-columns: 1fr !important;
       }
     }
 
