@@ -2432,6 +2432,51 @@ img {
       line-height: 1.72;
     }
 
+    /* Desktop details panel */
+    .details-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 360;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: rgba(5, 8, 22, 0.58);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 200ms ease, visibility 200ms ease;
+    }
+
+    .details-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .details-panel {
+      position: fixed;
+      top: calc(var(--safe-top) + 92px);
+      right: 18px;
+      z-index: 370;
+      width: min(440px, calc(100vw - 36px));
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(20px) scale(.98);
+      transition: transform 220ms var(--ease), opacity 220ms ease, visibility 220ms ease;
+    }
+
+    .details-panel.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(0) scale(1);
+    }
+
+    .details-card {
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+    }
+
     .booking-overlay {
       position: fixed;
       inset: 0;
@@ -2451,6 +2496,37 @@ img {
 
     .booking-overlay.open {
       display: flex;
+    }
+
+    @media (min-width: 901px) {
+      #gallery {
+        display: none !important;
+      }
+
+      .pricing-card {
+        min-height: 520px;
+        grid-template-rows: 190px auto auto auto;
+      }
+
+      .master-card {
+        min-height: 540px;
+        grid-template-rows: 250px auto auto auto;
+      }
+
+      .master-card > div:nth-child(2) {
+        display: grid;
+        gap: 10px;
+        align-content: start;
+      }
+
+      .pricing-card__content {
+        gap: 10px;
+        align-content: start;
+      }
+
+      .master-book-btn {
+        margin-top: 8px;
+      }
     }
 
     .booking-shell {
@@ -4794,8 +4870,8 @@ body.booking-open .site-header {
               <div class="section-head center">
                 <div class="section-chip" data-i18n="pricingChip">OFERTA</div>
                 <h2>
-                  <span data-i18n="pricingTitle1">Podstawowa strona</span>
-                  <span data-i18n="pricingTitle2">600 zł.</span>
+                  <span data-i18n="pricingTitle1">Rozbudowana strona</span>
+                  <span data-i18n="pricingTitle2">za 600 zł.</span>
                 </h2>
                 <p data-i18n="pricingSub">W cenie: strona landingowa pod biznes, dopasowanie tekstów pod branżę, wybór stylu, oferta/usługi, FAQ, kontakt, formularz zgłoszenia i podstawowe wdrożenie.</p>
               </div>
@@ -4857,8 +4933,8 @@ body.booking-open .site-header {
               <div class="section-head">
                 <div class="section-chip" data-i18n="productChip">PRODUKT</div>
                 <h2>
-                  <span data-i18n="productTitle1">To, co było barberami,</span>
-                  <span data-i18n="productTitle2">teraz jest funkcją systemu.</span>
+                  <span data-i18n="productTitle1">Gotowy system,</span>
+                  <span data-i18n="productTitle2">dla lokalnego biznesu.</span>
                 </h2>
                 <p data-i18n="productSub">Zostaje ten sam sprawdzony layout i te same karty. Zmieniamy tylko sens: z tych elementów na elementy twojego produktu.</p>
               </div>
@@ -5054,9 +5130,23 @@ body.booking-open .site-header {
                   <p class="contact-note" data-i18n="contactNote">Premium strona, ścieżka zgłoszenia i system dla lokalnych biznesów.</p>
 
                   <div class="social-icons">
-                    <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">IG</a>
-                    <a class="social-icon" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TikTok</a>
-                    <a class="social-icon" href="tel:+48532377701">TEL</a>
+                    <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm8.2 1.9H8c-2.3 0-4.1 1.8-4.1 4.1V16c0 2.3 1.8 4.1 4.1 4.1H16c2.3 0 4.1-1.8 4.1-4.1V8c0-2.3-1.8-4.1-4.1-4.1z"></path>
+                        <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.9a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2z"></path>
+                        <circle cx="17.3" cy="6.7" r="1.2"></circle>
+                      </svg>
+                    </a>
+                    <a class="social-icon" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14.3 3h2.2c.2 1.2.9 2.2 1.9 2.9.9.7 2.1 1.1 3.3 1.1v2.3c-1.4 0-2.8-.4-4-1.1-.5-.3-1-.7-1.4-1.1V15c0 3.7-2.9 6.5-6.5 6.5-1.3 0-2.6-.4-3.7-1.1A6.43 6.43 0 0 1 3 15c0-3.6 2.9-6.5 6.5-6.5.3 0 .6 0 .9.1V11c-.3-.1-.6-.1-.9-.1-2.3 0-4.1 1.8-4.1 4.1S7.2 19 9.5 19s4.1-1.8 4.1-4.1V3z"></path>
+                      </svg>
+                    </a>
+                    <a class="social-icon" href="tel:+48532377701" aria-label="Telefon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6.6 2h3.1c.5 0 .9.3 1.1.8l1.1 3.6c.1.4 0 .8-.3 1.1L9.8 9.2c.8 1.7 2.2 3.1 3.9 3.9l1.7-1.8c.3-.3.7-.4 1.1-.3l3.6 1.1c.5.2.8.6.8 1.1v3.1c0 .7-.6 1.3-1.3 1.3C10 21.6 2.4 14 2.4 4.3 2.4 3.6 2.9 3 3.6 3h3z"></path>
+                      </svg>
+                    </a>
                   </div>
 
                   <button class="btn btn-primary section-button-full" type="button" data-open-booking data-i18n="startNow">Zostaw zgłoszenie</button>
@@ -5772,6 +5862,10 @@ body.booking-open .site-header {
         text: {
           ".desktop-call-btn.top-gear-btn": "⚙",
           ".desktop-call-btn[href^='tel:']": "Telefon",
+          "[data-i18n='pricingTitle1']": "Rozbudowana strona",
+          "[data-i18n='pricingTitle2']": "za 600 zł.",
+          "[data-i18n='productTitle1']": "Gotowy system,",
+          "[data-i18n='productTitle2']": "dla lokalnego biznesu.",
           "#gearMenu .gear-menu-btn[data-open-details]": "Szczegóły",
           "#gearMenu .gear-menu-btn[href*='page=demos']": "Wróć do demo",
           "#detailsPanel .details-head strong": "Szczegóły",
@@ -5829,12 +5923,19 @@ body.booking-open .site-header {
           ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Menu",
           ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
           ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-row a[href^='tel:']::aria-label": "Telefon"
+          ".social-row a[href^='tel:']::aria-label": "Telefon",
+          ".social-icons a[aria-label='Instagram']::aria-label": "Instagram",
+          ".social-icons a[aria-label='TikTok']::aria-label": "TikTok",
+          ".social-icons a[href^='tel:']::aria-label": "Telefon"
         }
       },
       ru: {
         text: {
           ".desktop-call-btn[href^='tel:']": "Телефон",
+          "[data-i18n='pricingTitle1']": "Расширенная страница",
+          "[data-i18n='pricingTitle2']": "за 600 zł.",
+          "[data-i18n='productTitle1']": "Готовая система,",
+          "[data-i18n='productTitle2']": "для локального бизнеса.",
           "#gearMenu .gear-menu-btn[data-open-details]": "Детали",
           "#gearMenu .gear-menu-btn[href*='page=demos']": "Вернуться к демо",
           "#detailsPanel .details-head strong": "Детали",
@@ -5892,12 +5993,19 @@ body.booking-open .site-header {
           ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Меню",
           ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
           ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-row a[href^='tel:']::aria-label": "Телефон"
+          ".social-row a[href^='tel:']::aria-label": "Телефон",
+          ".social-icons a[aria-label='Instagram']::aria-label": "Instagram",
+          ".social-icons a[aria-label='TikTok']::aria-label": "TikTok",
+          ".social-icons a[href^='tel:']::aria-label": "Телефон"
         }
       },
       en: {
         text: {
           ".desktop-call-btn[href^='tel:']": "Phone",
+          "[data-i18n='pricingTitle1']": "Expanded page",
+          "[data-i18n='pricingTitle2']": "for 600 PLN.",
+          "[data-i18n='productTitle1']": "Ready system,",
+          "[data-i18n='productTitle2']": "for local business.",
           "#gearMenu .gear-menu-btn[data-open-details]": "Details",
           "#gearMenu .gear-menu-btn[href*='page=demos']": "Back to demo",
           "#detailsPanel .details-head strong": "Details",
@@ -5955,7 +6063,10 @@ body.booking-open .site-header {
           ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Menu",
           ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
           ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-row a[href^='tel:']::aria-label": "Phone"
+          ".social-row a[href^='tel:']::aria-label": "Phone",
+          ".social-icons a[aria-label='Instagram']::aria-label": "Instagram",
+          ".social-icons a[aria-label='TikTok']::aria-label": "TikTok",
+          ".social-icons a[href^='tel:']::aria-label": "Phone"
         }
       }
     };
