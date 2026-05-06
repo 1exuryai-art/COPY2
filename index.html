@@ -1687,34 +1687,6 @@
 
     /* === IMAGE SIZE SYSTEM (DESKTOP + MOBILE) === */
 
-/* ГОРИЗОНТАЛЬНЫЕ СКРИНЫ (desktop) */ 
-    {
-  width: 100%;
-  max-width: 1700px;
-  aspect-ratio: 1680 / 1050;
-  border-radius: 28px;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  overflow: hidden;
-}
-
-/* ВЕРТИКАЛЬНЫЕ СКРИНЫ (mobile) */
-{
-  width: 100%;
-  max-width: 420px;
-  aspect-ratio: 9 / 16;
-  border-radius: 24px;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  margin: 0 auto;
-}
-
 /* ЧТОБЫ НЕ РАСТЯГИВАЛО */
 img {
   width: 100%;
@@ -2377,6 +2349,11 @@ img {
       display: flex;
     }
 
+    .faq-sheet[aria-hidden="true"] {
+      display: none !important;
+      pointer-events: none !important;
+    }
+
     .faq-sheet__backdrop {
       position: absolute;
       inset: 0;
@@ -2795,10 +2772,14 @@ img {
         z-index: 260;
         transform: translateX(-104%);
         transition: transform 260ms var(--ease);
+        pointer-events: none;
+        visibility: hidden;
       }
 
       .details-panel.open {
         transform: translateX(0);
+        pointer-events: auto;
+        visibility: visible;
       }
 
       .details-overlay {
@@ -2810,12 +2791,18 @@ img {
         -webkit-backdrop-filter: blur(6px);
         opacity: 0;
         pointer-events: none;
+        visibility: hidden;
         transition: opacity 220ms ease;
       }
 
       .details-overlay.open {
         opacity: 1;
         pointer-events: auto;
+        visibility: visible;
+      }
+
+      .details-overlay:not(.open) {
+        pointer-events: none !important;
       }
 
       .details-card {
@@ -2855,30 +2842,41 @@ img {
 
       .gear-menu {
         position: absolute;
-        top: calc(100% + 6px);
+        top: calc(100% + 8px);
         left: 8px;
-        z-index: 70;
-        min-width: 168px;
-        padding: 6px;
-        border-radius: 14px;
+        z-index: 90;
+        width: min(220px, calc(100vw - 24px));
+        min-width: 190px;
+        padding: 8px;
+        border-radius: 18px;
         border: 1px solid rgba(255,255,255,.1);
-        background: linear-gradient(180deg, rgba(8,11,28,.96), rgba(8,11,28,.9));
-        box-shadow: var(--shadow-sm), var(--glass-highlight);
+        background:
+          radial-gradient(circle at 20% 0%, rgba(139,92,246,.17), transparent 48%),
+          linear-gradient(180deg, rgba(8,11,28,.96), rgba(8,11,28,.9));
+        box-shadow: 0 14px 34px rgba(0,0,0,.34), var(--glass-highlight);
         display: none;
+        pointer-events: none;
       }
 
       .gear-menu.open {
         display: grid;
-        gap: 6px;
+        gap: 8px;
+        pointer-events: auto;
       }
 
       .gear-menu-btn {
-        min-height: 36px;
-        border-radius: 10px;
+        min-height: 44px;
+        border-radius: 14px;
         border: 1px solid rgba(255,255,255,.08);
         background: rgba(255,255,255,.04);
         color: var(--text-soft);
-        font-weight: 800;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: .01em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
       }
 
       .section-nav {
@@ -3382,6 +3380,11 @@ img {
         cursor: pointer;
       }
 
+      .service-card .mobile-card-btn,
+      .mobile-master-card .mobile-card-btn {
+        margin-top: 16px;
+      }
+
       .mobile-master-card {
         width: 100%;
         min-height: 0;
@@ -3689,12 +3692,19 @@ img {
       }
 
       .social-row a {
-        width: auto;
+        width: 100%;
         min-height: 56px;
         height: 56px;
         display: grid;
         place-items: center;
         border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .social-row a svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
       }
 
       .booking-overlay {
@@ -4109,12 +4119,17 @@ img {
   position: fixed !important;
   inset: 0;
   z-index: 9999 !important;
+  pointer-events: none;
 }
 
 /* 👉 сам букинг-контент */
 .booking-shell {
   position: relative;
   z-index: 10000;
+}
+
+.booking-overlay.open {
+  pointer-events: auto;
 }
 
 /* 👉 header уходит под букинг */
@@ -5172,13 +5187,26 @@ body.booking-open .site-header {
 
           <div class="dual-actions">
             <button class="cta-btn" type="button" data-open-booking data-i18n="startNow">Zostaw zgłoszenie</button>
-            <a class="ghost-btn" href="tel:+48532377701">Telefon</a>
           </div>
 
           <div class="social-row">
-            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
-            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
-            <a href="tel:+48532377701" aria-label="Telefon">📞</a>
+            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm8.2 1.9H8c-2.3 0-4.1 1.8-4.1 4.1V16c0 2.3 1.8 4.1 4.1 4.1H16c2.3 0 4.1-1.8 4.1-4.1V8c0-2.3-1.8-4.1-4.1-4.1z"></path>
+                <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.9a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2z"></path>
+                <circle cx="17.3" cy="6.7" r="1.2"></circle>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.3 3h2.2c.2 1.2.9 2.2 1.9 2.9.9.7 2.1 1.1 3.3 1.1v2.3c-1.4 0-2.8-.4-4-1.1-.5-.3-1-.7-1.4-1.1V15c0 3.7-2.9 6.5-6.5 6.5-1.3 0-2.6-.4-3.7-1.1A6.43 6.43 0 0 1 3 15c0-3.6 2.9-6.5 6.5-6.5.3 0 .6 0 .9.1V11c-.3-.1-.6-.1-.9-.1-2.3 0-4.1 1.8-4.1 4.1S7.2 19 9.5 19s4.1-1.8 4.1-4.1V3z"></path>
+              </svg>
+            </a>
+            <a href="tel:+48532377701" aria-label="Telefon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.6 2h3.1c.5 0 .9.3 1.1.8l1.1 3.6c.1.4 0 .8-.3 1.1L9.8 9.2c.8 1.7 2.2 3.1 3.9 3.9l1.7-1.8c.3-.3.7-.4 1.1-.3l3.6 1.1c.5.2.8.6.8 1.1v3.1c0 .7-.6 1.3-1.3 1.3C10 21.6 2.4 14 2.4 4.3 2.4 3.6 2.9 3 3.6 3h3z"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </section>
@@ -5748,6 +5776,16 @@ body.booking-open .site-header {
           closeGearMenu();
         }
       });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+          closeGearMenu();
+          closeDetails();
+          closeFaq();
+        }
+      });
+      document.querySelectorAll("#gearMenu .gear-menu-btn").forEach(item => {
+        item.addEventListener("click", () => closeGearMenu());
+      });
     }
 
     function bindMobileNavigation() {
@@ -5755,6 +5793,8 @@ body.booking-open .site-header {
       const pages = document.querySelectorAll(".page");
 
       function activatePage(pageName) {
+        closeGearMenu();
+        closeDetails();
         chips.forEach(item => {
           item.classList.toggle("active", item.dataset.page === pageName);
         });
