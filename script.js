@@ -1,225 +1,97 @@
 const API_BASE = "";
-const TOTAL_STEPS = 11;
+const TOTAL_STEPS = 9;
 
 const stepMeta = [
-  {
-    title: "Zostaw kontakt",
-    subtitle: "Po zgłoszeniu ustalimy szczegóły w rozmowie."
-  },
-  {
-    title: "Jaki biznes chcesz pokazać?",
-    subtitle: "Wybierz typ biznesu."
-  },
-  {
-    title: "Jaki styl strony Ci się podoba?",
-    subtitle: "Wybierz 1 z 3 stylów albo kolor custom."
-  },
-  {
-    title: "Co ma być na stronie?",
-    subtitle: "Zaznacz elementy strony."
-  },
-  {
-    title: "Czy masz materiały?",
-    subtitle: "Zaznacz, co już masz."
-  },
-  {
-    title: "Skąd klient ma trafić?",
-    subtitle: "Instagram, Google, reklama albo inne wejścia."
-  },
-  {
-    title: "Funkcje strony",
-    subtitle: "Zaznacz elementy, które mają znaleźć się w systemie."
-  },
-  {
-    title: "Co teraz nie działa?",
-    subtitle: "Pokażemy, co system ma naprawić."
-  },
-  {
-    title: "Opis projektu",
-    subtitle: "Opisz krótko, co chcesz zbudować."
-  },
-  {
-    title: "Podsumowanie briefu",
-    subtitle: "Sprawdź dane przed wysłaniem."
-  },
-  {
-    title: "Brief zapisany",
-    subtitle: "Wracam z propozycją systemu pod Twój biznes."
-  }
+  { title: "Jaki masz typ biznesu?", subtitle: "Wybierz branżę. Szczegóły ustalimy po zgłoszeniu." },
+  { title: "Skąd przychodzą klienci?", subtitle: "Możesz wybrać kilka źródeł." },
+  { title: "Jaki styl strony Cię interesuje?", subtitle: "3 gotowe style lub własny kolor." },
+  { title: "Co ma zawierać podstawowa strona?", subtitle: "Pakiet 600 zł + opcjonalne dodatki." },
+  { title: "Ile sekcji mniej więcej potrzebujesz?", subtitle: "Jeśli nie wiesz, dobierzemy razem." },
+  { title: "Jak się z Tobą skontaktować?", subtitle: "Podaj minimum telefon lub Instagram." },
+  { title: "Krótko opisz, czego potrzebujesz", subtitle: "Ten krok jest opcjonalny." },
+  { title: "Podsumowanie zgłoszenia", subtitle: "Sprawdź dane przed wysłaniem." },
+  { title: "Zgłoszenie zapisane", subtitle: "Wracam z odpowiedzią i propozycją wdrożenia." }
 ];
 
-const projectGoals = [
-  {
-    id: "form-page",
-    title: "Strona z formularzem",
-    description: "Prosta strona, która zbiera zgłoszenia od klientów."
-  },
-  {
-    id: "landing-brief",
-    title: "Landing + ankieta",
-    description: "Strona sprzedażowa połączona z krótkim briefem."
-  },
-  {
-    id: "lead-system",
-    title: "System zgłoszeń",
-    description: "Struktura, która porządkuje zapytania i automatyzuje kontakt."
-  },
-  {
-    id: "consulting",
-    title: "Nie wiem — chcę doradztwa",
-    description: "Doradzimy, co ma największy sens dla Twojego biznesu."
-  }
-];
-
-const projectFormats = [
-  {
-    id: "template",
-    badge: "Szybki start",
-    title: "Template",
-    price: "od 600 zł",
-    description: "Szybka strona na sprawdzonej strukturze. Dopasowujemy teksty, kolory i ofertę."
-  },
-  {
-    id: "custom",
-    badge: "Indywidualnie",
-    title: "Custom",
-    price: "wycena indywidualna",
-    description: "Projekt dopasowany pod Twój biznes, styl i klienta. Więcej strategii i customu."
-  }
-];
-
+const sectionCountOptions = ["4-5", "6-7", "8+", "Nie wiem, dobierzemy razem"];
 const businessTypes = ["Barbershop", "Beauty", "Nails", "Lashes / brows", "Masaż", "Kosmetologia", "Online usługa", "Inny"];
-
-const clientSources = [
-  "Instagram",
-  "TikTok",
-  "Google",
-  "WhatsApp",
-  "Telegram",
-  "Reklamy",
-  "Polecenia",
-  "Inne"
-];
+const clientSources = ["Instagram", "TikTok", "Google", "WhatsApp", "Telegram", "Reklama", "Polecenia", "Jeszcze nie wiem"];
 
 const visualStyles = [
-  {
-    id: "orange-black",
-    title: "Pomarańczowo-czarny",
-    icons: "🟠 + ⬛",
-    emoji: "🟠",
-    description: "Ciepły kontrast: orange + black"
-  },
-  {
-    id: "white-blue",
-    title: "Biało-niebieski",
-    icons: "⚪ + 🔵",
-    emoji: "🔵",
-    description: "Jasny i czysty: white + blue"
-  },
-  {
-    id: "dark-violet",
-    title: "Ciemno-fioletowy",
-    icons: "🟣",
-    emoji: "🟣",
-    description: "Premium dark violet"
-  },
-  {
-    id: "wlasny",
-    title: "Dodatkowy kolor (custom)",
-    icons: "❓",
-    emoji: "❓",
-    description: "Pole konsultacji: razem dobierzemy kolorystykę, bo to custom."
-  }
+  { id: "orange-black", title: "Orange / black", icons: "🟠 + ⬛", emoji: "🟠", description: "Ciepły kontrast" },
+  { id: "white-blue", title: "White / blue", icons: "⚪ + 🔵", emoji: "🔵", description: "Jasny i czysty" },
+  { id: "dark-violet", title: "Dark violet", icons: "🟣", emoji: "🟣", description: "Premium dark violet" },
+  { id: "wlasny", title: "Chcę własny kolor", icons: "🎨", emoji: "🎨", description: "Dobierzemy na konsultacji" }
 ];
 
-const features = ["Oferta", "Usługi i ceny", "FAQ", "Galeria", "Kontakt", "Formularz", "Rezerwacja / zapis"];
-
-const painPoints = ["Mam zdjęcia", "Mam logo", "Mam teksty", "Nie mam, potrzebuję pomocy"];
+const features = [
+  { label: "Oferta", type: "included" },
+  { label: "Usługi i ceny", type: "included" },
+  { label: "FAQ", type: "included" },
+  { label: "Galeria", type: "included" },
+  { label: "Rezerwacja / zapis", type: "included" },
+  { label: "Kontakt", type: "included" },
+  { label: "SMS / potwierdzenie", type: "included" },
+  { label: "Własny kolor marki (+100 zł)", type: "addon" },
+  { label: "Instagram automatyzacja", type: "addon" },
+  { label: "Telegram powiadomienia", type: "addon" },
+  { label: "Dodatkowa sekcja (+100 zł)", type: "addon" },
+  { label: "Rozbudowany booking", type: "addon" }
+];
 
 const state = {
   step: 1,
-
   name: "",
   phone: "+48 ",
   contactExtra: "",
-
-  projectGoal: "",
-  projectFormat: "",
-
+  sectionCount: "",
   businessType: "",
   businessOther: "",
-
   clientSources: [],
   clientSourcesOther: "",
-
   visualStyle: "",
   visualDescription: "",
-
   features: [],
-
-  painPoints: [],
-  painDescription: "",
-
   projectDescription: "",
-
   submitting: false
 };
 
 const steps = [...document.querySelectorAll(".step")];
-
 const progressFill = document.getElementById("progressFill");
 const progressText = document.getElementById("progressText");
 const stepPill = document.getElementById("stepPill");
 const stepTitle = document.getElementById("stepTitle");
 const stepSubtitle = document.getElementById("stepSubtitle");
-
 const backBtn = document.getElementById("backBtn");
 const nextBtn = document.getElementById("nextBtn");
 
 const nameInput = document.getElementById("nameInput");
 const phoneInput = document.getElementById("phoneInput");
 const contactExtraInput = document.getElementById("contactExtraInput");
-
 const nameError = document.getElementById("nameError");
 const phoneError = document.getElementById("phoneError");
 
 const projectGoalGrid = document.getElementById("projectGoalGrid");
-const projectFormatGrid = document.getElementById("projectFormatGrid");
-
 const businessTypeGrid = document.getElementById("businessTypeGrid");
 const businessOtherBox = document.getElementById("businessOtherBox");
 const businessOtherInput = document.getElementById("businessOtherInput");
-
 const clientSourcesGrid = document.getElementById("clientSourcesGrid");
 const clientSourcesOtherBox = document.getElementById("clientSourcesOtherBox");
 const clientSourcesOtherInput = document.getElementById("clientSourcesOtherInput");
-
 const visualStyleGrid = document.getElementById("visualStyleGrid");
 const visualDescriptionInput = document.getElementById("visualDescriptionInput");
-
 const featuresGrid = document.getElementById("featuresGrid");
-
-const painPointsGrid = document.getElementById("painPointsGrid");
-const painDescriptionInput = document.getElementById("painDescriptionInput");
-
 const projectDescriptionInput = document.getElementById("projectDescriptionInput");
-
 const submitError = document.getElementById("submitError");
 
 function normalizePhone(value) {
   let digits = String(value || "").replace(/\D/g, "");
-
-  if (digits.startsWith("48")) {
-    digits = digits.slice(2);
-  }
-
+  if (digits.startsWith("48")) digits = digits.slice(2);
   digits = digits.slice(0, 9);
-
   let result = "+48";
   if (digits.length > 0) result += ` ${digits.slice(0, 3)}`;
   if (digits.length > 3) result += ` ${digits.slice(3, 6)}`;
   if (digits.length > 6) result += ` ${digits.slice(6, 9)}`;
-
   return result === "+48" ? "+48 " : result;
 }
 
@@ -232,38 +104,19 @@ function isValidPhone(value) {
   return digits.length === 11 && digits.startsWith("48");
 }
 
-function getLabelById(list, id) {
-  const item = list.find((entry) => entry.id === id);
-  return item?.title || "—";
+function listText(values) {
+  if (!Array.isArray(values) || values.length === 0) return "—";
+  return values.join(", ");
 }
 
 function getBusinessLabel() {
-  if (state.businessType === "Inny") {
-    return state.businessOther.trim() || "Inne";
-  }
-
+  if (state.businessType === "Inny") return state.businessOther.trim() || "Inny";
   return state.businessType || "—";
-}
-
-function getProjectGoalLabel() {
-  return getLabelById(projectGoals, state.projectGoal);
-}
-
-function getProjectFormatLabel() {
-  const format = projectFormats.find((item) => item.id === state.projectFormat);
-  if (!format) return "—";
-  return `${format.title} — ${format.price}`;
 }
 
 function getVisualStyleLabel() {
   const style = visualStyles.find((item) => item.id === state.visualStyle);
-  if (!style) return "—";
-  return `${style.emoji} ${style.title}`;
-}
-
-function listText(values) {
-  if (!Array.isArray(values) || values.length === 0) return "—";
-  return values.join(", ");
+  return style ? style.title : "—";
 }
 
 function updateBindings() {
@@ -271,19 +124,15 @@ function updateBindings() {
     name: state.name || "—",
     phone: state.phone || "—",
     contactExtra: state.contactExtra || "—",
-    projectGoal: getProjectGoalLabel(),
-    projectFormat: getProjectFormatLabel(),
+    projectGoal: state.sectionCount || "—",
     businessType: getBusinessLabel(),
     clientSources: listText(
-      state.clientSources.includes("Inne") && state.clientSourcesOther.trim()
-        ? [...state.clientSources.filter((item) => item !== "Inne"), state.clientSourcesOther.trim()]
+      state.clientSources.includes("Jeszcze nie wiem") && state.clientSourcesOther.trim()
+        ? [...state.clientSources.filter((item) => item !== "Jeszcze nie wiem"), state.clientSourcesOther.trim()]
         : state.clientSources
     ),
     visualStyle: getVisualStyleLabel(),
-    visualDescription: state.visualDescription || "—",
     features: listText(state.features),
-    painPoints: listText(state.painPoints),
-    painDescription: state.painDescription || "—",
     projectDescription: state.projectDescription || "—"
   };
 
@@ -296,18 +145,16 @@ function updateBindings() {
 
 function updateHeader() {
   const meta = stepMeta[state.step - 1];
-
   stepTitle.textContent = meta.title;
   stepSubtitle.textContent = meta.subtitle;
   stepPill.textContent = `${state.step} / ${TOTAL_STEPS}`;
-
   const percent = Math.round((state.step / TOTAL_STEPS) * 100);
   progressFill.style.width = `${percent}%`;
   progressText.textContent = `${percent}%`;
 }
 
 function updateNav() {
-  if (state.step === 11) {
+  if (state.step === 9) {
     backBtn.classList.add("hidden");
     nextBtn.classList.add("hidden");
     return;
@@ -315,44 +162,24 @@ function updateNav() {
 
   backBtn.classList.remove("hidden");
   nextBtn.classList.remove("hidden");
-
   backBtn.style.visibility = state.step === 1 ? "hidden" : "visible";
-
   nextBtn.classList.remove("pulse");
-
-  if (state.step === 10) {
-    nextBtn.textContent = state.submitting ? "Wysyłanie..." : "Wyślij brief";
-    nextBtn.classList.add("pulse");
-  } else {
-    nextBtn.textContent = "Dalej";
-  }
+  nextBtn.textContent = state.step === 8 ? (state.submitting ? "Wysyłanie..." : "Wyślij brief") : "Dalej";
+  if (state.step === 8) nextBtn.classList.add("pulse");
 
   if (state.step === 1) {
-    nextBtn.disabled = !(isValidName(state.name) && isValidPhone(state.phone));
+    nextBtn.disabled = !state.businessType || (state.businessType === "Inny" && !state.businessOther.trim());
   } else if (state.step === 2) {
-    nextBtn.disabled = !state.projectGoal;
+    nextBtn.disabled = state.clientSources.length === 0 || (state.clientSources.includes("Jeszcze nie wiem") && !state.clientSourcesOther.trim());
   } else if (state.step === 3) {
-    nextBtn.disabled = !state.projectFormat;
+    nextBtn.disabled = !state.visualStyle;
   } else if (state.step === 4) {
-    nextBtn.disabled =
-      !state.businessType ||
-      (state.businessType === "Inne" && !state.businessOther.trim());
-  } else if (state.step === 5) {
-    nextBtn.disabled =
-      state.clientSources.length === 0 ||
-      (state.clientSources.includes("Inne") && !state.clientSourcesOther.trim());
-  } else if (state.step === 6) {
-    const hasStyle = !!state.visualStyle;
-    const hasText = state.visualDescription.trim().length > 0;
-
-    nextBtn.disabled = !hasStyle;
-  } else if (state.step === 7) {
     nextBtn.disabled = state.features.length === 0;
+  } else if (state.step === 5) {
+    nextBtn.disabled = !state.sectionCount;
+  } else if (state.step === 6) {
+    nextBtn.disabled = !isValidName(state.name) || !(isValidPhone(state.phone) || state.contactExtra.trim().length > 2);
   } else if (state.step === 8) {
-    nextBtn.disabled = state.painPoints.length === 0;
-  } else if (state.step === 9) {
-    nextBtn.disabled = !state.projectDescription.trim();
-  } else if (state.step === 10) {
     nextBtn.disabled = state.submitting;
   } else {
     nextBtn.disabled = false;
@@ -361,35 +188,11 @@ function updateNav() {
 
 function showStep(step) {
   state.step = step;
-
-  steps.forEach((section) => {
-    section.classList.toggle("active", Number(section.dataset.step) === step);
-  });
-
+  steps.forEach((section) => section.classList.toggle("active", Number(section.dataset.step) === step));
   updateHeader();
   updateBindings();
   updateNav();
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-
-function createOptionCard({ title, description, badge, price, active, onClick }) {
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = `option-card ${active ? "selected active" : ""}`;
-
-  button.innerHTML = `
-    ${badge ? `<span class="option-badge">${badge}</span>` : ""}
-    <strong>${title}</strong>
-    ${price ? `<span class="option-price">${price}</span>` : ""}
-    ${description ? `<p>${description}</p>` : ""}
-  `;
-
-  button.addEventListener("click", onClick);
-  return button;
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function createPill({ label, active, onClick }) {
@@ -401,44 +204,21 @@ function createPill({ label, active, onClick }) {
   return button;
 }
 
-function renderProjectGoals() {
-  if (!projectGoalGrid) return;
-
-  projectGoalGrid.innerHTML = "";
-
-  projectGoals.forEach((goal) => {
-    projectGoalGrid.appendChild(
-      createOptionCard({
-        title: goal.title,
-        description: goal.description,
-        active: state.projectGoal === goal.id,
-        onClick: () => {
-          state.projectGoal = goal.id;
-          renderProjectGoals();
-          updateBindings();
-          updateNav();
-        }
-      })
-    );
-  });
+function toggleArrayValue(array, value) {
+  return array.includes(value) ? array.filter((item) => item !== value) : [...array, value];
 }
 
-function renderProjectFormats() {
-  if (!projectFormatGrid) return;
-
-  projectFormatGrid.innerHTML = "";
-
-  projectFormats.forEach((format) => {
-    projectFormatGrid.appendChild(
-      createOptionCard({
-        title: format.title,
-        badge: format.badge,
-        price: format.price,
-        description: format.description,
-        active: state.projectFormat === format.id,
+function renderSectionCount() {
+  if (!projectGoalGrid) return;
+  projectGoalGrid.innerHTML = "";
+  sectionCountOptions.forEach((option) => {
+    projectGoalGrid.appendChild(
+      createPill({
+        label: option,
+        active: state.sectionCount === option,
         onClick: () => {
-          state.projectFormat = format.id;
-          renderProjectFormats();
+          state.sectionCount = option;
+          renderSectionCount();
           updateBindings();
           updateNav();
         }
@@ -449,9 +229,7 @@ function renderProjectFormats() {
 
 function renderBusinessTypes() {
   if (!businessTypeGrid) return;
-
   businessTypeGrid.innerHTML = "";
-
   businessTypes.forEach((type) => {
     businessTypeGrid.appendChild(
       createPill({
@@ -459,12 +237,10 @@ function renderBusinessTypes() {
         active: state.businessType === type,
         onClick: () => {
           state.businessType = type;
-
           if (type !== "Inny") {
             state.businessOther = "";
             if (businessOtherInput) businessOtherInput.value = "";
           }
-
           renderBusinessTypes();
           updateBindings();
           updateNav();
@@ -472,25 +248,12 @@ function renderBusinessTypes() {
       })
     );
   });
-
-  if (businessOtherBox) {
-    businessOtherBox.classList.toggle("hidden", state.businessType !== "Inny");
-  }
-}
-
-function toggleArrayValue(array, value) {
-  if (array.includes(value)) {
-    return array.filter((item) => item !== value);
-  }
-
-  return [...array, value];
+  businessOtherBox?.classList.toggle("hidden", state.businessType !== "Inny");
 }
 
 function renderClientSources() {
   if (!clientSourcesGrid) return;
-
   clientSourcesGrid.innerHTML = "";
-
   clientSources.forEach((source) => {
     clientSourcesGrid.appendChild(
       createPill({
@@ -498,12 +261,10 @@ function renderClientSources() {
         active: state.clientSources.includes(source),
         onClick: () => {
           state.clientSources = toggleArrayValue(state.clientSources, source);
-
-          if (!state.clientSources.includes("Inne")) {
+          if (!state.clientSources.includes("Jeszcze nie wiem")) {
             state.clientSourcesOther = "";
             if (clientSourcesOtherInput) clientSourcesOtherInput.value = "";
           }
-
           renderClientSources();
           updateBindings();
           updateNav();
@@ -511,22 +272,16 @@ function renderClientSources() {
       })
     );
   });
-
-  if (clientSourcesOtherBox) {
-    clientSourcesOtherBox.classList.toggle("hidden", !state.clientSources.includes("Inne"));
-  }
+  clientSourcesOtherBox?.classList.toggle("hidden", !state.clientSources.includes("Jeszcze nie wiem"));
 }
 
 function renderVisualStyles() {
   if (!visualStyleGrid) return;
-
   visualStyleGrid.innerHTML = "";
-
   visualStyles.forEach((style) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `style-card ${state.visualStyle === style.id ? "selected active" : ""}`;
-
     button.innerHTML = `
       <div class="style-card-top">
         <span class="style-emoji">${style.emoji}</span>
@@ -535,52 +290,28 @@ function renderVisualStyles() {
       <strong>${style.title}</strong>
       <p>${style.description}</p>
     `;
-
     button.addEventListener("click", () => {
       state.visualStyle = style.id;
       renderVisualStyles();
       updateBindings();
       updateNav();
     });
-
     visualStyleGrid.appendChild(button);
   });
 }
 
 function renderFeatures() {
   if (!featuresGrid) return;
-
   featuresGrid.innerHTML = "";
-
   features.forEach((feature) => {
+    const label = feature.type === "included" ? `${feature.label} · w cenie` : `${feature.label} · dodatek`;
     featuresGrid.appendChild(
       createPill({
-        label: feature,
-        active: state.features.includes(feature),
+        label,
+        active: state.features.includes(feature.label),
         onClick: () => {
-          state.features = toggleArrayValue(state.features, feature);
+          state.features = toggleArrayValue(state.features, feature.label);
           renderFeatures();
-          updateBindings();
-          updateNav();
-        }
-      })
-    );
-  });
-}
-
-function renderPainPoints() {
-  if (!painPointsGrid) return;
-
-  painPointsGrid.innerHTML = "";
-
-  painPoints.forEach((pain) => {
-    painPointsGrid.appendChild(
-      createPill({
-        label: pain,
-        active: state.painPoints.includes(pain),
-        onClick: () => {
-          state.painPoints = toggleArrayValue(state.painPoints, pain);
-          renderPainPoints();
           updateBindings();
           updateNav();
         }
@@ -598,47 +329,26 @@ async function submitBrief() {
     name: state.name.trim(),
     phone: state.phone.trim(),
     contactExtra: state.contactExtra.trim(),
-
-    projectGoal: getProjectGoalLabel(),
-    projectGoalId: state.projectGoal,
-
-    projectFormat: getProjectFormatLabel(),
-    projectFormatId: state.projectFormat,
-
     businessType: getBusinessLabel(),
-    businessOther: state.businessOther.trim(),
-
     clientSources: state.clientSources,
     clientSourcesOther: state.clientSourcesOther.trim(),
-
     visualStyle: getVisualStyleLabel(),
     visualStyleId: state.visualStyle,
     visualDescription: state.visualDescription.trim(),
-
     features: state.features,
-
-    painPoints: state.painPoints,
-    painDescription: state.painDescription.trim(),
-
+    sectionCount: state.sectionCount,
     projectDescription: state.projectDescription.trim()
   };
 
   try {
     const response = await fetch(`${API_BASE}/api/brief`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-
     const data = await response.json().catch(() => null);
-
-    if (!response.ok || !data?.ok) {
-      throw new Error(data?.error || "Nie udało się wysłać briefu.");
-    }
-
-    showStep(11);
+    if (!response.ok || !data?.ok) throw new Error(data?.error || "Nie udało się wysłać briefu.");
+    showStep(9);
   } catch (error) {
     submitError.textContent = error.message || "Błąd serwera.";
   } finally {
@@ -649,70 +359,46 @@ async function submitBrief() {
 
 function nextStep() {
   if (state.step === 1) {
-    const validName = isValidName(state.name);
-    const validPhone = isValidPhone(state.phone);
-
-    nameError.textContent = validName ? "" : "Wpisz poprawne imię";
-    phoneError.textContent = validPhone ? "" : "Podaj poprawny numer telefonu";
-
-    if (!validName || !validPhone) return;
+    if (!state.businessType) return;
+    if (state.businessType === "Inny" && !state.businessOther.trim()) return;
     showStep(2);
     return;
   }
-
   if (state.step === 2) {
-    if (!state.projectGoal) return;
+    if (state.clientSources.length === 0) return;
+    if (state.clientSources.includes("Jeszcze nie wiem") && !state.clientSourcesOther.trim()) return;
     showStep(3);
     return;
   }
-
   if (state.step === 3) {
-    if (!state.projectFormat) return;
+    if (!state.visualStyle) return;
     showStep(4);
     return;
   }
-
   if (state.step === 4) {
-    if (!state.businessType) return;
-    if (state.businessType === "Inne" && !state.businessOther.trim()) return;
+    if (state.features.length === 0) return;
     showStep(5);
     return;
   }
-
   if (state.step === 5) {
-    if (state.clientSources.length === 0) return;
-    if (state.clientSources.includes("Inne") && !state.clientSourcesOther.trim()) return;
+    if (!state.sectionCount) return;
     showStep(6);
     return;
   }
-
   if (state.step === 6) {
-    if (!state.visualStyle) return;
+    const hasAlt = state.contactExtra.trim().length > 2;
+    const hasPhone = isValidPhone(state.phone);
+    nameError.textContent = isValidName(state.name) ? "" : "Wpisz poprawne imię";
+    phoneError.textContent = hasPhone || hasAlt ? "" : "Podaj telefon lub kontakt alternatywny";
+    if (!isValidName(state.name) || !(hasPhone || hasAlt)) return;
     showStep(7);
     return;
   }
-
   if (state.step === 7) {
-    if (state.features.length === 0) return;
     showStep(8);
     return;
   }
-
-  if (state.step === 8) {
-    if (state.painPoints.length === 0) return;
-    showStep(9);
-    return;
-  }
-
-  if (state.step === 9) {
-    if (!state.projectDescription.trim()) return;
-    showStep(10);
-    return;
-  }
-
-  if (state.step === 10) {
-    submitBrief();
-  }
+  if (state.step === 8) submitBrief();
 }
 
 function prevStep() {
@@ -722,11 +408,9 @@ function prevStep() {
 
 function callMrozowski() {
   const phone = "+48532377701";
-
   try {
     window.location.href = `tel:${phone}`;
-  } catch (error) {
-    console.error("Call error:", error);
+  } catch {
     navigator.clipboard?.writeText("532 377 701");
     alert("Nie udało się otworzyć połączenia. Numer został skopiowany: 532 377 701");
   }
@@ -745,15 +429,10 @@ if (nameInput) {
 
 if (phoneInput) {
   phoneInput.value = state.phone;
-
   phoneInput.addEventListener("keydown", (e) => {
     const pos = phoneInput.selectionStart || 0;
-
-    if ((e.key === "Backspace" || e.key === "Delete") && pos <= 4) {
-      e.preventDefault();
-    }
+    if ((e.key === "Backspace" || e.key === "Delete") && pos <= 4) e.preventDefault();
   });
-
   phoneInput.addEventListener("input", (e) => {
     const formatted = normalizePhone(e.target.value);
     e.target.value = formatted;
@@ -764,65 +443,44 @@ if (phoneInput) {
   });
 }
 
-if (contactExtraInput) {
-  contactExtraInput.addEventListener("input", (e) => {
-    state.contactExtra = e.target.value;
-    updateBindings();
-    updateNav();
-  });
-}
+contactExtraInput?.addEventListener("input", (e) => {
+  state.contactExtra = e.target.value;
+  updateBindings();
+  updateNav();
+});
 
-if (businessOtherInput) {
-  businessOtherInput.addEventListener("input", (e) => {
-    state.businessOther = e.target.value;
-    updateBindings();
-    updateNav();
-  });
-}
+businessOtherInput?.addEventListener("input", (e) => {
+  state.businessOther = e.target.value;
+  updateBindings();
+  updateNav();
+});
 
-if (clientSourcesOtherInput) {
-  clientSourcesOtherInput.addEventListener("input", (e) => {
-    state.clientSourcesOther = e.target.value;
-    updateBindings();
-    updateNav();
-  });
-}
+clientSourcesOtherInput?.addEventListener("input", (e) => {
+  state.clientSourcesOther = e.target.value;
+  updateBindings();
+  updateNav();
+});
 
-if (visualDescriptionInput) {
-  visualDescriptionInput.addEventListener("input", (e) => {
-    state.visualDescription = e.target.value;
-    updateBindings();
-    updateNav();
-  });
-}
+visualDescriptionInput?.addEventListener("input", (e) => {
+  state.visualDescription = e.target.value;
+  updateBindings();
+  updateNav();
+});
 
-if (painDescriptionInput) {
-  painDescriptionInput.addEventListener("input", (e) => {
-    state.painDescription = e.target.value;
-    updateBindings();
-    updateNav();
-  });
-}
-
-if (projectDescriptionInput) {
-  projectDescriptionInput.addEventListener("input", (e) => {
-    state.projectDescription = e.target.value;
-    updateBindings();
-    updateNav();
-  });
-}
+projectDescriptionInput?.addEventListener("input", (e) => {
+  state.projectDescription = e.target.value;
+  updateBindings();
+  updateNav();
+});
 
 backBtn.addEventListener("click", prevStep);
 nextBtn.addEventListener("click", nextStep);
 
-renderProjectGoals();
-renderProjectFormats();
+renderSectionCount();
 renderBusinessTypes();
 renderClientSources();
 renderVisualStyles();
 renderFeatures();
-renderPainPoints();
-
 updateBindings();
 updateHeader();
 updateNav();

@@ -342,14 +342,22 @@
     }
 
     .mobile-wordmark span:first-child {
-      font-size: 20px;
+      font-size: 17px;
       letter-spacing: -.075em;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .mobile-wordmark span:last-child {
       color: #93c5fd;
-      font-size: 9px;
-      letter-spacing: .20em;
+      font-size: 8px;
+      letter-spacing: .14em;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .mini-wordmark span:first-child,
@@ -2700,9 +2708,9 @@ img {
         position: sticky;
         top: 0;
         z-index: 40;
-        padding: calc(10px + var(--safe-top)) 12px 8px;
+        padding: calc(8px + var(--safe-top)) 10px 8px;
         display: grid;
-        grid-template-columns: 46px minmax(0, 1fr) auto 46px;
+        grid-template-columns: 42px minmax(0, 1fr) 42px;
         align-items: center;
         gap: 8px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
@@ -2713,8 +2721,8 @@ img {
       }
 
       .icon-btn {
-        width: 52px;
-        height: 52px;
+        width: 42px;
+        height: 42px;
         display: grid;
         place-items: center;
         border: 1px solid var(--line);
@@ -2733,13 +2741,13 @@ img {
 
       .logo-pill {
         justify-self: center;
-        width: min(220px, 100%);
+        width: min(180px, 100%);
         max-width: 100%;
-        height: 52px;
-        padding: 0 10px;
+        height: 42px;
+        padding: 0 8px;
         display: grid;
         place-items: center;
-        border-radius: 23px;
+        border-radius: 16px;
         border: 1px solid rgba(255,255,255,.09);
         background:
           radial-gradient(circle at 36% 0%, rgba(139,92,246,.18), transparent 46%),
@@ -2763,12 +2771,19 @@ img {
         display: none;
       }
 
-      .mobile-lang-switcher {
-        position: static;
-        z-index: 80;
-        padding: 3px;
       .top-gear-btn {
         font-size: 17px;
+      }
+
+      .mobile-lang-switcher {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        z-index: 80;
+        padding: 4px 10px 8px;
+        background: linear-gradient(180deg, rgba(5,8,22,.82), rgba(5,8,22,.65));
+        border-bottom: 1px solid rgba(255,255,255,.06);
       }
 
       .details-panel {
@@ -2831,21 +2846,16 @@ img {
         display: none !important;
       }
 
-        gap: 2px;
-        background: rgba(5,8,22,.78);
-        border-color: rgba(255,255,255,.08);
-        box-shadow: 0 10px 24px rgba(0,0,0,.24), var(--glass-highlight);
-      }
-
       .mobile-lang-switcher .lang-btn {
-        min-width: 34px;
-        height: 34px;
+        min-width: 40px;
+        height: 30px;
         padding: 0;
         font-size: 10px;
       }
 
       .section-nav {
-        position: relative;
+        position: sticky;
+        top: calc(var(--safe-top) + 88px);
         z-index: 35;
         display: flex;
         gap: 8px;
@@ -2900,9 +2910,9 @@ img {
 
       .pages {
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         min-height: 0;
-        height: 100%;
+        height: calc(100vh - var(--safe-top) - 150px);
         padding: 0;
       }
 
@@ -2912,15 +2922,14 @@ img {
         display: none;
         min-height: 0;
         padding: 14px 12px 12px;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
         animation: pageIn 360ms var(--ease-spring) both;
         pointer-events: none;
       }
 
       .page.active {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        gap: 12px;
+        display: block;
         pointer-events: auto;
       }
 
@@ -3278,17 +3287,12 @@ img {
       .masters-mobile-list,
       .gallery-mobile-list {
         min-height: 0;
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-        padding: 2px 2px 8px;
+        display: grid;
+        gap: 16px;
+        overflow: visible;
+        padding: 2px 2px 12px;
         align-items: stretch;
-        overscroll-behavior-x: contain;
-        overscroll-behavior-y: none;
-        touch-action: pan-x;
+        touch-action: pan-y;
       }
 
       .services-list::-webkit-scrollbar,
@@ -3300,18 +3304,17 @@ img {
       }
 
       .service-card {
-        flex: 0 0 min(82vw, 330px);
-        scroll-snap-align: center;
+        width: 100%;
         padding: 14px;
         display: grid;
-        grid-template-rows: 160px auto auto auto;
+        grid-template-rows: 138px auto auto auto;
         gap: 12px;
         align-self: stretch;
-        min-height: 430px;
+        min-height: 0;
       }
 
       .service-img {
-        min-height: 160px;
+        min-height: 138px;
       }
 
       .service-card p,
@@ -3346,17 +3349,16 @@ img {
       }
 
       .mobile-master-card {
-        flex: 0 0 min(82vw, 330px);
-        scroll-snap-align: center;
-        min-height: 430px;
+        width: 100%;
+        min-height: 0;
         padding: 14px;
         display: grid;
-        grid-template-rows: 190px auto auto auto;
+        grid-template-rows: 150px auto auto auto;
         gap: 12px;
       }
 
       .mobile-master-photo {
-        min-height: 190px;
+        min-height: 150px;
         background-position: center 30%;
       }
 
@@ -3509,6 +3511,7 @@ img {
         display: grid;
         gap: 10px;
         grid-template-rows: auto 1fr auto;
+        border-radius: 22px;
       }
 
       .address-box {
@@ -3522,12 +3525,12 @@ img {
       .contact-mobile-card strong {
         display: block;
         margin-bottom: 8px;
-        font-size: 29px;
+        font-size: 20px;
       }
 
       .map-glass {
         position: relative;
-        min-height: 205px;
+        min-height: 165px;
         padding: 8px;
         overflow: hidden;
         isolation: isolate;
@@ -3571,7 +3574,7 @@ img {
       .map-logo-overlay span {
         color: #fff;
         font-family: "Sora", sans-serif;
-        font-size: 42px;
+        font-size: 30px;
         line-height: .84;
         letter-spacing: -.085em;
       }
@@ -3580,7 +3583,7 @@ img {
         position: relative;
         z-index: 30;
         display: grid;
-        grid-template-columns: 1fr .78fr;
+        grid-template-columns: 1fr;
         gap: 10px;
       }
 
@@ -3616,9 +3619,9 @@ img {
       .contact-layout {
         min-height: 0;
         display: grid;
-        gap: 10px;
-        grid-template-rows: auto auto 1fr;
-        overflow: hidden;
+        gap: 12px;
+        grid-template-rows: auto auto auto auto;
+        overflow: visible;
       }
 
       .contact-mobile-card {
@@ -3636,11 +3639,10 @@ img {
       }
 
       .social-row {
-        align-self: end;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;
-        padding-bottom: calc(4px + var(--safe-bottom));
+        padding-bottom: calc(10px + var(--safe-bottom));
       }
 
       .social-row a {
@@ -3649,6 +3651,7 @@ img {
         height: 56px;
         display: grid;
         place-items: center;
+        border-radius: 14px;
       }
 
       .booking-overlay {
@@ -3711,9 +3714,9 @@ img {
       }
 
       .site-header.header-hidden {
-        transform: translateY(-110%) !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
       }
 
       .page[data-page-view="home"] .screen-body {
@@ -3743,7 +3746,7 @@ img {
       }
 
       .page[data-page-view="where"] .map-glass {
-        min-height: 300px;
+        min-height: 190px;
         align-items: center;
       }
 
@@ -3762,33 +3765,30 @@ img {
       }
 
       .service-card,
-      .mobile-master-card {
-        flex-basis: min(84vw, 326px);
-      }
-
+      .mobile-master-card,
       .mobile-gallery-card {
-        flex-basis: min(80vw, 312px);
+        width: 100%;
       }
     }
 
     @media (max-width: 390px) {
       .app-top {
-        grid-template-columns: 44px minmax(0, 1fr) auto 44px;
+        grid-template-columns: 40px minmax(0, 1fr) 40px;
         gap: 8px;
         padding-left: 10px;
         padding-right: 10px;
       }
 
       .icon-btn {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         border-radius: 17px;
       }
 
       .logo-pill {
-        width: min(170px, 100%);
-        height: 48px;
-        border-radius: 20px;
+        width: min(160px, 100%);
+        height: 40px;
+        border-radius: 14px;
       }
 
       .mobile-wordmark span:first-child {
@@ -3800,8 +3800,8 @@ img {
       }
 
       .mobile-lang-switcher .lang-btn {
-        min-width: 30px;
-        height: 30px;
+        min-width: 36px;
+        height: 28px;
         font-size: 9px;
       }
 
@@ -4837,22 +4837,19 @@ body.booking-open .site-header {
   <div class="mobile-version" id="mobile-version">
     <header class="app-top">
       <button class="icon-btn top-gear-btn" type="button" data-open-details aria-label="Szczegóły">⚙</button>
-      <a class="icon-btn" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos" aria-label="Wróć do wyboru">
-
       <div class="logo-pill">
         <div class="mobile-wordmark" aria-hidden="true">
           <span>MROZOWSKI</span>
           <span>AUTOMATION</span>
         </div>
       </div>
-
-      <div class="lang-switcher mobile-lang-switcher" aria-label="Language switcher">
-        <button class="lang-btn active" type="button" data-lang="pl">PL</button>
-        <button class="lang-btn" type="button" data-lang="ru">RU</button>
-        <button class="lang-btn" type="button" data-lang="en">EN</button>
-      </div>
       <a class="icon-btn" href="tel:+48532377701" aria-label="Telefon">☎</a>
     </header>
+    <div class="lang-switcher mobile-lang-switcher" aria-label="Language switcher">
+      <button class="lang-btn active" type="button" data-lang="pl">PL</button>
+      <button class="lang-btn" type="button" data-lang="ru">RU</button>
+      <button class="lang-btn" type="button" data-lang="en">EN</button>
+    </div>
 
     <nav class="section-nav" aria-label="Nawigacja mobilna">
       <button class="nav-chip active" type="button" data-page="home" data-i18n="navStart">Start</button>
@@ -4936,10 +4933,10 @@ body.booking-open .site-header {
 
           <article class="service-card">
             <div class="service-img beard"></div>
-            <div class="service-card-header"><strong data-i18n="mobileOffer3Title">System klientów</strong><span class="price">premium</span></div>
-            <p data-i18n="mobileOffer3Text">Pełna strona, ścieżka zapisu, wejścia z kanałów i gotowe zgłoszenie.</p>
+            <div class="service-card-header"><strong data-i18n="mobileOffer3Title">Dopasowanie pod biznes</strong><span class="price">lokalnie</span></div>
+            <p data-i18n="mobileOffer3Text">Teksty, sekcje i styl strony dopasowane do Twojej usługi lokalnej.</p>
             <div class="tags"><span>flow</span><span>lead</span><span>system</span></div>
-            <button class="mobile-card-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">Najlepszy wybór</button>
+            <button class="mobile-card-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">Dopasuj stronę</button>
           </article>
         </div>
       </section>
@@ -4977,6 +4974,20 @@ body.booking-open .site-header {
             <p data-i18n="mobileProductCard3Text">Ruch z różnych miejsc trafia do jednej dopracowanej strony.</p>
             <div class="tags"><span>IG</span><span>TikTok</span><span>Google</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard3Btn">Podłączyć wejścia</button>
+          </article>
+          <article class="mobile-master-card">
+            <div class="mobile-master-photo combo"></div>
+            <strong>Formularz / zgłoszenie</strong>
+            <p>Krótki formularz zbiera podstawowe dane i przyspiesza kontakt.</p>
+            <div class="tags"><span>formularz</span><span>zapis</span><span>kontakt</span></div>
+            <button class="mobile-card-btn" type="button" data-open-booking>Uruchom formularz</button>
+          </article>
+          <article class="mobile-master-card">
+            <div class="mobile-master-photo beard"></div>
+            <strong>FAQ / kontakt</strong>
+            <p>FAQ i kontakt porządkują decyzję klienta przed rozmową.</p>
+            <div class="tags"><span>FAQ</span><span>kontakt</span><span>zaufanie</span></div>
+            <button class="mobile-card-btn" type="button" data-page-jump="faq">Zobacz FAQ</button>
           </article>
         </div>
       </section>
@@ -5084,21 +5095,20 @@ body.booking-open .site-header {
 
         <div class="contact-layout">
           <article class="contact-mobile-card">
-            <strong>MROZOWSKI</strong>
-            <p data-i18n="mobileContactCard">Premium strona, ścieżka zapisu i system zgłoszeń dla lokalnych biznesów.</p>
+            <strong>MROZOWSKI AUTOMATION</strong>
+            <p data-i18n="mobileContactCard">Strona, zapis i system zgłoszeń dla lokalnych biznesów.</p>
           </article>
-
-          <div class="hours-list">
-            <div class="hour-row"><span data-i18n="system">System</span><strong>24/7</strong></div>
-            <div class="hour-row"><span data-i18n="implementation">Wdrożenia</span><strong>10–18</strong></div>
-            <div class="hour-row"><span data-i18n="sunday">Niedziela</span><strong>10–16</strong></div>
-          </div>
 
           <div class="dual-actions">
             <button class="cta-btn" type="button" data-open-booking data-i18n="startNow">Zostaw zgłoszenie</button>
-            <a class="ghost-btn" href="tel:+48532377701" data-i18n="phoneShort">Telefon</a>
+            <a class="ghost-btn" href="tel:+48532377701">Telefon</a>
           </div>
 
+          <div class="social-row">
+            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TikTok</a>
+            <a href="tel:+48532377701">Telefon</a>
+          </div>
           <div class="social-row">
             <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">IG</a>
             <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TT</a>
@@ -5176,14 +5186,14 @@ body.booking-open .site-header {
                   <p id="stepSubtitle">Zostaw dane i przejdź dalej.</p>
                 </div>
 
-                <div class="step-pill" id="stepPill">1 / 11</div>
+                <div class="step-pill" id="stepPill">1 / 9</div>
               </div>
 
               <div class="progress-wrap">
                 <div class="progress-track">
                   <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="progress-text" id="progressText">13%</div>
+                <div class="progress-text" id="progressText">11%</div>
               </div>
             </header>
 
@@ -5191,99 +5201,88 @@ body.booking-open .site-header {
   <section class="step active" data-step="1">
     <div class="step-content narrow">
       <div class="card-head">
-        <h2>Zostaw kontakt</h2>
-        <p>Potem przejdziemy przez krótki brief.</p>
+        <h2>Jaki masz typ biznesu?</h2>
+        <p>Nie musisz mieć wszystkiego gotowego. Wystarczy kierunek — szczegóły ustalimy po zgłoszeniu.</p>
       </div>
-
-      <label class="field">
-        <span>Imię</span>
-        <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
-        <small class="error" id="nameError"></small>
-      </label>
-
-      <label class="field">
-        <span>Telefon</span>
-        <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
-        <small class="error" id="phoneError"></small>
-      </label>
-
-      <label class="field">
-        <span>Telegram / WhatsApp / Instagram <em>(opcjonalnie)</em></span>
-        <input id="contactExtraInput" type="text" placeholder="@username albo link" />
-      </label>
+      <div class="pill-grid" id="businessTypeGrid"></div>
+      <div class="conditional-box hidden" id="businessOtherBox">
+        <label class="field">
+          <span>Jaki typ?</span>
+          <input id="businessOtherInput" type="text" placeholder="Np. fizjo, trener, studio..." />
+        </label>
+      </div>
     </div>
   </section>
 
   <section class="step" data-step="2">
     <div class="step-content">
       <div class="card-head">
-        <h2>Co trzeba zrobić?</h2>
-        <p>Wybierz, czego mniej więcej potrzebujesz.</p>
+        <h2>Skąd przychodzą klienci?</h2>
+        <p>Możesz wybrać kilka źródeł.</p>
       </div>
-
-      <div class="option-grid" id="projectGoalGrid"></div>
+      <div class="pill-grid" id="clientSourcesGrid"></div>
+      <div class="conditional-box hidden" id="clientSourcesOtherBox">
+        <label class="field">
+          <span>Doprecyzuj źródło</span>
+          <input id="clientSourcesOtherInput" type="text" placeholder="Np. link w bio, ulotki..." />
+        </label>
+      </div>
     </div>
   </section>
 
   <section class="step" data-step="3">
     <div class="step-content">
       <div class="card-head">
-        <h2>Format projektu</h2>
-        <p>Wybierz kierunek strony, a szczegóły dopracujemy po zgłoszeniu.</p>
+        <h2>Jaki styl strony Cię interesuje?</h2>
+        <p>Wybierz 3 gotowe style albo własny kolor.</p>
       </div>
-
-      <div class="option-grid format-grid" id="projectFormatGrid"></div>
+      <div class="style-grid" id="visualStyleGrid"></div>
+      <label class="field">
+        <span>Pole konsultacji (custom kolor)</span>
+        <textarea id="visualDescriptionInput" rows="3" placeholder="Razem dobierzemy kolorystykę, jeśli wybierasz custom."></textarea>
+      </label>
     </div>
   </section>
 
   <section class="step" data-step="4">
     <div class="step-content">
       <div class="card-head">
-        <h2>Sfera biznesu</h2>
-        <p>Dopasujemy system do Twojej branży.</p>
+        <h2>Co ma zawierać podstawowa strona?</h2>
+        <p>Pakiet 600 zł jest pełny. Dodatki są opcjonalne.</p>
       </div>
-
-      <div class="pill-grid" id="businessTypeGrid"></div>
-
-      <div class="conditional-box hidden" id="businessOtherBox">
-        <label class="field">
-          <span>Jaka branża?</span>
-          <input id="businessOtherInput" type="text" placeholder="Np. fizjo, trener, studio tatuażu..." />
-        </label>
-      </div>
+      <div class="pill-grid" id="featuresGrid"></div>
     </div>
   </section>
 
   <section class="step" data-step="5">
     <div class="step-content">
       <div class="card-head">
-        <h2>Źródła klientów</h2>
-        <p>Możesz wybrać kilka wariantów.</p>
+        <h2>Ile sekcji mniej więcej potrzebujesz?</h2>
+        <p>Jeśli nie wiesz — dobierzemy razem.</p>
       </div>
-
-      <div class="pill-grid" id="clientSourcesGrid"></div>
-
-      <div class="conditional-box hidden" id="clientSourcesOtherBox">
-        <label class="field">
-          <span>Opisz inne źródła klientów</span>
-          <input id="clientSourcesOtherInput" type="text" placeholder="Np. ulotki, partnerzy, marketplace..." />
-        </label>
-      </div>
+      <div class="pill-grid" id="projectGoalGrid"></div>
     </div>
   </section>
 
   <section class="step" data-step="6">
     <div class="step-content">
       <div class="card-head">
-        <h2>Styl strony</h2>
-        <p>Wybierz klimat wizualny albo opisz go własnymi słowami.</p>
+        <h2>Jak się z Tobą skontaktować?</h2>
+        <p>Zostaw minimum telefon lub Instagram.</p>
       </div>
-
-      <div class="style-grid" id="visualStyleGrid"></div>
-
       <label class="field">
-        <span>Opisz klimat, kolory albo podeślij przykład strony</span>
-        <textarea id="visualDescriptionInput" rows="4" placeholder="Np. ciemny premium, dużo glassmorphism, przykład: link do strony..."></textarea>
+        <span>Imię</span>
+        <input id="nameInput" type="text" placeholder="Np. Michał" autocomplete="name" />
+        <small class="error" id="nameError"></small>
+      </label>
+      <label class="field">
+        <span>Telefon</span>
+        <input id="phoneInput" type="tel" placeholder="+48 123 456 789" autocomplete="tel" />
+        <small class="error" id="phoneError"></small>
+      </label>
+      <label class="field">
+        <span>Instagram / WhatsApp (opcjonalnie)</span>
+        <input id="contactExtraInput" type="text" placeholder="@username albo numer WhatsApp" />
       </label>
     </div>
   </section>
@@ -5291,72 +5290,42 @@ body.booking-open .site-header {
   <section class="step" data-step="7">
     <div class="step-content">
       <div class="card-head">
-        <h2>Funkcje systemu</h2>
-        <p>Zaznacz elementy, które mają znaleźć się w systemie.</p>
+        <h2>Krótko opisz, czego potrzebujesz</h2>
+        <p>Opcjonalnie.</p>
       </div>
-
-      <div class="pill-grid" id="featuresGrid"></div>
+      <label class="field">
+        <span>Opis (opcjonalnie)</span>
+        <textarea id="projectDescriptionInput" rows="6" placeholder="Np. salon beauty, 6 usług, zapis online, ciemny styl, kontakt przez Instagram."></textarea>
+      </label>
     </div>
   </section>
 
   <section class="step" data-step="8">
     <div class="step-content">
       <div class="card-head">
-        <h2>Co teraz nie działa?</h2>
-        <p>Zaznacz problemy, które system ma rozwiązać.</p>
-      </div>
-
-      <div class="pill-grid" id="painPointsGrid"></div>
-
-      <label class="field">
-        <span>Opisz krótko problem</span>
-        <textarea id="painDescriptionInput" rows="4" placeholder="Np. klienci pytają o ceny, gubią się wiadomości, nie mam gdzie kierować ruchu..."></textarea>
-      </label>
-    </div>
-  </section>
-
-  <section class="step" data-step="9">
-    <div class="step-content">
-      <div class="card-head">
-        <h2>Opis projektu</h2>
-        <p>To najważniejszy blok — opisz, co chcesz zbudować.</p>
-      </div>
-
-      <label class="field">
-        <span>Opis</span>
-        <textarea id="projectDescriptionInput" rows="7" placeholder="Opisz, co chcesz zbudować i jak ma działać strona"></textarea>
-      </label>
-    </div>
-  </section>
-
-  <section class="step" data-step="10">
-    <div class="step-content">
-      <div class="card-head">
-        <h2>Podsumowanie briefu</h2>
+        <h2>Podsumowanie zgłoszenia</h2>
         <p>Sprawdź dane przed wysłaniem.</p>
       </div>
 
       <div class="summary-list">
         <div class="summary-row"><span>Kontakt</span><strong><span data-bind="name">—</span> · <span data-bind="phone">—</span></strong></div>
         <div class="summary-row"><span>Dodatkowy kontakt</span><strong data-bind="contactExtra">—</strong></div>
-        <div class="summary-row"><span>Typ projektu</span><strong data-bind="projectGoal">—</strong></div>
-        <div class="summary-row"><span>Wariant</span><strong data-bind="projectFormat">—</strong></div>
+        <div class="summary-row"><span>Liczba sekcji</span><strong data-bind="projectGoal">—</strong></div>
         <div class="summary-row"><span>Branża</span><strong data-bind="businessType">—</strong></div>
         <div class="summary-row"><span>Źródła</span><strong data-bind="clientSources">—</strong></div>
         <div class="summary-row"><span>Styl</span><strong data-bind="visualStyle">—</strong></div>
-        <div class="summary-row"><span>Funkcje</span><strong data-bind="features">—</strong></div>
-        <div class="summary-row"><span>Problemy</span><strong data-bind="painPoints">—</strong></div>
+        <div class="summary-row"><span>Zakres / dodatki</span><strong data-bind="features">—</strong></div>
         <div class="summary-row summary-row-description">
-  <span>Opis</span>
-  <strong class="summary-preview" data-bind="projectDescription">—</strong>
-</div>
+          <span>Opis opcjonalny</span>
+          <strong class="summary-preview" data-bind="projectDescription">—</strong>
+        </div>
       </div>
 
       <small class="error" id="submitError"></small>
     </div>
   </section>
 
-  <section class="step" data-step="11">
+  <section class="step" data-step="9">
     <div class="step-content narrow center">
       <div class="success-icon">✓</div>
 
@@ -5720,6 +5689,7 @@ body.booking-open .site-header {
     }
 
     function bindMobileSmartHeader() {
+      return;
       document.addEventListener("touchstart", event => {
         const touch = event.touches[0];
         if (!touch) return;
