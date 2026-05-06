@@ -2710,7 +2710,7 @@ img {
         z-index: 40;
         padding: calc(8px + var(--safe-top)) 10px 8px;
         display: grid;
-        grid-template-columns: 38px minmax(0, 1fr) auto 38px;
+        grid-template-columns: 38px minmax(0, 1fr) auto;
         align-items: center;
         gap: 6px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
@@ -2940,24 +2940,24 @@ img {
         position: relative;
         overflow: visible;
         min-height: 0;
-        height: calc(100vh - var(--safe-top) - 150px);
+        height: auto;
         padding: 0;
       }
 
       .page {
-        position: absolute;
-        inset: 0;
+        position: relative;
+        inset: auto;
         display: none;
-        min-height: 0;
+        min-height: calc(100vh - 180px);
         padding: 14px 12px 12px;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: visible;
         animation: pageIn 360ms var(--ease-spring) both;
         pointer-events: none;
       }
 
       .page.active {
-        display: block;
+        display: grid;
+        gap: 12px;
         pointer-events: auto;
       }
 
@@ -3339,6 +3339,7 @@ img {
         gap: 12px;
         align-self: stretch;
         min-height: 0;
+        align-content: start;
       }
 
       .service-img {
@@ -3370,7 +3371,7 @@ img {
         z-index: 30;
         width: 100%;
         min-height: 50px;
-        margin-top: auto;
+        margin-top: 16px;
         border-radius: 999px;
         font-size: 12px;
         font-weight: 1000;
@@ -3388,6 +3389,7 @@ img {
         display: grid;
         grid-template-rows: auto auto auto auto;
         gap: 12px;
+        align-content: start;
       }
 
       .mobile-master-photo {
@@ -3661,7 +3663,7 @@ img {
         min-height: 0;
         display: grid;
         gap: 12px;
-        grid-template-rows: auto auto auto auto;
+        grid-template-rows: auto auto auto;
         overflow: visible;
       }
 
@@ -3814,7 +3816,7 @@ img {
 
     @media (max-width: 390px) {
       .app-top {
-        grid-template-columns: 40px minmax(0, 1fr) 40px;
+        grid-template-columns: 36px minmax(0, 1fr) auto;
         gap: 8px;
         padding-left: 10px;
         padding-right: 10px;
@@ -4907,7 +4909,6 @@ body.booking-open .site-header {
         <button class="lang-btn" type="button" data-lang="ru">RU</button>
         <button class="lang-btn" type="button" data-lang="en">EN</button>
       </div>
-      <a class="icon-btn" href="tel:+48532377701" aria-label="Telefon">☎</a>
       <div class="gear-menu" id="gearMenu">
         <button class="gear-menu-btn" type="button" data-open-details>Szczegóły</button>
         <a class="gear-menu-btn" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos">Wróć do demo</a>
@@ -5174,11 +5175,6 @@ body.booking-open .site-header {
             <a class="ghost-btn" href="tel:+48532377701">Telefon</a>
           </div>
 
-          <div class="social-row">
-            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TikTok</a>
-            <a href="tel:+48532377701">Telefon</a>
-          </div>
           <div class="social-row">
             <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
             <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
