@@ -1,42 +1,71 @@
 const API_BASE = "";
 const TOTAL_STEPS = 9;
 
-const stepMeta = [
-  { title: "Jaki masz typ biznesu?", subtitle: "Wybierz branżę. Szczegóły ustalimy po zgłoszeniu." },
-  { title: "Skąd przychodzą klienci?", subtitle: "Możesz wybrać kilka źródeł." },
-  { title: "Jaki styl strony Cię interesuje?", subtitle: "3 gotowe style lub własny kolor." },
-  { title: "Co ma zawierać podstawowa strona?", subtitle: "Pakiet 600 zł + opcjonalne dodatki." },
-  { title: "Ile sekcji mniej więcej potrzebujesz?", subtitle: "Jeśli nie wiesz, dobierzemy razem." },
-  { title: "Jak się z Tobą skontaktować?", subtitle: "Podaj minimum telefon lub Instagram." },
-  { title: "Krótko opisz, czego potrzebujesz", subtitle: "Ten krok jest opcjonalny." },
-  { title: "Podsumowanie zgłoszenia", subtitle: "Sprawdź dane przed wysłaniem." },
-  { title: "Zgłoszenie zapisane", subtitle: "Wracam z odpowiedzią i propozycją wdrożenia." }
+function L(key) {
+  const lang =
+    (typeof window.getCurrentLang === "function" ? window.getCurrentLang() : localStorage.getItem("lang")) || "pl";
+  const pack = window.SITE_I18N;
+  if (!pack || !pack.pl) return key;
+  if (lang === "pl") return pack.pl[key] || "";
+  return pack[lang]?.[key] ?? pack.pl[key] ?? "";
+}
+
+const WIZ_STEP_KEYS = [
+  ["wizStep1Title", "wizStep1Sub"],
+  ["wizStep2Title", "wizStep2Sub"],
+  ["wizStep3Title", "wizStep3Sub"],
+  ["wizStep4Title", "wizStep4Sub"],
+  ["wizStep5Title", "wizStep5Sub"],
+  ["wizStep6Title", "wizStep6Sub"],
+  ["wizStep7Title", "wizStep7Sub"],
+  ["wizStep8Title", "wizStep8Sub"],
+  ["wizStep9Title", "wizStep9Sub"]
 ];
 
-const sectionCountOptions = ["4-5", "6-7", "8+", "Nie wiem, dobierzemy razem"];
-const businessTypes = ["Barbershop", "Beauty", "Nails", "Lashes / brows", "Masaż", "Kosmetologia", "Online usługa", "Inny"];
-const clientSources = ["Instagram", "TikTok", "Google", "WhatsApp", "Telegram", "Reklama", "Polecenia", "Jeszcze nie wiem"];
+const BUSINESS_KEYS = [
+  "bizBarbershop",
+  "bizBeauty",
+  "bizNails",
+  "bizLashes",
+  "bizMassage",
+  "bizCosmetology",
+  "bizOnline",
+  "bizOther"
+];
+
+const CLIENT_KEYS = [
+  "srcInstagram",
+  "srcTikTok",
+  "srcGoogle",
+  "srcWhatsApp",
+  "srcTelegram",
+  "srcAds",
+  "srcReferrals",
+  "srcUnknown"
+];
+
+const SECTION_KEYS = ["sec45", "sec67", "sec8p", "secUnknown"];
 
 const visualStyles = [
-  { id: "orange-black", title: "Orange / black", icons: "🟠 + ⬛", emoji: "🟠", description: "Ciepły kontrast" },
-  { id: "white-blue", title: "White / blue", icons: "⚪ + 🔵", emoji: "🔵", description: "Jasny i czysty" },
-  { id: "dark-violet", title: "Dark violet", icons: "🟣", emoji: "🟣", description: "Premium dark violet" },
-  { id: "wlasny", title: "Chcę własny kolor", icons: "🎨", emoji: "🎨", description: "Dobierzemy na konsultacji" }
+  { id: "orange-black", titleKey: "styleOrangeTitle", descKey: "styleOrangeDesc", icons: "🟠 + ⬛", emoji: "🟠" },
+  { id: "white-blue", titleKey: "styleWhiteTitle", descKey: "styleWhiteDesc", icons: "⚪ + 🔵", emoji: "🔵" },
+  { id: "dark-violet", titleKey: "styleVioletTitle", descKey: "styleVioletDesc", icons: "🟣", emoji: "🟣" },
+  { id: "wlasny", titleKey: "styleCustomTitle", descKey: "styleCustomDesc", icons: "🎨", emoji: "🎨" }
 ];
 
-const features = [
-  { label: "Oferta", type: "included" },
-  { label: "Usługi i ceny", type: "included" },
-  { label: "FAQ", type: "included" },
-  { label: "Galeria", type: "included" },
-  { label: "Rezerwacja / zapis", type: "included" },
-  { label: "Kontakt", type: "included" },
-  { label: "SMS / potwierdzenie", type: "included" },
-  { label: "Własny kolor marki (+100 zł)", type: "addon" },
-  { label: "Instagram automatyzacja", type: "addon" },
-  { label: "Telegram powiadomienia", type: "addon" },
-  { label: "Dodatkowa sekcja (+100 zł)", type: "addon" },
-  { label: "Rozbudowany booking", type: "addon" }
+const FEATURE_DEFS = [
+  { key: "featOffer", type: "included" },
+  { key: "featServices", type: "included" },
+  { key: "featFaq", type: "included" },
+  { key: "featGallery", type: "included" },
+  { key: "featBooking", type: "included" },
+  { key: "featContact", type: "included" },
+  { key: "featSms", type: "included" },
+  { key: "featBrandColor", type: "addon" },
+  { key: "featIgAuto", type: "addon" },
+  { key: "featTg", type: "addon" },
+  { key: "featExtraSection", type: "addon" },
+  { key: "featAdvBooking", type: "addon" }
 ];
 
 const state = {
@@ -110,13 +139,29 @@ function listText(values) {
 }
 
 function getBusinessLabel() {
-  if (state.businessType === "Inny") return state.businessOther.trim() || "Inny";
-  return state.businessType || "—";
+  if (state.businessType === "bizOther") return state.businessOther.trim() || L("bizOther");
+  return state.businessType ? L(state.businessType) : "—";
 }
 
 function getVisualStyleLabel() {
   const style = visualStyles.find((item) => item.id === state.visualStyle);
-  return style ? style.title : "—";
+  return style ? L(style.titleKey) : "—";
+}
+
+function getClientSourcesDisplayList() {
+  const labels = state.clientSources.filter((k) => k !== "srcUnknown").map((k) => L(k));
+  if (state.clientSources.includes("srcUnknown") && state.clientSourcesOther.trim()) {
+    labels.push(state.clientSourcesOther.trim());
+  }
+  return labels;
+}
+
+function getClientSourcesPayload() {
+  return getClientSourcesDisplayList();
+}
+
+function getFeaturesPayload() {
+  return state.features.map((k) => L(k));
 }
 
 function updateBindings() {
@@ -124,15 +169,11 @@ function updateBindings() {
     name: state.name || "—",
     phone: state.phone || "—",
     contactExtra: state.contactExtra || "—",
-    projectGoal: state.sectionCount || "—",
+    projectGoal: state.sectionCount ? L(state.sectionCount) : "—",
     businessType: getBusinessLabel(),
-    clientSources: listText(
-      state.clientSources.includes("Jeszcze nie wiem") && state.clientSourcesOther.trim()
-        ? [...state.clientSources.filter((item) => item !== "Jeszcze nie wiem"), state.clientSourcesOther.trim()]
-        : state.clientSources
-    ),
+    clientSources: listText(getClientSourcesDisplayList()),
     visualStyle: getVisualStyleLabel(),
-    features: listText(state.features),
+    features: listText(getFeaturesPayload()),
     projectDescription: state.projectDescription || "—"
   };
 
@@ -143,17 +184,36 @@ function updateBindings() {
   });
 }
 
+function syncWizardCardHeads() {
+  steps.forEach((section) => {
+    const stepNum = Number(section.dataset.step);
+    const keys = WIZ_STEP_KEYS[stepNum - 1];
+    if (!keys) return;
+    const head = section.querySelector(".card-head");
+    if (!head) return;
+    const h2 = head.querySelector("h2");
+    const p = head.querySelector("p");
+    if (h2) h2.textContent = L(keys[0]);
+    if (p) p.textContent = L(keys[1]);
+  });
+}
+
 function updateHeader() {
-  const meta = stepMeta[state.step - 1];
-  stepTitle.textContent = meta.title;
-  stepSubtitle.textContent = meta.subtitle;
+  if (!stepTitle || !stepSubtitle) return;
+  const keys = WIZ_STEP_KEYS[state.step - 1];
+  if (!keys) return;
+  stepTitle.textContent = L(keys[0]);
+  stepSubtitle.textContent = L(keys[1]);
   stepPill.textContent = `${state.step} / ${TOTAL_STEPS}`;
   const percent = Math.round((state.step / TOTAL_STEPS) * 100);
-  progressFill.style.width = `${percent}%`;
-  progressText.textContent = `${percent}%`;
+  if (progressFill) progressFill.style.width = `${percent}%`;
+  if (progressText) progressText.textContent = `${percent}%`;
+  syncWizardCardHeads();
 }
 
 function updateNav() {
+  if (!backBtn || !nextBtn) return;
+
   if (state.step === 9) {
     backBtn.classList.add("hidden");
     nextBtn.classList.add("hidden");
@@ -163,14 +223,22 @@ function updateNav() {
   backBtn.classList.remove("hidden");
   nextBtn.classList.remove("hidden");
   backBtn.style.visibility = state.step === 1 ? "hidden" : "visible";
+  backBtn.textContent = L("wizBack");
   nextBtn.classList.remove("pulse");
-  nextBtn.textContent = state.step === 8 ? (state.submitting ? "Wysyłanie..." : "Wyślij brief") : "Dalej";
-  if (state.step === 8) nextBtn.classList.add("pulse");
+  if (state.step === 8) {
+    nextBtn.textContent = state.submitting ? L("wizSending") : L("wizSend");
+    nextBtn.classList.add("pulse");
+  } else {
+    nextBtn.textContent = L("wizNext");
+  }
 
   if (state.step === 1) {
-    nextBtn.disabled = !state.businessType || (state.businessType === "Inny" && !state.businessOther.trim());
+    nextBtn.disabled =
+      !state.businessType || (state.businessType === "bizOther" && !state.businessOther.trim());
   } else if (state.step === 2) {
-    nextBtn.disabled = state.clientSources.length === 0 || (state.clientSources.includes("Jeszcze nie wiem") && !state.clientSourcesOther.trim());
+    nextBtn.disabled =
+      state.clientSources.length === 0 ||
+      (state.clientSources.includes("srcUnknown") && !state.clientSourcesOther.trim());
   } else if (state.step === 3) {
     nextBtn.disabled = !state.visualStyle;
   } else if (state.step === 4) {
@@ -178,7 +246,8 @@ function updateNav() {
   } else if (state.step === 5) {
     nextBtn.disabled = !state.sectionCount;
   } else if (state.step === 6) {
-    nextBtn.disabled = !isValidName(state.name) || !(isValidPhone(state.phone) || state.contactExtra.trim().length > 2);
+    nextBtn.disabled =
+      !isValidName(state.name) || !(isValidPhone(state.phone) || state.contactExtra.trim().length > 2);
   } else if (state.step === 8) {
     nextBtn.disabled = state.submitting;
   } else {
@@ -211,13 +280,13 @@ function toggleArrayValue(array, value) {
 function renderSectionCount() {
   if (!projectGoalGrid) return;
   projectGoalGrid.innerHTML = "";
-  sectionCountOptions.forEach((option) => {
+  SECTION_KEYS.forEach((key) => {
     projectGoalGrid.appendChild(
       createPill({
-        label: option,
-        active: state.sectionCount === option,
+        label: L(key),
+        active: state.sectionCount === key,
         onClick: () => {
-          state.sectionCount = option;
+          state.sectionCount = key;
           renderSectionCount();
           updateBindings();
           updateNav();
@@ -230,14 +299,14 @@ function renderSectionCount() {
 function renderBusinessTypes() {
   if (!businessTypeGrid) return;
   businessTypeGrid.innerHTML = "";
-  businessTypes.forEach((type) => {
+  BUSINESS_KEYS.forEach((key) => {
     businessTypeGrid.appendChild(
       createPill({
-        label: type,
-        active: state.businessType === type,
+        label: L(key),
+        active: state.businessType === key,
         onClick: () => {
-          state.businessType = type;
-          if (type !== "Inny") {
+          state.businessType = key;
+          if (key !== "bizOther") {
             state.businessOther = "";
             if (businessOtherInput) businessOtherInput.value = "";
           }
@@ -248,20 +317,20 @@ function renderBusinessTypes() {
       })
     );
   });
-  businessOtherBox?.classList.toggle("hidden", state.businessType !== "Inny");
+  businessOtherBox?.classList.toggle("hidden", state.businessType !== "bizOther");
 }
 
 function renderClientSources() {
   if (!clientSourcesGrid) return;
   clientSourcesGrid.innerHTML = "";
-  clientSources.forEach((source) => {
+  CLIENT_KEYS.forEach((key) => {
     clientSourcesGrid.appendChild(
       createPill({
-        label: source,
-        active: state.clientSources.includes(source),
+        label: L(key),
+        active: state.clientSources.includes(key),
         onClick: () => {
-          state.clientSources = toggleArrayValue(state.clientSources, source);
-          if (!state.clientSources.includes("Jeszcze nie wiem")) {
+          state.clientSources = toggleArrayValue(state.clientSources, key);
+          if (!state.clientSources.includes("srcUnknown")) {
             state.clientSourcesOther = "";
             if (clientSourcesOtherInput) clientSourcesOtherInput.value = "";
           }
@@ -272,7 +341,7 @@ function renderClientSources() {
       })
     );
   });
-  clientSourcesOtherBox?.classList.toggle("hidden", !state.clientSources.includes("Jeszcze nie wiem"));
+  clientSourcesOtherBox?.classList.toggle("hidden", !state.clientSources.includes("srcUnknown"));
 }
 
 function renderVisualStyles() {
@@ -287,8 +356,8 @@ function renderVisualStyles() {
         <span class="style-emoji">${style.emoji}</span>
         <span class="style-icons">${style.icons}</span>
       </div>
-      <strong>${style.title}</strong>
-      <p>${style.description}</p>
+      <strong>${L(style.titleKey)}</strong>
+      <p>${L(style.descKey)}</p>
     `;
     button.addEventListener("click", () => {
       state.visualStyle = style.id;
@@ -303,14 +372,17 @@ function renderVisualStyles() {
 function renderFeatures() {
   if (!featuresGrid) return;
   featuresGrid.innerHTML = "";
-  features.forEach((feature) => {
-    const label = feature.type === "included" ? `${feature.label} · w cenie` : `${feature.label} · dodatek`;
+  FEATURE_DEFS.forEach((feature) => {
+    const label =
+      feature.type === "included"
+        ? `${L(feature.key)} · ${L("wizFeatIn")}`
+        : `${L(feature.key)} · ${L("wizFeatAddon")}`;
     featuresGrid.appendChild(
       createPill({
         label,
-        active: state.features.includes(feature.label),
+        active: state.features.includes(feature.key),
         onClick: () => {
-          state.features = toggleArrayValue(state.features, feature.label);
+          state.features = toggleArrayValue(state.features, feature.key);
           renderFeatures();
           updateBindings();
           updateNav();
@@ -321,6 +393,7 @@ function renderFeatures() {
 }
 
 async function submitBrief() {
+  if (!submitError) return;
   submitError.textContent = "";
   state.submitting = true;
   updateNav();
@@ -330,13 +403,13 @@ async function submitBrief() {
     phone: state.phone.trim(),
     contactExtra: state.contactExtra.trim(),
     businessType: getBusinessLabel(),
-    clientSources: state.clientSources,
+    clientSources: getClientSourcesPayload(),
     clientSourcesOther: state.clientSourcesOther.trim(),
     visualStyle: getVisualStyleLabel(),
     visualStyleId: state.visualStyle,
     visualDescription: state.visualDescription.trim(),
-    features: state.features,
-    sectionCount: state.sectionCount,
+    features: getFeaturesPayload(),
+    sectionCount: state.sectionCount ? L(state.sectionCount) : "",
     projectDescription: state.projectDescription.trim()
   };
 
@@ -347,10 +420,10 @@ async function submitBrief() {
       body: JSON.stringify(payload)
     });
     const data = await response.json().catch(() => null);
-    if (!response.ok || !data?.ok) throw new Error(data?.error || "Nie udało się wysłać briefu.");
+    if (!response.ok || !data?.ok) throw new Error(data?.error || L("wizErrSubmit"));
     showStep(9);
   } catch (error) {
-    submitError.textContent = error.message || "Błąd serwera.";
+    submitError.textContent = error.message || L("wizErrServer");
   } finally {
     state.submitting = false;
     updateNav();
@@ -360,13 +433,13 @@ async function submitBrief() {
 function nextStep() {
   if (state.step === 1) {
     if (!state.businessType) return;
-    if (state.businessType === "Inny" && !state.businessOther.trim()) return;
+    if (state.businessType === "bizOther" && !state.businessOther.trim()) return;
     showStep(2);
     return;
   }
   if (state.step === 2) {
     if (state.clientSources.length === 0) return;
-    if (state.clientSources.includes("Jeszcze nie wiem") && !state.clientSourcesOther.trim()) return;
+    if (state.clientSources.includes("srcUnknown") && !state.clientSourcesOther.trim()) return;
     showStep(3);
     return;
   }
@@ -388,8 +461,8 @@ function nextStep() {
   if (state.step === 6) {
     const hasAlt = state.contactExtra.trim().length > 2;
     const hasPhone = isValidPhone(state.phone);
-    nameError.textContent = isValidName(state.name) ? "" : "Wpisz poprawne imię";
-    phoneError.textContent = hasPhone || hasAlt ? "" : "Podaj telefon lub kontakt alternatywny";
+    nameError.textContent = isValidName(state.name) ? "" : L("wizErrName");
+    phoneError.textContent = hasPhone || hasAlt ? "" : L("wizErrPhone");
     if (!isValidName(state.name) || !(hasPhone || hasAlt)) return;
     showStep(7);
     return;
@@ -412,11 +485,23 @@ function callMrozowski() {
     window.location.href = `tel:${phone}`;
   } catch {
     navigator.clipboard?.writeText("532 377 701");
-    alert("Nie udało się otworzyć połączenia. Numer został skopiowany: 532 377 701");
+    alert(L("alertPhoneCopy"));
   }
 }
 
 window.callMrozowski = callMrozowski;
+
+window.refreshWizardAfterLang = function () {
+  renderSectionCount();
+  renderBusinessTypes();
+  renderClientSources();
+  renderVisualStyles();
+  renderFeatures();
+  syncWizardCardHeads();
+  updateHeader();
+  updateBindings();
+  updateNav();
+};
 
 if (nameInput) {
   nameInput.addEventListener("input", (e) => {
@@ -473,8 +558,8 @@ projectDescriptionInput?.addEventListener("input", (e) => {
   updateNav();
 });
 
-backBtn.addEventListener("click", prevStep);
-nextBtn.addEventListener("click", nextStep);
+if (backBtn) backBtn.addEventListener("click", prevStep);
+if (nextBtn) nextBtn.addEventListener("click", nextStep);
 
 renderSectionCount();
 renderBusinessTypes();

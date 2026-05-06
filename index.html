@@ -126,7 +126,8 @@
     }
 
     body.booking-open,
-    body.faq-open {
+    body.faq-open,
+    body.details-open {
       overflow: hidden;
     }
 
@@ -406,6 +407,21 @@
       transform: translateY(0);
       opacity: 1;
       pointer-events: auto;
+    }
+
+    @media (min-width: 901px) {
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        transform: none !important;
+      }
+
+      .desktop-version .landing-wrap {
+        padding-top: calc(var(--header-h) + 16px);
+      }
     }
 
     .desktop-header {
@@ -2432,7 +2448,7 @@ img {
       line-height: 1.72;
     }
 
-    /* Desktop details panel */
+    /* Details modal */
     .details-overlay {
       position: fixed;
       inset: 0;
@@ -2440,41 +2456,229 @@ img {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      background: rgba(5, 8, 22, 0.58);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: opacity 200ms ease, visibility 200ms ease;
+      background: rgba(5, 8, 22, 0.52);
+      transition: opacity 220ms ease, visibility 220ms ease;
     }
 
     .details-overlay.open {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
     }
 
     .details-panel {
       position: fixed;
-      top: calc(var(--safe-top) + 92px);
-      right: 18px;
+      inset: 0;
       z-index: 370;
-      width: min(440px, calc(100vw - 36px));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: max(12px, var(--safe-top)) 16px 20px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transform: translateX(20px) scale(.98);
-      transition: transform 220ms var(--ease), opacity 220ms ease, visibility 220ms ease;
+      transition: opacity 220ms ease, visibility 220ms ease;
     }
 
     .details-panel.open {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-      transform: translateX(0) scale(1);
     }
 
     .details-card {
-      max-height: calc(100vh - 120px);
+      width: min(600px, 100%);
+      max-height: min(88vh, 900px);
       overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 22px 22px 20px;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(99, 102, 241, 0.14), transparent 32%),
+        radial-gradient(circle at 100% 20%, rgba(56, 189, 248, 0.08), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.072), rgba(255, 255, 255, 0.028));
+      box-shadow: var(--shadow-xl), var(--glass-highlight-strong), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+      backdrop-filter: var(--glass-light);
+      -webkit-backdrop-filter: var(--glass-light);
+      color: var(--text);
+      transform: translateY(10px) scale(0.985);
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .details-panel.open .details-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .details-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .details-head strong {
+      font-family: "Sora", sans-serif;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .details-close {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.06);
+      color: #c4b5fd;
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+
+    .details-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(139, 92, 246, 0.35);
+    }
+
+    .details-modal-title {
+      margin: 0 0 8px;
+      font-family: "Instrument Serif", "Georgia", serif;
+      font-size: clamp(22px, 3.5vw, 28px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .details-lead {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .details-section-label {
+      margin: 0 0 8px;
+      color: var(--text-soft);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .gear-popover {
+      position: fixed;
+      inset: 0;
+      z-index: 350;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 180ms ease, visibility 180ms ease;
+    }
+
+    .gear-popover.open {
+      pointer-events: auto;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .gear-popover__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 8, 22, 0.35);
+      backdrop-filter: blur(10px) saturate(130%);
+      -webkit-backdrop-filter: blur(10px) saturate(130%);
+    }
+
+    .gear-popover__panel {
+      position: absolute;
+      z-index: 1;
+      min-width: 240px;
+      max-width: min(300px, calc(100vw - 32px));
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(139, 92, 246, 0.16), transparent 45%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      box-shadow: var(--shadow-lg), var(--glass-highlight);
+      backdrop-filter: var(--glass-light);
+      -webkit-backdrop-filter: var(--glass-light);
+      transform: translateY(6px) scale(0.98);
+      transition: transform 220ms var(--ease-spring);
+    }
+
+    .gear-popover.open .gear-popover__panel {
+      transform: translateY(0) scale(1);
+    }
+
+    .gear-popover__x {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+      color: #c4b5fd;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .gear-popover__panel-inner {
+      padding-top: 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .gear-popover__action {
+      min-height: 46px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-soft);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      text-align: center;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .gear-popover__action:hover {
+      border-color: rgba(139, 92, 246, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (min-width: 901px) {
+      .gear-popover__panel {
+        right: 18px;
+        top: calc(var(--header-h) + 8px);
+        left: auto;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .gear-popover__panel {
+        left: 12px;
+        right: 12px;
+        top: auto;
+        bottom: max(12px, var(--safe-bottom));
+        max-width: none;
+        border-radius: 24px;
+      }
     }
 
     .booking-overlay {
@@ -2503,29 +2707,51 @@ img {
         display: none !important;
       }
 
-      .pricing-card {
-        min-height: 520px;
-        grid-template-rows: 190px auto auto auto;
+      .pricing-card.glass-card,
+      .master-card.glass-card {
+        overflow: visible;
       }
 
+      .pricing-card,
       .master-card {
-        min-height: 540px;
-        grid-template-rows: 250px auto auto auto;
+        min-height: 0;
+        height: 100%;
+        align-content: start;
+        grid-template-rows: auto auto auto auto;
+      }
+
+      .pricing-card .service-visual,
+      .master-card .master-photo {
+        width: 100%;
+        aspect-ratio: auto !important;
+        height: 200px !important;
+        max-height: 220px !important;
+        min-height: 0 !important;
+        flex-shrink: 0;
+        position: relative;
+        align-self: start;
       }
 
       .master-card > div:nth-child(2) {
         display: grid;
         gap: 10px;
         align-content: start;
+        min-height: 0;
       }
 
       .pricing-card__content {
         gap: 10px;
         align-content: start;
+        min-height: 0;
+      }
+
+      .pricing-grid,
+      .masters-grid {
+        align-items: stretch;
       }
 
       .master-book-btn {
-        margin-top: 8px;
+        margin-top: auto;
       }
     }
 
@@ -2841,60 +3067,12 @@ img {
       }
 
       .details-panel {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: min(420px, 92vw);
-        height: 100vh;
-        z-index: 260;
-        transform: translateX(-104%);
-        transition: transform 260ms var(--ease);
-        pointer-events: none;
-        visibility: hidden;
-      }
-
-      .details-panel.open {
-        transform: translateX(0);
-        pointer-events: auto;
-        visibility: visible;
-      }
-
-      .details-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 250;
-        background: rgba(4, 7, 18, 0.62);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        opacity: 0;
-        pointer-events: none;
-        visibility: hidden;
-        transition: opacity 220ms ease;
-      }
-
-      .details-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-        visibility: visible;
-      }
-
-      .details-overlay:not(.open) {
-        pointer-events: none !important;
+        padding: max(10px, var(--safe-top)) 12px max(18px, var(--safe-bottom));
       }
 
       .details-card {
-        height: 100%;
-        border-right: 1px solid rgba(255,255,255,.11);
-        background: linear-gradient(180deg, rgba(8,11,28,.96), rgba(8,11,28,.9));
-        padding: calc(12px + var(--safe-top)) 16px 16px;
-        overflow: auto;
-      }
-
-      .details-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 14px;
+        max-height: min(92dvh, 900px);
+        padding: 18px 16px 16px;
       }
 
       .details-list {
@@ -2915,45 +3093,6 @@ img {
         height: 28px;
         padding: 0;
         font-size: 9px;
-      }
-
-      .gear-menu {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 8px;
-        z-index: 90;
-        width: min(220px, calc(100vw - 24px));
-        min-width: 190px;
-        padding: 8px;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,.1);
-        background:
-          radial-gradient(circle at 20% 0%, rgba(139,92,246,.17), transparent 48%),
-          linear-gradient(180deg, rgba(8,11,28,.96), rgba(8,11,28,.9));
-        box-shadow: 0 14px 34px rgba(0,0,0,.34), var(--glass-highlight);
-        display: none;
-        pointer-events: none;
-      }
-
-      .gear-menu.open {
-        display: grid;
-        gap: 8px;
-        pointer-events: auto;
-      }
-
-      .gear-menu-btn {
-        min-height: 44px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,.08);
-        background: rgba(255,255,255,.04);
-        color: var(--text-soft);
-        font-size: 13px;
-        font-weight: 900;
-        letter-spacing: .01em;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
       }
 
       .section-nav {
@@ -4488,15 +4627,17 @@ body.booking-open .site-header {
   background-repeat: no-repeat !important;
 }
 
-.service-visual,
-.service-img,
-.master-photo,
-.mobile-master-photo,
-.mobile-gallery-photo,
-.gallery-tile {
-  aspect-ratio: 1 / 1 !important;
-  min-height: 0 !important;
-  height: auto !important;
+@media (max-width: 900px) {
+  .service-visual,
+  .service-img,
+  .master-photo,
+  .mobile-master-photo,
+  .mobile-gallery-photo,
+  .gallery-tile {
+    aspect-ratio: 1 / 1 !important;
+    min-height: 0 !important;
+    height: auto !important;
+  }
 }
 
 /* убираем только цифры/заглушки, размеры НЕ трогаем */
@@ -4631,9 +4772,9 @@ body.booking-open .site-header {
       <div class="landing-container desktop-header">
         <div class="desktop-left">
           <nav class="desktop-nav">
-            <a href="#hero">Start</a>
-            <a href="#pricing">Oferta</a>
-            <a href="#masters">Produkt</a>
+            <a href="#hero" data-i18n="navStart">Start</a>
+            <a href="#pricing" data-i18n="navOffer">Oferta</a>
+            <a href="#masters" data-i18n="navProduct">Produkt</a>
           </nav>
         </div>
 
@@ -4648,9 +4789,9 @@ body.booking-open .site-header {
 
         <div class="desktop-right">
           <nav class="desktop-nav">
-            <a href="#reviews">Oceny</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Kontakt</a>
+            <a href="#reviews" data-i18n="navProof">Oceny</a>
+            <a href="#faq" data-i18n="navFaq">FAQ</a>
+            <a href="#contact" data-i18n="navContact">Kontakt</a>
           </nav>
 
           <div class="lang-switcher" aria-label="Language switcher">
@@ -4659,7 +4800,7 @@ body.booking-open .site-header {
             <button class="lang-btn" type="button" data-lang="en">EN</button>
           </div>
 
-          <button class="desktop-call-btn top-gear-btn" type="button" data-open-details aria-label="Szczegóły">⚙</button>
+          <button class="desktop-call-btn top-gear-btn" type="button" data-toggle-gear-menu data-i18n-aria-label="gearMenuAria" aria-label="Menu">⚙</button>
           <a href="tel:+48532377701" class="desktop-call-btn">Telefon</a>
         </div>
       </div>
@@ -4671,7 +4812,7 @@ body.booking-open .site-header {
           <div class="hero-card reveal">
             <div class="hero-grid">
               <div class="hero-copy">
-                <div class="section-chip">MROZOWSKI AUTOMATION</div>
+                <div class="section-chip" data-i18n="kickerBrand">MROZOWSKI AUTOMATION</div>
 
                 <h1 class="hero-title">
                   <span data-i18n="heroTitle1">Strona, która prowadzi</span>
@@ -4886,7 +5027,7 @@ body.booking-open .site-header {
                     </div>
                     <p data-i18n="offer1Text">Dla biznesu, który chce mieć własne miejsce do pokazania oferty i przyjmowania konkretnych zgłoszeń.</p>
                   </div>
-                  <div class="service-tags"><span>strona premium</span><span data-i18n="tagOffer">oferta</span><span>formularz</span></div>
+                  <div class="service-tags"><span data-i18n="tagPremiumPage">strona premium</span><span data-i18n="tagOffer">oferta</span><span data-i18n="tagFormShort">formularz</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="chooseBtn">Wybierz</button>
                 </article>
 
@@ -4895,11 +5036,11 @@ body.booking-open .site-header {
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
                       <strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong>
-                      <span class="pricing-card__price">plus</span>
+                      <span class="pricing-card__price" data-i18n="offerBadgePlus">plus</span>
                     </div>
                     <p data-i18n="offer2Text">Dla biznesu, który chce kierować klientów z sociali, reklam i komunikatorów do jednej spójnej ścieżki.</p>
                   </div>
-                  <div class="service-tags"><span>Instagram</span><span>TikTok</span><span>Google</span></div>
+                  <div class="service-tags"><span data-i18n="srcInstagram">Instagram</span><span data-i18n="srcTikTok">TikTok</span><span data-i18n="srcGoogle">Google</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="addSourcesBtn">Dodaj wejścia</button>
                 </article>
 
@@ -4908,7 +5049,7 @@ body.booking-open .site-header {
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
                       <strong data-i18n="offer3Title">Dopasowanie pod biznes</strong>
-                      <span class="pricing-card__price">premium</span>
+                      <span class="pricing-card__price" data-i18n="offerBadgePremium">premium</span>
                     </div>
                     <p data-i18n="offer3Text">Teksty, sekcje i styl strony dopasowane do lokalnej usługi. Rozszerzenia i większa automatyzacja wyceniamy osobno.</p>
                   </div>
@@ -4943,21 +5084,21 @@ body.booking-open .site-header {
                 <article class="glass-card master-card">
                   <div class="master-photo tymur-photo"></div>
                   <div><h3 data-i18n="productCard1Title">Strona premium</h3><p data-i18n="productCard1Text">Pierwszy ekran, oferta, sekcje z argumentami i CTA ustawione tak, żeby klient rozumiał wartość przed kontaktem.</p></div>
-                  <div class="master-tags"><span>hero</span><span data-i18n="tagOffer">oferta</span><span>premium UI</span></div>
+                  <div class="master-tags"><span data-i18n="tagHero">hero</span><span data-i18n="tagOffer">oferta</span><span data-i18n="tagPremiumUi">premium UI</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard1Btn">Wybrać stronę</button>
                 </article>
 
                 <article class="glass-card master-card">
                   <div class="master-photo dima-photo"></div>
                   <div><h3 data-i18n="productCard2Title">Ścieżka zapisu</h3><p data-i18n="productCard2Text">Klient przechodzi przez wybór zakresu, dane, datę i potwierdzenie bez ręcznego ping-ponga w wiadomościach.</p></div>
-                  <div class="master-tags"><span>flow</span><span>formularz</span><span>lead</span></div>
+                  <div class="master-tags"><span data-i18n="tagFlow">flow</span><span data-i18n="tagFormShort">formularz</span><span data-i18n="tagLead">lead</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard2Btn">Sprawdzić flow</button>
                 </article>
 
                 <article class="glass-card master-card">
                   <div class="master-photo vlad-photo"></div>
                   <div><h3 data-i18n="productCard3Title">Wejścia z kanałów</h3><p data-i18n="productCard3Text">Instagram, TikTok, Google, reklama i komunikatory prowadzą do jednej strony, nie do chaosu w pięciu rozmowach.</p></div>
-                  <div class="master-tags"><span>social</span><span>Google</span><span>DM</span></div>
+                  <div class="master-tags"><span data-i18n="tagSocial">social</span><span>Google</span><span data-i18n="tagDm">DM</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="productCard3Btn">Podłączyć wejścia</button>
                 </article>
               </div>
@@ -4980,11 +5121,11 @@ body.booking-open .site-header {
               </div>
 
               <div class="gallery-grid">
-                <article class="gallery-tile gallery-cut large"><span>lead capture</span></article>
-                <article class="gallery-tile gallery-beard"><span>decision flow</span></article>
-                <article class="gallery-tile gallery-combo"><span>strong CTA</span></article>
-                <article class="gallery-tile gallery-shop wide"><span>one client path</span></article>
-                <article class="gallery-tile gallery-detail"><span>context data</span></article>
+                <article class="gallery-tile gallery-cut large"><span data-i18n="galleryLeadCap">lead capture</span></article>
+                <article class="gallery-tile gallery-beard"><span data-i18n="galleryDecFlow">decision flow</span></article>
+                <article class="gallery-tile gallery-combo"><span data-i18n="galleryStrongCta">strong CTA</span></article>
+                <article class="gallery-tile gallery-shop wide"><span data-i18n="galleryOnePath">one client path</span></article>
+                <article class="gallery-tile gallery-detail"><span data-i18n="galleryCtxData">context data</span></article>
               </div>
             </div>
           </div>
@@ -5096,18 +5237,18 @@ body.booking-open .site-header {
               </div>
 
               <div class="faq-grid">
-                <button class="glass-card faq-item" type="button" data-faq="coDaje"><strong>Co daje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="jakDziala"><strong>Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="panelAdmina"><strong>Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faq"><strong>FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqCena"><strong>Ile kosztuje podstawowa strona?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqKolor"><strong>Czy kolor można dopasować do mojej marki?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqMaterialy"><strong>Czy muszę mieć gotowe teksty i zdjęcia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqBranze"><strong>Czy strona działa dla różnych branż?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqBooking"><strong>Czy rezerwacja jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqPoZgloszeniu"><strong>Co dzieje się po wysłaniu zgłoszenia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqIgAuto"><strong>Czy automatyzacja Instagrama jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="faqTelegram"><strong>Czy Telegram powiadomienia są w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="coDaje"><strong data-i18n="faqQCoDaje">Co daje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="jakDziala"><strong data-i18n="faqQJakDziala">Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="panelAdmina"><strong data-i18n="faqQPanel">Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faq"><strong data-i18n="faqQFaq">FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqCena"><strong data-i18n="faqQCena">Ile kosztuje podstawowa strona?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqKolor"><strong data-i18n="faqQKolor">Czy kolor można dopasować do mojej marki?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqMaterialy"><strong data-i18n="faqQMaterialy">Czy muszę mieć gotowe teksty i zdjęcia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqBranze"><strong data-i18n="faqQBranze">Czy strona działa dla różnych branż?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqBooking"><strong data-i18n="faqQBooking">Czy rezerwacja jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqPoZgloszeniu"><strong data-i18n="faqQPo">Co dzieje się po wysłaniu zgłoszenia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqIgAuto"><strong data-i18n="faqQIg">Czy automatyzacja Instagrama jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqTelegram"><strong data-i18n="faqQTg">Czy Telegram powiadomienia są w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
               </div>
             </div>
           </div>
@@ -5163,7 +5304,7 @@ body.booking-open .site-header {
                   </ul>
 
                   <div class="contact-lead">
-                    <strong>MROZOWSKI AUTOMATION</strong>
+                    <strong data-i18n="contactBrandStrong">MROZOWSKI AUTOMATION</strong>
                     <p data-i18n="contactBoxText">Premium strona, ścieżka zapisu i system zgłoszeń dla biznesów, które nie chcą tracić klientów w wiadomościach.</p>
                   </div>
 
@@ -5179,7 +5320,7 @@ body.booking-open .site-header {
 
   <div class="mobile-version" id="mobile-version">
     <header class="app-top">
-      <button class="icon-btn top-gear-btn" type="button" data-toggle-gear-menu aria-label="Menu">⚙</button>
+      <button class="icon-btn top-gear-btn" type="button" data-toggle-gear-menu data-i18n-aria-label="gearMenuAria" aria-label="Menu">⚙</button>
       <div class="logo-pill">
         <div class="mobile-wordmark" aria-hidden="true">
           <span>MROZOWSKI</span>
@@ -5190,10 +5331,6 @@ body.booking-open .site-header {
         <button class="lang-btn active" type="button" data-lang="pl">PL</button>
         <button class="lang-btn" type="button" data-lang="ru">RU</button>
         <button class="lang-btn" type="button" data-lang="en">EN</button>
-      </div>
-      <div class="gear-menu" id="gearMenu">
-        <button class="gear-menu-btn" type="button" data-open-details>Szczegóły</button>
-        <a class="gear-menu-btn" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos">Wróć do demo</a>
       </div>
     </header>
 
@@ -5209,7 +5346,7 @@ body.booking-open .site-header {
     <main class="pages">
       <section class="page active" data-page-view="home">
         <div class="page-head">
-          <div class="kicker">MROZOWSKI AUTOMATION</div>
+          <div class="kicker" data-i18n="kickerBrand">MROZOWSKI AUTOMATION</div>
           <h1 class="page-title">
             <span data-i18n="mobileHeroTitle1">Strona, która</span>
             <span class="gold" data-i18n="mobileHeroTitle2">prowadzi klienta.</span>
@@ -5231,7 +5368,7 @@ body.booking-open .site-header {
               </div>
 
               <div class="mobile-dashboard-row">
-                <div class="mobile-mini-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValue">Prosty flow</strong></div>
+                <div class="mobile-mini-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValueMobile">Prosty flow</strong></div>
                 <div class="mobile-mini-tile"><span data-i18n="dashEffect">Wynik</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
               </div>
             </div>
@@ -5264,23 +5401,23 @@ body.booking-open .site-header {
             <div class="service-img haircut"></div>
             <div class="service-card-header"><strong data-i18n="offer1Title">Strona z zapisem</strong><span class="price" data-i18n="offer1Badge">600 zł</span></div>
             <p data-i18n="mobileOffer1Text">Własna strona premium, oferta, sekcje sprzedażowe i zapis / formularz.</p>
-            <div class="tags"><span>page</span><span data-i18n="tagOffer">oferta</span><span>CTA</span></div>
+            <div class="tags"><span data-i18n="mobileTagPage">page</span><span data-i18n="tagOffer">oferta</span><span data-i18n="mobileTagCta">CTA</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="chooseBtn">Wybierz</button>
           </article>
 
           <article class="service-card">
             <div class="service-img combo"></div>
-            <div class="service-card-header"><strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong><span class="price">plus</span></div>
+            <div class="service-card-header"><strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong><span class="price" data-i18n="offerBadgePlus">plus</span></div>
             <p data-i18n="mobileOffer2Text">Instagram, TikTok, Google, WhatsApp, Telegram i reklamy prowadzą do jednej strony.</p>
-            <div class="tags"><span>social</span><span>Google</span><span>DM</span></div>
+            <div class="tags"><span data-i18n="tagSocial">social</span><span>Google</span><span data-i18n="tagDm">DM</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="addSourcesBtn">Dodaj wejścia</button>
           </article>
 
           <article class="service-card">
             <div class="service-img beard"></div>
-            <div class="service-card-header"><strong data-i18n="mobileOffer3Title">Dopasowanie pod biznes</strong><span class="price">lokalnie</span></div>
+            <div class="service-card-header"><strong data-i18n="mobileOffer3Title">Dopasowanie pod biznes</strong><span class="price" data-i18n="mobileOfferPriceLocal">lokalnie</span></div>
             <p data-i18n="mobileOffer3Text">Teksty, sekcje i styl strony dopasowane do Twojej usługi lokalnej.</p>
-            <div class="tags"><span>flow</span><span>lead</span><span>system</span></div>
+            <div class="tags"><span data-i18n="tagFlow">flow</span><span data-i18n="tagLead">lead</span><span data-i18n="mobileTagSystem">system</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">Dopasuj stronę</button>
           </article>
         </div>
@@ -5301,7 +5438,7 @@ body.booking-open .site-header {
             <div class="mobile-master-photo tymur"></div>
             <strong data-i18n="productCard1Title">Strona premium</strong>
             <p data-i18n="mobileProductCard1Text">Hero, oferta, sekcje z argumentami i mocne CTA.</p>
-            <div class="tags"><span>hero</span><span>oferta</span><span>UI</span></div>
+            <div class="tags"><span data-i18n="tagHero">hero</span><span data-i18n="tagOffer">oferta</span><span data-i18n="mobileTagUi">UI</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard1Btn">Wybrać stronę</button>
           </article>
 
@@ -5309,7 +5446,7 @@ body.booking-open .site-header {
             <div class="mobile-master-photo dima"></div>
             <strong data-i18n="productCard2Title">Ścieżka zapisu</strong>
             <p data-i18n="mobileProductCard2Text">Klient przechodzi przez wybór i dane bez pisania w kółko.</p>
-            <div class="tags"><span>flow</span><span>dane</span><span>lead</span></div>
+            <div class="tags"><span data-i18n="tagFlow">flow</span><span data-i18n="mobileTagData">dane</span><span data-i18n="tagLead">lead</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard2Btn">Sprawdzić flow</button>
           </article>
 
@@ -5317,22 +5454,22 @@ body.booking-open .site-header {
             <div class="mobile-master-photo vlad"></div>
             <strong data-i18n="productCard3Title">Wejścia z kanałów</strong>
             <p data-i18n="mobileProductCard3Text">Ruch z różnych miejsc trafia do jednej dopracowanej strony.</p>
-            <div class="tags"><span>IG</span><span>TikTok</span><span>Google</span></div>
+            <div class="tags"><span data-i18n="mobileTagIgShort">IG</span><span>TikTok</span><span>Google</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="productCard3Btn">Podłączyć wejścia</button>
           </article>
           <article class="mobile-master-card">
             <div class="mobile-master-photo combo"></div>
-            <strong>Formularz / zgłoszenie</strong>
-            <p>Krótki formularz zbiera podstawowe dane i przyspiesza kontakt.</p>
-            <div class="tags"><span>formularz</span><span>zapis</span><span>kontakt</span></div>
-            <button class="mobile-card-btn" type="button" data-open-booking>Uruchom formularz</button>
+            <strong data-i18n="mobileMasterFormTitle">Formularz / zgłoszenie</strong>
+            <p data-i18n="mobileMasterFormText">Krótki formularz zbiera podstawowe dane i przyspiesza kontakt.</p>
+            <div class="tags"><span data-i18n="tagFormShort">formularz</span><span data-i18n="tagBooking">zapis</span><span data-i18n="flowContact">kontakt</span></div>
+            <button class="mobile-card-btn" type="button" data-open-booking data-i18n="mobileMasterFormBtn">Uruchom formularz</button>
           </article>
           <article class="mobile-master-card">
             <div class="mobile-master-photo beard"></div>
-            <strong>FAQ / kontakt</strong>
-            <p>FAQ i kontakt porządkują decyzję klienta przed rozmową.</p>
-            <div class="tags"><span>FAQ</span><span>kontakt</span><span>zaufanie</span></div>
-            <button class="mobile-card-btn" type="button" data-page-jump="faq">Zobacz FAQ</button>
+            <strong data-i18n="mobileMasterFaqTitle">FAQ / kontakt</strong>
+            <p data-i18n="mobileMasterFaqText">FAQ i kontakt porządkują decyzję klienta przed rozmową.</p>
+            <div class="tags"><span data-i18n="navFaq">FAQ</span><span data-i18n="flowContact">kontakt</span><span data-i18n="tagTrust">zaufanie</span></div>
+            <button class="mobile-card-btn" type="button" data-page-jump="faq" data-i18n="mobileMasterFaqBtn">Zobacz FAQ</button>
           </article>
         </div>
       </section>
@@ -5348,11 +5485,11 @@ body.booking-open .site-header {
         </div>
 
         <div class="gallery-mobile-list">
-          <article class="mobile-gallery-card"><div class="mobile-gallery-photo cut"></div><strong>Lead capture</strong><p data-i18n="gallery1Text">Klient zostawia dane po zobaczeniu oferty, nie na ślepo.</p></article>
-          <article class="mobile-gallery-card"><div class="mobile-gallery-photo beard"></div><strong>Decision flow</strong><p data-i18n="gallery2Text">Strona prowadzi przez wybór zamiast zostawiać klienta z pytaniami.</p></article>
-          <article class="mobile-gallery-card"><div class="mobile-gallery-photo combo"></div><strong>Strong CTA</strong><p data-i18n="gallery3Text">Każdy ekran ma jasny następny krok.</p></article>
-          <article class="mobile-gallery-card"><div class="mobile-gallery-photo shop"></div><strong>One path</strong><p data-i18n="gallery4Text">Wszystkie kanały prowadzą do jednej ścieżki.</p></article>
-          <article class="mobile-gallery-card"><div class="mobile-gallery-photo detail"></div><strong>Context data</strong><p data-i18n="gallery5Text">Właściciel dostaje więcej niż zwykłe “hej”.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo cut"></div><strong data-i18n="galleryLeadCap">Lead capture</strong><p data-i18n="gallery1Text">Klient zostawia dane po zobaczeniu oferty, nie na ślepo.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo beard"></div><strong data-i18n="galleryDecFlow">Decision flow</strong><p data-i18n="gallery2Text">Strona prowadzi przez wybór zamiast zostawiać klienta z pytaniami.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo combo"></div><strong data-i18n="galleryStrongCta">Strong CTA</strong><p data-i18n="gallery3Text">Każdy ekran ma jasny następny krok.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo shop"></div><strong data-i18n="galleryOnePath">One path</strong><p data-i18n="gallery4Text">Wszystkie kanały prowadzą do jednej ścieżki.</p></article>
+          <article class="mobile-gallery-card"><div class="mobile-gallery-photo detail"></div><strong data-i18n="galleryCtxData">Context data</strong><p data-i18n="gallery5Text">Właściciel dostaje więcej niż zwykłe “hej”.</p></article>
         </div>
       </section>
 
@@ -5367,9 +5504,9 @@ body.booking-open .site-header {
         </div>
 
         <div class="reviews-mobile-list">
-          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview1">“Link robi pierwszą część rozmowy. Klient wie, co wybrać.”</p><strong>— Beauty studio</strong></article>
-          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview2">“Zamiast pytań o cenę dostajemy kontakt z kontekstem.”</p><strong>— Local service</strong></article>
-          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview3">“Jedna strona, jedna oferta, jeden proces.”</p><strong>— Studio owner</strong></article>
+          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview1">“Link robi pierwszą część rozmowy. Klient wie, co wybrać.”</p><strong data-i18n="reviewAttribution1">— Beauty studio</strong></article>
+          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview2">“Zamiast pytań o cenę dostajemy kontakt z kontekstem.”</p><strong data-i18n="reviewAttribution2">— Local service</strong></article>
+          <article class="mobile-review-card"><div class="mobile-stars">★★★★★</div><p data-i18n="mobileReview3">“Jedna strona, jedna oferta, jeden proces.”</p><strong data-i18n="reviewAttribution3">— Studio owner</strong></article>
 
           <article class="google-review-card">
             <strong data-i18n="buildSimilarBtn">Zbuduj podobny system</strong>
@@ -5392,13 +5529,13 @@ body.booking-open .site-header {
         <div class="screen-body">
           <article class="location-card">
             <div class="address-box">
-              <strong>JEDNA ŚCIEŻKA KLIENTA</strong>
-              <p>Instagram / TikTok / Google / WhatsApp / Telegram / Reklama</p>
+              <strong data-i18n="wherePathTitle">JEDNA ŚCIEŻKA KLIENTA</strong>
+              <p data-i18n="wherePathSub">Instagram / TikTok / Google / WhatsApp / Telegram / Reklama</p>
             </div>
 
             <div class="map-glass">
               <div class="map-logo-overlay">
-                <span>JEDNA<br />ŚCIEŻKA</span>
+                <span data-i18n="whereMapBadge">JEDNA ŚCIEŻKA</span>
               </div>
             </div>
 
@@ -5421,18 +5558,18 @@ body.booking-open .site-header {
         </div>
 
         <div class="faq-mobile-list">
-          <button class="mobile-faq-card" type="button" data-faq="coDaje"><strong>Co daje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="jakDziala"><strong>Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="panelAdmina"><strong>Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faq"><strong>FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqCena"><strong>Ile kosztuje podstawowa strona?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqKolor"><strong>Czy kolor można dopasować do mojej marki?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqMaterialy"><strong>Czy muszę mieć gotowe teksty i zdjęcia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqBranze"><strong>Czy strona działa dla różnych branż?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqBooking"><strong>Czy rezerwacja jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqPoZgloszeniu"><strong>Co dzieje się po wysłaniu zgłoszenia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqIgAuto"><strong>Czy automatyzacja Instagrama jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="faqTelegram"><strong>Czy Telegram powiadomienia są w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="coDaje"><strong data-i18n="faqQCoDaje">Co daje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="jakDziala"><strong data-i18n="faqQJakDziala">Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="panelAdmina"><strong data-i18n="faqQPanel">Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faq"><strong data-i18n="faqQFaq">FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqCena"><strong data-i18n="faqQCena">Ile kosztuje podstawowa strona?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqKolor"><strong data-i18n="faqQKolor">Czy kolor można dopasować do mojej marki?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqMaterialy"><strong data-i18n="faqQMaterialy">Czy muszę mieć gotowe teksty i zdjęcia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqBranze"><strong data-i18n="faqQBranze">Czy strona działa dla różnych branż?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqBooking"><strong data-i18n="faqQBooking">Czy rezerwacja jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqPoZgloszeniu"><strong data-i18n="faqQPo">Co dzieje się po wysłaniu zgłoszenia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqIgAuto"><strong data-i18n="faqQIg">Czy automatyzacja Instagrama jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqTelegram"><strong data-i18n="faqQTg">Czy Telegram powiadomienia są w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
         </div>
       </section>
 
@@ -5448,7 +5585,7 @@ body.booking-open .site-header {
 
         <div class="contact-layout">
           <article class="contact-mobile-card">
-            <strong>MROZOWSKI AUTOMATION</strong>
+            <strong data-i18n="contactBrandStrong">MROZOWSKI AUTOMATION</strong>
             <p data-i18n="mobileContactCard">Strona, zapis i system zgłoszeń dla lokalnych biznesów.</p>
           </article>
 
@@ -5487,9 +5624,33 @@ body.booking-open .site-header {
       <button class="faq-sheet__close" type="button" data-close-faq aria-label="Zamknij">×</button>
 
       <div class="faq-sheet__content">
-        <span>FAQ</span>
-        <h3 id="faqSheetTitle">Pytanie</h3>
-        <p id="faqSheetAnswer">Odpowiedź.</p>
+        <span data-i18n="faqSheetBadge">FAQ</span>
+        <h3 id="faqSheetTitle" data-i18n="faqSheetPlaceholderQ">Pytanie</h3>
+        <p id="faqSheetAnswer" data-i18n="faqSheetPlaceholderA">Odpowiedź.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gear-popover" id="gearPopover" aria-hidden="true">
+    <div class="gear-popover__backdrop" data-close-gear tabindex="-1"></div>
+    <div
+      class="gear-popover__panel"
+      role="dialog"
+      aria-modal="true"
+      data-i18n-aria-label="gearMenuAria"
+      aria-label="Menu"
+    >
+      <button class="gear-popover__x" type="button" data-close-gear data-i18n-aria-label="detailsCloseAria" aria-label="Zamknij">
+        ×
+      </button>
+      <div class="gear-popover__panel-inner">
+        <button type="button" class="gear-popover__action" data-open-details data-i18n="gearDetails">Szczegóły</button>
+        <a
+          class="gear-popover__action"
+          href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos"
+          data-i18n="gearBackDemo"
+          data-close-gear
+          >Wróć do demo</a>
       </div>
     </div>
   </div>
@@ -5498,30 +5659,39 @@ body.booking-open .site-header {
   <aside class="details-panel" id="detailsPanel" aria-hidden="true">
     <div class="details-card">
       <div class="details-head">
-        <strong>Szczegóły</strong>
-        <button class="icon-btn" type="button" data-close-details aria-label="Zamknij">×</button>
+        <strong data-i18n="gearDetails">Szczegóły</strong>
+        <button class="details-close" type="button" data-close-details data-i18n-aria-label="detailsCloseAria" aria-label="Zamknij">
+          ×
+        </button>
       </div>
-      <h3 style="margin:0 0 8px;">Co dostajesz za 600 zł?</h3>
-      <p style="margin:0 0 12px;color:var(--muted);">Podstawowa strona dla lokalnego biznesu z ofertą, usługami, cenami, FAQ, kontaktem i prostą ścieżką zapisu.</p>
+      <h3 class="details-modal-title" data-i18n="detailsTitle">Co wchodzi za 600 zł?</h3>
+      <p class="details-lead" data-i18n="detailsLead">
+        Bazowa strona dla lokalnego biznesu z ofertą, usługami, cenami, FAQ, kontaktem i prostą ścieżką zapisu.
+      </p>
+      <p class="details-section-label" data-i18n="detailsIncludedHeading">W cenie:</p>
       <ul class="details-list">
-        <li>Strona premium pod Twój biznes</li>
-        <li>Oferta, usługi i ceny</li>
-        <li>FAQ dla klientów</li>
-        <li>Galeria / zdjęcia</li>
-        <li>Kontakt i social media</li>
-        <li>Rezerwacja / zapis</li>
-        <li>SMS / podstawowe potwierdzenie</li>
-        <li>Dopasowanie pod branżę</li>
+        <li data-i18n="detailsInc1">Strona premium pod Twój biznes</li>
+        <li data-i18n="detailsInc2">Oferta, usługi i ceny</li>
+        <li data-i18n="detailsInc3">FAQ dla klientów</li>
+        <li data-i18n="detailsInc4">Galeria / zdjęcia</li>
+        <li data-i18n="detailsInc5">Kontakt i social media</li>
+        <li data-i18n="detailsInc6">Zapis / booking</li>
+        <li data-i18n="detailsInc7">SMS / podstawowe potwierdzenie</li>
+        <li data-i18n="detailsInc8">Dopasowanie pod branżę</li>
       </ul>
-      <p style="margin:0 0 8px;color:var(--text-soft);font-weight:800;">Dodatki:</p>
+      <p class="details-section-label" data-i18n="detailsAddonsHeading">Dodatkowo:</p>
       <ul class="details-list">
-        <li>Własny kolor marki — od +100 zł</li>
-        <li>Dodatkowa sekcja — osobno</li>
-        <li>Instagram automatyzacja — osobno</li>
-        <li>Telegram powiadomienia — osobno</li>
-        <li>Rozbudowany booking — osobno</li>
+        <li data-i18n="detailsAdd1">Firmowy kolor — od +100 zł</li>
+        <li data-i18n="detailsAdd2">Dodatkowa sekcja — osobno</li>
+        <li data-i18n="detailsAdd3">Automatyzacja Instagram — osobno</li>
+        <li data-i18n="detailsAdd4">Powiadomienia Telegram — osobno</li>
+        <li data-i18n="detailsAdd5">Rozbudowany booking — osobno</li>
       </ul>
-      <a class="btn btn-ghost section-button-full" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos">Wróć do demo</a>
+      <a
+        class="btn btn-ghost section-button-full"
+        href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos"
+        data-i18n="detailsBackBtn"
+        >Wróć do demo</a>
     </div>
   </aside>
 
@@ -5721,7 +5891,8 @@ body.booking-open .site-header {
   <button class="nav-btn" id="backBtn" type="button">Wstecz</button>
   <button class="nav-btn nav-btn-primary" id="nextBtn" type="button">Dalej</button>
 </footer>
-            
+
+  <script src="./i18n-data.js"></script>
   <script>
     const overlay = document.getElementById("bookingOverlay");
     const flash = document.getElementById("screenFlash");
@@ -5732,7 +5903,7 @@ body.booking-open .site-header {
     const faqSheetAnswer = document.getElementById("faqSheetAnswer");
     const detailsPanel = document.getElementById("detailsPanel");
     const detailsOverlay = document.getElementById("detailsOverlay");
-    const gearMenu = document.getElementById("gearMenu");
+    const gearPopover = document.getElementById("gearPopover");
 
     let lastScrollY = window.scrollY;
     let lastMobileScrollTop = 0;
@@ -5740,333 +5911,43 @@ body.booking-open .site-header {
     let touchStartY = 0;
     let ticking = false;
 
-    const translations = {
-      pl: {
-        heroTitle1: "Strona, która prowadzi",
-        heroTitle2: "klienta do zgłoszenia.",
-        heroSub: "Premium strona, ścieżka zapisu i system przyjmowania klientów dla biznesów, które nie chcą tracić rozmów w DM, WhatsAppie, Telegramie i komentarzach.",
-        chooseSystem: "Wybierz system",
-        seeProcess: "Zobacz proces",
-        trust1: "Strona premium",
-        trust2: "Ścieżka zapisu",
-        trust3: "Leady z wielu miejsc",
-        clientPath: "Ścieżka klienta",
-        active: "aktywna",
-        dashSources: "Wejścia",
-        dashSourcesValue: "6 źródeł",
-        dashOffer: "Oferta",
-        dashOfferValue: "1 strona",
-        dashProcess: "Proces",
-        dashProcessValue: "Wybór",
-        dashEffect: "Wynik",
-        dashEffectValue: "Zgłoszenie",
-        flowSocial: "Social",
-        flowOffer: "Oferta",
-        flowContact: "Kontakt",
-        metric1: "Jedna strona zamiast chaosu w wiadomościach",
-        metric2: "Od zainteresowania do konkretnego kontaktu",
-        navStart: "Start",
-        navOffer: "Oferta",
-        navProduct: "Produkt",
-        navProof: "Oceny",
-        navProcess: "Proces",
-        navFaq: "FAQ",
-        navContact: "Kontakt",
-        chooseBtn: "Wybierz",
-        startNow: "Zostaw zgłoszenie",
-        howItWorks: "Jak działa",
-        addSourcesBtn: "Dodaj wejścia",
-        bestChoiceBtn: "Najlepszy wybór",
-        phoneShort: "Telefon"
-      },
-      ru: {
-        heroTitle1: "Страница, которая ведёт",
-        heroTitle2: "клиента к заявке.",
-        heroSub: "Премиальная страница, путь записи и система приёма клиентов для бизнесов, которые не хотят терять диалоги в DM, WhatsApp, Telegram и комментариях.",
-        chooseSystem: "Выбрать систему",
-        seeProcess: "Посмотреть процесс",
-        trust1: "Премиум страница",
-        trust2: "Путь записи",
-        trust3: "Лиды из разных мест",
-        clientPath: "Путь клиента",
-        active: "активно",
-        dashSources: "Источники",
-        dashSourcesValue: "6 каналов",
-        dashOffer: "Оффер",
-        dashOfferValue: "1 страница",
-        dashProcess: "Процесс",
-        dashProcessValue: "Выбор",
-        dashEffect: "Результат",
-        dashEffectValue: "Заявка",
-        flowSocial: "Соцсети",
-        flowOffer: "Оффер",
-        flowContact: "Контакт",
-        metric1: "Одна страница вместо хаоса в сообщениях",
-        metric2: "От интереса к конкретному контакту",
-        navStart: "Старт",
-        navOffer: "Оффер",
-        navProduct: "Продукт",
-        navProof: "Оценки",
-        navProcess: "Процесс",
-        navFaq: "FAQ",
-        navContact: "Контакт",
-        chooseBtn: "Выбрать",
-        startNow: "Оставить заявку",
-        howItWorks: "Как работает",
-        addSourcesBtn: "Добавить входы",
-        bestChoiceBtn: "Лучший выбор",
-        phoneShort: "Телефон"
-      },
-      en: {
-        heroTitle1: "A page that guides",
-        heroTitle2: "clients to a lead.",
-        heroSub: "A premium page, booking path and client intake system for businesses that do not want to lose conversations in DM, WhatsApp, Telegram and comments.",
-        chooseSystem: "Choose system",
-        seeProcess: "See process",
-        trust1: "Premium page",
-        trust2: "Booking path",
-        trust3: "Leads from many places",
-        clientPath: "Client Path",
-        active: "active",
-        dashSources: "Sources",
-        dashSourcesValue: "6 sources",
-        dashOffer: "Offer",
-        dashOfferValue: "1 page",
-        dashProcess: "Process",
-        dashProcessValue: "Choice",
-        dashEffect: "Result",
-        dashEffectValue: "Lead",
-        flowSocial: "Social",
-        flowOffer: "Offer",
-        flowContact: "Contact",
-        metric1: "One page instead of message chaos",
-        metric2: "From interest to clear contact",
-        navStart: "Start",
-        navOffer: "Offer",
-        navProduct: "Product",
-        navProof: "Reviews",
-        navProcess: "Process",
-        navFaq: "FAQ",
-        navContact: "Contact",
-        chooseBtn: "Choose",
-        startNow: "Send request",
-        howItWorks: "How it works",
-        addSourcesBtn: "Add sources",
-        bestChoiceBtn: "Best choice",
-        phoneShort: "Phone"
-      }
-    };
+    const translations = window.SITE_I18N || { pl: {}, ru: {}, en: {} };
 
     const staticTranslations = {
       pl: {
         text: {
-          ".desktop-call-btn.top-gear-btn": "⚙",
+          ".desktop-call-btn.top-gear-btn": "\u2699",
           ".desktop-call-btn[href^='tel:']": "Telefon",
-          "[data-i18n='pricingTitle1']": "Rozbudowana strona",
-          "[data-i18n='pricingTitle2']": "za 600 zł.",
-          "[data-i18n='productTitle1']": "Gotowy system,",
-          "[data-i18n='productTitle2']": "dla lokalnego biznesu.",
-          "#gearMenu .gear-menu-btn[data-open-details]": "Szczegóły",
-          "#gearMenu .gear-menu-btn[href*='page=demos']": "Wróć do demo",
-          "#detailsPanel .details-head strong": "Szczegóły",
-          "#detailsPanel h3": "Co dostajesz za 600 zł?",
-          "#detailsPanel p[style*='var(--muted)']": "Podstawowa strona dla lokalnego biznesu z ofertą, usługami, cenami, FAQ, kontaktem i prostą ścieżką zapisu.",
-          "#detailsPanel p[style*='font-weight:800']": "Dodatki:",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(1)": "Strona premium pod Twój biznes",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(2)": "Oferta, usługi i ceny",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(3)": "FAQ dla klientów",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(4)": "Galeria / zdjęcia",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(5)": "Kontakt i social media",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(6)": "Rezerwacja / zapis",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(7)": "SMS / podstawowe potwierdzenie",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(8)": "Dopasowanie pod branżę",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(1)": "Własny kolor marki — od +100 zł",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(2)": "Dodatkowa sekcja — osobno",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(3)": "Instagram automatyzacja — osobno",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(4)": "Telegram powiadomienia — osobno",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(5)": "Rozbudowany booking — osobno",
-          "#detailsPanel a[href*='page=demos']": "Wróć do demo",
-          ".gallery-tile.gallery-cut span": "zbieranie zgłoszeń",
-          ".gallery-tile.gallery-beard span": "ścieżka decyzji",
-          ".gallery-tile.gallery-combo span": "mocne CTA",
-          ".gallery-tile.gallery-shop span": "jedna ścieżka klienta",
-          ".gallery-tile.gallery-detail span": "dane zgłoszenia",
-          ".mobile-gallery-card:nth-child(1) strong": "Zbieranie zgłoszeń",
-          ".mobile-gallery-card:nth-child(2) strong": "Ścieżka decyzji",
-          ".mobile-gallery-card:nth-child(3) strong": "Mocne CTA",
-          ".mobile-gallery-card:nth-child(4) strong": "Jedna ścieżka",
-          ".mobile-gallery-card:nth-child(5) strong": "Dane zgłoszenia",
-          ".mobile-master-card:nth-child(4) strong": "Formularz / zgłoszenie",
-          ".mobile-master-card:nth-child(4) p": "Krótki formularz zbiera podstawowe dane i przyspiesza kontakt.",
-          ".mobile-master-card:nth-child(4) button": "Uruchom formularz",
-          ".mobile-master-card:nth-child(5) strong": "FAQ / kontakt",
-          ".mobile-master-card:nth-child(5) p": "FAQ i kontakt porządkują decyzję klienta przed rozmową.",
-          ".mobile-master-card:nth-child(5) button": "Zobacz FAQ",
-          ".page[data-page-view='where'] .address-box strong": "JEDNA ŚCIEŻKA KLIENTA",
-          ".page[data-page-view='where'] .address-box p": "Instagram / TikTok / Google / WhatsApp / Telegram / Reklama",
-          ".page[data-page-view='where'] .map-logo-overlay span": "JEDNA ŚCIEŻKA",
-          "#faqSheet .faq-sheet__content span": "FAQ",
           "#faqSheetTitle": "Pytanie",
-          "#faqSheetAnswer": "Odpowiedź.",
-          "#backBtn": "Wstecz",
-          "#nextBtn": "Dalej"
+          "#faqSheetAnswer": "Odpowied\u017a."
         },
         attrs: {
-          "#businessOtherInput::placeholder": "Np. fizjo, trener, studio...",
-          "#clientSourcesOtherInput::placeholder": "Np. link w bio, ulotki...",
-          "#visualDescriptionInput::placeholder": "Razem dobierzemy kolorystykę, jeśli wybierasz custom.",
-          "#projectDescriptionInput::placeholder": "Np. salon beauty, 6 usług, zapis online, ciemny styl, kontakt przez Instagram.",
           "#bookingCloseBtn::aria-label": "Zamknij booking",
-          "#faqSheet [data-close-faq]::aria-label": "Zamknij",
-          "#detailsPanel [data-close-details]::aria-label": "Zamknij",
-          ".top-gear-btn[data-open-details]::aria-label": "Szczegóły",
-          ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Menu",
-          ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
-          ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-row a[href^='tel:']::aria-label": "Telefon",
-          ".social-icons a[aria-label='Instagram']::aria-label": "Instagram",
-          ".social-icons a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-icons a[href^='tel:']::aria-label": "Telefon"
+          "#faqSheet [data-close-faq]::aria-label": "Zamknij"
         }
       },
       ru: {
         text: {
-          ".desktop-call-btn[href^='tel:']": "Телефон",
-          "[data-i18n='pricingTitle1']": "Расширенная страница",
-          "[data-i18n='pricingTitle2']": "за 600 zł.",
-          "[data-i18n='productTitle1']": "Готовая система,",
-          "[data-i18n='productTitle2']": "для локального бизнеса.",
-          "#gearMenu .gear-menu-btn[data-open-details]": "Детали",
-          "#gearMenu .gear-menu-btn[href*='page=demos']": "Вернуться к демо",
-          "#detailsPanel .details-head strong": "Детали",
-          "#detailsPanel h3": "Что входит за 600 zł?",
-          "#detailsPanel p[style*='var(--muted)']": "Базовая страница для локального бизнеса с оффером, услугами, ценами, FAQ, контактом и простой воронкой записи.",
-          "#detailsPanel p[style*='font-weight:800']": "Дополнительно:",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(1)": "Премиум-страница под ваш бизнес",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(2)": "Оффер, услуги и цены",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(3)": "FAQ для клиентов",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(4)": "Галерея / фото",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(5)": "Контакт и соцсети",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(6)": "Запись / бронирование",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(7)": "SMS / базовое подтверждение",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(8)": "Адаптация под нишу",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(1)": "Фирменный цвет — от +100 zł",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(2)": "Дополнительная секция — отдельно",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(3)": "Автоматизация Instagram — отдельно",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(4)": "Уведомления Telegram — отдельно",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(5)": "Расширенный booking — отдельно",
-          "#detailsPanel a[href*='page=demos']": "Вернуться к демо",
-          ".gallery-tile.gallery-cut span": "сбор заявок",
-          ".gallery-tile.gallery-beard span": "путь решения",
-          ".gallery-tile.gallery-combo span": "сильный CTA",
-          ".gallery-tile.gallery-shop span": "один путь клиента",
-          ".gallery-tile.gallery-detail span": "данные заявки",
-          ".mobile-gallery-card:nth-child(1) strong": "Сбор заявок",
-          ".mobile-gallery-card:nth-child(2) strong": "Путь решения",
-          ".mobile-gallery-card:nth-child(3) strong": "Сильный CTA",
-          ".mobile-gallery-card:nth-child(4) strong": "Один путь",
-          ".mobile-gallery-card:nth-child(5) strong": "Данные заявки",
-          ".mobile-master-card:nth-child(4) strong": "Форма / заявка",
-          ".mobile-master-card:nth-child(4) p": "Короткая форма собирает базовые данные и ускоряет контакт.",
-          ".mobile-master-card:nth-child(4) button": "Запустить форму",
-          ".mobile-master-card:nth-child(5) strong": "FAQ / контакт",
-          ".mobile-master-card:nth-child(5) p": "FAQ и контакт упорядочивают решение клиента до разговора.",
-          ".mobile-master-card:nth-child(5) button": "Открыть FAQ",
-          ".page[data-page-view='where'] .address-box strong": "ОДИН ПУТЬ КЛИЕНТА",
-          ".page[data-page-view='where'] .address-box p": "Instagram / TikTok / Google / WhatsApp / Telegram / Реклама",
-          ".page[data-page-view='where'] .map-logo-overlay span": "ОДИН ПУТЬ",
-          "#faqSheet .faq-sheet__content span": "FAQ",
-          "#faqSheetTitle": "Вопрос",
-          "#faqSheetAnswer": "Ответ.",
-          "#backBtn": "Назад",
-          "#nextBtn": "Далее"
+          ".desktop-call-btn.top-gear-btn": "\u2699",
+          ".desktop-call-btn[href^='tel:']": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d",
+          "#faqSheetTitle": "\u0412\u043e\u043f\u0440\u043e\u0441",
+          "#faqSheetAnswer": "\u041e\u0442\u0432\u0435\u0442."
         },
         attrs: {
-          "#businessOtherInput::placeholder": "Напр. физиотерапевт, тренер, студия...",
-          "#clientSourcesOtherInput::placeholder": "Напр. ссылка в био, листовки...",
-          "#visualDescriptionInput::placeholder": "Вместе подберем цветовую схему, если выбираете custom.",
-          "#projectDescriptionInput::placeholder": "Напр. beauty-салон, 6 услуг, онлайн-запись, тёмный стиль, контакт через Instagram.",
-          "#bookingCloseBtn::aria-label": "Закрыть booking",
-          "#faqSheet [data-close-faq]::aria-label": "Закрыть",
-          "#detailsPanel [data-close-details]::aria-label": "Закрыть",
-          ".top-gear-btn[data-open-details]::aria-label": "Детали",
-          ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Меню",
-          ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
-          ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-row a[href^='tel:']::aria-label": "Телефон",
-          ".social-icons a[aria-label='Instagram']::aria-label": "Instagram",
-          ".social-icons a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-icons a[href^='tel:']::aria-label": "Телефон"
+          "#bookingCloseBtn::aria-label": "\u0417\u0430\u043a\u0440\u044b\u0442\u044c booking",
+          "#faqSheet [data-close-faq]::aria-label": "\u0417\u0430\u043a\u0440\u044b\u0442\u044c"
         }
       },
       en: {
         text: {
+          ".desktop-call-btn.top-gear-btn": "\u2699",
           ".desktop-call-btn[href^='tel:']": "Phone",
-          "[data-i18n='pricingTitle1']": "Expanded page",
-          "[data-i18n='pricingTitle2']": "for 600 PLN.",
-          "[data-i18n='productTitle1']": "Ready system,",
-          "[data-i18n='productTitle2']": "for local business.",
-          "#gearMenu .gear-menu-btn[data-open-details]": "Details",
-          "#gearMenu .gear-menu-btn[href*='page=demos']": "Back to demo",
-          "#detailsPanel .details-head strong": "Details",
-          "#detailsPanel h3": "What do you get for 600 PLN?",
-          "#detailsPanel p[style*='var(--muted)']": "Base page for a local business with offer, services, prices, FAQ, contact, and a simple booking flow.",
-          "#detailsPanel p[style*='font-weight:800']": "Add-ons:",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(1)": "Premium page for your business",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(2)": "Offer, services, and prices",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(3)": "FAQ for clients",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(4)": "Gallery / photos",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(5)": "Contact and social media",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(6)": "Booking / sign-up",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(7)": "SMS / basic confirmation",
-          "#detailsPanel .details-list:nth-of-type(1) li:nth-child(8)": "Adapted to your niche",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(1)": "Custom brand color — from +100 PLN",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(2)": "Additional section — separate pricing",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(3)": "Instagram automation — separate pricing",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(4)": "Telegram notifications — separate pricing",
-          "#detailsPanel .details-list:nth-of-type(2) li:nth-child(5)": "Advanced booking — separate pricing",
-          "#detailsPanel a[href*='page=demos']": "Back to demo",
-          ".gallery-tile.gallery-cut span": "lead capture",
-          ".gallery-tile.gallery-beard span": "decision flow",
-          ".gallery-tile.gallery-combo span": "strong CTA",
-          ".gallery-tile.gallery-shop span": "one client path",
-          ".gallery-tile.gallery-detail span": "context data",
-          ".mobile-gallery-card:nth-child(1) strong": "Lead capture",
-          ".mobile-gallery-card:nth-child(2) strong": "Decision flow",
-          ".mobile-gallery-card:nth-child(3) strong": "Strong CTA",
-          ".mobile-gallery-card:nth-child(4) strong": "One path",
-          ".mobile-gallery-card:nth-child(5) strong": "Context data",
-          ".mobile-master-card:nth-child(4) strong": "Form / lead",
-          ".mobile-master-card:nth-child(4) p": "A short form collects basic data and speeds up contact.",
-          ".mobile-master-card:nth-child(4) button": "Launch form",
-          ".mobile-master-card:nth-child(5) strong": "FAQ / contact",
-          ".mobile-master-card:nth-child(5) p": "FAQ and contact organize client decisions before the call.",
-          ".mobile-master-card:nth-child(5) button": "Open FAQ",
-          ".page[data-page-view='where'] .address-box strong": "ONE CLIENT PATH",
-          ".page[data-page-view='where'] .address-box p": "Instagram / TikTok / Google / WhatsApp / Telegram / Ads",
-          ".page[data-page-view='where'] .map-logo-overlay span": "ONE PATH",
-          "#faqSheet .faq-sheet__content span": "FAQ",
           "#faqSheetTitle": "Question",
-          "#faqSheetAnswer": "Answer.",
-          "#backBtn": "Back",
-          "#nextBtn": "Next"
+          "#faqSheetAnswer": "Answer."
         },
         attrs: {
-          "#businessOtherInput::placeholder": "E.g. physio, coach, studio...",
-          "#clientSourcesOtherInput::placeholder": "E.g. link in bio, flyers...",
-          "#visualDescriptionInput::placeholder": "We will choose the color palette together if you select custom.",
-          "#projectDescriptionInput::placeholder": "E.g. beauty salon, 6 services, online booking, dark style, contact via Instagram.",
           "#bookingCloseBtn::aria-label": "Close booking",
-          "#faqSheet [data-close-faq]::aria-label": "Close",
-          "#detailsPanel [data-close-details]::aria-label": "Close",
-          ".top-gear-btn[data-open-details]::aria-label": "Details",
-          ".top-gear-btn[data-toggle-gear-menu]::aria-label": "Menu",
-          ".social-row a[aria-label='Instagram']::aria-label": "Instagram",
-          ".social-row a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-row a[href^='tel:']::aria-label": "Phone",
-          ".social-icons a[aria-label='Instagram']::aria-label": "Instagram",
-          ".social-icons a[aria-label='TikTok']::aria-label": "TikTok",
-          ".social-icons a[href^='tel:']::aria-label": "Phone"
+          "#faqSheet [data-close-faq]::aria-label": "Close"
         }
       }
     };
@@ -6145,23 +6026,52 @@ body.booking-open .site-header {
       return localStorage.getItem("lang") || "pl";
     }
 
-    function setLanguage(lang) {
-      const dict = translations[lang] || translations.pl;
+    window.getCurrentLang = getCurrentLang;
 
-      document.documentElement.lang = lang;
+    function textFor(lang, key) {
+      const pl = translations.pl || {};
+      const dict = translations[lang] || translations.pl;
+      const val = dict[key];
+      if (val != null && String(val).length) return val;
+      return pl[key] ?? "";
+    }
+
+    function setLanguage(lang) {
+      const safe = translations[lang] ? lang : "pl";
+
+      document.documentElement.lang = safe;
 
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if (dict[key]) el.textContent = dict[key];
+        const t = textFor(safe, key);
+        if (t) el.textContent = t;
+      });
+
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        const t = textFor(safe, key);
+        if (t) el.setAttribute("placeholder", t);
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(el => {
+        const key = el.dataset.i18nAriaLabel;
+        const t = textFor(safe, key);
+        if (t) el.setAttribute("aria-label", t);
       });
 
       document.querySelectorAll(".lang-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
+        btn.classList.toggle("active", btn.dataset.lang === safe);
       });
 
-      applyStaticTranslations(lang);
+      applyStaticTranslations(safe);
 
-      localStorage.setItem("lang", lang);
+      localStorage.setItem("lang", safe);
+
+      queueMicrotask(() => {
+        if (typeof window.refreshWizardAfterLang === "function") {
+          window.refreshWizardAfterLang();
+        }
+      });
     }
 
     function triggerFlash() {
@@ -6218,25 +6128,34 @@ body.booking-open .site-header {
     }
 
     function openDetails() {
+      closeGearMenu();
       detailsPanel?.classList.add("open");
       detailsOverlay?.classList.add("open");
       detailsPanel?.setAttribute("aria-hidden", "false");
-      document.body.classList.add("faq-open");
+      document.body.classList.add("details-open");
     }
 
     function closeDetails() {
       detailsPanel?.classList.remove("open");
       detailsOverlay?.classList.remove("open");
       detailsPanel?.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("faq-open");
+      document.body.classList.remove("details-open");
+    }
+
+    function openGearMenu() {
+      gearPopover?.classList.add("open");
+      gearPopover?.setAttribute("aria-hidden", "false");
     }
 
     function toggleGearMenu() {
-      gearMenu?.classList.toggle("open");
+      if (!gearPopover) return;
+      if (gearPopover.classList.contains("open")) closeGearMenu();
+      else openGearMenu();
     }
 
     function closeGearMenu() {
-      gearMenu?.classList.remove("open");
+      gearPopover?.classList.remove("open");
+      gearPopover?.setAttribute("aria-hidden", "true");
     }
 
     function bindBookingButtons() {
@@ -6281,24 +6200,35 @@ body.booking-open .site-header {
 
     function bindDetailsPanel() {
       document.querySelectorAll("[data-toggle-gear-menu]").forEach(btn => {
-        btn.addEventListener("click", (event) => {
+        btn.addEventListener("click", event => {
+          event.preventDefault();
           event.stopPropagation();
           toggleGearMenu();
         });
       });
       document.querySelectorAll("[data-open-details]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          closeGearMenu();
+        btn.addEventListener("click", event => {
+          event.preventDefault();
           openDetails();
         });
       });
       document.querySelectorAll("[data-close-details]").forEach(btn => {
-        btn.addEventListener("click", closeDetails);
+        btn.addEventListener("click", event => {
+          event.preventDefault();
+          closeDetails();
+        });
       });
-      document.addEventListener("click", (event) => {
-        if (!event.target.closest("#gearMenu") && !event.target.closest("[data-toggle-gear-menu]")) {
+      document.querySelectorAll("[data-close-gear]").forEach(btn => {
+        btn.addEventListener("click", () => {
           closeGearMenu();
-        }
+        });
+      });
+      document.addEventListener("click", event => {
+        if (!gearPopover?.classList.contains("open")) return;
+        const t = event.target;
+        if (t.closest("#gearPopover .gear-popover__panel")) return;
+        if (t.closest("[data-toggle-gear-menu]")) return;
+        closeGearMenu();
       });
       document.addEventListener("keydown", event => {
         if (event.key === "Escape") {
@@ -6306,9 +6236,6 @@ body.booking-open .site-header {
           closeDetails();
           closeFaq();
         }
-      });
-      document.querySelectorAll("#gearMenu .gear-menu-btn").forEach(item => {
-        item.addEventListener("click", () => closeGearMenu());
       });
     }
 
@@ -6409,28 +6336,6 @@ body.booking-open .site-header {
     }
 
     function handleDesktopScroll() {
-      if (window.innerWidth <= 900) {
-        ticking = false;
-        return;
-      }
-
-      const currentY = window.scrollY;
-
-      if (siteHeader) {
-        const delta = currentY - lastScrollY;
-        const goingDown = delta > 4;
-        const goingUp = delta < -2;
-
-        if (goingDown && currentY > 120) {
-          siteHeader.classList.add("header-hidden");
-        }
-
-        if (goingUp || currentY < 70) {
-          siteHeader.classList.remove("header-hidden");
-        }
-      }
-
-      lastScrollY = Math.max(currentY, 0);
       ticking = false;
     }
 
@@ -6445,6 +6350,7 @@ body.booking-open .site-header {
       if (event.key === "Escape") {
         closeBooking();
         closeFaq();
+        closeGearMenu();
         closeDetails();
       }
     });
