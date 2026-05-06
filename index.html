@@ -2710,9 +2710,9 @@ img {
         z-index: 40;
         padding: calc(8px + var(--safe-top)) 10px 8px;
         display: grid;
-        grid-template-columns: 42px minmax(0, 1fr) 42px;
+        grid-template-columns: 38px minmax(0, 1fr) auto 38px;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         background: linear-gradient(180deg, rgba(5,8,22,.95), rgba(5,8,22,.82));
         backdrop-filter: blur(22px) saturate(148%);
@@ -2740,8 +2740,8 @@ img {
       }
 
       .logo-pill {
-        justify-self: center;
-        width: min(180px, 100%);
+        justify-self: start;
+        width: min(168px, 100%);
         max-width: 100%;
         height: 42px;
         padding: 0 8px;
@@ -2776,14 +2776,14 @@ img {
       }
 
       .mobile-lang-switcher {
-        width: 100%;
+        width: auto;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         gap: 4px;
         z-index: 80;
-        padding: 4px 10px 8px;
-        background: linear-gradient(180deg, rgba(5,8,22,.82), rgba(5,8,22,.65));
-        border-bottom: 1px solid rgba(255,255,255,.06);
+        padding: 0;
+        background: transparent;
+        border-bottom: none;
       }
 
       .details-panel {
@@ -2847,10 +2847,38 @@ img {
       }
 
       .mobile-lang-switcher .lang-btn {
-        min-width: 40px;
-        height: 30px;
+        min-width: 28px;
+        height: 28px;
         padding: 0;
-        font-size: 10px;
+        font-size: 9px;
+      }
+
+      .gear-menu {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 8px;
+        z-index: 70;
+        min-width: 168px;
+        padding: 6px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.1);
+        background: linear-gradient(180deg, rgba(8,11,28,.96), rgba(8,11,28,.9));
+        box-shadow: var(--shadow-sm), var(--glass-highlight);
+        display: none;
+      }
+
+      .gear-menu.open {
+        display: grid;
+        gap: 6px;
+      }
+
+      .gear-menu-btn {
+        min-height: 36px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,.08);
+        background: rgba(255,255,255,.04);
+        color: var(--text-soft);
+        font-weight: 800;
       }
 
       .section-nav {
@@ -3307,14 +3335,19 @@ img {
         width: 100%;
         padding: 14px;
         display: grid;
-        grid-template-rows: 138px auto auto auto;
+        grid-template-rows: auto auto auto auto;
         gap: 12px;
         align-self: stretch;
         min-height: 0;
       }
 
       .service-img {
-        min-height: 138px;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        border-radius: 18px;
+        background-size: cover;
+        background-position: center;
       }
 
       .service-card p,
@@ -3353,12 +3386,17 @@ img {
         min-height: 0;
         padding: 14px;
         display: grid;
-        grid-template-rows: 150px auto auto auto;
+        grid-template-rows: auto auto auto auto;
         gap: 12px;
       }
 
       .mobile-master-photo {
-        min-height: 150px;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        border-radius: 18px;
+        background-size: cover;
+        background-position: center;
         background-position: center 30%;
       }
 
@@ -3373,7 +3411,10 @@ img {
       }
 
       .mobile-gallery-photo {
-        min-height: 220px;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        border-radius: 18px;
         filter: contrast(1.05) brightness(.92);
       }
 
@@ -4174,6 +4215,17 @@ body.booking-open .site-header {
   background-repeat: no-repeat !important;
 }
 
+.service-visual,
+.service-img,
+.master-photo,
+.mobile-master-photo,
+.mobile-gallery-photo,
+.gallery-tile {
+  aspect-ratio: 1 / 1 !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
 /* убираем только цифры/заглушки, размеры НЕ трогаем */
 .service-visual::before,
 .service-visual::after,
@@ -4327,7 +4379,6 @@ body.booking-open .site-header {
         <div class="desktop-right">
           <nav class="desktop-nav">
             <a href="#reviews">Oceny</a>
-            <a href="#location">Proces</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Kontakt</a>
           </nav>
@@ -4366,7 +4417,7 @@ body.booking-open .site-header {
                   <button class="btn btn-primary" type="button" data-open-booking data-i18n="chooseSystem">
                     Wybierz system
                   </button>
-                  <a class="btn btn-ghost" href="#location" data-i18n="seeProcess">
+                  <a class="btn btn-ghost" href="#faq" data-i18n="seeProcess">
                     Zobacz proces
                   </a>
                 </div>
@@ -4697,7 +4748,7 @@ body.booking-open .site-header {
         </div>
       </section>
 
-      <section id="location">
+      <section id="location" style="display:none;">
         <div class="landing-container">
           <div class="section-card reveal">
             <div class="section-wrap">
@@ -4779,6 +4830,14 @@ body.booking-open .site-header {
                 <button class="glass-card faq-item" type="button" data-faq="jakDziala"><strong>Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
                 <button class="glass-card faq-item" type="button" data-faq="panelAdmina"><strong>Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
                 <button class="glass-card faq-item" type="button" data-faq="faq"><strong>FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqCena"><strong>Ile kosztuje podstawowa strona?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqKolor"><strong>Czy kolor można dopasować do mojej marki?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqMaterialy"><strong>Czy muszę mieć gotowe teksty i zdjęcia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqBranze"><strong>Czy strona działa dla różnych branż?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqBooking"><strong>Czy rezerwacja jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqPoZgloszeniu"><strong>Co dzieje się po wysłaniu zgłoszenia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqIgAuto"><strong>Czy automatyzacja Instagrama jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faqTelegram"><strong>Czy Telegram powiadomienia są w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
               </div>
             </div>
           </div>
@@ -4836,27 +4895,30 @@ body.booking-open .site-header {
 
   <div class="mobile-version" id="mobile-version">
     <header class="app-top">
-      <button class="icon-btn top-gear-btn" type="button" data-open-details aria-label="Szczegóły">⚙</button>
+      <button class="icon-btn top-gear-btn" type="button" data-toggle-gear-menu aria-label="Menu">⚙</button>
       <div class="logo-pill">
         <div class="mobile-wordmark" aria-hidden="true">
           <span>MROZOWSKI</span>
           <span>AUTOMATION</span>
         </div>
       </div>
+      <div class="lang-switcher mobile-lang-switcher" aria-label="Language switcher">
+        <button class="lang-btn active" type="button" data-lang="pl">PL</button>
+        <button class="lang-btn" type="button" data-lang="ru">RU</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+      </div>
       <a class="icon-btn" href="tel:+48532377701" aria-label="Telefon">☎</a>
+      <div class="gear-menu" id="gearMenu">
+        <button class="gear-menu-btn" type="button" data-open-details>Szczegóły</button>
+        <a class="gear-menu-btn" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos">Wróć do demo</a>
+      </div>
     </header>
-    <div class="lang-switcher mobile-lang-switcher" aria-label="Language switcher">
-      <button class="lang-btn active" type="button" data-lang="pl">PL</button>
-      <button class="lang-btn" type="button" data-lang="ru">RU</button>
-      <button class="lang-btn" type="button" data-lang="en">EN</button>
-    </div>
 
     <nav class="section-nav" aria-label="Nawigacja mobilna">
       <button class="nav-chip active" type="button" data-page="home" data-i18n="navStart">Start</button>
       <button class="nav-chip" type="button" data-page="services" data-i18n="navOffer">Oferta</button>
       <button class="nav-chip" type="button" data-page="masters" data-i18n="navProduct">Produkt</button>
       <button class="nav-chip" type="button" data-page="reviews" data-i18n="navProof">Oceny</button>
-      <button class="nav-chip" type="button" data-page="where" data-i18n="navProcess">Proces</button>
       <button class="nav-chip" type="button" data-page="faq" data-i18n="navFaq">FAQ</button>
       <button class="nav-chip" type="button" data-page="hello" data-i18n="navContact">Kontakt</button>
     </nav>
@@ -5034,7 +5096,7 @@ body.booking-open .site-header {
         </div>
       </section>
 
-      <section class="page" data-page-view="where">
+      <section class="page" data-page-view="where" aria-hidden="true" style="display:none;">
         <div class="page-head">
           <div class="kicker" data-i18n="navProcess">PROCES</div>
           <h2 class="page-title">
@@ -5080,6 +5142,14 @@ body.booking-open .site-header {
           <button class="mobile-faq-card" type="button" data-faq="jakDziala"><strong>Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
           <button class="mobile-faq-card" type="button" data-faq="panelAdmina"><strong>Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
           <button class="mobile-faq-card" type="button" data-faq="faq"><strong>FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqCena"><strong>Ile kosztuje podstawowa strona?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqKolor"><strong>Czy kolor można dopasować do mojej marki?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqMaterialy"><strong>Czy muszę mieć gotowe teksty i zdjęcia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqBranze"><strong>Czy strona działa dla różnych branż?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqBooking"><strong>Czy rezerwacja jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqPoZgloszeniu"><strong>Co dzieje się po wysłaniu zgłoszenia?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqIgAuto"><strong>Czy automatyzacja Instagrama jest w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faqTelegram"><strong>Czy Telegram powiadomienia są w cenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
         </div>
       </section>
 
@@ -5110,9 +5180,9 @@ body.booking-open .site-header {
             <a href="tel:+48532377701">Telefon</a>
           </div>
           <div class="social-row">
-            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">IG</a>
-            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TT</a>
-            <a href="tel:+48532377701">TEL</a>
+            <a href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+            <a href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
+            <a href="tel:+48532377701" aria-label="Telefon">📞</a>
           </div>
         </div>
       </section>
@@ -5137,20 +5207,28 @@ body.booking-open .site-header {
   <aside class="details-panel" id="detailsPanel" aria-hidden="true">
     <div class="details-card">
       <div class="details-head">
-        <strong>Szczegóły: co daje strona</strong>
+        <strong>Szczegóły</strong>
         <button class="icon-btn" type="button" data-close-details aria-label="Zamknij">×</button>
       </div>
+      <h3 style="margin:0 0 8px;">Co dostajesz za 600 zł?</h3>
+      <p style="margin:0 0 12px;color:var(--muted);">Podstawowa strona dla lokalnego biznesu z ofertą, usługami, cenami, FAQ, kontaktem i prostą ścieżką zapisu.</p>
       <ul class="details-list">
-        <li>własna strona pod biznes</li>
-        <li>oferta i usługi w jednym miejscu</li>
-        <li>formularz zgłoszenia</li>
-        <li>ścieżka klienta</li>
-        <li>FAQ</li>
-        <li>kontakt</li>
-        <li>social links</li>
-        <li>wybór stylu</li>
-        <li>dopasowanie pod branżę</li>
-        <li>możliwość rozbudowy</li>
+        <li>Strona premium pod Twój biznes</li>
+        <li>Oferta, usługi i ceny</li>
+        <li>FAQ dla klientów</li>
+        <li>Galeria / zdjęcia</li>
+        <li>Kontakt i social media</li>
+        <li>Rezerwacja / zapis</li>
+        <li>SMS / podstawowe potwierdzenie</li>
+        <li>Dopasowanie pod branżę</li>
+      </ul>
+      <p style="margin:0 0 8px;color:var(--text-soft);font-weight:800;">Dodatki:</p>
+      <ul class="details-list">
+        <li>Własny kolor marki — od +100 zł</li>
+        <li>Dodatkowa sekcja — od +100 zł</li>
+        <li>Instagram automatyzacja — osobno</li>
+        <li>Telegram powiadomienia — osobno</li>
+        <li>Rozbudowany booking — osobno</li>
       </ul>
       <a class="btn btn-ghost section-button-full" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos">Wróć do demo</a>
     </div>
@@ -5363,6 +5441,7 @@ body.booking-open .site-header {
     const faqSheetAnswer = document.getElementById("faqSheetAnswer");
     const detailsPanel = document.getElementById("detailsPanel");
     const detailsOverlay = document.getElementById("detailsOverlay");
+    const gearMenu = document.getElementById("gearMenu");
 
     let lastScrollY = window.scrollY;
     let lastMobileScrollTop = 0;
@@ -5492,7 +5571,15 @@ body.booking-open .site-header {
         coDaje: ["Co daje?", "Strona pod biznes, oferta, usługi, FAQ, kontakt i formularz zgłoszenia w jednym miejscu. To gotowy produkt za 600 zł z możliwością dalszej rozbudowy."],
         jakDziala: ["Jak działa?", "Klient trafia z Instagrama, Google, reklamy albo linku, widzi ofertę i przechodzi prostą ścieżkę do zgłoszenia. Po zgłoszeniu ustalamy szczegóły w rozmowie."],
         panelAdmina: ["Panel admina", "Podstawowa wersja skupia się na stronie i formularzu. Rozszerzenia jak większa automatyzacja, booking albo dodatkowe sekcje wdrażamy opcjonalnie."],
-        faq: ["FAQ", "Nie musisz mieć wszystkiego gotowego. Najpierw wybierasz kierunek, styl i zawartość, a szczegóły dopracowujemy po zgłoszeniu."]
+        faq: ["FAQ", "Nie musisz mieć wszystkiego gotowego. Najpierw wybierasz kierunek, styl i zawartość, a szczegóły dopracowujemy po zgłoszeniu."],
+        faqCena: ["Ile kosztuje podstawowa strona?", "Podstawowa strona kosztuje 600 zł. W cenie jest strona pod biznes, oferta, usługi i ceny, FAQ, kontakt, galeria, rezerwacja / zapis oraz podstawowe SMS / potwierdzenie."],
+        faqKolor: ["Czy kolor można dopasować do mojej marki?", "Tak. Gotowe style są dostępne od razu, a własny kolor marki można dopasować jako dodatek, zwykle od +100 zł."],
+        faqMaterialy: ["Czy muszę mieć gotowe teksty i zdjęcia?", "Nie. Możesz mieć swoje materiały, ale nie musisz mieć wszystkiego gotowego. Najpierw wybieramy kierunek, a szczegóły dopracowujemy po zgłoszeniu."],
+        faqBranze: ["Czy strona działa dla różnych branż?", "Tak. System można dopasować pod barbershop, beauty, nails, lashes, masaż, kosmetologię, online usługę albo inny lokalny biznes."],
+        faqBooking: ["Czy rezerwacja jest w cenie?", "W podstawowym pakiecie jest prosta ścieżka zapisu / rezerwacji. Bardziej rozbudowany booking albo dodatkowe automatyzacje są ustalane osobno."],
+        faqPoZgloszeniu: ["Co dzieje się po wysłaniu zgłoszenia?", "Po zgłoszeniu kontaktuję się z Tobą, doprecyzowujemy szczegóły, zakres strony, styl i materiały. Nie musisz opisywać wszystkiego idealnie od razu."],
+        faqIgAuto: ["Czy automatyzacja Instagrama jest w cenie?", "Nie. Automatyzacja Instagrama to osobna usługa / dodatek, bo jest to większy element niż sama strona."],
+        faqTelegram: ["Czy Telegram powiadomienia są w cenie?", "Podstawowe SMS / potwierdzenie może być częścią bazowego rozwiązania, ale Telegram powiadomienia i bardziej rozbudowane automatyzacje są dodatkiem."]
       },
       ru: {
         coDaje: ["Что это даёт?", "Страница под бизнес, оффер, услуги, FAQ, контакт и форма заявки в одном месте. Базовый продукт за 600 zł с возможностью расширения."],
@@ -5596,6 +5683,14 @@ body.booking-open .site-header {
       document.body.classList.remove("faq-open");
     }
 
+    function toggleGearMenu() {
+      gearMenu?.classList.toggle("open");
+    }
+
+    function closeGearMenu() {
+      gearMenu?.classList.remove("open");
+    }
+
     function bindBookingButtons() {
       document.querySelectorAll("[data-open-booking]").forEach(button => {
         button.addEventListener("click", event => {
@@ -5637,11 +5732,25 @@ body.booking-open .site-header {
     }
 
     function bindDetailsPanel() {
+      document.querySelectorAll("[data-toggle-gear-menu]").forEach(btn => {
+        btn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          toggleGearMenu();
+        });
+      });
       document.querySelectorAll("[data-open-details]").forEach(btn => {
-        btn.addEventListener("click", openDetails);
+        btn.addEventListener("click", () => {
+          closeGearMenu();
+          openDetails();
+        });
       });
       document.querySelectorAll("[data-close-details]").forEach(btn => {
         btn.addEventListener("click", closeDetails);
+      });
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest("#gearMenu") && !event.target.closest("[data-toggle-gear-menu]")) {
+          closeGearMenu();
+        }
       });
     }
 
