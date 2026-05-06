@@ -4,27 +4,27 @@ const TOTAL_STEPS = 11;
 const stepMeta = [
   {
     title: "Zostaw kontakt",
-    subtitle: "Potem przejdziemy przez krótki brief."
+    subtitle: "Po zgłoszeniu ustalimy szczegóły w rozmowie."
   },
   {
-    title: "Co chcesz zbudować?",
-    subtitle: "Wybierz, czego mniej więcej potrzebujesz."
+    title: "Jaki biznes chcesz pokazać?",
+    subtitle: "Wybierz typ biznesu."
   },
   {
-    title: "Format projektu",
-    subtitle: "Wybierz szybki start albo indywidualny projekt."
+    title: "Jaki styl strony Ci się podoba?",
+    subtitle: "Wybierz 1 z 3 stylów albo kolor custom."
   },
   {
-    title: "Sfera biznesu",
-    subtitle: "Dopasujemy system do Twojej branży."
+    title: "Co ma być na stronie?",
+    subtitle: "Zaznacz elementy strony."
   },
   {
-    title: "Źródła klientów",
-    subtitle: "Zaznacz miejsca, z których przychodzą klienci."
+    title: "Czy masz materiały?",
+    subtitle: "Zaznacz, co już masz."
   },
   {
-    title: "Styl strony",
-    subtitle: "Wybierz klimat wizualny albo opisz go własnymi słowami."
+    title: "Skąd klient ma trafić?",
+    subtitle: "Instagram, Google, reklama albo inne wejścia."
   },
   {
     title: "Funkcje strony",
@@ -88,15 +88,7 @@ const projectFormats = [
   }
 ];
 
-const businessTypes = [
-  "Beauty",
-  "Nails",
-  "Barber",
-  "Studio",
-  "Konsultacje",
-  "Lokalna usługa",
-  "Inne"
-];
+const businessTypes = ["Barbershop", "Beauty", "Nails", "Lashes / brows", "Masaż", "Kosmetologia", "Online usługa", "Inny"];
 
 const clientSources = [
   "Instagram",
@@ -111,79 +103,38 @@ const clientSources = [
 
 const visualStyles = [
   {
-    id: "dark-premium",
-    title: "Dark premium",
-    icons: "⬛ + 🟡",
-    emoji: "🌑",
-    description: "Ciemny, luksusowy styl"
+    id: "orange-black",
+    title: "Pomarańczowo-czarny",
+    icons: "🟠 + ⬛",
+    emoji: "🟠",
+    description: "Ciepły kontrast: orange + black"
   },
   {
-    id: "light-clean",
-    title: "Light clean",
+    id: "white-blue",
+    title: "Biało-niebieski",
     icons: "⚪ + 🔵",
-    emoji: "⚪",
-    description: "Jasny, czysty, nowoczesny"
+    emoji: "🔵",
+    description: "Jasny i czysty: white + blue"
   },
   {
-    id: "tech-glass",
-    title: "Tech glass",
-    icons: "🟣 + 🔵",
-    emoji: "🧊",
-    description: "Glass, blur, styl technologiczny"
+    id: "dark-violet",
+    title: "Ciemno-fioletowy",
+    icons: "🟣",
+    emoji: "🟣",
+    description: "Premium dark violet"
   },
   {
-    id: "beauty-soft",
-    title: "Beauty soft",
-    icons: "🌸 + ⚪",
-    emoji: "🌸",
-    description: "Delikatny, kobiecy styl"
-  },
-  {
-    id: "minimal",
-    title: "Minimal",
-    icons: "⚫ + ⚪",
-    emoji: "➖",
-    description: "Prosty i czysty"
-  },
-  {
-    id: "not-sure",
-    title: "Nie wiem",
+    id: "wlasny",
+    title: "Dodatkowy kolor (custom)",
     icons: "❓",
     emoji: "❓",
-    description: "Doradzimy Ci"
+    description: "Pole konsultacji: razem dobierzemy kolorystykę, bo to custom."
   }
 ];
 
-const features = [
-  "Oferta",
-  "Cennik",
-  "Formularz / ankieta",
-  "Opinie",
-  "FAQ",
-  "Mapa",
-  "Galeria",
-  "Social links",
-  "Powiadomienia",
-  "Auto odpowiedź (DM / WhatsApp)",
-  "Integracja z kalendarzem",
-  "Automatyzacja Instagram (DM)",
-  "Powiadomienia Telegram",
-  "Potwierdzenie SMS",
-  "Przypomnienia SMS",
-  "Zbieranie leadów",
-  "Auto follow-up",
-  "Nie wiem (dobierz za mnie)"
-];
+const features = ["Oferta", "Usługi i ceny", "FAQ", "Galeria", "Kontakt", "Formularz", "Rezerwacja / zapis"];
 
-const painPoints = [
-  "Klienci pytają o to samo",
-  "Chaos w wiadomościach",
-  "Brak strony",
-  "Słaba oferta",
-  "Brak zapisów",
-  "Chcę wyglądać bardziej premium",
-  "Inne"
-];
+const painPoints = ["Mam zdjęcia", "Mam logo", "Mam teksty", "Nie mam, potrzebuję pomocy"];
 
 const state = {
   step: 1,
@@ -287,7 +238,7 @@ function getLabelById(list, id) {
 }
 
 function getBusinessLabel() {
-  if (state.businessType === "Inne") {
+  if (state.businessType === "Inny") {
     return state.businessOther.trim() || "Inne";
   }
 
@@ -394,7 +345,7 @@ function updateNav() {
     const hasStyle = !!state.visualStyle;
     const hasText = state.visualDescription.trim().length > 0;
 
-    nextBtn.disabled = !(hasStyle || hasText);
+    nextBtn.disabled = !hasStyle;
   } else if (state.step === 7) {
     nextBtn.disabled = state.features.length === 0;
   } else if (state.step === 8) {
@@ -509,7 +460,7 @@ function renderBusinessTypes() {
         onClick: () => {
           state.businessType = type;
 
-          if (type !== "Inne") {
+          if (type !== "Inny") {
             state.businessOther = "";
             if (businessOtherInput) businessOtherInput.value = "";
           }
@@ -523,7 +474,7 @@ function renderBusinessTypes() {
   });
 
   if (businessOtherBox) {
-    businessOtherBox.classList.toggle("hidden", state.businessType !== "Inne");
+    businessOtherBox.classList.toggle("hidden", state.businessType !== "Inny");
   }
 }
 

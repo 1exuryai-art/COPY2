@@ -395,9 +395,9 @@
     }
 
     .site-header.header-hidden {
-      transform: translateY(-112%);
-      opacity: 0;
-      pointer-events: none;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .desktop-header {
@@ -2688,24 +2688,23 @@ img {
         will-change: transform;
       }
 
-      .mobile-version.mobile-header-hidden .app-top {
-        transform: translateY(-112%);
-        opacity: 0;
-        pointer-events: none;
-      }
-
+      .mobile-version.mobile-header-hidden .app-top,
       .mobile-version.mobile-header-hidden .section-nav {
-        transform: translateY(calc(-1 * (var(--mobile-top-h) + var(--safe-top))));
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
       }
 
       .app-top {
         position: relative;
+        position: sticky;
+        top: 0;
         z-index: 40;
         padding: calc(10px + var(--safe-top)) 12px 8px;
         display: grid;
-        grid-template-columns: 52px minmax(0, 1fr) 52px;
+        grid-template-columns: 46px minmax(0, 1fr) auto 46px;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         background: linear-gradient(180deg, rgba(5,8,22,.95), rgba(5,8,22,.82));
         backdrop-filter: blur(22px) saturate(148%);
@@ -2734,9 +2733,10 @@ img {
 
       .logo-pill {
         justify-self: center;
-        width: min(286px, 100%);
-        height: 58px;
-        padding: 0 14px;
+        width: min(220px, 100%);
+        max-width: 100%;
+        height: 52px;
+        padding: 0 10px;
         display: grid;
         place-items: center;
         border-radius: 23px;
@@ -2764,11 +2764,73 @@ img {
       }
 
       .mobile-lang-switcher {
-        position: absolute;
-        right: 90px;
-        top: calc(19px + var(--safe-top));
+        position: static;
         z-index: 80;
         padding: 3px;
+      .top-gear-btn {
+        font-size: 17px;
+      }
+
+      .details-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(420px, 92vw);
+        height: 100vh;
+        z-index: 260;
+        transform: translateX(-104%);
+        transition: transform 260ms var(--ease);
+      }
+
+      .details-panel.open {
+        transform: translateX(0);
+      }
+
+      .details-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 250;
+        background: rgba(4, 7, 18, 0.62);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 220ms ease;
+      }
+
+      .details-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .details-card {
+        height: 100%;
+        border-right: 1px solid rgba(255,255,255,.11);
+        background: linear-gradient(180deg, rgba(8,11,28,.96), rgba(8,11,28,.9));
+        padding: calc(12px + var(--safe-top)) 16px 16px;
+        overflow: auto;
+      }
+
+      .details-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .details-list {
+        display: grid;
+        gap: 9px;
+        margin: 0 0 16px;
+        padding-left: 18px;
+        color: var(--text-soft);
+      }
+
+      #gallery,
+      .page[data-page-view="gallery"] {
+        display: none !important;
+      }
+
         gap: 2px;
         background: rgba(5,8,22,.78);
         border-color: rgba(255,255,255,.08);
@@ -3711,21 +3773,21 @@ img {
 
     @media (max-width: 390px) {
       .app-top {
-        grid-template-columns: 48px minmax(0, 1fr) 48px;
+        grid-template-columns: 44px minmax(0, 1fr) auto 44px;
         gap: 8px;
         padding-left: 10px;
         padding-right: 10px;
       }
 
       .icon-btn {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
         border-radius: 17px;
       }
 
       .logo-pill {
-        width: min(248px, 100%);
-        height: 54px;
+        width: min(170px, 100%);
+        height: 48px;
         border-radius: 20px;
       }
 
@@ -3735,11 +3797,6 @@ img {
 
       .mobile-wordmark span:last-child {
         font-size: 8px;
-      }
-
-      .mobile-lang-switcher {
-        right: 60px;
-        top: calc(18px + var(--safe-top));
       }
 
       .mobile-lang-switcher .lang-btn {
@@ -4255,7 +4312,6 @@ body.booking-open .site-header {
             <a href="#hero">Start</a>
             <a href="#pricing">Oferta</a>
             <a href="#masters">Produkt</a>
-            <a href="#gallery">Efekt</a>
           </nav>
         </div>
 
@@ -4270,7 +4326,7 @@ body.booking-open .site-header {
 
         <div class="desktop-right">
           <nav class="desktop-nav">
-            <a href="#reviews">Proof</a>
+            <a href="#reviews">Oceny</a>
             <a href="#location">Proces</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Kontakt</a>
@@ -4282,7 +4338,8 @@ body.booking-open .site-header {
             <button class="lang-btn" type="button" data-lang="en">EN</button>
           </div>
 
-          <a href="tel:+48532377701" class="desktop-call-btn">Kontakt</a>
+          <button class="desktop-call-btn top-gear-btn" type="button" data-open-details aria-label="Szczegóły">⚙</button>
+          <a href="tel:+48532377701" class="desktop-call-btn">Telefon</a>
         </div>
       </div>
     </header>
@@ -4325,15 +4382,15 @@ body.booking-open .site-header {
                 <article class="glass-card hero-dashboard-panel">
                   <div class="hero-dashboard">
                     <div class="dashboard-top">
-                      <strong data-i18n="clientPath">Client Path</strong>
-                      <span data-i18n="active">active</span>
+                      <strong data-i18n="clientPath">Ścieżka klienta</strong>
+                      <span data-i18n="active">aktywna</span>
                     </div>
 
                     <div class="dashboard-grid">
                       <div class="dashboard-tile"><span data-i18n="dashSources">Wejścia</span><strong data-i18n="dashSourcesValue">6 źródeł</strong></div>
                       <div class="dashboard-tile"><span data-i18n="dashOffer">Oferta</span><strong data-i18n="dashOfferValue">1 strona</strong></div>
                       <div class="dashboard-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValue">Wybór</strong></div>
-                      <div class="dashboard-tile"><span data-i18n="dashEffect">Efekt</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
+                      <div class="dashboard-tile"><span data-i18n="dashEffect">Wynik</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
                     </div>
 
                     <div class="dashboard-flow">
@@ -4348,7 +4405,7 @@ body.booking-open .site-header {
                   </div>
 
                   <div class="hero-photo-badge">
-                    <span>ONE PAGE • ONE PATH</span>
+                    <span>JEDNA STRONA • JEDNA ŚCIEŻKA</span>
                     <strong>MROZOWSKI AUTOMATION</strong>
                   </div>
                 </article>
@@ -4394,7 +4451,7 @@ body.booking-open .site-header {
                         <div class="mini-logo">
                           <div class="mini-wordmark"><span>MA</span><span>PATH</span></div>
                         </div>
-                        <div class="mini-pill" data-i18n="online">ONLINE</div>
+                        <div class="mini-pill" data-i18n="online">ONLINE 24/7</div>
                       </div>
 
                       <div class="mini-title" data-i18n="phoneTitle">Klient przechodzi od zainteresowania do zgłoszenia.</div>
@@ -4492,10 +4549,10 @@ body.booking-open .site-header {
               <div class="section-head center">
                 <div class="section-chip" data-i18n="pricingChip">OFERTA</div>
                 <h2>
-                  <span data-i18n="pricingTitle1">Wybierz system</span>
-                  <span data-i18n="pricingTitle2">pod swój biznes.</span>
+                  <span data-i18n="pricingTitle1">Podstawowa strona</span>
+                  <span data-i18n="pricingTitle2">600 zł.</span>
                 </h2>
-                <p data-i18n="pricingSub">Możesz zacząć od strony z zapisem, rozbudować ją o wejścia z wielu kanałów albo zbudować pełny proces przyjmowania klientów.</p>
+                <p data-i18n="pricingSub">W cenie: strona landingowa pod biznes, dopasowanie tekstów pod branżę, wybór stylu, oferta/usługi, FAQ, kontakt, formularz zgłoszenia i podstawowe wdrożenie.</p>
               </div>
 
               <div class="pricing-grid">
@@ -4504,11 +4561,11 @@ body.booking-open .site-header {
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
                       <strong data-i18n="offer1Title">Strona z zapisem</strong>
-                      <span class="pricing-card__price" data-i18n="offer1Badge">start</span>
+                      <span class="pricing-card__price" data-i18n="offer1Badge">600 zł</span>
                     </div>
                     <p data-i18n="offer1Text">Dla biznesu, który chce mieć własne miejsce do pokazania oferty i przyjmowania konkretnych zgłoszeń.</p>
                   </div>
-                  <div class="service-tags"><span>premium page</span><span data-i18n="tagOffer">oferta</span><span>formularz</span></div>
+                  <div class="service-tags"><span>strona premium</span><span data-i18n="tagOffer">oferta</span><span>formularz</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="chooseBtn">Wybierz</button>
                 </article>
 
@@ -4517,7 +4574,7 @@ body.booking-open .site-header {
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
                       <strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong>
-                      <span class="pricing-card__price">growth</span>
+                      <span class="pricing-card__price">plus</span>
                     </div>
                     <p data-i18n="offer2Text">Dla biznesu, który chce kierować klientów z sociali, reklam i komunikatorów do jednej spójnej ścieżki.</p>
                   </div>
@@ -4529,10 +4586,10 @@ body.booking-open .site-header {
                   <div class="service-visual beard"></div>
                   <div class="pricing-card__content">
                     <div class="pricing-card__top">
-                      <strong data-i18n="offer3Title">System przyjmowania klientów</strong>
+                      <strong data-i18n="offer3Title">Dopasowanie pod biznes</strong>
                       <span class="pricing-card__price">premium</span>
                     </div>
-                    <p data-i18n="offer3Text">Pełna strona, ścieżka zapisu, wejścia z różnych kanałów i dopracowana logika zbierania zgłoszeń.</p>
+                    <p data-i18n="offer3Text">Teksty, sekcje i styl strony dopasowane do lokalnej usługi. Rozszerzenia i większa automatyzacja wyceniamy osobno.</p>
                   </div>
                   <div class="service-tags"><span data-i18n="tagPage">strona</span><span data-i18n="tagBooking">zapis</span><span data-i18n="tagNotifications">powiadomienia</span></div>
                   <button class="master-book-btn" type="button" data-open-booking data-i18n="bestChoiceBtn">Najlepszy wybór</button>
@@ -4618,18 +4675,18 @@ body.booking-open .site-header {
           <div class="section-card reveal">
             <div class="section-wrap">
               <div class="section-head">
-                <div class="section-chip" data-i18n="proofChip">PROOF</div>
+                <div class="section-chip" data-i18n="proofChip">OCENY</div>
                 <h2>
-                  <span data-i18n="proofTitle1">Mniej chaosu.</span>
-                  <span data-i18n="proofTitle2">Więcej konkretu.</span>
+                  <span data-i18n="proofTitle1">Oceny i</span>
+                  <span data-i18n="proofTitle2">zaufanie.</span>
                 </h2>
-                <p data-i18n="proofSub">Przykładowe komunikaty proof — później można podmienić na realne opinie, case studies albo wyniki wdrożeń.</p>
+                <p data-i18n="proofSub">Strona ma wyglądać jak normalny produkt, nie przypadkowy link z wiadomości.</p>
               </div>
 
               <div class="reviews-grid">
-                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review1">“W końcu nie trzeba każdemu tłumaczyć wszystkiego od początku. Link robi pierwszą część rozmowy.”</p><strong data-i18n="review1Author">— Beauty studio</strong></article>
-                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review2">“Klient od razu widzi pakiety i zostawia kontakt z kontekstem, a nie tylko pisze: ile kosztuje?”</p><strong data-i18n="review2Author">— Local service</strong></article>
-                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review3">“Największa różnica to porządek. Jedna strona, jedna oferta, jeden proces zamiast rozproszonych wiadomości.”</p><strong data-i18n="review3Author">— Studio owner</strong></article>
+                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review1">Profesjonalny wygląd.</p><strong data-i18n="review1Author">Jasna oferta</strong></article>
+                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review2">Mniej pytań w DM.</p><strong data-i18n="review2Author">Łatwiejsze zgłoszenie</strong></article>
+                <article class="glass-card review-card"><div class="stars">★★★★★</div><p data-i18n="review3">Lepsze pierwsze wrażenie.</p><strong data-i18n="review3Author">Co buduje zaufanie</strong></article>
               </div>
 
               <div class="reviews-actions">
@@ -4667,14 +4724,14 @@ body.booking-open .site-header {
                     </div>
 
                     <div class="flow-output">
-                      <span data-i18n="dashEffect">Efekt</span>
+                      <span data-i18n="dashEffect">Wynik</span>
                       <strong data-i18n="processOutput">Klient wie, co wybrał. Ty wiesz, z czym wracać.</strong>
                     </div>
                   </div>
 
                   <div class="location-map-card">
                     <span data-i18n="navProcess">PROCES</span>
-                    <strong data-i18n="processCardTitle">One path zamiast chaosu</strong>
+                    <strong data-i18n="processCardTitle">Jedna ścieżka zamiast chaosu</strong>
                   </div>
                 </article>
 
@@ -4684,7 +4741,7 @@ body.booking-open .site-header {
                   <div class="location-preview">
                     <div class="location-preview__inner">
                       <strong data-i18n="processPreviewTitle">Wszystko<br />w jednym miejscu.</strong>
-                      <span>offer • choice • contact</span>
+                      <span>oferta • wybór • kontakt</span>
                     </div>
                   </div>
 
@@ -4718,12 +4775,10 @@ body.booking-open .site-header {
               </div>
 
               <div class="faq-grid">
-                <button class="glass-card faq-item" type="button" data-faq="instagram"><strong data-i18n="faqQInstagram">Czy to jest tylko pod Instagram?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="business"><strong data-i18n="faqQBusiness">Dla jakich biznesów to pasuje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="booking"><strong data-i18n="faqQBooking">Czy zapis może być w środku strony?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="automation"><strong data-i18n="faqQAutomation">Co daje automatyzacja wejść?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="content"><strong data-i18n="faqQContent">Czy strona jest dopasowana pod markę?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-                <button class="glass-card faq-item" type="button" data-faq="start"><strong data-i18n="faqQStart">Od czego najlepiej zacząć?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="coDaje"><strong>Co daje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="jakDziala"><strong>Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="panelAdmina"><strong>Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+                <button class="glass-card faq-item" type="button" data-faq="faq"><strong>FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
               </div>
             </div>
           </div>
@@ -4739,23 +4794,23 @@ body.booking-open .site-header {
                   <div class="section-chip" data-i18n="navContact">KONTAKT</div>
 
                   <div class="contact-lead">
-                    <strong data-i18n="contactLeadTitle">Czas przestać tracić klientów w wiadomościach.</strong>
-                    <p data-i18n="contactLeadText">Zbuduj stronę, która pokazuje ofertę, prowadzi klienta przez wybór i zbiera gotowe zgłoszenie z konkretnym kontekstem.</p>
+                    <strong data-i18n="contactLeadTitle">Zacznij od zgłoszenia.</strong>
+                    <p data-i18n="contactLeadText">Zostaw kontakt, a szczegóły strony ustalimy w rozmowie.</p>
                   </div>
 
-                  <p class="contact-note" data-i18n="contactNote">Najlepsze dla usług, które dostają zapytania z wielu miejsc i chcą zamienić luźne zainteresowanie w uporządkowany kontakt.</p>
+                  <p class="contact-note" data-i18n="contactNote">Premium strona, ścieżka zgłoszenia i system dla lokalnych biznesów.</p>
 
                   <div class="social-icons">
                     <a class="social-icon" href="https://www.instagram.com/mrozowski.automation/" target="_blank" rel="noopener">IG</a>
-                    <a class="social-icon" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TT</a>
+                    <a class="social-icon" href="https://www.tiktok.com/@mrozowski.automation" target="_blank" rel="noopener">TikTok</a>
                     <a class="social-icon" href="tel:+48532377701">TEL</a>
                   </div>
 
-                  <button class="btn btn-primary section-button-full" type="button" data-open-booking data-i18n="startNow">Zacznij teraz</button>
+                  <button class="btn btn-primary section-button-full" type="button" data-open-booking data-i18n="startNow">Zostaw zgłoszenie</button>
                 </article>
 
                 <article class="glass-card status-card">
-                  <div class="status-pill open" id="desktopStatus">WORK MODE</div>
+                  <div class="status-pill open" id="desktopStatus">TRYB PRACY</div>
 
                   <ul class="status-list">
                     <li><span data-i18n="system">System</span><strong>24/7</strong></li>
@@ -4765,11 +4820,11 @@ body.booking-open .site-header {
                   </ul>
 
                   <div class="contact-lead">
-                    <strong>MROZOWSKI</strong>
+                    <strong>MROZOWSKI AUTOMATION</strong>
                     <p data-i18n="contactBoxText">Premium strona, ścieżka zapisu i system zgłoszeń dla biznesów, które nie chcą tracić klientów w wiadomościach.</p>
                   </div>
 
-                  <a class="btn btn-ghost section-button-full" href="tel:+48532377701" data-i18n="phoneContact">Kontakt telefoniczny</a>
+                  <a class="btn btn-ghost section-button-full" href="tel:+48532377701" data-i18n="phoneContact">Telefon</a>
                 </article>
               </div>
             </div>
@@ -4781,6 +4836,7 @@ body.booking-open .site-header {
 
   <div class="mobile-version" id="mobile-version">
     <header class="app-top">
+      <button class="icon-btn top-gear-btn" type="button" data-open-details aria-label="Szczegóły">⚙</button>
       <a class="icon-btn" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos" aria-label="Wróć do wyboru">
 
       <div class="logo-pill">
@@ -4790,15 +4846,19 @@ body.booking-open .site-header {
         </div>
       </div>
 
-      <a class="icon-btn" href="tel:+48532377701" aria-label="Kontakt">☎</a>
+      <div class="lang-switcher mobile-lang-switcher" aria-label="Language switcher">
+        <button class="lang-btn active" type="button" data-lang="pl">PL</button>
+        <button class="lang-btn" type="button" data-lang="ru">RU</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+      </div>
+      <a class="icon-btn" href="tel:+48532377701" aria-label="Telefon">☎</a>
     </header>
 
     <nav class="section-nav" aria-label="Nawigacja mobilna">
       <button class="nav-chip active" type="button" data-page="home" data-i18n="navStart">Start</button>
       <button class="nav-chip" type="button" data-page="services" data-i18n="navOffer">Oferta</button>
       <button class="nav-chip" type="button" data-page="masters" data-i18n="navProduct">Produkt</button>
-      <button class="nav-chip" type="button" data-page="gallery" data-i18n="navEffect">Efekt</button>
-      <button class="nav-chip" type="button" data-page="reviews" data-i18n="navProof">Proof</button>
+      <button class="nav-chip" type="button" data-page="reviews" data-i18n="navProof">Oceny</button>
       <button class="nav-chip" type="button" data-page="where" data-i18n="navProcess">Proces</button>
       <button class="nav-chip" type="button" data-page="faq" data-i18n="navFaq">FAQ</button>
       <button class="nav-chip" type="button" data-page="hello" data-i18n="navContact">Kontakt</button>
@@ -4820,7 +4880,7 @@ body.booking-open .site-header {
             <div class="mobile-dashboard-card">
               <div class="mobile-dashboard-top">
                 <strong data-i18n="mobilePathTitle">Ścieżka klienta</strong>
-                <span data-i18n="active">active</span>
+                <span data-i18n="active">aktywna</span>
               </div>
 
               <div class="mobile-dashboard-row">
@@ -4829,8 +4889,8 @@ body.booking-open .site-header {
               </div>
 
               <div class="mobile-dashboard-row">
-                <div class="mobile-mini-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValue">Wybór</strong></div>
-                <div class="mobile-mini-tile"><span data-i18n="dashEffect">Efekt</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
+                <div class="mobile-mini-tile"><span data-i18n="dashProcess">Proces</span><strong data-i18n="dashProcessValue">Prosty flow</strong></div>
+                <div class="mobile-mini-tile"><span data-i18n="dashEffect">Wynik</span><strong data-i18n="dashEffectValue">Zgłoszenie</strong></div>
               </div>
             </div>
 
@@ -4860,7 +4920,7 @@ body.booking-open .site-header {
         <div class="services-list">
           <article class="service-card">
             <div class="service-img haircut"></div>
-            <div class="service-card-header"><strong data-i18n="offer1Title">Strona z zapisem</strong><span class="price" data-i18n="offer1Badge">start</span></div>
+            <div class="service-card-header"><strong data-i18n="offer1Title">Strona z zapisem</strong><span class="price" data-i18n="offer1Badge">600 zł</span></div>
             <p data-i18n="mobileOffer1Text">Własna strona premium, oferta, sekcje sprzedażowe i zapis / formularz.</p>
             <div class="tags"><span>page</span><span data-i18n="tagOffer">oferta</span><span>CTA</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="chooseBtn">Wybierz</button>
@@ -4868,7 +4928,7 @@ body.booking-open .site-header {
 
           <article class="service-card">
             <div class="service-img combo"></div>
-            <div class="service-card-header"><strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong><span class="price">growth</span></div>
+            <div class="service-card-header"><strong data-i18n="offer2Title">Wejścia z wielu miejsc</strong><span class="price">plus</span></div>
             <p data-i18n="mobileOffer2Text">Instagram, TikTok, Google, WhatsApp, Telegram i reklamy prowadzą do jednej strony.</p>
             <div class="tags"><span>social</span><span>Google</span><span>DM</span></div>
             <button class="mobile-card-btn" type="button" data-open-booking data-i18n="addSourcesBtn">Dodaj wejścia</button>
@@ -4921,7 +4981,7 @@ body.booking-open .site-header {
         </div>
       </section>
 
-      <section class="page" data-page-view="gallery">
+      <section class="page" data-page-view="gallery" aria-hidden="true">
         <div class="page-head">
           <div class="kicker" data-i18n="effectChip">EFEKT</div>
           <h2 class="page-title">
@@ -4942,12 +5002,12 @@ body.booking-open .site-header {
 
       <section class="page" data-page-view="reviews">
         <div class="page-head">
-          <div class="kicker" data-i18n="proofChip">PROOF</div>
+          <div class="kicker" data-i18n="proofChip">OCENY</div>
           <h2 class="page-title">
             <span data-i18n="proofTitle1">Mniej chaosu.</span>
             <span class="gold" data-i18n="proofTitle2">Więcej konkretu.</span>
           </h2>
-          <p class="page-sub" data-i18n="mobileProofSub">Przewiń w dół i zobacz przykładowe proof cards.</p>
+          <p class="page-sub" data-i18n="mobileProofSub">Strona ma wyglądać jak normalny produkt i budować zaufanie.</p>
         </div>
 
         <div class="reviews-mobile-list">
@@ -4976,13 +5036,13 @@ body.booking-open .site-header {
         <div class="screen-body">
           <article class="location-card">
             <div class="address-box">
-              <strong>ONE CLIENT PATH</strong>
+              <strong>JEDNA ŚCIEŻKA KLIENTA</strong>
               <p>Instagram / TikTok / Google / WhatsApp / Telegram / Reklama</p>
             </div>
 
             <div class="map-glass">
               <div class="map-logo-overlay">
-                <span>ONE<br />PATH</span>
+                <span>JEDNA<br />ŚCIEŻKA</span>
               </div>
             </div>
 
@@ -5005,14 +5065,10 @@ body.booking-open .site-header {
         </div>
 
         <div class="faq-mobile-list">
-          <button class="mobile-faq-card" type="button" data-faq="instagram"><strong data-i18n="faqQInstagram">Czy to jest tylko pod Instagram?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="business"><strong data-i18n="faqQBusiness">Dla jakich biznesów to pasuje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="booking"><strong data-i18n="faqQBooking">Czy zapis może być w środku strony?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="automation"><strong data-i18n="faqQAutomation">Co daje automatyzacja wejść?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="content"><strong data-i18n="faqQContent">Czy strona jest dopasowana pod markę?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="start"><strong data-i18n="faqQStart">Od czego najlepiej zacząć?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="time"><strong data-i18n="faqQTime">Ile trwa wdrożenie?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
-          <button class="mobile-faq-card" type="button" data-faq="owner"><strong data-i18n="faqQOwner">Co dostaje właściciel?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="coDaje"><strong>Co daje?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="jakDziala"><strong>Jak działa?</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="panelAdmina"><strong>Panel admina</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
+          <button class="mobile-faq-card" type="button" data-faq="faq"><strong>FAQ</strong><p data-i18n="faqTap">Dotknij, żeby zobaczyć odpowiedź.</p></button>
         </div>
       </section>
 
@@ -5020,10 +5076,10 @@ body.booking-open .site-header {
         <div class="page-head">
           <div class="kicker" data-i18n="navContact">KONTAKT</div>
           <h2 class="page-title">
-            <span data-i18n="mobileContactTitle1">Zacznij</span>
-            <span class="gold" data-i18n="mobileContactTitle2">od ścieżki.</span>
+            <span data-i18n="mobileContactTitle1">Zacznij od</span>
+            <span class="gold" data-i18n="mobileContactTitle2">zgłoszenia.</span>
           </h2>
-          <p class="page-sub" data-i18n="mobileContactSub">Zamień luźne zainteresowanie w uporządkowany proces zostawienia danych.</p>
+          <p class="page-sub" data-i18n="mobileContactSub">Zostaw kontakt, a szczegóły strony ustalimy w rozmowie.</p>
         </div>
 
         <div class="contact-layout">
@@ -5039,7 +5095,7 @@ body.booking-open .site-header {
           </div>
 
           <div class="dual-actions">
-            <button class="cta-btn" type="button" data-open-booking data-i18n="startNow">Zacznij teraz</button>
+            <button class="cta-btn" type="button" data-open-booking data-i18n="startNow">Zostaw zgłoszenie</button>
             <a class="ghost-btn" href="tel:+48532377701" data-i18n="phoneShort">Telefon</a>
           </div>
 
@@ -5066,6 +5122,29 @@ body.booking-open .site-header {
       </div>
     </div>
   </div>
+
+  <div class="details-overlay" id="detailsOverlay" data-close-details></div>
+  <aside class="details-panel" id="detailsPanel" aria-hidden="true">
+    <div class="details-card">
+      <div class="details-head">
+        <strong>Szczegóły: co daje strona</strong>
+        <button class="icon-btn" type="button" data-close-details aria-label="Zamknij">×</button>
+      </div>
+      <ul class="details-list">
+        <li>własna strona pod biznes</li>
+        <li>oferta i usługi w jednym miejscu</li>
+        <li>formularz zgłoszenia</li>
+        <li>ścieżka klienta</li>
+        <li>FAQ</li>
+        <li>kontakt</li>
+        <li>social links</li>
+        <li>wybór stylu</li>
+        <li>dopasowanie pod branżę</li>
+        <li>możliwość rozbudowy</li>
+      </ul>
+      <a class="btn btn-ghost section-button-full" href="https://mrozowski-automation-production.up.railway.app/?page=demos#demos">Wróć do demo</a>
+    </div>
+  </aside>
 
   <section class="booking-overlay" id="bookingOverlay" aria-hidden="true">
     <div class="booking-shell">
@@ -5150,7 +5229,7 @@ body.booking-open .site-header {
     <div class="step-content">
       <div class="card-head">
         <h2>Format projektu</h2>
-        <p>Wybierz szybki start albo indywidualny projekt.</p>
+        <p>Wybierz kierunek strony, a szczegóły dopracujemy po zgłoszeniu.</p>
       </div>
 
       <div class="option-grid format-grid" id="projectFormatGrid"></div>
@@ -5261,7 +5340,7 @@ body.booking-open .site-header {
         <div class="summary-row"><span>Kontakt</span><strong><span data-bind="name">—</span> · <span data-bind="phone">—</span></strong></div>
         <div class="summary-row"><span>Dodatkowy kontakt</span><strong data-bind="contactExtra">—</strong></div>
         <div class="summary-row"><span>Typ projektu</span><strong data-bind="projectGoal">—</strong></div>
-        <div class="summary-row"><span>Template / Custom</span><strong data-bind="projectFormat">—</strong></div>
+        <div class="summary-row"><span>Wariant</span><strong data-bind="projectFormat">—</strong></div>
         <div class="summary-row"><span>Branża</span><strong data-bind="businessType">—</strong></div>
         <div class="summary-row"><span>Źródła</span><strong data-bind="clientSources">—</strong></div>
         <div class="summary-row"><span>Styl</span><strong data-bind="visualStyle">—</strong></div>
@@ -5313,6 +5392,8 @@ body.booking-open .site-header {
     const faqSheet = document.getElementById("faqSheet");
     const faqSheetTitle = document.getElementById("faqSheetTitle");
     const faqSheetAnswer = document.getElementById("faqSheetAnswer");
+    const detailsPanel = document.getElementById("detailsPanel");
+    const detailsOverlay = document.getElementById("detailsOverlay");
 
     let lastScrollY = window.scrollY;
     let lastMobileScrollTop = 0;
@@ -5330,15 +5411,15 @@ body.booking-open .site-header {
         trust1: "Strona premium",
         trust2: "Ścieżka zapisu",
         trust3: "Leady z wielu miejsc",
-        clientPath: "Client Path",
-        active: "active",
+        clientPath: "Ścieżka klienta",
+        active: "aktywna",
         dashSources: "Wejścia",
         dashSourcesValue: "6 źródeł",
         dashOffer: "Oferta",
         dashOfferValue: "1 strona",
         dashProcess: "Proces",
         dashProcessValue: "Wybór",
-        dashEffect: "Efekt",
+        dashEffect: "Wynik",
         dashEffectValue: "Zgłoszenie",
         flowSocial: "Social",
         flowOffer: "Oferta",
@@ -5348,13 +5429,12 @@ body.booking-open .site-header {
         navStart: "Start",
         navOffer: "Oferta",
         navProduct: "Produkt",
-        navEffect: "Efekt",
-        navProof: "Proof",
+        navProof: "Oceny",
         navProcess: "Proces",
         navFaq: "FAQ",
         navContact: "Kontakt",
         chooseBtn: "Wybierz",
-        startNow: "Zacznij teraz",
+        startNow: "Zostaw zgłoszenie",
         howItWorks: "Jak działa",
         addSourcesBtn: "Dodaj wejścia",
         bestChoiceBtn: "Najlepszy wybór",
@@ -5387,13 +5467,12 @@ body.booking-open .site-header {
         navStart: "Старт",
         navOffer: "Оффер",
         navProduct: "Продукт",
-        navEffect: "Эффект",
-        navProof: "Proof",
+        navProof: "Оценки",
         navProcess: "Процесс",
         navFaq: "FAQ",
         navContact: "Контакт",
         chooseBtn: "Выбрать",
-        startNow: "Начать сейчас",
+        startNow: "Оставить заявку",
         howItWorks: "Как работает",
         addSourcesBtn: "Добавить входы",
         bestChoiceBtn: "Лучший выбор",
@@ -5426,13 +5505,12 @@ body.booking-open .site-header {
         navStart: "Start",
         navOffer: "Offer",
         navProduct: "Product",
-        navEffect: "Effect",
-        navProof: "Proof",
+        navProof: "Reviews",
         navProcess: "Process",
         navFaq: "FAQ",
         navContact: "Contact",
         chooseBtn: "Choose",
-        startNow: "Start now",
+        startNow: "Send request",
         howItWorks: "How it works",
         addSourcesBtn: "Add sources",
         bestChoiceBtn: "Best choice",
@@ -5442,34 +5520,22 @@ body.booking-open .site-header {
 
     const faqAnswersBase = {
       pl: {
-        instagram: ["Czy to jest tylko pod Instagram?", "Nie. Instagram może być jednym z wejść, ale główny produkt to własna strona ze ścieżką zapisu. Klient może przyjść też z TikToka, Google, WhatsAppa, Telegrama, reklamy albo zwykłego linku."],
-        business: ["Dla jakich biznesów to pasuje?", "Najlepiej pasuje do lokalnych usług: beauty, barber, nails, fizjo, trenerzy, konsultacje, małe studia i biznesy, które potrzebują zbierać zapisy albo zgłoszenia bez chaosu w wiadomościach."],
-        booking: ["Czy zapis może być w środku strony?", "Tak. Idea polega na tym, że klient nie musi skakać po aplikacjach. Widzi ofertę, wybiera opcję, zostawia dane i przechodzi dalej w jednym flow."],
-        automation: ["Co daje automatyzacja wejść?", "Automatyzacja kieruje klienta z różnych miejsc do jednej ścieżki. Zamiast odpowiadać ręcznie na te same pytania, wysyłasz klienta na stronę, która tłumaczy ofertę i prowadzi do zgłoszenia."],
-        content: ["Czy strona jest dopasowana pod markę?", "Tak. Wygląd, teksty, sekcje, oferta i CTA są dopasowane pod konkretną usługę, styl biznesu i to, co klient ma zrobić na końcu."],
-        start: ["Od czego najlepiej zacząć?", "Najlepiej zacząć od jednej konkretnej ścieżki: skąd klient przychodzi, co ma zobaczyć, jaką opcję wybiera i jakie dane mają trafić do właściciela."],
-        time: ["Ile trwa wdrożenie?", "To zależy od zakresu. Prosta strona z zapisem może być szybkim wdrożeniem, a pełny system z dodatkowymi wejściami wymaga dokładniejszego dopasowania."],
-        owner: ["Co dostaje właściciel?", "Właściciel dostaje stronę, która prezentuje ofertę, prowadzi klienta przez proces i zbiera konkretne dane zamiast rozproszonych wiadomości."]
+        coDaje: ["Co daje?", "Strona pod biznes, oferta, usługi, FAQ, kontakt i formularz zgłoszenia w jednym miejscu. To gotowy produkt za 600 zł z możliwością dalszej rozbudowy."],
+        jakDziala: ["Jak działa?", "Klient trafia z Instagrama, Google, reklamy albo linku, widzi ofertę i przechodzi prostą ścieżkę do zgłoszenia. Po zgłoszeniu ustalamy szczegóły w rozmowie."],
+        panelAdmina: ["Panel admina", "Podstawowa wersja skupia się na stronie i formularzu. Rozszerzenia jak większa automatyzacja, booking albo dodatkowe sekcje wdrażamy opcjonalnie."],
+        faq: ["FAQ", "Nie musisz mieć wszystkiego gotowego. Najpierw wybierasz kierunek, styl i zawartość, a szczegóły dopracowujemy po zgłoszeniu."]
       },
       ru: {
-        instagram: ["Это только под Instagram?", "Нет. Instagram может быть одним из входов, но главный продукт — собственная страница с путём заявки. Клиент может прийти из TikTok, Google, WhatsApp, Telegram, рекламы или обычной ссылки."],
-        business: ["Для каких бизнесов это подходит?", "Лучше всего подходит локальным услугам: beauty, barber, nails, физиотерапия, тренеры, консультации, студии и бизнесы, которым нужно собирать заявки без хаоса в переписках."],
-        booking: ["Запись может быть внутри страницы?", "Да. Клиент видит предложение, выбирает вариант, оставляет данные и проходит дальше в одном flow."],
-        automation: ["Что даёт автоматизация входов?", "Она ведёт клиентов из разных мест в одну понятную систему вместо ручных одинаковых ответов в разных диалогах."],
-        content: ["Страница адаптируется под бренд?", "Да. Визуал, тексты, секции, предложение и CTA подстраиваются под конкретную услугу и стиль бизнеса."],
-        start: ["С чего лучше начать?", "С одного конкретного пути: откуда приходит клиент, что он должен увидеть, что выбрать и какие данные оставить."],
-        time: ["Сколько длится внедрение?", "Зависит от объёма. Простая страница быстрее, полный процесс с каналами требует более точной настройки."],
-        owner: ["Что получает владелец?", "Страницу, которая показывает предложение, ведёт клиента по процессу и собирает конкретные данные вместо хаотичных сообщений."]
+        coDaje: ["Что это даёт?", "Страница под бизнес, оффер, услуги, FAQ, контакт и форма заявки в одном месте. Базовый продукт за 600 zł с возможностью расширения."],
+        jakDziala: ["Как это работает?", "Клиент приходит из Instagram, Google, рекламы или ссылки, видит оффер и проходит простой путь до заявки. Детали согласуем после заявки."],
+        panelAdmina: ["Панель админа", "Базовая версия сосредоточена на странице и форме. Расширения вроде booking и глубокой автоматизации подключаются опционально."],
+        faq: ["FAQ", "Не нужно иметь всё готовым. Сначала выбираем направление, стиль и контент, детали дорабатываем после заявки."]
       },
       en: {
-        instagram: ["Is this only for Instagram?", "No. Instagram can be one entry point, but the core product is your own page with a lead path. A client can also come from TikTok, Google, WhatsApp, Telegram, ads or a simple link."],
-        business: ["What businesses is it for?", "It works best for local services: beauty, barber, nails, physio, trainers, consultations, small studios and businesses that need leads without message chaos."],
-        booking: ["Can booking be inside the page?", "Yes. The client sees the offer, chooses an option, leaves details and continues in one flow."],
-        automation: ["What does entry automation do?", "It sends clients from different places into one clear path instead of answering the same questions manually in many chats."],
-        content: ["Is the page adapted to the brand?", "Yes. Visuals, copy, sections, offer and CTA are adapted to the exact service and business style."],
-        start: ["Where should I start?", "Start with one clear path: where the client comes from, what they see, what they choose and what data they leave."],
-        time: ["How long does implementation take?", "It depends on scope. A simple page can be fast, while a full system with extra channels needs deeper setup."],
-        owner: ["What does the owner get?", "A page that presents the offer, guides the client and collects concrete data instead of scattered messages."]
+        coDaje: ["What does it include?", "A business page, offer, services, FAQ, contact, and lead form in one place. Core product for 600 zł with optional expansion."],
+        jakDziala: ["How does it work?", "Client comes from Instagram, Google, ads, or QR/link, sees the offer, and leaves a lead in a short flow. Details are finalized in a call."],
+        panelAdmina: ["Admin panel", "The base version focuses on page + lead form. Extra automation, booking, or more sections are optional add-ons."],
+        faq: ["FAQ", "You do not need everything ready. First we choose direction, style, and content, then refine details after submission."]
       }
     };
 
@@ -5547,6 +5613,20 @@ body.booking-open .site-header {
       document.body.classList.remove("faq-open");
     }
 
+    function openDetails() {
+      detailsPanel?.classList.add("open");
+      detailsOverlay?.classList.add("open");
+      detailsPanel?.setAttribute("aria-hidden", "false");
+      document.body.classList.add("faq-open");
+    }
+
+    function closeDetails() {
+      detailsPanel?.classList.remove("open");
+      detailsOverlay?.classList.remove("open");
+      detailsPanel?.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("faq-open");
+    }
+
     function bindBookingButtons() {
       document.querySelectorAll("[data-open-booking]").forEach(button => {
         button.addEventListener("click", event => {
@@ -5585,6 +5665,15 @@ body.booking-open .site-header {
       });
 
       setLanguage(getCurrentLang());
+    }
+
+    function bindDetailsPanel() {
+      document.querySelectorAll("[data-open-details]").forEach(btn => {
+        btn.addEventListener("click", openDetails);
+      });
+      document.querySelectorAll("[data-close-details]").forEach(btn => {
+        btn.addEventListener("click", closeDetails);
+      });
     }
 
     function bindMobileNavigation() {
@@ -5717,6 +5806,7 @@ body.booking-open .site-header {
       if (event.key === "Escape") {
         closeBooking();
         closeFaq();
+        closeDetails();
       }
     });
 
@@ -5725,6 +5815,7 @@ body.booking-open .site-header {
     bindMobileSmartHeader();
     bindFaq();
     bindLanguageSwitcher();
+    bindDetailsPanel();
   </script>
 
   <script src="./script.js"></script>
