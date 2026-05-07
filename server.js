@@ -162,15 +162,19 @@ app.get("/api/health", (_req, res) => {
 app.post("/api/brief", async (req, res) => {
   try {
     const data = req.body || {};
+    const normalized = {
+      ...data,
+      projectGoal: data.projectGoal || data.sectionCount || "",
+      projectFormat: data.projectFormat || data.visualStyle || data.visualStyleId || ""
+    };
 
     const requiredFields = {
-      name: data.name,
-      phone: data.phone,
-      projectGoal: data.projectGoal,
-      projectFormat: data.projectFormat,
-      businessType: data.businessType,
-      visualStyle: data.visualStyle,
-      projectDescription: data.projectDescription
+      name: normalized.name,
+      phone: normalized.phone,
+      projectGoal: normalized.projectGoal,
+      projectFormat: normalized.projectFormat,
+      businessType: normalized.businessType,
+      visualStyle: normalized.visualStyle
     };
 
     const missingFields = Object.entries(requiredFields)
@@ -184,13 +188,13 @@ app.post("/api/brief", async (req, res) => {
       });
     }
 
-    const telegramMessage = buildTelegramMessage(data);
+    const telegramMessage = buildTelegramMessage(normalized);
 
     await sendTelegramMessage(telegramMessage);
 
     await sendTwilioSms({
-      phone: data.phone,
-      message: buildClientSms(data)
+      phone: normalized.phone,
+      message: buildClientSms(normalized)
     });
 
     return res.status(200).json({
