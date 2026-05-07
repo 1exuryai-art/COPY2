@@ -4059,14 +4059,22 @@ img {
       }
 
       .page[data-page-view="home"] .screen-body {
-        grid-template-rows: auto auto;
-        align-content: start;
-        grid-auto-rows: max-content;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
         overflow: visible;
       }
 
       .page[data-page-view="home"] .mobile-hero-card {
         overflow: visible;
+      }
+
+      .page[data-page-view="home"] .mini-stats,
+      .page[data-page-view="home"] .home-actions {
+        position: relative;
+        z-index: 2;
+        margin-top: 0 !important;
       }
 
       .page[data-page-view="home"].active {
