@@ -4059,9 +4059,13 @@ img {
       }
 
       .page[data-page-view="home"] .screen-body {
-        grid-template-rows: minmax(0, auto) auto;
+        grid-template-rows: auto auto;
         align-content: start;
         grid-auto-rows: max-content;
+        overflow: visible;
+      }
+
+      .page[data-page-view="home"] .mobile-hero-card {
         overflow: visible;
       }
 
