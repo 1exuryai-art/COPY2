@@ -4767,6 +4767,78 @@ body.booking-open .site-header {
     opacity: 0.2 !important;
   }
 }
+
+@media (max-width: 900px) {
+  .page[data-page-view="home"].active {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    padding-bottom: calc(18px + var(--safe-bottom)) !important;
+  }
+
+  .page[data-page-view="home"] .page-head,
+  .page[data-page-view="home"] .screen-body,
+  .page[data-page-view="home"] .mobile-hero-card,
+  .page[data-page-view="home"] .mobile-dashboard-card,
+  .page[data-page-view="home"] .mini-stats {
+    flex: 0 0 auto !important;
+  }
+
+  .page[data-page-view="home"] .screen-body {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-content: start !important;
+  }
+
+  .page[data-page-view="home"] .mobile-hero-card {
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  .page[data-page-view="home"] .mobile-dashboard-card {
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .page[data-page-view="home"] .page-title {
+    font-size: clamp(34px, 11vw, 42px) !important;
+  }
+
+  .page[data-page-view="home"] .page-sub {
+    font-size: 12.5px !important;
+    line-height: 1.42 !important;
+  }
+
+  .page[data-page-view="home"] .home-compact {
+    padding: 12px !important;
+    gap: 12px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-dashboard-card {
+    gap: 8px !important;
+  }
+
+  .page[data-page-view="home"] .mobile-mini-tile {
+    min-height: 62px !important;
+  }
+
+  .page[data-page-view="home"] .stat-card {
+    min-height: 78px !important;
+    padding: 12px !important;
+  }
+}
   </style>
 </head>
 
