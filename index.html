@@ -4061,6 +4061,13 @@ img {
       .page[data-page-view="home"] .screen-body {
         grid-template-rows: minmax(0, auto) auto;
         align-content: start;
+        grid-auto-rows: max-content;
+        overflow: visible;
+      }
+
+      .page[data-page-view="home"].active {
+        min-height: auto !important;
+        overflow-y: auto !important;
       }
 
       .page[data-page-view="home"] .mobile-dashboard-card {
