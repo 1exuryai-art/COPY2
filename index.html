@@ -2957,10 +2957,11 @@ img {
         z-index: 2;
         display: grid !important;
         width: 100%;
-        min-height: min(100dvh, 100svh);
-        height: min(100dvh, 100svh);
-        max-height: min(100dvh, 100svh);
-        overflow: hidden;
+        min-height: 100dvh;
+        height: auto;
+        max-height: none;
+        overflow-y: auto;
+        overflow-x: hidden;
         grid-template-rows: auto auto minmax(0, 1fr);
         isolation: isolate;
       }
@@ -3162,10 +3163,10 @@ img {
 
       .pages {
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         min-height: 0;
         min-width: 0;
-        height: 100%;
+        height: auto;
         padding: 0;
       }
 
@@ -3191,8 +3192,8 @@ img {
         overscroll-behavior-y: contain !important;
         touch-action: pan-y !important;
         scrollbar-width: none !important;
-        height: 100% !important;
-        min-height: 0 !important;
+        height: auto !important;
+        min-height: 100% !important;
         max-height: none !important;
         padding: 14px 12px calc(12px + var(--safe-bottom)) !important;
         gap: 12px;
