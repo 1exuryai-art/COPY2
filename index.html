@@ -4066,8 +4066,24 @@ img {
         overflow: visible;
       }
 
+      .page[data-page-view="home"] .screen-body > * {
+        position: static !important;
+        transform: none !important;
+      }
+
       .page[data-page-view="home"] .mobile-hero-card {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
         overflow: visible;
+      }
+
+      .page[data-page-view="home"] .mobile-dashboard-card,
+      .page[data-page-view="home"] .mobile-dashboard-row,
+      .page[data-page-view="home"] .mini-stats,
+      .page[data-page-view="home"] .home-actions {
+        position: static !important;
+        transform: none !important;
       }
 
       .page[data-page-view="home"] .mini-stats,
