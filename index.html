@@ -2959,10 +2959,10 @@ img {
         display: grid !important;
         width: 100%;
         min-height: 100dvh;
-        height: auto;
-        max-height: none;
-        overflow: visible;
-        grid-template-rows: auto auto auto;
+        height: min(100dvh, 100svh);
+        max-height: min(100dvh, 100svh);
+        overflow: hidden;
+        grid-template-rows: auto auto minmax(0, 1fr);
         isolation: isolate;
       }
 
@@ -3163,21 +3163,21 @@ img {
 
       .pages {
         position: relative;
-        overflow: visible;
+        overflow: hidden;
         min-height: 0;
         min-width: 0;
-        height: auto;
+        height: 100%;
         padding: 0;
       }
 
       .page {
-        position: relative;
-        inset: auto;
+        position: absolute;
+        inset: 0;
         display: none;
         min-height: 0;
         min-width: 0;
         padding: 14px 12px 12px;
-        overflow: visible;
+        overflow: hidden;
         animation: pageIn 360ms var(--ease-spring) both;
         pointer-events: none;
       }
@@ -3186,14 +3186,22 @@ img {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        overflow: visible !important;
-        touch-action: auto !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior-y: contain !important;
+        touch-action: pan-y !important;
+        scrollbar-width: none !important;
         height: auto !important;
-        min-height: auto !important;
+        min-height: 0 !important;
         max-height: none !important;
         padding: 14px 12px calc(12px + var(--safe-bottom)) !important;
         gap: 12px;
         pointer-events: auto;
+      }
+
+      .page.active::-webkit-scrollbar {
+        display: none;
       }
 
       .page-head {
