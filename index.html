@@ -3270,7 +3270,7 @@ img {
         display: grid;
         align-content: stretch;
         gap: 10px;
-        overflow: visible;
+        overflow: hidden;
       }
 
       .mobile-hero-card,
@@ -4059,48 +4059,13 @@ img {
       }
 
       .page[data-page-view="home"] .screen-body {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-        overflow: visible;
-      }
-
-      .page[data-page-view="home"] .screen-body > * {
-        position: static !important;
-        transform: none !important;
-      }
-
-      .page[data-page-view="home"] .mobile-hero-card {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 12px !important;
-        overflow: visible;
-      }
-
-      .page[data-page-view="home"] .mobile-dashboard-card,
-      .page[data-page-view="home"] .mobile-dashboard-row,
-      .page[data-page-view="home"] .mini-stats,
-      .page[data-page-view="home"] .home-actions {
-        position: static !important;
-        transform: none !important;
-      }
-
-      .page[data-page-view="home"] .mini-stats,
-      .page[data-page-view="home"] .home-actions {
-        position: relative;
-        z-index: 2;
-        margin-top: 0 !important;
-      }
-
-      .page[data-page-view="home"].active {
-        min-height: auto !important;
-        overflow-y: auto !important;
+        grid-template-rows: minmax(0, auto) auto;
+        align-content: start;
       }
 
       .page[data-page-view="home"] .mobile-dashboard-card {
         max-height: none;
-        overflow: visible;
+        overflow: hidden;
       }
 
       .page[data-page-view="home"] .mobile-mini-tile {
