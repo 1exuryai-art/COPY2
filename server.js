@@ -62,7 +62,7 @@ function formatNow() {
 
 function buildTelegramMessage(data) {
   return [
-    "🔥 NOWY BRIEF — MROZOWSKI AUTOMATION",
+    "🔥 NOWY BRIEF — MROZOWSKI SYSTEMS",
     "",
     "👤 KONTAKT",
     `Imię: ${safeText(data.name)}`,
@@ -100,7 +100,7 @@ function buildTelegramMessage(data) {
 
 function buildClientSms(data) {
   return [
-    "MROZOWSKI AUTOMATION:",
+    "MROZOWSKI SYSTEMS:",
     "Dziękujemy za brief.",
     "Otrzymaliśmy Twoje zgłoszenie.",
     "Wrócimy z propozycją systemu pod Twój biznes.",
