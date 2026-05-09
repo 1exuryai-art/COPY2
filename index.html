@@ -2824,6 +2824,23 @@ img {
   overflow: hidden;
 }
 
+    /* Tylko booking: wordmark bez „kapsuły” (border / tło) */
+    .booking-overlay .booking-logo-box {
+      width: auto !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      padding: 0 12px 0 0 !important;
+      border: none !important;
+      background: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+    }
+
+    .booking-overlay .booking-topbar__left {
+      grid-template-columns: auto minmax(0, 1fr) !important;
+    }
+
     .booking-topbar__copy {
       display: grid !important;
       gap: 2px !important;
@@ -4018,6 +4035,17 @@ img {
         width: 62px !important;
         min-height: 38px !important;
         border-radius: 15px;
+      }
+
+      .booking-overlay .booking-logo-box {
+        width: auto !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding-right: 8px !important;
       }
 
       .booking-topbar__copy span {
@@ -5735,7 +5763,7 @@ body.booking-open .site-header {
       </div>
       <h3 class="details-modal-title" data-i18n="detailsTitle">Co wchodzi za 600 zł?</h3>
       <p class="details-lead" data-i18n="detailsLead">
-        Bazowa strona dla lokalnego biznesu z ofertą, usługami, cenami, FAQ, kontaktem i prostą ścieżką zapisu.
+        Strona premium pod lokalny biznes: oferta, usługi i ceny, FAQ, galeria, kontakt i social media, zapis / booking, SMS / podstawowe potwierdzenie, dopasowanie pod branżę oraz własny kolor marki — wszystko w cenie pakietu.
       </p>
       <p class="details-section-label" data-i18n="detailsIncludedHeading">W cenie:</p>
       <ul class="details-list">
@@ -5747,10 +5775,10 @@ body.booking-open .site-header {
         <li data-i18n="detailsInc6">Zapis / booking</li>
         <li data-i18n="detailsInc7">SMS / podstawowe potwierdzenie</li>
         <li data-i18n="detailsInc8">Dopasowanie pod branżę</li>
+        <li data-i18n="detailsInc9">Własny kolor / kolor marki w cenie</li>
       </ul>
       <p class="details-section-label" data-i18n="detailsAddonsHeading">Dodatkowo:</p>
       <ul class="details-list">
-        <li data-i18n="detailsAdd1">Firmowy kolor — od +100 zł</li>
         <li data-i18n="detailsAdd2">Dodatkowa sekcja — +50 zł</li>
         <li data-i18n="detailsAdd3">Automatyzacja Instagram — osobno</li>
         <li data-i18n="detailsAdd4">Powiadomienia Telegram — osobno</li>
@@ -5841,8 +5869,8 @@ body.booking-open .site-header {
   <section class="step" data-step="3">
     <div class="step-content">
       <div class="card-head">
-        <h2>Jaki styl strony Cię interesuje?</h2>
-        <p>Wybierz 3 gotowe style albo własny kolor.</p>
+        <h2>Spodobał Ci się któryś z trzech stylów?</h2>
+        <p>Możesz wybrać gotowy styl albo zostawić to nam — dopasujemy własny kolor pod Twój biznes. Jest to w cenie.</p>
       </div>
       <div class="style-grid" id="visualStyleGrid"></div>
       <label class="field">
@@ -6050,44 +6078,44 @@ body.booking-open .site-header {
       pl: {
         coDaje: ["Co daje?", "Strona pod biznes, oferta, usługi, FAQ, kontakt i formularz zgłoszenia w jednym miejscu. To gotowy produkt za 600 zł z możliwością dalszej rozbudowy."],
         jakDziala: ["Jak działa?", "Klient trafia z Instagrama, Google, reklamy albo linku, widzi ofertę i przechodzi prostą ścieżkę do zgłoszenia. Po zgłoszeniu ustalamy szczegóły w rozmowie."],
-        panelAdmina: ["Panel admina", "Podstawowa wersja skupia się na stronie i formularzu. Rozszerzenia jak większa automatyzacja, booking albo dodatkowe sekcje wdrażamy opcjonalnie."],
+        panelAdmina: ["Panel admina", "Podstawowy pakiet obejmuje stronę, formularz / zapis, SMS z podstawowym potwierdzeniem oraz dopasowanie stylu i koloru marki. Większą automatyzację, Telegram i dodatkowe sekcje możemy dorobić opcjonalnie."],
         faq: ["FAQ", "Nie musisz mieć wszystkiego gotowego. Najpierw wybierasz kierunek, styl i zawartość, a szczegóły dopracowujemy po zgłoszeniu."],
-        faqCena: ["Ile kosztuje podstawowa strona?", "Podstawowa strona kosztuje 600 zł. W cenie jest strona pod biznes, oferta, usługi i ceny, FAQ, kontakt, galeria, rezerwacja / zapis oraz podstawowe SMS / potwierdzenie."],
-        faqKolor: ["Czy kolor można dopasować do mojej marki?", "Tak. Gotowe style są dostępne od razu, a własny kolor marki można dopasować jako dodatek, zwykle od +100 zł."],
+        faqCena: ["Ile kosztuje podstawowa strona?", "Podstawowa strona kosztuje 600 zł. W cenie jest m.in. strona premium pod biznes, oferta, usługi i ceny, FAQ, galeria, kontakt, rezerwacja / zapis, SMS / podstawowe potwierdzenie oraz własny kolor marki."],
+        faqKolor: ["Czy kolor można dopasować do mojej marki?", "Tak. Możesz wybrać gotowy styl albo zostawić dobór kolorystyki nam — własny kolor marki jest w cenie pakietu."],
         faqMaterialy: ["Czy muszę mieć gotowe teksty i zdjęcia?", "Nie. Możesz mieć swoje materiały, ale nie musisz mieć wszystkiego gotowego. Najpierw wybieramy kierunek, a szczegóły dopracowujemy po zgłoszeniu."],
         faqBranze: ["Czy strona działa dla różnych branż?", "Tak. System można dopasować pod barbershop, beauty, nails, lashes, masaż, kosmetologię, online usługę albo inny lokalny biznes."],
         faqBooking: ["Czy rezerwacja jest w cenie?", "W podstawowym pakiecie jest prosta ścieżka zapisu / rezerwacji. Bardziej rozbudowany booking albo dodatkowe automatyzacje są ustalane osobno."],
         faqPoZgloszeniu: ["Co dzieje się po wysłaniu zgłoszenia?", "Po zgłoszeniu kontaktuję się z Tobą, doprecyzowujemy szczegóły, zakres strony, styl i materiały. Nie musisz opisywać wszystkiego idealnie od razu."],
         faqIgAuto: ["Czy automatyzacja Instagrama jest w cenie?", "Nie. Automatyzacja Instagrama to osobna opcja i nie wchodzi w cenę strony."],
-        faqTelegram: ["Czy Telegram powiadomienia są w cenie?", "Podstawowe SMS / potwierdzenie może być częścią bazowego rozwiązania, ale Telegram powiadomienia i bardziej rozbudowane automatyzacje są dodatkiem."]
+        faqTelegram: ["Czy Telegram powiadomienia są w cenie?", "Bazowe SMS / potwierdzenie dla klienta jest w cenie strony. Powiadomienia na Telegram i bardziej rozbudowane automatyzacje są opcjonalne i ustalane osobno."]
       },
       ru: {
         coDaje: ["Что это даёт?", "Страница под бизнес, оффер, услуги, FAQ, контакт и форма заявки в одном месте. Базовый продукт за 600 zł с возможностью расширения."],
         jakDziala: ["Как это работает?", "Клиент приходит из Instagram, Google, рекламы или ссылки, видит оффер и проходит простой путь до заявки. Детали согласуем после заявки."],
-        panelAdmina: ["Панель админа", "Базовая версия сосредоточена на странице и форме. Расширения вроде booking и глубокой автоматизации подключаются опционально."],
+        panelAdmina: ["Панель админа", "Базовый пакет включает страницу, форму / запись, SMS с базовым подтверждением и подбор стиля и цвета бренда. Большую автоматизацию, Telegram и дополнительные секции подключаем опционально."],
         faq: ["FAQ", "Не нужно иметь всё готовым. Сначала выбираем направление, стиль и контент, детали дорабатываем после заявки."],
-        faqCena: ["Сколько стоит базовая страница?", "Базовая страница стоит 600 zł. В цену входят страница под бизнес, оффер, услуги и цены, FAQ, контакт, галерея, запись / бронирование и базовое SMS / подтверждение."],
-        faqKolor: ["Можно ли подобрать цвет под мой бренд?", "Да. Готовые стили доступны сразу, а индивидуальный цвет бренда можно добавить как опцию, обычно от +100 zł."],
+        faqCena: ["Сколько стоит базовая страница?", "Базовая страница стоит 600 злотых. В цену входят, в т.ч., премиум-страница под бизнес, оффер, услуги и цены, FAQ, галерея, контакт, запись / бронирование, SMS / базовое подтверждение и фирменный цвет."],
+        faqKolor: ["Можно ли подобрать цвет под мой бренд?", "Да. Можно выбрать готовый стиль или оставить подбор палитры нам — фирменный цвет входит в стоимость пакета."],
         faqMaterialy: ["Нужны ли готовые тексты и фото?", "Нет. Можно использовать свои материалы, но не обязательно иметь всё готовым. Сначала выбираем направление, детали дорабатываем после заявки."],
         faqBranze: ["Подходит ли страница для разных ниш?", "Да. Систему можно адаптировать под barbershop, beauty, nails, lashes, массаж, косметологию, онлайн-услугу или другой локальный бизнес."],
         faqBooking: ["Запись входит в цену?", "В базовый пакет входит простая воронка записи / бронирования. Более расширенный booking и дополнительные автоматизации согласуются отдельно."],
         faqPoZgloszeniu: ["Что происходит после отправки заявки?", "После заявки я связываюсь с вами, уточняем детали, объём страницы, стиль и материалы. Не нужно идеально описывать всё с первого сообщения."],
         faqIgAuto: ["Автоматизация Instagram входит в цену?", "Нет. Автоматизация Instagram — это отдельная опция, не входящая в стоимость страницы."],
-        faqTelegram: ["Telegram-уведомления входят в цену?", "Базовое SMS / подтверждение может быть частью базового решения, но Telegram-уведомления и более расширенные автоматизации являются дополнительными услугами."]
+        faqTelegram: ["Telegram-уведомления входят в цену?", "Базовое SMS / подтверждение для клиента входит в стоимость страницы. Уведомления в Telegram и более глубокие автоматизации — опционально и согласуются отдельно."]
       },
       en: {
         coDaje: ["What does it include?", "A business page, offer, services, FAQ, contact, and lead form in one place. Core product for 600 zł with optional expansion."],
         jakDziala: ["How does it work?", "Client comes from Instagram, Google, ads, or QR/link, sees the offer, and leaves a lead in a short flow. Details are finalized in a call."],
-        panelAdmina: ["Admin panel", "The base version focuses on page + lead form. Extra automation, booking, or more sections are optional add-ons."],
+        panelAdmina: ["Admin panel", "The base package covers the page, lead / booking flow, basic SMS confirmation, and style plus brand color matching. Deeper automation, Telegram, and extra sections are optional add-ons."],
         faq: ["FAQ", "You do not need everything ready. First we choose direction, style, and content, then refine details after submission."],
-        faqCena: ["How much is the base page?", "The base page costs 600 PLN. Included: business page, offer, services and prices, FAQ, contact, gallery, booking / sign-up, and basic SMS / confirmation."],
-        faqKolor: ["Can the color match my brand?", "Yes. Ready-made styles are available immediately, and a custom brand color can be added as an extra, usually from +100 PLN."],
+        faqCena: ["How much is the base page?", "The base page is 600 PLN. Included: a premium business page, offer, services and prices, FAQ, gallery, contact, booking / sign-up, basic SMS / confirmation, and your brand color."],
+        faqKolor: ["Can the color match my brand?", "Yes. Pick a ready-made style or leave palette choices to us—custom brand color is included in the package."],
         faqMaterialy: ["Do I need ready texts and photos?", "No. You can use your own materials, but you do not need everything ready. First we choose direction, then refine details after submission."],
         faqBranze: ["Does it work for different niches?", "Yes. The system can be adapted for barbershop, beauty, nails, lashes, massage, cosmetology, online service, or another local business."],
         faqBooking: ["Is booking included?", "The base package includes a simple booking / sign-up flow. More advanced booking or extra automations are handled separately."],
         faqPoZgloszeniu: ["What happens after submitting?", "After submission I contact you, and we clarify details, scope, style, and materials. You do not need to describe everything perfectly right away."],
         faqIgAuto: ["Is Instagram automation included?", "No. Instagram automation is a separate option and is not included in the page price."],
-        faqTelegram: ["Are Telegram notifications included?", "Basic SMS / confirmation can be part of the base solution, but Telegram notifications and more advanced automations are add-ons."]
+        faqTelegram: ["Are Telegram notifications included?", "Basic SMS / confirmation for clients is included in the page price. Telegram alerts and deeper automations are optional and quoted separately."]
       }
     };
 

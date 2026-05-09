@@ -61,7 +61,7 @@ const FEATURE_DEFS = [
   { key: "featBooking", type: "included" },
   { key: "featContact", type: "included" },
   { key: "featSms", type: "included" },
-  { key: "featBrandColor", type: "addon" },
+  { key: "featBrandColor", type: "included" },
   { key: "featIgAuto", type: "addon" },
   { key: "featTg", type: "addon" },
   { key: "featExtraSection", type: "addon" },

@@ -28,7 +28,7 @@ const patchRU = {
     "Из Instagram, TikTok, Google, WhatsApp, Telegram, рекламы или обычной ссылки. Каждый вход ведёт к одной выверенной презентации.",
   detailsTitle: "Что входит за 600 zł?",
   detailsLead:
-    "Базовая страница для локального бизнеса с оффером, услугами, ценами, FAQ, контактами и простой воронкой записи.",
+    "Премиальная страница под локальный бизнес: оффер, услуги и цены, FAQ, галерея, контакты и соцсети, запись / бронирование, SMS / базовое подтверждение, адаптация под нишу и фирменный цвет — всё в одной цене пакета.",
   detailsIncludedHeading: "Входит в цену:",
   detailsAddonsHeading: "Дополнительно:",
   detailsBackBtn: "Вернуться к демо",
@@ -40,7 +40,7 @@ const patchRU = {
   detailsInc6: "Запись / booking",
   detailsInc7: "SMS / базовое подтверждение",
   detailsInc8: "Адаптация под нишу",
-  detailsAdd1: "Фирменный цвет — от +100 zł",
+  detailsInc9: "Фирменный / свой цвет в стоимости",
   detailsAdd2: "Дополнительная секция — +50 zł",
   detailsAdd3: "Автоматизация Instagram — отдельно",
   detailsAdd4: "Уведомления Telegram — отдельно",
@@ -65,7 +65,7 @@ const patchEN = {
   phoneCard4Tag: "done",
   detailsTitle: "What is included for 600 zł?",
   detailsLead:
-    "A base page for a local business with an offer, services, prices, FAQ, contact section and a simple booking path.",
+    "A premium page for a local business: offer, services and prices, FAQ, gallery, contact and social media, booking / sign-up, SMS / basic confirmation, niche fit, and your brand color—all included in the package price.",
   detailsIncludedHeading: "Included:",
   detailsAddonsHeading: "Add-ons:",
   detailsBackBtn: "Back to demo",
@@ -77,7 +77,7 @@ const patchEN = {
   detailsInc6: "Booking / request flow",
   detailsInc7: "SMS / basic confirmation",
   detailsInc8: "Niche adaptation",
-  detailsAdd1: "Brand color — from +100 zł",
+  detailsInc9: "Custom / brand color included",
   detailsAdd2: "Additional section — +50 PLN",
   detailsAdd3: "Instagram automation — separately",
   detailsAdd4: "Telegram notifications — separately",
@@ -94,8 +94,8 @@ const patchEN = {
   productCard3Btn: "Connect entry points",
   pricingTitle1: "Extended page",
   pricingTitle2: "for 600 zł.",
-  productTitle1: "A ready-made system",
-  productTitle2: "for local business."
+  productTitle1: "A ready system for your",
+  productTitle2: "local business."
 };
 
 Object.assign(ru, patchRU);
