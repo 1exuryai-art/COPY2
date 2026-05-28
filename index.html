@@ -505,17 +505,40 @@
       box-shadow: 0 16px 34px rgba(0,0,0,.26), var(--glass-highlight);
       text-decoration: none;
       position: relative;
-      overflow: hidden;
-      animation: logoBreath 5.6s ease-in-out infinite;
+      overflow: visible;
+      animation: logoBreath 6s linear infinite;
+      isolation: isolate;
+    }
+
+    .desktop-logo::after {
+      content: "";
+      position: absolute;
+      inset: -18px -10px;
+      z-index: -1;
+      border-radius: 30px;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 88% 100% at 50% 50%, rgba(99, 102, 241, 0.55), rgba(56, 189, 248, 0.22) 48%, transparent 72%);
+      filter: blur(22px);
+      animation: logoAuraFlow 5s linear infinite;
     }
 
     .desktop-logo::before {
       content: "";
       position: absolute;
-      inset: -40%;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
       background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.18), transparent 62%);
-      transform: translateX(-55%) rotate(8deg);
-      animation: logoShine 5.8s ease-in-out infinite;
+      transform: translateX(-78%) rotate(8deg);
+      animation: logoShine 4.8s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .desktop-logo .brand-wordmark {
+      position: relative;
+      z-index: 1;
     }
 
     .desktop-call-btn {
@@ -605,7 +628,8 @@
     #reviews,
     #location,
     #faq,
-    #contact {
+    #contact,
+    #demo {
       scroll-margin-top: 126px;
     }
 
@@ -771,6 +795,33 @@
       max-width: 760px;
       font-size: 15px;
       line-height: 1.6;
+    }
+
+    #demo .section-head {
+      max-width: 1040px;
+      margin-bottom: 28px;
+    }
+
+    #demo .section-head h2 {
+      max-width: 16ch;
+      font-size: clamp(42px, 5.1vw, 76px);
+      line-height: .91;
+    }
+
+    #demo .section-head p {
+      max-width: 700px;
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    #demo .demo-hub-grid {
+      max-width: 980px;
+      gap: 28px;
+    }
+
+    #demo .section-wrap {
+      padding-top: 34px;
+      padding-bottom: 32px;
     }
 
     .section-chip {
@@ -1242,6 +1293,223 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
       min-width: 0;
+    }
+
+    .demo-hub-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      max-width: 820px;
+      margin: 0 auto;
+      min-width: 0;
+    }
+
+    @keyframes demoHubGlowPulse {
+      0%, 100% {
+        opacity: 0.34;
+        transform: scale(0.93) translateZ(0);
+      }
+      50% {
+        opacity: 0.9;
+        transform: scale(1.08) translateZ(0);
+      }
+    }
+
+    @keyframes demoHubGlowPulseMobile {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.78; }
+    }
+
+    @keyframes demoHubTapBlink {
+      0%, 100% { opacity: 0.72; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+
+    .demo-hub-item {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      text-align: center;
+      min-width: 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .demo-hub-item::after {
+      content: "";
+      grid-row: 1;
+      grid-column: 1;
+      place-self: stretch;
+      margin: -16px -12px -12px;
+      border-radius: 32px;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(28px);
+      transform: translateZ(0);
+      animation: demoHubGlowPulse 3.6s ease-in-out infinite;
+    }
+
+    .demo-hub-item--barber::after {
+      background:
+        radial-gradient(ellipse 92% 78% at 50% 44%, rgba(232, 186, 120, 0.82), rgba(201, 150, 82, 0.38) 46%, transparent 74%);
+    }
+
+    .demo-hub-item--nails::after {
+      background:
+        radial-gradient(ellipse 92% 78% at 50% 44%, rgba(147, 197, 253, 0.38), rgba(99, 102, 241, 0.16) 50%, transparent 76%);
+    }
+
+    .demo-hub-card {
+      position: relative;
+      grid-row: 1;
+      grid-column: 1;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+      color: inherit;
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
+      transition: transform 220ms var(--ease);
+      -webkit-tap-highlight-color: transparent;
+      contain: layout paint;
+    }
+
+    .demo-hub-card--barber {
+      border-color: rgba(201, 150, 82, 0.22);
+    }
+
+    .demo-hub-card--nails {
+      border-color: rgba(99, 130, 246, 0.22);
+      background: #070b1a;
+    }
+
+    .demo-hub-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .demo-hub-card:active {
+      transform: translateY(-1px) scale(0.985);
+    }
+
+    .demo-hub-card__tap {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(8, 10, 24, 0.55);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: none;
+      animation: demoHubTapBlink 2.2s ease-in-out infinite;
+    }
+
+    .demo-hub-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      height: auto;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 0;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: none;
+      vertical-align: top;
+      transition: transform 420ms var(--ease);
+    }
+
+    .demo-hub-card:hover .demo-hub-photo {
+      transform: scale(1.02);
+    }
+
+    .demo-hub-card__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 100%;
+      height: 52px;
+      min-height: 52px;
+      padding: 0 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: clamp(12px, 1.2vw, 14px);
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .demo-hub-card--barber .demo-hub-card__cta {
+      color: #18120b;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.28), transparent 42%),
+        linear-gradient(180deg, #e8ba78, #c99652 52%, #9a6b2e);
+    }
+
+    .demo-hub-card--nails .demo-hub-card__cta {
+      color: #152238;
+      border-top-color: rgba(186, 210, 240, 0.35);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.62), transparent 44%),
+        linear-gradient(180deg, #f6f9fc 0%, #e3edf8 46%, #b8cfe8 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.88),
+        inset 0 -1px 0 rgba(148, 180, 220, 0.22);
+    }
+
+    .demo-hub-desc {
+      grid-row: 2;
+      grid-column: 1;
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-pill,
+      .desktop-logo,
+      .logo-pill::after,
+      .logo-pill::before,
+      .desktop-logo::after,
+      .desktop-logo::before {
+        animation: none;
+      }
+
+      .logo-pill::after,
+      .desktop-logo::after {
+        opacity: 0.5;
+        transform: none;
+      }
+
+      .demo-hub-item::after,
+      .demo-hub-card__tap {
+        animation: none;
+      }
+
+      .demo-hub-item::after {
+        opacity: 0.5;
+        transform: none;
+      }
+
+      .demo-hub-card:hover .demo-hub-photo {
+        transform: none;
+      }
     }
 
     .gallery-grid {
@@ -3014,11 +3282,16 @@ img {
       .app-top {
         position: relative;
         z-index: 40;
-        padding: calc(8px + var(--safe-top)) 10px 8px;
-        display: grid;
-        grid-template-columns: 38px minmax(0, 1fr) auto;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: calc(10px + var(--safe-top)) clamp(8px, 2.4vw, 14px) 8px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 6px;
+        gap: clamp(5px, 1.4vw, 10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         background: linear-gradient(180deg, rgba(5,8,22,.95), rgba(5,8,22,.82));
         backdrop-filter: blur(22px) saturate(148%);
@@ -3026,9 +3299,40 @@ img {
         box-shadow: 0 14px 34px rgba(0,0,0,.22);
       }
 
+      .app-top > .top-gear-btn,
+      .app-top > .mobile-call-btn {
+        flex: 0 0 auto;
+        width: clamp(44px, 10.5vw, 52px);
+        height: clamp(44px, 10.5vw, 52px);
+        border-radius: clamp(16px, 4.2vw, 19px);
+      }
+
+      .app-top > .top-gear-btn {
+        order: 1;
+      }
+
+      .app-top .logo-pill {
+        order: 2;
+      }
+
+      .app-top .mobile-lang-switcher {
+        order: 3;
+      }
+
+      .app-top > .mobile-call-btn {
+        order: 4;
+      }
+
+      button.icon-btn {
+        appearance: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+      }
+
       .icon-btn {
-        width: 42px;
-        height: 42px;
+        width: 52px;
+        height: 52px;
         display: grid;
         place-items: center;
         border: 1px solid var(--line);
@@ -3046,31 +3350,55 @@ img {
       }
 
       .logo-pill {
-        justify-self: start;
-        width: min(156px, 100%);
+        flex: 1 1 auto;
+        min-width: 0;
+        width: auto;
         max-width: 100%;
-        height: 40px;
-        padding: 0 7px;
+        height: clamp(52px, 14vw, 58px);
+        padding: 0 clamp(10px, 3vw, 14px);
         display: grid;
         place-items: center;
-        border-radius: 16px;
+        border-radius: 23px;
         border: 1px solid rgba(255,255,255,.09);
         background:
           radial-gradient(circle at 36% 0%, rgba(139,92,246,.18), transparent 46%),
           linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
         box-shadow: var(--shadow-sm), var(--glass-highlight);
-        overflow: hidden;
+        overflow: visible;
         position: relative;
-        animation: logoBreath 4.8s ease-in-out infinite;
+        isolation: isolate;
+        animation: logoBreath 6s linear infinite;
+      }
+
+      .logo-pill::after {
+        content: "";
+        position: absolute;
+        inset: -16px -8px;
+        z-index: -1;
+        border-radius: 28px;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse 88% 100% at 50% 50%, rgba(99, 102, 241, 0.55), rgba(56, 189, 248, 0.22) 48%, transparent 72%);
+        filter: blur(20px);
+        animation: logoAuraFlow 5s linear infinite;
       }
 
       .logo-pill::before {
         content: "";
         position: absolute;
-        inset: -40%;
+        inset: 0;
+        border-radius: inherit;
+        overflow: hidden;
         background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.13), transparent 62%);
-        transform: translateX(-72%) rotate(8deg);
-        animation: logoShine 5.5s ease-in-out infinite;
+        transform: translateX(-78%) rotate(8deg);
+        animation: logoShine 4.8s linear infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .logo-pill .mobile-wordmark {
+        position: relative;
+        z-index: 1;
       }
 
       .mobile-logo-img {
@@ -3082,16 +3410,26 @@ img {
       }
 
       .mobile-lang-switcher {
-        width: auto;
-        display: flex;
-        justify-content: flex-end;
-        gap: 4px;
+        position: relative;
+        inset: auto;
         z-index: 80;
-        padding: 0;
-        margin-right: 10px;
-        transform: translateX(-8px);
-        background: transparent;
-        border-bottom: none;
+        flex: 0 0 auto;
+        width: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: clamp(2px, 0.7vw, 4px);
+        margin-left: 0;
+        margin-right: 0;
+        padding: clamp(3px, 0.9vw, 5px);
+        transform: none;
+        background: rgba(10, 10, 22, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24), var(--glass-highlight);
+        backdrop-filter: var(--glass-light);
+        -webkit-backdrop-filter: var(--glass-light);
+        max-width: fit-content;
       }
 
       .details-panel {
@@ -3117,10 +3455,38 @@ img {
       }
 
       .mobile-lang-switcher .lang-btn {
-        min-width: 28px;
-        height: 28px;
-        padding: 0;
-        font-size: 9px;
+        min-width: clamp(34px, 9.2vw, 40px);
+        height: clamp(36px, 9.8vw, 42px);
+        padding: 0 clamp(2px, 0.6vw, 5px);
+        font-size: clamp(10.5px, 2.9vw, 12px);
+      }
+
+      .demo-hub-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        max-width: none;
+      }
+
+      .demo-hub-card {
+        border-radius: 20px;
+      }
+
+      .demo-hub-card__cta {
+        height: 48px;
+        min-height: 48px;
+        font-size: 12px;
+      }
+
+      .demo-hub-item::after {
+        margin: -12px -8px -8px;
+        filter: blur(20px);
+        animation: demoHubGlowPulseMobile 4.2s ease-in-out infinite;
+      }
+
+      .demo-hub-card__tap {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(8, 10, 24, 0.72);
       }
 
       .section-nav {
@@ -4140,22 +4506,22 @@ img {
 
     @media (max-width: 390px) {
       .app-top {
-        grid-template-columns: 36px minmax(0, 1fr) auto;
-        gap: 8px;
+        gap: 6px;
         padding-left: 10px;
         padding-right: 10px;
       }
 
-      .icon-btn {
+      .app-top > .top-gear-btn,
+      .app-top > .mobile-call-btn {
         width: 40px;
         height: 40px;
         border-radius: 17px;
       }
 
       .logo-pill {
-        width: min(148px, 100%);
-        height: 40px;
-        border-radius: 14px;
+        height: 48px;
+        border-radius: 18px;
+        padding: 0 8px;
       }
 
       .mobile-wordmark span:first-child {
@@ -4524,19 +4890,66 @@ img {
     }
 
     @keyframes logoBreath {
-      0%, 100% { box-shadow: var(--shadow-sm), var(--glass-highlight); }
+      0% {
+        box-shadow:
+          0 14px 36px rgba(99, 102, 241, 0.14),
+          0 0 26px rgba(56, 189, 248, 0.1),
+          var(--glass-highlight);
+      }
+      25% {
+        box-shadow:
+          0 20px 48px rgba(99, 102, 241, 0.28),
+          0 0 44px rgba(139, 92, 246, 0.2),
+          var(--glass-highlight);
+      }
       50% {
         box-shadow:
-          0 20px 48px rgba(99, 102, 241, 0.18),
-          0 0 34px rgba(56, 189, 248, 0.12),
+          0 16px 42px rgba(56, 189, 248, 0.24),
+          0 0 52px rgba(99, 102, 241, 0.18),
+          var(--glass-highlight);
+      }
+      75% {
+        box-shadow:
+          0 22px 50px rgba(139, 92, 246, 0.26),
+          0 0 38px rgba(56, 189, 248, 0.16),
+          var(--glass-highlight);
+      }
+      100% {
+        box-shadow:
+          0 14px 36px rgba(99, 102, 241, 0.14),
+          0 0 26px rgba(56, 189, 248, 0.1),
           var(--glass-highlight);
       }
     }
 
+    @keyframes logoAuraFlow {
+      0% {
+        opacity: 0.38;
+        transform: scale(0.94) translateZ(0);
+      }
+      33% {
+        opacity: 0.82;
+        transform: scale(1.08) translateZ(0);
+      }
+      66% {
+        opacity: 0.52;
+        transform: scale(1.02) translateZ(0);
+      }
+      100% {
+        opacity: 0.38;
+        transform: scale(0.94) translateZ(0);
+      }
+    }
+
     @keyframes logoShine {
-      0%, 72%, 100% { transform: translateX(-72%) rotate(8deg); opacity: 0; }
-      82% { opacity: .75; }
-      92% { transform: translateX(72%) rotate(8deg); opacity: 0; }
+      0% {
+        transform: translateX(-78%) rotate(8deg);
+        opacity: 0.18;
+      }
+      100% {
+        transform: translateX(78%) rotate(8deg);
+        opacity: 0.18;
+      }
     }
 
     @keyframes orbMove {
@@ -4885,6 +5298,7 @@ body.booking-open .site-header {
           <nav class="desktop-nav">
             <a href="#hero" data-i18n="navStart">Start</a>
             <a href="#pricing" data-i18n="navOffer">Oferta</a>
+            <a href="#demo" data-i18n="navDemo">Demo</a>
             <a href="#masters" data-i18n="navProduct">Produkt</a>
           </nav>
         </div>
@@ -5178,6 +5592,41 @@ body.booking-open .site-header {
         </div>
       </section>
 
+      <section id="demo">
+        <div class="landing-container">
+          <div class="section-card reveal">
+            <div class="section-wrap">
+              <div class="section-head center">
+                <div class="section-chip" data-i18n="demoChip">DEMO</div>
+                <h2>
+                  <span data-i18n="demoTitle1">Dwie gotowe</span>
+                  <span data-i18n="demoTitle2">strony salonu.</span>
+                </h2>
+                <p data-i18n="demoSub">Otwórz żywe przykłady — ciemny barber i jasny salon paznokci. Zobacz, jak strona ma wyglądać i budować zaufanie.</p>
+              </div>
+
+              <div class="demo-hub-grid">
+                <div class="demo-hub-item demo-hub-item--barber">
+                  <a class="demo-hub-card demo-hub-card--barber" href="/demos/barbershop/" data-i18n-aria-label="demoBarberAria">
+                    <span class="demo-hub-card__tap" data-i18n="demoTapHint">Kliknij</span>
+                    <img class="demo-hub-photo demo-hub-photo--barber" src="./images/demo-barbershop.png" alt="" width="1200" height="900" loading="lazy" decoding="async" />
+                    <span class="demo-hub-card__cta" data-i18n="demoBarberBtn">Ciemny styl</span>
+                  </a>
+                </div>
+
+                <div class="demo-hub-item demo-hub-item--nails">
+                  <a class="demo-hub-card demo-hub-card--nails" href="/demos/nails/" data-i18n-aria-label="demoNailsAria">
+                    <span class="demo-hub-card__tap" data-i18n="demoTapHint">Kliknij</span>
+                    <img class="demo-hub-photo demo-hub-photo--nails" src="./images/demo-nails.png" alt="" width="1200" height="900" loading="lazy" decoding="async" />
+                    <span class="demo-hub-card__cta" data-i18n="demoNailsBtn">Jasny styl</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="masters">
         <div class="landing-container">
           <div class="section-card reveal">
@@ -5340,10 +5789,7 @@ body.booking-open .site-header {
             <div class="section-wrap">
               <div class="section-head center">
                 <div class="section-chip" data-i18n="navFaq">FAQ</div>
-                <h2>
-                  <span data-i18n="faqTitle1">Krótko.</span>
-                  <span data-i18n="faqTitle2">Bez technicznego bełkotu.</span>
-                </h2>
+                <h2 data-i18n="faqTitle2">Bez technicznego bełkotu.</h2>
                 <p data-i18n="faqSub">Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.</p>
               </div>
 
@@ -5443,11 +5889,13 @@ body.booking-open .site-header {
         <button class="lang-btn" type="button" data-lang="ru">RU</button>
         <button class="lang-btn" type="button" data-lang="en">EN</button>
       </div>
+      <a class="icon-btn mobile-call-btn" href="tel:+48532377701" data-i18n-aria-label="phoneContact" aria-label="Telefon">☎</a>
     </header>
 
     <nav class="section-nav" aria-label="Nawigacja mobilna">
       <button class="nav-chip active" type="button" data-page="home" data-i18n="navStart">Start</button>
       <button class="nav-chip" type="button" data-page="services" data-i18n="navOffer">Oferta</button>
+      <button class="nav-chip" type="button" data-page="demo" data-i18n="navDemo">Demo</button>
       <button class="nav-chip" type="button" data-page="masters" data-i18n="navProduct">Produkt</button>
       <button class="nav-chip" type="button" data-page="reviews" data-i18n="navProof">Oceny</button>
       <button class="nav-chip" type="button" data-page="faq" data-i18n="navFaq">FAQ</button>
@@ -5486,7 +5934,7 @@ body.booking-open .site-header {
 
             <div class="dual-actions home-actions">
               <button class="cta-btn" type="button" data-open-booking data-i18n="chooseSystem">Wybierz system</button>
-              <button class="ghost-btn" type="button" data-page-jump="masters" data-i18n="howItWorks">Jak działa</button>
+              <button class="ghost-btn" type="button" data-page-jump="demo" data-i18n="howItWorks">Jak działa</button>
             </div>
           </div>
 
@@ -5534,6 +5982,35 @@ body.booking-open .site-header {
         </div>
       </section>
 
+      <section class="page" data-page-view="demo">
+        <div class="page-head">
+          <div class="kicker" data-i18n="demoChip">DEMO</div>
+          <h2 class="page-title">
+            <span data-i18n="demoTitle1">Dwie gotowe</span>
+            <span class="gold" data-i18n="demoTitle2">strony salonu.</span>
+          </h2>
+          <p class="page-sub" data-i18n="demoSub">Otwórz żywe przykłady — ciemny barber i jasny salon paznokci. Zobacz, jak strona ma wyglądać i budować zaufanie.</p>
+        </div>
+
+        <div class="demo-hub-grid">
+          <div class="demo-hub-item demo-hub-item--barber">
+            <a class="demo-hub-card demo-hub-card--barber" href="/demos/barbershop/" data-i18n-aria-label="demoBarberAria">
+              <span class="demo-hub-card__tap" data-i18n="demoTapHint">Kliknij</span>
+              <img class="demo-hub-photo demo-hub-photo--barber" src="./images/demo-barbershop.png" alt="" width="1200" height="900" loading="lazy" decoding="async" />
+              <span class="demo-hub-card__cta" data-i18n="demoBarberBtn">Ciemny styl</span>
+            </a>
+          </div>
+
+          <div class="demo-hub-item demo-hub-item--nails">
+            <a class="demo-hub-card demo-hub-card--nails" href="/demos/nails/" data-i18n-aria-label="demoNailsAria">
+              <span class="demo-hub-card__tap" data-i18n="demoTapHint">Kliknij</span>
+              <img class="demo-hub-photo demo-hub-photo--nails" src="./images/demo-nails.png" alt="" width="1200" height="900" loading="lazy" decoding="async" />
+              <span class="demo-hub-card__cta" data-i18n="demoNailsBtn">Jasny styl</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section class="page" data-page-view="masters">
         <div class="page-head">
           <div class="kicker" data-i18n="productChip">PRODUKT</div>
@@ -5541,7 +6018,7 @@ body.booking-open .site-header {
             <span data-i18n="mobileProduct1">Elementy</span>
             <span class="gold" data-i18n="mobileProduct2">systemu.</span>
           </h2>
-          <p class="page-sub" data-i18n="mobileProductSub">Produkt, który zostawia wrażenie,teraz jest funkcją systemu.</p>
+          <p class="page-sub" data-i18n="mobileProductSub">Produkt, który zostawia wrażenie, teraz jest funkcją systemu.</p>
         </div>
 
         <div class="masters-mobile-list">
@@ -5594,10 +6071,10 @@ body.booking-open .site-header {
         <div class="page-head">
           <div class="kicker" data-i18n="proofChip">OCENY</div>
           <h2 class="page-title">
-            <span data-i18n="proofTitle1">Mniej chaosu.</span>
-            <span class="gold" data-i18n="proofTitle2">Więcej konkretu.</span>
+            <span data-i18n="proofTitle1">Oceny i</span>
+            <span class="gold" data-i18n="proofTitle2">zaufanie.</span>
           </h2>
-          <p class="page-sub" data-i18n="mobileProofSub">Strona ma wyglądać jak normalny produkt i budować zaufanie.</p>
+          <p class="page-sub" data-i18n="mobileProofSub">Strona ma wyglądać jak salon — schludnie, premium i budować zaufanie.</p>
         </div>
 
         <div class="reviews-mobile-list">
@@ -5648,8 +6125,7 @@ body.booking-open .site-header {
         <div class="page-head">
           <div class="kicker" data-i18n="navFaq">FAQ</div>
           <h2 class="page-title">
-            <span data-i18n="faqTitle1">Krótko.</span>
-            <span class="gold" data-i18n="faqTitle2">Bez bełkotu.</span>
+            <span class="gold" data-i18n="faqTitle2">Bez technicznego bełkotu.</span>
           </h2>
           <p class="page-sub" data-i18n="faqSub">Kliknij pytanie — odpowiedź otworzy się jako osobny ekran.</p>
         </div>
